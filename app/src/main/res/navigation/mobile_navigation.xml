@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.unitedtractors.elomate.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_assigment"
+        android:name="com.unitedtractors.elomate.ui.assigment.AssigmentFragment"
+        android:label="@string/title_assigment"
+        tools:layout="@layout/fragment_assigment" />
+
+    <fragment
+        android:id="@+id/navigation_mentoring"
+        android:name="com.unitedtractors.elomate.ui.mentoring.MentoringFragment"
+        android:label="@string/title_mentoring"
+        tools:layout="@layout/fragment_mentoring" />
+
+    <fragment
+        android:id="@+id/navigation_report"
+        android:name="com.unitedtractors.elomate.ui.report.ReportFragment"
+        android:label="@string/title_assigment"
+        tools:layout="@layout/fragment_report" />
+
+    <fragment
+        android:id="@+id/navigation_profil"
+        android:name="com.unitedtractors.elomate.ui.profile.ProfilFragment"
+        android:label="@string/title_mentoring"
+        tools:layout="@layout/fragment_profil" />
+</navigation>
