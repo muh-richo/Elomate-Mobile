@@ -51,10 +51,17 @@ AssigmentFragment : Fragment() {
         val phases = arrayOf("Phase 1", "Phase 2", "Phase 3", "Phase 4", "Phase 10")
         val adapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, phases)
 
+        val topic = arrayOf("General Development", "Orientasi Divisi", "BGMS", "NEOP")
+        val adapter2 = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, topic)
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         val spinner: Spinner = binding.spinnerDropdown
+        val spinner2: Spinner = binding.spinnerDropdown2
+
         spinner.adapter = adapter
+        spinner2.adapter = adapter2
     }
 
 
