@@ -16,5 +16,6 @@
     <color name="yellow_800">#936607</color>
     <color name="yellow_900">#754F06</color>
 
+    <color name="error_500">#D92121</color>
     <color name="shades_100">#252525</color>
 </resources>
