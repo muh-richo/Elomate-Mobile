@@ -15,4 +15,6 @@
     <color name="yellow_700">#B78209</color>
     <color name="yellow_800">#936607</color>
     <color name="yellow_900">#754F06</color>
+
+    <color name="shades_100">#252525</color>
 </resources>

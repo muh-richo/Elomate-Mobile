@@ -13,4 +13,9 @@
         <item name="android:statusBarColor">@color/yellow_300</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="CustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item> <!-- Ubah ukuran teks sesuai kebutuhan -->
+        <item name="android:textAllCaps">false</item> <!-- Nonaktifkan kapitalisasi semua huruf -->
+    </style>
 </resources>
