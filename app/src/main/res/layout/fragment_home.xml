@@ -99,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:background="@drawable/bg_title"
-                        android:paddingVertical="13dp"
+                        android:paddingVertical="8dp"
                         android:layout_weight="1"
                         android:layout_marginEnd="0dp"
                         android:orientation="vertical">
@@ -773,7 +773,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:background="@drawable/bg_title"
-                    android:paddingVertical="13dp"
+                    android:paddingVertical="8dp"
                     android:layout_marginBottom="12dp"
                     android:orientation="vertical">
                     <TextView
