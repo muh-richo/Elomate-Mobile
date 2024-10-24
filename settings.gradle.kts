@@ -1,6 +1,7 @@
 pluginManagement {
     repositories {
         google()
+        jcenter()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -10,9 +11,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = uri("https://jitpack.io" )
+        }
+        jcenter()
     }
 }
 
-rootProject.name = "testtt"
+rootProject.name = "Elomate"
 include(":app")
  

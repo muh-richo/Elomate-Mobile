@@ -30,6 +30,7 @@
                     android:id="@+id/profile_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginEnd="12dp"
                     android:src="@mipmap/ic_launcher"
                     app:civ_border_color="#FF000000"/>
                 <LinearLayout
@@ -43,7 +44,6 @@
                         android:textColor="#252525"
                         android:textSize="18sp"
                         android:layout_marginBottom="9dp"
-                        android:layout_marginLeft="12dp"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:text="Hi, Naufal Ramiz"
@@ -52,7 +52,6 @@
                         android:id="@+id/role_user"
                         android:textColor="#64748B"
                         android:textSize="16sp"
-                        android:layout_marginLeft="12dp"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:text="Management trainee"

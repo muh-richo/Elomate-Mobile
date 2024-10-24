@@ -315,9 +315,6 @@
                     app:tint="#94A3B8" />
             </RelativeLayout>
             <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/rvso80260ym"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
