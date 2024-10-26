@@ -16,12 +16,6 @@
             android:name=".ui.assigment.CourseActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mentoring.TestActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.report.SpiderChart"
-            android:exported="false" />
-        <activity
             android:name=".ui.home.ToDoListActivity"
             android:exported="false" />
         <activity
@@ -29,6 +23,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
