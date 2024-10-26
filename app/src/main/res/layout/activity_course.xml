@@ -1,0 +1,87 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/neutral_50"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+         <LinearLayout
+             android:id="@+id/r4t90bilea2d"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@color/yellow_300"
+             android:orientation="vertical"
+             android:paddingTop="12dp">
+
+             <LinearLayout
+                 android:id="@+id/rtdpyuxqulup"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginBottom="12dp"
+                 android:paddingVertical="8dp"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal"
+                 android:paddingHorizontal="20dp">
+                 <ImageView
+                     android:id="@+id/ic_back"
+                     android:layout_width="24dp"
+                     android:layout_height="24dp"
+                     android:layout_marginEnd="8dp"
+                     android:orientation="vertical"
+                     android:src="@drawable/ic_backarrow"/>
+
+                 <TextView
+                     android:id="@+id/roy0fd1cvxfp"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:maxWidth="260dp"
+                     android:paddingEnd="10dp"
+                     android:text="On Boarding"
+                     android:textColor="#0F172A"
+                     android:textSize="20sp" />
+                 <LinearLayout
+                     android:id="@+id/line2"
+                     android:layout_width="2dp"
+                     android:layout_height="match_parent"
+                     android:background="@color/neutral_500"
+                     android:layout_marginEnd="12dp"
+                     android:orientation="vertical">
+                 </LinearLayout>
+                 <TextView
+                     android:id="@+id/rwmfml7giuc"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:text="Batch 10"
+                     android:textColor="@color/neutral_500"
+                     android:textSize="16sp" />
+             </LinearLayout>
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:orientation="vertical">
+                 <com.google.android.material.tabs.TabLayout
+                     android:id="@+id/tabLayout"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:background="@color/yellow_300"
+                     app:tabGravity="fill"
+                     app:tabIndicatorColor="@color/shades_100"
+                     app:tabIndicatorHeight="4dp"
+                     app:tabMode="fixed"
+                     app:tabSelectedTextColor="@color/shades_100"
+                     app:tabTextColor="@color/shades_100"/>
+                 <androidx.viewpager2.widget.ViewPager2
+                     android:id="@+id/viewPager"
+                     android:layout_width="match_parent"
+                     android:layout_height="0dp"
+                     android:layout_weight="1"/>
+             </LinearLayout>
+         </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

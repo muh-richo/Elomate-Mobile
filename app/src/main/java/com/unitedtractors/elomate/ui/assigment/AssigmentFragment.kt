@@ -1,6 +1,7 @@
 package com.unitedtractors.elomate.ui.assigment
 
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.unitedtractors.elomate.databinding.FragmentAssigmentBinding
+import com.unitedtractors.elomate.ui.home.AnnouncementActivity
 
 class
 AssigmentFragment : Fragment() {
@@ -30,6 +32,12 @@ AssigmentFragment : Fragment() {
 
         _binding = FragmentAssigmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        // Set click listener for ic_notif (assuming it exists in the layout)
+        binding.course1.setOnClickListener {
+            val intent = Intent(activity, CourseActivity::class.java)
+            startActivity(intent)
+        }
 
 //        // Find the FrameLayout that includes both ProgressBar and TextView
 //        val progressBar = binding.circleProgressbar

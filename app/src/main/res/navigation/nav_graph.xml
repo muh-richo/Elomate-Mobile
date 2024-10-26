@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/assigmentFragment">
+
+    <!-- AssigmentFragment -->
+    <fragment
+        android:id="@+id/assigmentFragment"
+        android:name="com.unitedtractors.elomate.ui.assigment.AssigmentFragment"
+        android:label="AssigmentFragment" >
+        <action
+            android:id="@+id/action_assigmentFragment_to_courseFragment"
+            app:destination="@id/courseFragment" />
+    </fragment>
+
+    <!-- CourseFragment -->
+    <fragment
+        android:id="@+id/courseFragment"
+        android:name="com.unitedtractors.elomate.ui.assigment.CourseFragment"
+        android:label="CourseFragment" />
+
+</navigation>
