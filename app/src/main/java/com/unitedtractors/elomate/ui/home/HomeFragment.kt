@@ -43,6 +43,16 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.allSchedule.setOnClickListener{
+            val intent = Intent(activity, ScheduleActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.iconAllSchedule.setOnClickListener{
+            val intent = Intent(activity, ScheduleActivity::class.java)
+            startActivity(intent)
+        }
+
         return root
     }
 

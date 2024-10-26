@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:scrollbars="none"
         android:background="#F1F5F9">
         <LinearLayout
             android:layout_width="match_parent"
@@ -564,7 +565,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"/>
                     <TextView
-                        android:id="@+id/rkr92zy9ur0c"
+                        android:id="@+id/allSchedule"
                         android:textColor="#252525"
                         android:textSize="16sp"
                         android:layout_marginEnd="8dp"
@@ -573,7 +574,7 @@
                         android:text="Semua"
                         />
                     <ImageView
-                        android:id="@+id/r7zh8niew5y9"
+                        android:id="@+id/icon_allSchedule"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/ic_arrow_right"

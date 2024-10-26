@@ -1,6 +1,7 @@
 package com.unitedtractors.elomate.ui.report
 
 import android.R
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.unitedtractors.elomate.databinding.FragmentReportBinding
+import com.unitedtractors.elomate.ui.home.ScheduleActivity
 
 class
 ReportFragment : Fragment() {
@@ -44,6 +46,11 @@ ReportFragment : Fragment() {
 //        dashboardViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
 //        }
+
+        binding.viewDetail.setOnClickListener{
+            val intent = Intent(activity, ReportDetailActivity::class.java)
+            startActivity(intent)
+        }
 
         setupSpinner()
         setupRadarChart()

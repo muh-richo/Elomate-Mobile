@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.unitedtractors.elomate.databinding.FragmentProfilBinding
+import com.unitedtractors.elomate.ui.home.ScheduleActivity
 
 class
 ProfilFragment : Fragment() {
@@ -33,6 +35,12 @@ ProfilFragment : Fragment() {
 //        profilViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
 //        }
+
+        binding.participantData.setOnClickListener{
+            val intent = Intent(activity, ParticipantDataActivity::class.java)
+            startActivity(intent)
+        }
+
         return root
     }
 

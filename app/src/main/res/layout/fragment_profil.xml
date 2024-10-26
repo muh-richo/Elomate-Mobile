@@ -419,7 +419,7 @@
                 android:clipToPadding="false"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:id="@+id/rgwi1nmxhf59"
+                    android:id="@+id/self_peer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -458,7 +458,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/rtz8lgi3xowe"
+                    android:id="@+id/participant_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"

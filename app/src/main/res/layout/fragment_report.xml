@@ -70,7 +70,7 @@
                 android:id="@+id/reyu9ybu1xrj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_card"
+                android:background="@drawable/bg_card2"
                 android:backgroundTint="@color/yellow_100"
                 android:paddingVertical="18dp"
                 android:paddingHorizontal="12dp"
@@ -558,7 +558,7 @@
                                     android:layout_weight="1"
                                     />
                                 <TextView
-                                    android:id="@+id/ro29fsdikvhi"
+                                    android:id="@+id/view_detail"
                                     android:textColor="#0267FD"
                                     android:textSize="14sp"
                                     android:layout_height="wrap_content"
