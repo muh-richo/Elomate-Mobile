@@ -41,6 +41,11 @@ ProfilFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.selfPeer.setOnClickListener{
+            val intent = Intent(activity, SelfPeerActivity::class.java)
+            startActivity(intent)
+        }
+
         return root
     }
 
