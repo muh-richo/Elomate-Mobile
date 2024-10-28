@@ -13,10 +13,34 @@
         android:theme="@style/Theme.Elomate"
         tools:targetApi="31">
         <activity
+            android:name=".ui.profile.self_peer.QuestionPeerAssessmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.assigment.DetailPreReadingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.self_peer.ListPeerAssessmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.self_peer.PeerAssessmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.self_peer.SelfAssessmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.assigment.DetailPreTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.onboarding.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.onboarding.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.mentoring.FeedbackFormActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.SelfPeerActivity"
+            android:name=".ui.profile.AssessmentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.profile.ParticipantDataActivity"

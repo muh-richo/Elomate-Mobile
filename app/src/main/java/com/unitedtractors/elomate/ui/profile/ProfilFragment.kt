@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.unitedtractors.elomate.databinding.FragmentProfilBinding
-import com.unitedtractors.elomate.ui.home.ScheduleActivity
 
 class
 ProfilFragment : Fragment() {
@@ -42,7 +40,7 @@ ProfilFragment : Fragment() {
         }
 
         binding.selfPeer.setOnClickListener{
-            val intent = Intent(activity, SelfPeerActivity::class.java)
+            val intent = Intent(activity, AssessmentActivity::class.java)
             startActivity(intent)
         }
 

@@ -104,7 +104,7 @@
                         android:layout_marginBottom="11dp"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="Pre-Test"
+                        android:text="Post-Test"
                         />
                     <LinearLayout
                         android:id="@+id/re50texctp4"

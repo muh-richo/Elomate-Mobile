@@ -1,14 +1,16 @@
 package com.unitedtractors.elomate.ui.profile
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.databinding.ActivitySelfPeerBinding
+import com.unitedtractors.elomate.ui.profile.self_peer.PeerAssessmentActivity
+import com.unitedtractors.elomate.ui.profile.self_peer.SelfAssessmentActivity
 
-class SelfPeerActivity : AppCompatActivity() {
+class AssessmentActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySelfPeerBinding
 
@@ -18,6 +20,17 @@ class SelfPeerActivity : AppCompatActivity() {
         // Inisialisasi binding
         binding = ActivitySelfPeerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnPeer.setOnClickListener {
+            val intent = Intent(this@AssessmentActivity, PeerAssessmentActivity::class.java)
+//            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            startActivity(intent)
+        }
+
+        binding.btnSelf.setOnClickListener {
+            val intent = Intent(this@AssessmentActivity, SelfAssessmentActivity::class.java)
+            startActivity(intent)
+        }
 
         // Set click listener for the back button
         findViewById<View>(R.id.ic_back).setOnClickListener {
