@@ -13,19 +13,31 @@
         android:theme="@style/Theme.Elomate"
         tools:targetApi="31">
         <activity
-            android:name=".ui.profile.self_peer.QuestionPeerAssessmentActivity"
+            android:name=".ui.schedule.ScheduleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.forum.DetailForumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.forum.AddForumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.forum.ForumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.assessment.QuestionPeerAssessmentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assigment.DetailPreReadingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.self_peer.ListPeerAssessmentActivity"
+            android:name=".ui.profile.assessment.ListPeerAssessmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.self_peer.PeerAssessmentActivity"
+            android:name=".ui.profile.assessment.PeerAssessmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.self_peer.SelfAssessmentActivity"
+            android:name=".ui.profile.assessment.SelfAssessmentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assigment.DetailPreTestActivity"

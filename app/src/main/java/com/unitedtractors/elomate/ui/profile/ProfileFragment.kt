@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.unitedtractors.elomate.databinding.FragmentProfilBinding
 
 class
-ProfilFragment : Fragment() {
+ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfilBinding? = null
 
@@ -24,7 +24,7 @@ ProfilFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val profilViewModel =
-            ViewModelProvider(this).get(ProfilViewModel::class.java)
+            ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         _binding = FragmentProfilBinding.inflate(inflater, container, false)
         val root: View = binding.root

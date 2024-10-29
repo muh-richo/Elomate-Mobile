@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.profile.self_peer
+package com.unitedtractors.elomate.ui.profile.assessment
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.databinding.ActivitySelfAssessmentBinding
-import com.unitedtractors.elomate.databinding.ActivitySelfPeerBinding
 
 class SelfAssessmentActivity : AppCompatActivity() {
 

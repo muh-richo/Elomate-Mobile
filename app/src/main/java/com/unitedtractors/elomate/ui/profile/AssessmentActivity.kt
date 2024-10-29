@@ -2,23 +2,21 @@ package com.unitedtractors.elomate.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.databinding.ActivitySelfPeerBinding
-import com.unitedtractors.elomate.ui.profile.self_peer.PeerAssessmentActivity
-import com.unitedtractors.elomate.ui.profile.self_peer.SelfAssessmentActivity
+import com.unitedtractors.elomate.databinding.ActivityAssessmentBinding
+import com.unitedtractors.elomate.ui.profile.assessment.PeerAssessmentActivity
+import com.unitedtractors.elomate.ui.profile.assessment.SelfAssessmentActivity
 
 class AssessmentActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySelfPeerBinding
+    private lateinit var binding: ActivityAssessmentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Inisialisasi binding
-        binding = ActivitySelfPeerBinding.inflate(layoutInflater)
+        binding = ActivityAssessmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnPeer.setOnClickListener {
@@ -32,9 +30,8 @@ class AssessmentActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Set click listener for the back button
-        findViewById<View>(R.id.ic_back).setOnClickListener {
-            finish() // Kembali ke halaman sebelumnya
+        binding.icBack.setOnClickListener{
+            finish()
         }
 
         setupSpinner()
