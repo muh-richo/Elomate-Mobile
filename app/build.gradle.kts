@@ -56,4 +56,9 @@ dependencies {
 
     // Spider Chart
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    //Circle Check box
+//    implementation("com.arlinddev:circlecheckbox:latest_version")
+//    implementation("com.arlinddev:circlecheckbox:<version>")
+
 }

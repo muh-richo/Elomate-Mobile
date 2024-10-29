@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
-                    android:text="Pre-Test" />
+                    android:text="Assignment" />
             </LinearLayout>
 
             <TextView
@@ -266,7 +266,7 @@
                 android:orientation="vertical" />
 
             <LinearLayout
-                android:id="@+id/rvso80260ym"
+                android:id="@+id/btn_start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"

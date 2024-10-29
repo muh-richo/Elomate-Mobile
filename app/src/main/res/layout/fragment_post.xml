@@ -62,7 +62,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/r8geh2brdddx"
+                android:id="@+id/card_assigment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -90,7 +90,7 @@
                     </ImageView>
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/r10bx6ua98jil"
+                    android:id="@+id/assigment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -104,7 +104,7 @@
                         android:layout_marginBottom="11dp"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="Post-Test"
+                        android:text="Assigment"
                         />
                     <LinearLayout
                         android:id="@+id/re50texctp4"
