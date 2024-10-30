@@ -7,67 +7,59 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ryfoqjfj865c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@color/yellow_300"
+        android:paddingVertical="21dp"
+        android:paddingHorizontal="20dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/rq8ibjiyvrhn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_backarrow"
+            android:layout_marginEnd="9dp"
+            android:orientation="vertical">
+        </ImageView>
+        <TextView
+            android:id="@+id/r2xbs8b6yxpl"
+            android:textColor="#0F172A"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="Forum"
+            />
+    </LinearLayout>
+
     <ScrollView
         android:id="@+id/rx6vwrnobk8h"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#F1F5F9">
+        android:scrollbars="none"
+        android:background="@color/neutral_100">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/ryfoqjfj865c"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:background="#FFD133"
-                android:paddingVertical="21dp"
-                android:paddingHorizontal="20dp"
-                android:layout_marginBottom="24dp"
-                android:orientation="horizontal">
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/rq8ibjiyvrhn"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:background="#D9D9D9"
-                    android:layout_marginEnd="9dp"
-                    android:orientation="vertical">
-                </LinearLayout>
-                <TextView
-                    android:id="@+id/r2xbs8b6yxpl"
-                    android:textColor="#0F172A"
-                    android:textSize="20sp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:text="Forum"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/repy876klwnh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_card2"
-                android:paddingVertical="25dp"
+                android:paddingVertical="20dp"
                 android:paddingRight="30dp"
+                android:layout_marginVertical="24dp"
                 android:layout_marginHorizontal="20dp"
-                android:elevation="63dp"
+                android:elevation="0dp"
                 android:orientation="vertical">
                 <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/rjzgvxhhm96f"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -84,10 +76,6 @@
                         android:scaleType="fitXY"
                         />
                     <LinearLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:tools="http://schemas.android.com/tools"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/rgz80jj0q52n"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -143,14 +131,11 @@
                     android:text="Berkomentar"
                     />
                 <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/rbjwiizcix1l"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_content"
-                    android:paddingVertical="19dp"
+                    android:paddingVertical="14dp"
                     android:paddingHorizontal="16dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginStart="30dp"
@@ -165,18 +150,15 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/roolm7sm3d4e"
                     android:layout_width="100dp"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:background="@drawable/bg_card2"
                     android:backgroundTint="@color/yellow_500"
-                    android:paddingVertical="11dp"
-                    android:layout_marginBottom="14dp"
-                    android:layout_marginStart="260dp"
+                    android:paddingVertical="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="end"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/rttcvryskbml"
@@ -188,9 +170,6 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/rsedvl7qcj0g"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -200,9 +179,6 @@
                     android:orientation="vertical">
                 </LinearLayout>
                 <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/r9hr8pq8avq"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -249,9 +225,6 @@
                     android:text="That's a fantastic new app feature. You and your team did an excellent job of incorporating user testing feedback."
                     />
                 <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/rszgxhuj10qq"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -259,17 +232,14 @@
                     android:layout_marginBottom="22dp"
                     android:layout_marginStart="30dp"
                     android:orientation="horizontal">
-                    <LinearLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:tools="http://schemas.android.com/tools"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                    <ImageView
                         android:id="@+id/repd0g6iu1cp"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:background="#D9D9D9"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_reply"
                         android:layout_marginEnd="7dp"
                         android:orientation="vertical">
-                    </LinearLayout>
+                    </ImageView>
                     <TextView
                         android:id="@+id/rhti4oztb0u"
                         android:textColor="#64748B"
@@ -279,17 +249,15 @@
                         android:layout_width="wrap_content"
                         android:text="Reply"
                         />
-                    <LinearLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:tools="http://schemas.android.com/tools"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                    <ImageView
                         android:id="@+id/rlhpeqet2w3f"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:background="#D9D9D9"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/ic_trash"
                         android:layout_marginEnd="7dp"
-                        android:orientation="vertical">
-                    </LinearLayout>
+                        android:orientation="vertical"
+                        android:backgroundTint="@color/neutral_500">
+                    </ImageView>
                     <TextView
                         android:id="@+id/rmnrl7c45x4f"
                         android:textColor="#64748B"
@@ -301,9 +269,6 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/r8ijh30qm6qo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -311,15 +276,11 @@
                     android:layout_marginStart="30dp"
                     android:orientation="vertical">
                     <LinearLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:tools="http://schemas.android.com/tools"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/rn4cl7a7jf6p"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:layout_marginBottom="12dp"
-                        android:layout_marginEnd="135dp"
                         android:orientation="horizontal">
                         <ImageView
                             android:id="@+id/rrmkr9racifj"
@@ -359,27 +320,20 @@
                         android:text="That's a fantastic new app feature. You and your team did an excellent job of incorporating user testing feedback."
                         />
                     <LinearLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:tools="http://schemas.android.com/tools"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/rcq6ap66jaas"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:layout_marginBottom="12dp"
-                        android:layout_marginEnd="167dp"
                         android:orientation="horizontal">
-                        <LinearLayout
-                            xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:tools="http://schemas.android.com/tools"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <ImageView
                             android:id="@+id/r1h35vsugh6w"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:background="#D9D9D9"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_reply"
                             android:layout_marginEnd="7dp"
                             android:orientation="vertical">
-                        </LinearLayout>
+                        </ImageView>
                         <TextView
                             android:id="@+id/rjakim2icgxp"
                             android:textColor="#64748B"
@@ -389,37 +343,31 @@
                             android:layout_width="wrap_content"
                             android:text="Reply"
                             />
-                        <LinearLayout
-                            xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:tools="http://schemas.android.com/tools"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <ImageView
                             android:id="@+id/r1n4jj78qb3x"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:background="#D9D9D9"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/ic_trash"
+                            android:backgroundTint="@color/neutral_500"
                             android:layout_marginEnd="7dp"
                             android:orientation="vertical">
-                        </LinearLayout>
+                        </ImageView>
                         <TextView
                             android:id="@+id/r0s1ip1ismlep"
                             android:textColor="#64748B"
                             android:textSize="14sp"
                             android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_weight="1"
                             android:text="Delete"
                             />
                     </LinearLayout>
                     <LinearLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:tools="http://schemas.android.com/tools"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/rd5k6ogzawtj"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:layout_marginBottom="12dp"
-                        android:layout_marginEnd="135dp"
                         android:orientation="horizontal">
                         <ImageView
                             android:id="@+id/r8ub3bga8y8o"
@@ -459,27 +407,20 @@
                         android:text="That's a fantastic new app feature. You and your team did an excellent job of incorporating user testing feedback."
                         />
                     <LinearLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:tools="http://schemas.android.com/tools"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/rbczzwvnfmom"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:layout_marginBottom="22dp"
-                        android:layout_marginEnd="167dp"
                         android:orientation="horizontal">
-                        <LinearLayout
-                            xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:tools="http://schemas.android.com/tools"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <ImageView
                             android:id="@+id/rrqrgwctkc3g"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:background="#D9D9D9"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_reply"
                             android:layout_marginEnd="7dp"
                             android:orientation="vertical">
-                        </LinearLayout>
+                        </ImageView>
                         <TextView
                             android:id="@+id/rksv2ns96efk"
                             android:textColor="#64748B"
@@ -489,17 +430,15 @@
                             android:layout_width="wrap_content"
                             android:text="Reply"
                             />
-                        <LinearLayout
-                            xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:tools="http://schemas.android.com/tools"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <ImageView
                             android:id="@+id/rk22qg4813oj"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:background="#D9D9D9"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/ic_trash"
+                            android:backgroundTint="@color/neutral_500"
                             android:layout_marginEnd="7dp"
                             android:orientation="vertical">
-                        </LinearLayout>
+                        </ImageView>
                         <TextView
                             android:id="@+id/rwrovdmjt53g"
                             android:textColor="#64748B"
@@ -511,24 +450,18 @@
                             />
                     </LinearLayout>
                     <LinearLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:tools="http://schemas.android.com/tools"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/ro0rs7zokn18"
-                        android:layout_width="320dp"
-                        android:layout_height="88dp"
-                        android:background="@drawable/bg_card2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_content"
                         android:paddingVertical="10dp"
                         android:paddingRight="20dp"
                         android:orientation="vertical">
                         <LinearLayout
-                            xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:tools="http://schemas.android.com/tools"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:id="@+id/rqti63q9k6kq"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingVertical="6dp"
+                            android:paddingTop="6dp"
                             android:layout_marginBottom="10dp"
                             android:layout_marginStart="20dp"
                             android:orientation="vertical">
@@ -541,17 +474,26 @@
                                 android:text="Type your comment here"
                                 />
                         </LinearLayout>
+
                         <LinearLayout
-                            xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:tools="http://schemas.android.com/tools"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/rsedvl7qcj0"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#CBD5E1"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginStart="20dp"
+                            android:orientation="vertical">
+                        </LinearLayout>
+
+                        <ImageView
                             android:id="@+id/r8gc4lkoko48"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:background="#D9D9D9"
-                            android:layout_marginStart="276dp"
+                            android:src="@drawable/ic_send"
+                            android:layout_gravity="end"
+                            android:layout_marginStart="280dp"
                             android:orientation="vertical">
-                        </LinearLayout>
+                        </ImageView>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

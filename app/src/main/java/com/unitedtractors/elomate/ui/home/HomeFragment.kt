@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.unitedtractors.elomate.databinding.FragmentHomeBinding
+import com.unitedtractors.elomate.ui.home.schedule.ScheduleActivity
 
 class HomeFragment : Fragment() {
 

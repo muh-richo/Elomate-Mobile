@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Elomate"
         tools:targetApi="31">
         <activity
-            android:name=".ui.schedule.ScheduleActivity"
+            android:name=".ui.home.schedule.ScheduleActivity"
             android:exported="false" />
         <activity
             android:name=".ui.profile.forum.DetailForumActivity"
@@ -61,7 +61,7 @@
             android:name=".ui.report.ReportDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.ScheduleActivity"
+            android:name=".ui.home.schedule.ScheduleActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assigment.CourseActivity"

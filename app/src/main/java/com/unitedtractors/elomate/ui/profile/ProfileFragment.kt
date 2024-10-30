@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.unitedtractors.elomate.databinding.FragmentProfilBinding
+import com.unitedtractors.elomate.ui.profile.forum.ForumActivity
 
 class
 ProfileFragment : Fragment() {
@@ -41,6 +42,11 @@ ProfileFragment : Fragment() {
 
         binding.selfPeer.setOnClickListener{
             val intent = Intent(activity, AssessmentActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.forum.setOnClickListener{
+            val intent = Intent(activity, ForumActivity::class.java)
             startActivity(intent)
         }
 

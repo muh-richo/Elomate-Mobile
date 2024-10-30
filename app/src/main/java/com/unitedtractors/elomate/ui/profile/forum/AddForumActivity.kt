@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.ui.profile.forum
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,5 +18,10 @@ class AddForumActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityAddForumBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnPost.setOnClickListener {
+            val intent = Intent(this@AddForumActivity, DetailForumActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
