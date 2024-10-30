@@ -93,35 +93,25 @@
                 android:text="Pertanyaan Lorem ipsum dolor sit amet, consectetur adipiscing el?"/>
 
             <LinearLayout
-                android:id="@+id/r92ridysqb6u"
+                android:id="@+id/layoutCheck1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:background="@drawable/bg_card2"
-
+                android:paddingVertical="12dp"
                 android:paddingHorizontal="14dp"
                 android:layout_marginBottom="12dp"
                 android:orientation="horizontal">
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/r4k7w7sgq4"-->
-<!--                    android:layout_width="20dp"-->
-<!--                    android:layout_height="20dp"-->
-<!--                    android:src="@drawable/ic_checkbox"-->
-<!--                    android:layout_marginEnd="13dp"-->
-<!--                    android:orientation="vertical"/>-->
-
                 <CheckBox
                     android:id="@+id/check1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="-12dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:button="@drawable/checkbox"
                     android:buttonTint="@color/yellow_500"
-                    />
+                    android:layout_marginEnd="12dp"
+                    android:padding="8dp"
+                    android:orientation="vertical"/>
 
                 <TextView
                     android:id="@+id/rm497phql0xl"
@@ -134,7 +124,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/rt8rfji5b1on"
+                android:id="@+id/layoutCheck2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -144,12 +134,13 @@
                 android:layout_marginBottom="12dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/rqs972bndwzi"
+                <CheckBox
+                    android:id="@+id/check2"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/checkbox"
-                    android:layout_marginEnd="13dp"
+                    android:button="@drawable/checkbox"
+                    android:buttonTint="@color/yellow_500"
+                    android:layout_marginEnd="12dp"
                     android:orientation="vertical"/>
 
                 <TextView
@@ -163,7 +154,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/rk751j9hpdc"
+                android:id="@+id/layoutCheck3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -173,12 +164,13 @@
                 android:layout_marginBottom="12dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/rc83y97cywfs"
+                <CheckBox
+                    android:id="@+id/check3"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/checkbox"
-                    android:layout_marginEnd="13dp"
+                    android:button="@drawable/checkbox"
+                    android:buttonTint="@color/yellow_500"
+                    android:layout_marginEnd="12dp"
                     android:orientation="vertical"/>
 
                 <TextView
@@ -192,7 +184,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/rtpac3bqvye"
+                android:id="@+id/layoutCheck4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -202,12 +194,13 @@
                 android:layout_marginBottom="12dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/roz45kkri2pa"
+                <CheckBox
+                    android:id="@+id/check4"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/checkbox"
-                    android:layout_marginEnd="13dp"
+                    android:button="@drawable/checkbox"
+                    android:buttonTint="@color/yellow_500"
+                    android:layout_marginEnd="12dp"
                     android:orientation="vertical"/>
 
                 <TextView
@@ -221,7 +214,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/rbtk2gulfriv"
+                android:id="@+id/layoutCheck5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -231,12 +224,13 @@
                 android:layout_marginBottom="28dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/r45jojk86oxa"
+                <CheckBox
+                    android:id="@+id/check5"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/checkbox"
-                    android:layout_marginEnd="13dp"
+                    android:button="@drawable/checkbox"
+                    android:buttonTint="@color/yellow_500"
+                    android:layout_marginEnd="12dp"
                     android:orientation="vertical"/>
 
                 <TextView

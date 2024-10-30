@@ -44,6 +44,16 @@ ProfilFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.editProfile.setOnClickListener{
+            val intent = Intent(activity, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.changePassword.setOnClickListener{
+            val intent = Intent(activity, ChangePasswordActivity::class.java)
+            startActivity(intent)
+        }
+
         return root
     }
 

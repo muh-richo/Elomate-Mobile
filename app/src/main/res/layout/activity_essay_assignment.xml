@@ -130,7 +130,7 @@
                     android:hint="Tulis jawaban"
                     android:textColor="@color/shades_100"
                     android:textSize="14sp"
-                    android:inputType="date"
+                    android:inputType="text"
                     android:backgroundTint="@android:color/transparent"/>
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
@@ -156,13 +156,13 @@
                 app:endIconTint="#94A3B8">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextDate2"
+                    android:id="@+id/editTextFile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="format .pdf"
                     android:textColor="@color/shades_100"
-                    android:textSize="14sp"
-                    android:inputType="date"
+                    android:focusable="false"
+                    android:clickable="true"
                     android:backgroundTint="@android:color/transparent"/>
             </com.google.android.material.textfield.TextInputLayout>
             <LinearLayout

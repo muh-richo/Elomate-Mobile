@@ -60,4 +60,5 @@
     <color name="line_3">#4883EB</color>
 
     <color name="blue_1">#3A89FD</color>
+    <color name="transparant">#RRGGBBAA</color>
 </resources>
