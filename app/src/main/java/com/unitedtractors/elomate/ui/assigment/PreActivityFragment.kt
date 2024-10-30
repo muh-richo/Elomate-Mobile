@@ -23,7 +23,7 @@ class PreActivityFragment : Fragment() {
 
         // Set click listener for announcement
         binding.cardPreTest.setOnClickListener {
-            val intent = Intent(activity, DetailPreTestActivity::class.java)
+            val intent = Intent(activity, DetailAssigmentActivity::class.java)
             startActivity(intent)
         }
 

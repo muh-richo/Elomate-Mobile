@@ -22,4 +22,10 @@
         android:name="com.unitedtractors.elomate.ui.assigment.CourseFragment"
         android:label="CourseFragment" />
 
+    <fragment
+        android:name="com.unitedtractors.elomate.ui.profile.ProfileFragment"
+        android:id="@+id/profileFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </navigation>

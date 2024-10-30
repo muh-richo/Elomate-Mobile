@@ -1,14 +1,14 @@
-package com.unitedtractors.elomate.ui.assigment
+package com.unitedtractors.elomate.ui.profile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.unitedtractors.elomate.R
 
-class DetailPreTestActivity : AppCompatActivity() {
+class EditProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_pre_test)
+        setContentView(R.layout.activity_edit_profile)
 
         // Set click listener for the back button
         findViewById<View>(R.id.ic_back).setOnClickListener {

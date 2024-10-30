@@ -25,6 +25,21 @@
             android:name=".ui.profile.forum.ForumActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.profile.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.assigment.DetailAssigment2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.assigment.EssayAssignmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.assigment.MultipleChoiceActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.profile.assessment.QuestionPeerAssessmentActivity"
             android:exported="false" />
         <activity
@@ -40,7 +55,7 @@
             android:name=".ui.profile.assessment.SelfAssessmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.assigment.DetailPreTestActivity"
+            android:name=".ui.assigment.DetailAssigmentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.onboarding.ForgotPasswordActivity"
@@ -59,9 +74,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.report.ReportDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.home.schedule.ScheduleActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assigment.CourseActivity"

@@ -10,8 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.unitedtractors.elomate.databinding.FragmentProfilBinding
 import com.unitedtractors.elomate.ui.profile.forum.ForumActivity
 
-class
-ProfileFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfilBinding? = null
 
@@ -47,6 +46,16 @@ ProfileFragment : Fragment() {
 
         binding.forum.setOnClickListener{
             val intent = Intent(activity, ForumActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.editProfile.setOnClickListener{
+            val intent = Intent(activity, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.changePassword.setOnClickListener{
+            val intent = Intent(activity, ChangePasswordActivity::class.java)
             startActivity(intent)
         }
 
