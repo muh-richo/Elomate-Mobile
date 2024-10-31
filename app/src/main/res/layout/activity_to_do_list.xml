@@ -7,318 +7,247 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:id="@+id/rnyq2q118f4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFD133"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="33dp">
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="9dp"
+            android:src="@drawable/ic_backarrow"
+            android:orientation="vertical">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/r86slje7jaq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="To Do List"
+            android:textColor="#0F172A"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
     <ScrollView
         android:id="@+id/rpi6zcqs766q"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:scrollbars="none"
         android:background="#F1F5F9">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="24dp"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/rnyq2q118f4"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:background="#FFD133"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="33dp">
-
-                <ImageView
-                    android:id="@+id/ic_back"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="9dp"
-                    android:src="@drawable/ic_backarrow"
-                    android:orientation="vertical">
-                </ImageView>
-
-                <TextView
-                    android:id="@+id/r86slje7jaq"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="To Do List"
-                    android:textColor="#0F172A"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/r92ug8k4f5fj"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                app:flow_horizontalAlign="start"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="16dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/flow"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="btnAll,btnPreTest,btnPostTest,btnTugas,btn360"
+                    app:flow_wrapMode="chain"
+                    app:flow_horizontalGap="4dp"
+                    app:flow_verticalGap="12dp"
+                    app:flow_horizontalAlign="start"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <LinearLayout
-                    android:id="@+id/rc4nr8xlcz66"
-                    android:layout_width="42dp"
+                    android:id="@+id/btnAll"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
                     android:background="@drawable/bg_title"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:paddingVertical="11dp">
+                    android:paddingVertical="6dp"
+                    android:paddingHorizontal="12dp">
 
                     <TextView
-                        android:id="@+id/ri2yipkebl9k"
+                        android:id="@+id/textAll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="All"
-                        android:textColor="#252525"
-                        android:textSize="14sp" />
-
+                        android:textColor="@color/shades_100"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/r2j47xzr9asr"
-                    android:layout_width="84dp"
+                    android:id="@+id/btnPreTest"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_title"
-                    android:backgroundTint="@color/yellow_100"
+                    android:background="@drawable/bg_title_gray"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:paddingVertical="11dp">
+                    android:paddingVertical="6dp"
+                    android:paddingHorizontal="12dp">
 
                     <TextView
-                        android:id="@+id/rtobh1km33zn"
+                        android:id="@+id/textPreTest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pre-Test"
-                        android:textColor="#64748B"
-                        android:textSize="14sp" />
-
+                        android:textColor="@color/neutral_400"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ry0umu7qfua"
-                    android:layout_width="92dp"
+                    android:id="@+id/btnPostTest"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_title"
-                    android:backgroundTint="@color/yellow_100"
+                    android:background="@drawable/bg_title_gray"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:paddingVertical="11dp">
+                    android:paddingVertical="6dp"
+                    android:paddingHorizontal="12dp">
 
                     <TextView
-                        android:id="@+id/r1hnj9be9m0k"
+                        android:id="@+id/textPostTest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Post-Test"
-                        android:textColor="#64748B"
-                        android:textSize="14sp" />
-
+                        android:textColor="@color/neutral_400"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/rf9dhcs3ckj4"
-                    android:layout_width="64dp"
+                    android:id="@+id/btnTugas"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_title"
-                    android:backgroundTint="@color/yellow_100"
+                    android:background="@drawable/bg_title_gray"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:paddingVertical="11dp">
+                    android:paddingVertical="6dp"
+                    android:paddingHorizontal="12dp">
 
                     <TextView
-                        android:id="@+id/rqmtkmzc46lr"
+                        android:id="@+id/textTugas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tugas"
-                        android:textColor="#64748B"
-                        android:textSize="14sp" />
-
+                        android:textColor="@color/neutral_400"
+                        android:textSize="12sp" />
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/r08o4zmf6mxq2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="14dp"
-                android:background="@drawable/bg_announcement"
-                android:elevation="0dp"
-                android:orientation="vertical"
-                android:paddingHorizontal="22dp"
-                android:paddingVertical="21dp">
-
-                <TextView
-                    android:id="@+id/rt42iommvs9k"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Pre Test"
-                    android:textColor="#252525"
-                    android:textSize="14sp" />
 
                 <LinearLayout
-                    android:id="@+id/rd4p7246fxdk"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/rpwrvr7n97p"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_marginEnd="11dp"
-                        android:src="@drawable/ic_book"
-                        app:tint="#94A3B8"
-                        android:orientation="vertical" />
-
-                    <TextView
-                        android:id="@+id/r1lujutew2a7"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Behaviour Competencies"
-                        android:textColor="#64748B"
-                        android:textSize="10sp" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/rcutbhnmcoj5"
+                    android:id="@+id/btn360"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Deadline tanggal 7 Januari 2025"
-                    android:textColor="#D92121"
-                    android:textSize="12sp" />
+                    android:background="@drawable/bg_title_gray"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingVertical="6dp"
+                    android:paddingHorizontal="20dp">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/text360"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="360"
+                        android:textColor="@color/neutral_400"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/r5z42bypkda"
-                android:layout_width="match_parent"
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/TotalTask"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="14dp"
-                android:background="@drawable/bg_announcement"
-                android:elevation="0dp"
-                android:orientation="vertical"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="21dp">
-
-                <TextView
-                    android:id="@+id/r8fn0hvp1z6s"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Tugas Studi Kasus 1"
-                    android:textColor="#252525"
-                    android:textSize="14sp" />
-
-                <LinearLayout
-                    android:id="@+id/r77bswvi9oq"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/rtjdqj01xyx"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_marginEnd="11dp"
-                        android:src="@drawable/ic_book"
-                        app:tint="#94A3B8"
-                        android:orientation="vertical"/>
-
-                    <TextView
-                        android:id="@+id/r7jdm94lokj4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Business Process UT"
-                        android:textColor="#64748B"
-                        android:textSize="10sp" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/rwz38m3r0t4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Deadline tanggal 15 Januari 2025"
-                    android:textColor="#D92121"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/r69nl22tyrv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:textColor="@color/blue_1"
+                android:textSize="18sp"
+                android:layout_marginVertical="20dp"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="14dp"
-                android:background="@drawable/bg_announcement"
-                android:elevation="0dp"
-                android:orientation="vertical"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="21dp">
+                android:text="Incomplete Task : 0" />
 
-                <TextView
-                    android:id="@+id/r51oe6mp71j"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Tugas Studi Kasus 2"
-                    android:textColor="#252525"
-                    android:textSize="14sp" />
+            <!-- RecyclerView untuk menampilkan tugas -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_tasks"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                tools:listitem="@layout/card_task" />
 
-                <LinearLayout
-                    android:id="@+id/r4os4xq27jl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+<!--            <FrameLayout-->
+<!--                android:id="@+id/fragment_container_pre"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"/>-->
 
-                    <ImageView
-                        android:id="@+id/rw1nbn83g8ml"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_marginEnd="11dp"
-                        android:src="@drawable/ic_book"
-                        app:tint="#94A3B8"
-                        android:orientation="vertical"/>
+<!--            <LinearLayout-->
+<!--                android:id="@+id/r69nl22tyrv"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="20dp"-->
+<!--                android:layout_marginBottom="14dp"-->
+<!--                android:background="@drawable/bg_announcement"-->
+<!--                android:elevation="0dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:paddingHorizontal="20dp"-->
+<!--                android:paddingVertical="21dp">-->
 
-                    <TextView
-                        android:id="@+id/r7w4k8tz8sy2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Keputusan Manajerial"
-                        android:textColor="#64748B"
-                        android:textSize="10sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/r51oe6mp71j"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:text="Tugas Studi Kasus 2"-->
+<!--                    android:textColor="#252525"-->
+<!--                    android:textSize="14sp" />-->
 
-                </LinearLayout>
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/r4os4xq27jl"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="12dp"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:orientation="horizontal">-->
 
-                <TextView
-                    android:id="@+id/r5e4gq5c3ay4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Deadline tanggal 22 Januari 2025"
-                    android:textColor="#D92121"
-                    android:textSize="12sp" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/rw1nbn83g8ml"-->
+<!--                        android:layout_width="16dp"-->
+<!--                        android:layout_height="16dp"-->
+<!--                        android:layout_marginEnd="11dp"-->
+<!--                        android:src="@drawable/ic_book"-->
+<!--                        app:tint="#94A3B8"-->
+<!--                        android:orientation="vertical"/>-->
 
-            </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:id="@+id/r7w4k8tz8sy2"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Keputusan Manajerial"-->
+<!--                        android:textColor="#64748B"-->
+<!--                        android:textSize="10sp" />-->
+
+<!--                </LinearLayout>-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/r5e4gq5c3ay4"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Deadline tanggal 22 Januari 2025"-->
+<!--                    android:textColor="#D92121"-->
+<!--                    android:textSize="12sp" />-->
+
+<!--            </LinearLayout>-->
 
         </LinearLayout>
     </ScrollView>
