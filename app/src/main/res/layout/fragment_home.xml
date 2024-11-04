@@ -131,6 +131,7 @@
                         android:id="@+id/icon_alltodo"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        app:tint="@color/shades_100"
                         android:src="@drawable/ic_arrow_right"
                         android:orientation="vertical">
                     </ImageView>
@@ -263,6 +264,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/card_schedule"
                 android:layout_width="match_parent"
@@ -272,266 +274,105 @@
                 android:layout_marginBottom="24dp"
                 android:layout_marginHorizontal="20dp"
                 android:orientation="vertical">
+
                 <LinearLayout
-                    android:id="@+id/calendar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_calendar"
-                    android:paddingVertical="14dp"
+                    android:background="@drawable/bg_card2"
                     android:paddingHorizontal="10dp"
-                    android:layout_marginBottom="21dp"
                     android:orientation="vertical">
+
                     <LinearLayout
-                        android:id="@+id/hari"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="7dp"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:paddingTop="10dp">
+
                         <TextView
-                            android:id="@+id/day1"
-                            android:textColor="#94A3B8"
-                            android:textSize="14sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/monday"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
+                            android:textSize="16sp"
                             android:text="Mon"
-                            />
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            />
+                            android:lineSpacingExtra="2sp"
+                            android:translationY="-1.18sp"
+                            android:gravity="center_horizontal|top" />
+
                         <TextView
-                            android:id="@+id/day2"
-                            android:textColor="#94A3B8"
-                            android:textSize="14sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/tuesday"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
+                            android:textSize="16sp"
                             android:text="Tue"
-                            />
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            />
+                            android:lineSpacingExtra="2sp"
+                            android:translationY="-1.18sp"
+                            android:gravity="center_horizontal|top" />
+
                         <TextView
-                            android:id="@+id/day3"
-                            android:textColor="#94A3B8"
-                            android:textSize="14sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/wednesday"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
+                            android:textSize="16sp"
                             android:text="Wed"
-                            />
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            />
+                            android:lineSpacingExtra="2sp"
+                            android:translationY="-1.18sp"
+                            android:gravity="center_horizontal|top" />
+
                         <TextView
-                            android:id="@+id/day4"
-                            android:textColor="#94A3B8"
-                            android:textSize="14sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/thursday"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
+                            android:textSize="16sp"
                             android:text="Thu"
-                            />
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            />
+                            android:lineSpacingExtra="2sp"
+                            android:translationY="-1.18sp"
+                            android:gravity="center_horizontal|top" />
+
                         <TextView
-                            android:id="@+id/day5"
-                            android:textColor="#94A3B8"
-                            android:textSize="14sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/friday"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
+                            android:textSize="16sp"
                             android:text="Fri"
-                            />
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            />
+                            android:lineSpacingExtra="2sp"
+                            android:translationY="-1.18sp"
+                            android:gravity="center_horizontal|top" />
+
                         <TextView
-                            android:id="@+id/day6"
-                            android:textColor="#94A3B8"
-                            android:textSize="14sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/saturday"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
+                            android:textSize="16sp"
                             android:text="Sat"
-                            />
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            />
+                            android:lineSpacingExtra="2sp"
+                            android:translationY="-1.18sp"
+                            android:gravity="center_horizontal|top" />
+
                         <TextView
-                            android:id="@+id/day7"
-                            android:textColor="#94A3B8"
-                            android:textSize="14sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/sunday"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
+                            android:textSize="16sp"
                             android:text="Sun"
-                            />
+                            android:lineSpacingExtra="2sp"
+                            android:translationY="-1.18sp"
+                            android:gravity="center_horizontal|top" />
                     </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/tanggal"
+
+                    <com.kizitonwose.calendar.view.WeekCalendarView
+                        android:id="@+id/weekCalendarView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-                        <LinearLayout
-                            android:id="@+id/card_tanggal1"
-                            android:layout_width="42dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:background="@drawable/bg_date"
-                            android:paddingVertical="15dp"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/tanggal_1"
-                                android:textColor="#252525"
-                                android:textSize="14sp"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="1"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            />
-                        <LinearLayout
-                            android:id="@+id/card_tanggal2"
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:paddingVertical="15dp"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/tanggal_2"
-                                android:textColor="#252525"
-                                android:textSize="14sp"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="2"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            />
-                        <LinearLayout
-                            android:id="@+id/card_tanggal3"
-                            android:layout_width="45dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:paddingVertical="15dp"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/tanggal_3"
-                                android:textColor="#252525"
-                                android:textSize="14sp"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="3"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            />
-                        <LinearLayout
-                            android:id="@+id/card_tanggal4"
-                            android:layout_width="46dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:paddingVertical="15dp"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/tanggal_4"
-                                android:textColor="#252525"
-                                android:textSize="14sp"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="4"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            />
-                        <LinearLayout
-                            android:id="@+id/card_tanggal5"
-                            android:layout_width="45dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:paddingVertical="15dp"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/tanggal_5"
-                                android:textColor="#252525"
-                                android:textSize="14sp"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="5"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            />
-                        <LinearLayout
-                            android:id="@+id/card_tanggal6"
-                            android:layout_width="45dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:paddingVertical="15dp"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/tanggal_6"
-                                android:textColor="#252525"
-                                android:textSize="14sp"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="6"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            />
-                        <LinearLayout
-                            android:id="@+id/card_tanggal7"
-                            android:layout_width="44dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:paddingVertical="15dp"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/tanggal_7"
-                                android:textColor="#252525"
-                                android:textSize="14sp"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="7"
-                                />
-                        </LinearLayout>
-                    </LinearLayout>
+                        android:layout_marginBottom="5dp"
+                        app:cv_dayViewResource="@layout/calendar_day_layout" />
+
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/r13vicl0xesfr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="21dp"
+                    android:layout_marginVertical="10dp"
                     android:layout_marginHorizontal="20dp"
                     android:orientation="horizontal">
                     <TextView
@@ -577,10 +418,14 @@
                         android:id="@+id/icon_allSchedule"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        app:tint="@color/shades_100"
                         android:src="@drawable/ic_arrow_right"
                         android:orientation="vertical">
                     </ImageView>
                 </LinearLayout>
+
+
+
                 <LinearLayout
                     android:id="@+id/rpg3zqa50z8l"
                     android:layout_width="match_parent"
@@ -659,7 +504,7 @@
                             android:orientation="vertical">
                         </ImageView>
                         <TextView
-                            android:id="@+id/rf6bjc5zgys"
+                            android:id="@+id/selectedDate"
                             android:textColor="#C62828"
                             android:textSize="12sp"
                             android:layout_height="wrap_content"

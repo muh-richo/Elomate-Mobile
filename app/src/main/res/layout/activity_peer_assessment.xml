@@ -25,8 +25,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:background="#FFD133"
-                android:paddingVertical="37dp"
-                android:paddingHorizontal="27dp"
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="20dp"
                 android:layout_marginBottom="30dp"
                 android:orientation="horizontal">
 

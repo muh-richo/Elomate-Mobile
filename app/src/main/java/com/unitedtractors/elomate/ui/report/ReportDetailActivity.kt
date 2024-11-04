@@ -1,8 +1,13 @@
 package com.unitedtractors.elomate.ui.report
 
+import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.github.mikephil.charting.charts.HorizontalBarChart
 import com.github.mikephil.charting.charts.RadarChart
 import com.github.mikephil.charting.components.Description
@@ -17,8 +22,12 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.unitedtractors.elomate.R
+import com.unitedtractors.elomate.databinding.ActivityAnnouncementBinding
+import com.unitedtractors.elomate.databinding.ActivityReportDetailBinding
 
 class ReportDetailActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityReportDetailBinding
 
     private lateinit var horizontalBarChart: HorizontalBarChart
     private lateinit var radarChart1: RadarChart
@@ -26,7 +35,18 @@ class ReportDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_report_detail)
+        enableEdgeToEdge()
+        binding = ActivityReportDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Change the status bar color
+        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300) // Replace with your color resource
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(0, systemBars.top, 0, 0)
+            insets
+        }
 
         horizontalBarChart = findViewById(R.id.stacked_barChart)
         radarChart1 = findViewById(R.id.chart1)

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:background="@color/yellow_300"
-        android:paddingVertical="21dp"
+        android:paddingVertical="20dp"
         android:paddingHorizontal="20dp"
         android:orientation="horizontal">
         <ImageView
