@@ -37,7 +37,6 @@
                 android:id="@+id/ilustrasi"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
-                android:layout_marginBottom="40dp"
                 android:layout_gravity="center"
                 android:src="@drawable/illustration_login"
                 android:scaleType="fitXY"
@@ -46,25 +45,23 @@
                 android:id="@+id/ruzczpusyxg"
                 android:textColor="#252525"
                 android:textSize="30sp"
-                android:layout_marginBottom="14dp"
-                android:layout_marginVertical="20dp"
+                android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
-                android:text="Selamat Datang!"
-                />
+                android:text="Selamat Datang!" />
+
             <TextView
                 android:id="@+id/rzko9f2hbkdq"
                 android:textColor="#000000"
                 android:textSize="16sp"
-                android:layout_marginBottom="46dp"
-                android:layout_marginVertical="20dp"
+                android:layout_marginBottom="30dp"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:textAlignment="center"
-                android:text="Silakan masukkan username dan password \nuntuk mengakses UT Elomate"
-                />
+                android:text="Silakan masukkan username dan password \nuntuk mengakses UT Elomate" />
+
             <TextView
                 android:id="@+id/rxkl1qq8y15"
                 android:textColor="#252525"
@@ -73,33 +70,25 @@
                 android:layout_marginStart="21dp"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Username/NRP"
+                android:text="Email"
                 />
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/InputUsernameNRPLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="18dp"
-                android:background="@drawable/card_field_grey"
-                app:endIconMode="custom"
-                app:startIconDrawable="@drawable/ic_profile"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:textColorHint="#94A3B8"
-                app:endIconTint="#94A3B8">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextUsernameNRP"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="masukkan username atau NRP"
-                    android:textColor="@color/shades_100"
-                    android:paddingStart="44dp"
-                    android:textSize="14sp"
-                    android:inputType="text"
-                    android:backgroundTint="@android:color/transparent"/>
-            </com.google.android.material.textfield.TextInputLayout>
+            <com.unitedtractors.elomate.ui.custom.EmailEditText
+                android:id="@+id/et_login_email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textSize="14sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/card_field_grey"
+                android:hint="Masukkan email"
+                android:textColorHint="@color/neutral_400"
+                android:paddingHorizontal="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+
             <TextView
                 android:id="@+id/r7jfj4n2a5yw"
                 android:textColor="#0F172A"
@@ -110,40 +99,33 @@
                 android:layout_width="wrap_content"
                 android:text="Password"
                 />
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/passwordInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="18dp"
-                android:background="@drawable/card_field_grey"
-                app:endIconMode="custom"
-                app:startIconDrawable="@drawable/ic_key"
-                app:endIconDrawable="@drawable/ic_eye"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:textColorHint="#94A3B8"
-                app:endIconTint="#94A3B8">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="masukkan password"
-                    android:textColor="@color/shades_100"
-                    android:paddingStart="44dp"
-                    android:textSize="14sp"
-                    android:inputType="textPassword"
-                    android:backgroundTint="@android:color/transparent"/>
-            </com.google.android.material.textfield.TextInputLayout>
+            <com.unitedtractors.elomate.ui.custom.PasswordEditText
+                android:id="@+id/et_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Masukkan password"
+                android:textColorHint="@color/neutral_400"
+                android:textSize="14sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/card_field_grey"
+                android:inputType="textPassword"
+                android:paddingHorizontal="15dp"
+                app:icon="@drawable/ic_key"
+                app:layout_constraintEnd_toEndOf="@+id/et_login_email"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_password" />
+
             <LinearLayout
-                android:id="@+id/r79er5n2tvfe"
+                android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:background="@drawable/bg_card2"
                 android:backgroundTint="#FFCA0D"
-                android:paddingVertical="18dp"
+                android:paddingVertical="14dp"
                 android:layout_marginBottom="22dp"
                 android:layout_marginHorizontal="20dp"
                 android:clipChildren="false"
@@ -159,7 +141,7 @@
                     />
             </LinearLayout>
             <TextView
-                android:id="@+id/ruezz106sq2g"
+                android:id="@+id/btn_forgot_password"
                 android:textColor="#B78209"
                 android:textSize="14sp"
                 android:layout_marginBottom="50dp"
