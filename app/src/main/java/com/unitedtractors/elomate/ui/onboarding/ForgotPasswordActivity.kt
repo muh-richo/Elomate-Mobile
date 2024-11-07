@@ -6,9 +6,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.databinding.ActivityForgotPasswordBinding
-import com.unitedtractors.elomate.databinding.ActivityLoginBinding
 
 class ForgotPasswordActivity : AppCompatActivity() {
 

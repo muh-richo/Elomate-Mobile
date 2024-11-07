@@ -70,9 +70,11 @@ dependencies {
 
     // The view calendar library for Android
     implementation("com.kizitonwose.calendar:view:2.5.1")
-
-
     implementation ("com.applandeo:material-calendar-view:1.9.2")
 
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
 
 }
