@@ -22,8 +22,7 @@
                  android:id="@+id/rtdpyuxqulup"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
-                 android:layout_marginBottom="12dp"
-                 android:paddingVertical="8dp"
+                 android:paddingVertical="10dp"
                  android:gravity="center_vertical"
                  android:orientation="horizontal"
                  android:paddingHorizontal="20dp">

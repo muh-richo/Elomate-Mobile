@@ -27,6 +27,8 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -48,12 +50,29 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.3")
+    implementation("androidx.activity:activity:1.9.3")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 
+    // Circle Image
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     // Spider Chart
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+//    // Calender
+//    implementation("com.github.anasanasanas:material-calendarview:2.0.2")
+    implementation("com.github.ArjunGupta08:Horizontal-CalendarDate-With-Click-listener:1.1.0")
+
+    // The view calendar library for Android
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.2")
+
+    // The view calendar library for Android
+    implementation("com.kizitonwose.calendar:view:2.5.1")
+
+
+    implementation ("com.applandeo:material-calendar-view:1.9.2")
+
+
 }
