@@ -3,11 +3,10 @@ package com.unitedtractors.elomate.data.response
 import com.google.gson.annotations.SerializedName
 
 data class UserResponse(
+	@field:SerializedName("data")
+	val data: UserItem? = null,  // Ubah dari List ke UserItem untuk objek tunggal
 
-    @field:SerializedName("data")
-	val data: List<UserItem?>? = null,
-
-    @field:SerializedName("message")
+	@field:SerializedName("message")
 	val message: String? = null
 )
 
@@ -22,7 +21,7 @@ data class UserItem(
 	@field:SerializedName("nama_lengkap")
 	val namaLengkap: String? = null,
 
-	@field:SerializedName("password_")
+	@field:SerializedName("password")
 	val password: String? = null,
 
 	@field:SerializedName("jurusan")

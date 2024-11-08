@@ -10,7 +10,9 @@ import androidx.core.view.WindowInsetsCompat
 import com.unitedtractors.elomate.MainActivity
 import com.unitedtractors.elomate.data.response.UserResponse
 import com.unitedtractors.elomate.data.retrofit.ApiConfig
+import com.unitedtractors.elomate.data.retrofit.LoginRequest
 import com.unitedtractors.elomate.databinding.ActivityLoginBinding
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,37 +50,48 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun login() {
         val email = binding.etLoginEmail.text.toString()
         val password = binding.etLoginPassword.text.toString()
 
-        val client = ApiConfig.getApiService().login(email, password)
+        val loginRequest = LoginRequest(email, password)
+        val client = ApiConfig.getApiService().login(loginRequest)
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
                     val userResponse = response.body()
-                    if (userResponse != null && !userResponse.data.isNullOrEmpty()) {
-                        // Login berhasil, arahkan ke halaman utama (MainActivity)
+                    if (userResponse != null && userResponse.data != null) {
+                        // Login berhasil
                         Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
-                        finish() // Mengakhiri LoginActivity agar tidak bisa kembali ke halaman login
+                        finish()
                     } else {
-                        // Respons sukses tapi data user kosong
+                        // User tidak ditemukan
                         Toast.makeText(this@LoginActivity, "User tidak ditemukan", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    // Respons gagal dari server
-                    Toast.makeText(this@LoginActivity, "Login gagal: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    // Login gagal: tampilkan pesan dari server
+                    val errorBody = response.errorBody()?.string()
+                    val errorMessage = try {
+                        val json = JSONObject(errorBody ?: "{}")
+                        json.getString("message") // Ambil pesan dari respon error
+                    } catch (e: Exception) {
+                        "Login gagal: Kesalahan tidak diketahui"
+                    }
+                    Toast.makeText(this@LoginActivity, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                // Error jaringan atau lainnya
                 Toast.makeText(this@LoginActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
+
+
 
 //    private fun login(email: String, password: String) {
 //        val client = ApiConfig.getApiService().login(email, password)
