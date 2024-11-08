@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.onboarding
+package com.unitedtractors.elomate.ui.auth.forgotpassword
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.unitedtractors.elomate.databinding.ActivityForgotPasswordBinding
+import com.unitedtractors.elomate.ui.auth.login.LoginActivity
 
 class ForgotPasswordActivity : AppCompatActivity() {
 

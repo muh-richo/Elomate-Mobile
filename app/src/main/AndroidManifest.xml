@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Elomate"
         tools:targetApi="31">
         <activity
-            android:name=".ui.onboarding.splash.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -71,10 +71,10 @@
             android:name=".ui.assigment.DetailAssigmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.onboarding.ForgotPasswordActivity"
+            android:name=".ui.auth.forgotpassword.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.onboarding.LoginActivity"
+            android:name=".ui.auth.login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".ui.mentoring.FeedbackFormActivity"

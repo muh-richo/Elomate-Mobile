@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.data.response
+package com.unitedtractors.elomate.data.network.response
 
 import com.google.gson.annotations.SerializedName
 

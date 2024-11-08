@@ -13,11 +13,9 @@ import com.unitedtractors.elomate.utils.Utils
 class EmailEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : AppCompatEditText(context, attrs) {
-    private var iconEmail: Drawable
+    private var iconEmail: Drawable = ContextCompat.getDrawable(context, R.drawable.ic_email) as Drawable
 
     init {
-        iconEmail = ContextCompat.getDrawable(context, R.drawable.ic_profile) as Drawable
-
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
 

@@ -1,19 +1,17 @@
-package com.unitedtractors.elomate.ui.onboarding.splash
+package com.unitedtractors.elomate.ui.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.databinding.ActivitySplashBinding
-import com.unitedtractors.elomate.ui.onboarding.LoginActivity
-import java.io.IOException
+import com.unitedtractors.elomate.ui.auth.login.LoginActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
