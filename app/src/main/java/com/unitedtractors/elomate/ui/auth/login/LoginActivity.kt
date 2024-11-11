@@ -51,15 +51,11 @@ class LoginActivity : AppCompatActivity() {
         val etLoginEmail = binding.etLoginEmail.text
         val etLoginPassword = binding.etLoginPassword.text
 
-        Log.d(TAG, "Attempting login with email: $etLoginEmail, password: $etLoginPassword")
-
         if(etLoginEmail!!.isEmpty() || etLoginPassword!!.isEmpty()) {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
         } else if (!Utils.isValidEmail(etLoginEmail.toString()) || etLoginPassword.length < 8) {
             Toast.makeText(this, "Please check your email and password", Toast.LENGTH_SHORT).show()
-
         } else {
-            Log.d(TAG, "Attempting login with email: $etLoginEmail, password: $etLoginPassword")
             viewModel.login(
                 etLoginEmail.toString(),
                 etLoginPassword.toString()

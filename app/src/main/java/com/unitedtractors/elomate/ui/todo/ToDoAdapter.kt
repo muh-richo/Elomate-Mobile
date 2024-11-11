@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.home.ToDo
+package com.unitedtractors.elomate.ui.todo
 
 import android.view.LayoutInflater
 import android.view.View

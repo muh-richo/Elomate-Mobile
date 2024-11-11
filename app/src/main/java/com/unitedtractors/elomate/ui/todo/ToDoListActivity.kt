@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.ui.home.ToDo.Task
-import com.unitedtractors.elomate.ui.home.ToDo.ToDoAdapter
+import com.unitedtractors.elomate.ui.todo.Task
+import com.unitedtractors.elomate.ui.todo.ToDoAdapter
 
 class ToDoListActivity : AppCompatActivity() {
 

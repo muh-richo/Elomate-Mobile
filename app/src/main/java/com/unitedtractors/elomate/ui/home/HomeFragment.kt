@@ -8,14 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.arjungupta08.horizontal_calendar_date.HorizontalCalendarAdapter
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.view.WeekDayBinder
 import com.unitedtractors.elomate.R
+import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.databinding.FragmentHomeBinding
-import com.unitedtractors.elomate.ui.home.schedule.DayViewContainer
-import com.unitedtractors.elomate.ui.home.schedule.ScheduleActivity
+import com.unitedtractors.elomate.ui.ViewModelFactory
+import com.unitedtractors.elomate.ui.auth.login.LoginActivity
+import com.unitedtractors.elomate.ui.home.announcement.AnnouncementActivity
+import com.unitedtractors.elomate.ui.schedule.DayViewContainer
+import com.unitedtractors.elomate.ui.schedule.ScheduleActivity
+import com.unitedtractors.elomate.data.network.Result
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -24,6 +30,12 @@ class HomeFragment : Fragment(), HorizontalCalendarAdapter.OnItemClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val viewModel by viewModels<HomeViewModel> {
+        ViewModelFactory.getInstance(requireContext())
+    }
+
+    private lateinit var userModel: User
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +44,8 @@ class HomeFragment : Fragment(), HorizontalCalendarAdapter.OnItemClickListener {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+//        getCurrentUserApi()
 
         weekCalendarView()
 
@@ -66,6 +80,38 @@ class HomeFragment : Fragment(), HorizontalCalendarAdapter.OnItemClickListener {
         }
 
         return root
+    }
+
+    private fun getCurrentUserApi() {
+        viewModel.getCurrentUserApi("Bearer ${userModel.id}").observe(requireActivity()) { result ->
+            if (result != null) {
+                when (result) {
+                    is Result.Loading -> {}
+                    is Result.Success -> {
+                        val response = result.data
+                        binding.tvHiUser.text = getString(R.string.hi_user, response.namaLengkap)
+                    }
+
+                    is Result.Error -> {
+                        val errorMessage = result.error.message
+
+                        if (errorMessage == "timeout") {
+//                            userModel.id = ""
+//                            userModel.rememberMe = false
+//                            userModel.googleAuth = false
+//                            userPreference.setUser(userModel)
+
+//                            showToast(getString(R.string.session_expired))
+
+                            val intent = Intent(requireContext(), LoginActivity::class.java)
+                            startActivity(intent)
+                        } else {
+//                            showToast(result.error.message)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun weekCalendarView(){

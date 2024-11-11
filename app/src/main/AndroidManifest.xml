@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.home.schedule.ScheduleActivity"
+            android:name=".ui.schedule.ScheduleActivity"
             android:exported="false" />
         <activity
             android:name=".ui.profile.forum.DetailForumActivity"
@@ -98,7 +98,7 @@
             android:name=".ui.home.ToDoListActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.AnnouncementActivity"
+            android:name=".ui.home.announcement.AnnouncementActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

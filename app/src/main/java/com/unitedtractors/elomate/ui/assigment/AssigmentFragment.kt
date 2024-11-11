@@ -11,7 +11,6 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.unitedtractors.elomate.databinding.FragmentAssigmentBinding
-import com.unitedtractors.elomate.ui.home.AnnouncementActivity
 
 class
 AssigmentFragment : Fragment() {

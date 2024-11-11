@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.home.schedule
+package com.unitedtractors.elomate.ui.schedule
 
 import android.view.View
 import android.view.ViewGroup

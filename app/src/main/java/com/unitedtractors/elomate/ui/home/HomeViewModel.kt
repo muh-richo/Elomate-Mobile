@@ -3,11 +3,10 @@ package com.unitedtractors.elomate.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.unitedtractors.elomate.data.repository.ElomateRepository
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val repository: ElomateRepository) : ViewModel() {
 
-//    private val _text = MutableLiveData<String>().apply {
-//        value = "This is home Fragment"
-//    }
-//    val text: LiveData<String> = _text
+    fun getCurrentUserApi(token: String) = repository.getCurrentUserApi(token)
+
 }

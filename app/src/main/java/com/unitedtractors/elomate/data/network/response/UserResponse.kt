@@ -1,16 +1,11 @@
 package com.unitedtractors.elomate.data.network.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class UserResponse(
-	@field:SerializedName("data")
-	val data: UserItem? = null,  // Ubah dari List ke UserItem untuk objek tunggal
-
-	@field:SerializedName("message")
-	val message: String? = null
-)
-
-data class UserItem(
 
 	@field:SerializedName("batch_data_batch_id")
 	val batchDataBatchId: Int? = null,
@@ -21,14 +16,14 @@ data class UserItem(
 	@field:SerializedName("nama_lengkap")
 	val namaLengkap: String? = null,
 
-	@field:SerializedName("password")
-	val password: String? = null,
-
 	@field:SerializedName("jurusan")
 	val jurusan: String? = null,
 
 	@field:SerializedName("nrp")
 	val nrp: String? = null,
+
+	@field:SerializedName("password")
+	val password: String? = null,
 
 	@field:SerializedName("tempat_lahir")
 	val tempatLahir: String? = null,
@@ -53,4 +48,4 @@ data class UserItem(
 
 	@field:SerializedName("tanggal_lahir")
 	val tanggalLahir: String? = null
-)
+) : Parcelable
