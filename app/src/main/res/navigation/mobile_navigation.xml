@@ -33,5 +33,5 @@
         android:id="@+id/navigation_profil"
         android:name="com.unitedtractors.elomate.ui.profile.ProfileFragment"
         android:label="@string/title_mentoring"
-        tools:layout="@layout/fragment_profil" />
+        tools:layout="@layout/fragment_profile" />
 </navigation>

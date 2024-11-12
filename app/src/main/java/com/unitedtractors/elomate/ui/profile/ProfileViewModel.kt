@@ -1,11 +1,11 @@
 package com.unitedtractors.elomate.ui.profile
 
 import androidx.lifecycle.ViewModel
+import com.unitedtractors.elomate.data.repository.ElomateRepository
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(private val repository: ElomateRepository) : ViewModel() {
 
-//    private val _text = MutableLiveData<String>().apply {
-//        value = "This is Profil Fragment"
-//    }
-//    val text: LiveData<String> = _text
+    fun getCurrentUserApi(token: String) =
+        repository.getCurrentUserApi(token)
+
 }

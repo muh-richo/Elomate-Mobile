@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity() {
         val userPreference = UserPreference(this)
 
         // Redirect to login if no auth token is found
-        if (userPreference.getAuthToken() == null) {
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
+//        if (userPreference.getAuthToken() == null) {
+//            startActivity(Intent(this, LoginActivity::class.java))
+//            finish()
+//        }
 
         // Change the status bar color
         window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300) // Replace with your color resource

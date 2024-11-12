@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -28,39 +29,37 @@ import java.time.LocalDate
 import java.time.YearMonth
 
 class HomeFragment : Fragment() {
-
-    private var _binding: FragmentHomeBinding? = null
-    private lateinit var userPreference: UserPreference
-
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentHomeBinding
     private val viewModel by viewModels<HomeViewModel> {
         ViewModelFactory.getInstance(requireContext())
     }
 
-    // Initialize user model to avoid UninitializedPropertyAccessException
-    private var userModel: User? = User()
+    private lateinit var userPreference: UserPreference
+    private lateinit var userModel: User
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        binding = FragmentHomeBinding.inflate(layoutInflater)
 
         // Initialize UserPreference
         userPreference = UserPreference(requireContext())
+        userModel = userPreference.getUser()
 
         // Call to fetch user data
         getCurrentUserApi()
 
         // Setup the calendar view
         weekCalendarView()
-
-        // Set up click listeners
         setupClickListeners()
 
-        return root
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 
     private fun setupClickListeners() {
@@ -94,39 +93,40 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
     }
-
-    private fun getAuthToken(): String? {
-        val sharedPreferences = requireContext().getSharedPreferences("YourPreferenceName", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("authToken", null)
-    }
-
     private fun getCurrentUserApi() {
-        val authToken = userPreference.getAuthToken()
-
-        if (!authToken.isNullOrEmpty()) {
-            viewModel.getCurrentUserApi("Bearer $authToken").observe(viewLifecycleOwner) { result ->
+        viewModel.getCurrentUserApi("Bearer ${userModel.id}").observe(requireActivity()) { result ->
+            if (result != null) {
                 when (result) {
-                    is Result.Loading -> { /* Show loading if necessary */ }
-                    is Result.Success -> {
-                        val response = result.data
-                        binding.tvHiUser.text = getString(R.string.hi_user, response.namaLengkap ?: "User")
+                    is Result.Loading -> {
+                        binding.progressHorizontal.visibility = View.VISIBLE
                     }
-                    is Result.Error -> handleError(result.error.message)
+                    is Result.Success -> {
+                        binding.progressHorizontal.visibility = View.GONE
+
+                        val response = result.data
+                        binding.tvHiUser.text = getString(R.string.hi_user, response.namaLengkap)
+                        binding.tvRole.text = "${response.roleName}"
+                    }
+
+                    is Result.Error -> {
+                        binding.progressHorizontal.visibility = View.GONE
+
+                        val errorMessage = result.error.message
+
+                        if (errorMessage == "timeout") {
+                            userModel.id = ""
+                            userPreference.setUser(userModel)
+
+                            Toast.makeText(requireContext(), "Sesi telah berakhir. Silakan login kembali.", Toast.LENGTH_SHORT).show()
+
+                            val intent = Intent(requireContext(), LoginActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(requireContext(), result.error.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             }
-        } else {
-            Toast.makeText(requireContext(), "No token found. Please log in.", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
-        }
-    }
-
-    private fun handleError(errorMessage: String?) {
-        if (errorMessage == "Unauthorized") {
-            Toast.makeText(requireContext(), "Session expired. Please log in again.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(requireContext(), LoginActivity::class.java)
-            startActivity(intent)
-        } else {
-            Toast.makeText(requireContext(), errorMessage ?: "An error occurred", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -181,8 +181,4 @@ class HomeFragment : Fragment() {
         return DayOfWeek.of(java.util.Calendar.getInstance().firstDayOfWeek)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

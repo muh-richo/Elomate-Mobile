@@ -7,6 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/yellow_700" />
+
     <ScrollView
         android:clipToPadding="false"
         android:layout_width="match_parent"
@@ -16,6 +24,7 @@
         android:paddingTop="24dp"
         android:paddingHorizontal="20dp"
         android:background="@color/neutral_50">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -56,22 +65,21 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
                         <TextView
-                            android:id="@+id/r4prscpp0kq5"
+                            android:id="@+id/tv_nama_lengkap"
                             android:textColor="#252525"
                             android:textSize="18sp"
                             android:layout_marginBottom="5dp"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:text="Naufal Ramiz"
-                            />
+                            tools:text="Naufal Ramiz"/>
+
                         <TextView
-                            android:id="@+id/r0app6repdhh"
+                            android:id="@+id/tv_nrp"
                             android:textColor="#252525"
                             android:textSize="12sp"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:text="10023890837829"
-                            />
+                            tools:text="10023890837829" />
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -106,17 +114,17 @@
                         />
 
                     <TextView
-                        android:id="@+id/textPosisi"
+                        android:id="@+id/tv_posisi"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ellipsize="none"
                         android:gravity="end"
                         android:singleLine="false"
-                        android:text="Administration Departement"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:text="Administration Departement"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -153,7 +161,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/textTtl"
+                        android:id="@+id/tv_tempat_tanggal_lahir"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxWidth="151dp"
@@ -161,10 +169,10 @@
                         android:ellipsize="none"
                         android:gravity="end"
                         android:singleLine="false"
-                        android:text="Jakarta, 20 Januari 1990"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:text="Jakarta, 20 Januari 1990"/>
 
                 </LinearLayout>
 
@@ -210,16 +218,16 @@
                         />
 
                     <TextView
-                        android:id="@+id/textUniv"
+                        android:id="@+id/tv_asal_universitas"
                         android:layout_width="111dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ellipsize="none"
                         android:singleLine="false"
-                        android:text="Universitas Brawijaya"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:text="Universitas Brawijaya"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/r9pv20ikbm"
@@ -254,16 +262,16 @@
                         />
 
                     <TextView
-                        android:id="@+id/textJurusan"
+                        android:id="@+id/tv_jurusan"
                         android:layout_width="63dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ellipsize="none"
                         android:singleLine="false"
-                        android:text="Administrasi Publik"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:text="Administrasi Publik"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/r00iqtjs4po9cj"
@@ -299,16 +307,16 @@
                         />
 
                     <TextView
-                        android:id="@+id/textDom"
+                        android:id="@+id/tv_domisili"
                         android:layout_width="61dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ellipsize="none"
                         android:singleLine="false"
-                        android:text="Jakarta"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:text="Jakarta"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/ra7eumu6qgyp"
@@ -343,16 +351,16 @@
                         />
 
                     <TextView
-                        android:id="@+id/textNoHp"
+                        android:id="@+id/tv_no_hp"
                         android:layout_width="48dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ellipsize="none"
                         android:singleLine="false"
-                        android:text="087965785 XXXX"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:text="087965785 XXXX"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/rnj9ob3hbv9b"
@@ -386,20 +394,20 @@
                         />
 
                     <TextView
-                        android:id="@+id/textEmail"
+                        android:id="@+id/tv_email"
                         android:layout_width="43dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ellipsize="none"
                         android:singleLine="false"
-                        android:text="naufalrom@gmail.com "
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:text="naufalrom@gmail.com"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/rirqkewog0un"
+                android:id="@+id/container_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_card2"
@@ -410,7 +418,7 @@
                 android:clipToPadding="false"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:id="@+id/self_peer"
+                    android:id="@+id/btn_self_peer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -449,7 +457,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/participant_data"
+                    android:id="@+id/btn_participant_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -489,7 +497,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/forum"
+                    android:id="@+id/btn_forum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -537,7 +545,7 @@
                 android:clipToPadding="false"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:id="@+id/editProfile"
+                    android:id="@+id/btn_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -576,7 +584,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/changePassword"
+                    android:id="@+id/btn_change_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -615,7 +623,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/logout"
+                    android:id="@+id/btn_logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"

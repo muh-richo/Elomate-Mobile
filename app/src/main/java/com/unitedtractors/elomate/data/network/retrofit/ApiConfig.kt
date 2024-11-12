@@ -15,12 +15,11 @@ class ApiConfig {
                 } else {
                     HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
                 }
-//                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://192.168.137.190:4000/")
+                .baseUrl("http://192.168.55.188:4000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

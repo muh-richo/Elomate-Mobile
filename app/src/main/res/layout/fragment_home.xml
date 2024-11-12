@@ -8,6 +8,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/yellow_700" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -48,17 +56,17 @@
                         android:layout_marginBottom="9dp"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="Hi, Naufal Ramiz"
-                        />
+                        tools:text="Hi, Naufal Ramiz"/>
+
                     <TextView
-                        android:id="@+id/role_user"
+                        android:id="@+id/tv_role"
                         android:textColor="#64748B"
                         android:textSize="16sp"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="Management trainee"
-                        />
+                        tools:text="Management Trainee"/>
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/announcement"
                     android:layout_width="64dp"

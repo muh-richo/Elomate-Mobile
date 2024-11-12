@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.unitedtractors.elomate.MainActivity
+import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.databinding.ActivityLoginBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
@@ -21,11 +22,13 @@ import com.unitedtractors.elomate.data.network.Result
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var userPreference: UserPreference
 
     private val viewModel by viewModels<LoginViewModel> {
         ViewModelFactory.getInstance(this)
     }
+
+    private var userModel: User = User()
+    private lateinit var userPreference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +46,12 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // Check if user is already logged in
-        if (userPreference.getAuthToken() != null) {
-            // Auth token exists, navigate to MainActivity
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-            return
-        }
+//        if (userPreference.getAuthToken() != null) {
+//            // Auth token exists, navigate to MainActivity
+//            startActivity(Intent(this, MainActivity::class.java))
+//            finish()
+//            return
+//        }
 
         binding.apply {
             btnForgotPassword.setOnClickListener {
@@ -75,17 +78,32 @@ class LoginActivity : AppCompatActivity() {
                 etLoginPassword.toString()
             ).observe(this) { result ->
                 when (result) {
-                    is Result.Loading -> { /* Show loading if necessary */ }
+                    is Result.Loading -> {
+                    /* Show loading if necessary */
+                    }
 
                     is Result.Success -> {
                         val response = result.data
-                        userPreference.saveAuthToken(response.token) // Save token to SharedPreferences
-                        startActivity(Intent(this, MainActivity::class.java))
+
+//                        userPreference.saveAuthToken(response.token) // Save token to SharedPreferences
+
+                        userModel.id = response.token
+                        userPreference.setUser(userModel)
+
+                        Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
+
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
                         finish()
                     }
 
                     is Result.Error -> {
-                        Toast.makeText(this, result.error.message ?: "An error occurred", Toast.LENGTH_SHORT).show()
+                        if (result.error.message == "Invalid Email") {
+                            Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show()
+                        }
+                        if (result.error.message == "Invalid Password") {
+                            Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             }

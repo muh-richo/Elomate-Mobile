@@ -7,6 +7,7 @@ import com.unitedtractors.elomate.data.repository.ElomateRepository
 import com.unitedtractors.elomate.di.Injection
 import com.unitedtractors.elomate.ui.auth.login.LoginViewModel
 import com.unitedtractors.elomate.ui.home.HomeViewModel
+import com.unitedtractors.elomate.ui.profile.ProfileViewModel
 
 class ViewModelFactory private constructor(private val elomateRepository: ElomateRepository) :
     ViewModelProvider.NewInstanceFactory() {
@@ -18,6 +19,9 @@ class ViewModelFactory private constructor(private val elomateRepository: Elomat
             }
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(elomateRepository) as T
+            }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(elomateRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
