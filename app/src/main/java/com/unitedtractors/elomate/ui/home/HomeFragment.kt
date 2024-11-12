@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.ui.home
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -9,12 +10,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.arjungupta08.horizontal_calendar_date.HorizontalCalendarAdapter
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.view.WeekDayBinder
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.data.local.user.User
+import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.databinding.FragmentHomeBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.auth.login.LoginActivity
@@ -26,16 +27,18 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
 
-class HomeFragment : Fragment(), HorizontalCalendarAdapter.OnItemClickListener {
+class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
+    private lateinit var userPreference: UserPreference
+
     private val binding get() = _binding!!
     private val viewModel by viewModels<HomeViewModel> {
         ViewModelFactory.getInstance(requireContext())
     }
 
-    private lateinit var userModel: User
-
+    // Initialize user model to avoid UninitializedPropertyAccessException
+    private var userModel: User? = User()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,10 +48,22 @@ class HomeFragment : Fragment(), HorizontalCalendarAdapter.OnItemClickListener {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        getCurrentUserApi()
+        // Initialize UserPreference
+        userPreference = UserPreference(requireContext())
 
+        // Call to fetch user data
+        getCurrentUserApi()
+
+        // Setup the calendar view
         weekCalendarView()
 
+        // Set up click listeners
+        setupClickListeners()
+
+        return root
+    }
+
+    private fun setupClickListeners() {
         binding.announcement.setOnClickListener {
             val intent = Intent(activity, AnnouncementActivity::class.java)
             startActivity(intent)
@@ -78,39 +93,40 @@ class HomeFragment : Fragment(), HorizontalCalendarAdapter.OnItemClickListener {
             val intent = Intent(activity, ScheduleActivity::class.java)
             startActivity(intent)
         }
+    }
 
-        return root
+    private fun getAuthToken(): String? {
+        val sharedPreferences = requireContext().getSharedPreferences("YourPreferenceName", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("authToken", null)
     }
 
     private fun getCurrentUserApi() {
-        viewModel.getCurrentUserApi("Bearer ${userModel.id}").observe(requireActivity()) { result ->
-            if (result != null) {
+        val authToken = userPreference.getAuthToken()
+
+        if (!authToken.isNullOrEmpty()) {
+            viewModel.getCurrentUserApi("Bearer $authToken").observe(viewLifecycleOwner) { result ->
                 when (result) {
-                    is Result.Loading -> {}
+                    is Result.Loading -> { /* Show loading if necessary */ }
                     is Result.Success -> {
                         val response = result.data
-                        binding.tvHiUser.text = getString(R.string.hi_user, response.namaLengkap)
+                        binding.tvHiUser.text = getString(R.string.hi_user, response.namaLengkap ?: "User")
                     }
-
-                    is Result.Error -> {
-                        val errorMessage = result.error.message
-
-                        if (errorMessage == "timeout") {
-//                            userModel.id = ""
-//                            userModel.rememberMe = false
-//                            userModel.googleAuth = false
-//                            userPreference.setUser(userModel)
-
-//                            showToast(getString(R.string.session_expired))
-
-                            val intent = Intent(requireContext(), LoginActivity::class.java)
-                            startActivity(intent)
-                        } else {
-//                            showToast(result.error.message)
-                        }
-                    }
+                    is Result.Error -> handleError(result.error.message)
                 }
             }
+        } else {
+            Toast.makeText(requireContext(), "No token found. Please log in.", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+        }
+    }
+
+    private fun handleError(errorMessage: String?) {
+        if (errorMessage == "Unauthorized") {
+            Toast.makeText(requireContext(), "Session expired. Please log in again.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+        } else {
+            Toast.makeText(requireContext(), errorMessage ?: "An error occurred", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -168,10 +184,5 @@ class HomeFragment : Fragment(), HorizontalCalendarAdapter.OnItemClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onItemClick(ddMmYy: String, dd: String, day: String) {
-        // Set selected date text
-        binding.selectedDate.text = "Selected Date: $ddMmYy"
     }
 }

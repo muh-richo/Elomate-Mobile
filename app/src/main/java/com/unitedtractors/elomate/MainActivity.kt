@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
@@ -12,7 +13,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.databinding.ActivityMainBinding
+import com.unitedtractors.elomate.ui.auth.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +26,14 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val userPreference = UserPreference(this)
+
+        // Redirect to login if no auth token is found
+        if (userPreference.getAuthToken() == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
 
         // Change the status bar color
         window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300) // Replace with your color resource

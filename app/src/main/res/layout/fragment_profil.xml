@@ -106,7 +106,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/r9h4l0gwz9da"
+                        android:id="@+id/textPosisi"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -153,7 +153,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/text_posisi"
+                        android:id="@+id/textTtl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxWidth="151dp"
@@ -210,7 +210,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/r37svskdba5e"
+                        android:id="@+id/textUniv"
                         android:layout_width="111dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -254,7 +254,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/r43gf5tskr5l"
+                        android:id="@+id/textJurusan"
                         android:layout_width="63dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -299,7 +299,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/reszxywtbo2b"
+                        android:id="@+id/textDom"
                         android:layout_width="61dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -343,7 +343,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/rar01hldziq"
+                        android:id="@+id/textNoHp"
                         android:layout_width="48dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -386,7 +386,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/rnhds7vuepgs"
+                        android:id="@+id/textEmail"
                         android:layout_width="43dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -463,7 +463,7 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="12dp"
                         android:src="@drawable/ic_profile_2user"
-                        android:tint="@color/neutral_400"
+                        app:tint="@color/neutral_400"
                         android:scaleType="fitXY"
                         />
                     <TextView
@@ -615,7 +615,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/r01lvumgjf4el"
+                    android:id="@+id/logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"

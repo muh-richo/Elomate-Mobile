@@ -63,8 +63,8 @@ dependencies {
     // Spider Chart
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
-//    // Calender
-//    implementation("com.github.anasanasanas:material-calendarview:2.0.2")
+//    Calender
+
     implementation("com.github.ArjunGupta08:Horizontal-CalendarDate-With-Click-listener:1.1.0")
 
     // The view calendar library for Android
