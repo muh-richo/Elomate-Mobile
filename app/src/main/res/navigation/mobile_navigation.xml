@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_assigment"
-        android:name="com.unitedtractors.elomate.ui.assigment.AssigmentFragment"
+        android:name="com.unitedtractors.elomate.ui.assigment.CourseFragment"
         android:label="@string/title_assigment"
-        tools:layout="@layout/fragment_assigment" />
+        tools:layout="@layout/fragment_course" />
 
     <fragment
         android:id="@+id/navigation_mentoring"
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/navigation_profil"
-        android:name="com.unitedtractors.elomate.ui.profile.ProfileFragment"
+        android:name="com.unitedtractors.elomate.ui.profile.displayprofile.ProfileFragment"
         android:label="@string/title_mentoring"
         tools:layout="@layout/fragment_profile" />
 </navigation>

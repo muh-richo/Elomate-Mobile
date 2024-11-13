@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.profile
+package com.unitedtractors.elomate.ui.assessment
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,8 +10,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.databinding.ActivityAssessmentBinding
-import com.unitedtractors.elomate.ui.profile.assessment.PeerAssessmentActivity
-import com.unitedtractors.elomate.ui.profile.assessment.SelfAssessmentActivity
 
 class AssessmentActivity : AppCompatActivity() {
 

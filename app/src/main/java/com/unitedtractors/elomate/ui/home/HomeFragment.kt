@@ -20,7 +20,7 @@ import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.databinding.FragmentHomeBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.auth.login.LoginActivity
-import com.unitedtractors.elomate.ui.home.announcement.AnnouncementActivity
+import com.unitedtractors.elomate.ui.announcement.AnnouncementActivity
 import com.unitedtractors.elomate.ui.schedule.DayViewContainer
 import com.unitedtractors.elomate.ui.schedule.ScheduleActivity
 import com.unitedtractors.elomate.data.network.Result

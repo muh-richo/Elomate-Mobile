@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -79,13 +80,13 @@ class LoginActivity : AppCompatActivity() {
             ).observe(this) { result ->
                 when (result) {
                     is Result.Loading -> {
-                    /* Show loading if necessary */
+                        binding.progressBar.visibility = View.VISIBLE
                     }
 
                     is Result.Success -> {
-                        val response = result.data
+                        binding.progressBar.visibility = View.GONE
 
-//                        userPreference.saveAuthToken(response.token) // Save token to SharedPreferences
+                        val response = result.data
 
                         userModel.id = response.token
                         userPreference.setUser(userModel)
@@ -98,6 +99,8 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     is Result.Error -> {
+                        binding.progressBar.visibility = View.GONE
+
                         if (result.error.message == "Invalid Email") {
                             Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show()
                         }

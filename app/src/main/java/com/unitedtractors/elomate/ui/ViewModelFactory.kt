@@ -5,9 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.unitedtractors.elomate.data.repository.ElomateRepository
 import com.unitedtractors.elomate.di.Injection
+import com.unitedtractors.elomate.ui.assigment.CourseViewModel
 import com.unitedtractors.elomate.ui.auth.login.LoginViewModel
 import com.unitedtractors.elomate.ui.home.HomeViewModel
-import com.unitedtractors.elomate.ui.profile.ProfileViewModel
+import com.unitedtractors.elomate.ui.profile.displayprofile.ProfileViewModel
+import com.unitedtractors.elomate.ui.report.ReportViewModel
 
 class ViewModelFactory private constructor(private val elomateRepository: ElomateRepository) :
     ViewModelProvider.NewInstanceFactory() {
@@ -19,6 +21,12 @@ class ViewModelFactory private constructor(private val elomateRepository: Elomat
             }
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(elomateRepository) as T
+            }
+            modelClass.isAssignableFrom(CourseViewModel::class.java) -> {
+                CourseViewModel(elomateRepository) as T
+            }
+            modelClass.isAssignableFrom(ReportViewModel::class.java) -> {
+                ReportViewModel(elomateRepository) as T
             }
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(elomateRepository) as T

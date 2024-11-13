@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.data.network.retrofit
 
+import com.unitedtractors.elomate.data.network.response.CourseResponse
 import com.unitedtractors.elomate.data.network.response.LoginRequest
 import com.unitedtractors.elomate.data.network.response.TokenResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
@@ -20,4 +21,9 @@ interface ElomateApiService {
     suspend fun getCurrentUser(
         @Header("Authorization") token: String
     ): UserResponse
+
+    @GET("courses")
+    suspend fun getCourses(
+        @Header("Authorization") token: String
+    ): CourseResponse
 }

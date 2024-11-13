@@ -1,6 +1,5 @@
-package com.unitedtractors.elomate.ui.report
+package com.unitedtractors.elomate.ui.report.detail
 
-import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -8,21 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.github.mikephil.charting.charts.HorizontalBarChart
 import com.github.mikephil.charting.charts.RadarChart
-import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.RadarData
 import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.utils.ColorTemplate
 import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.databinding.ActivityAnnouncementBinding
 import com.unitedtractors.elomate.databinding.ActivityReportDetailBinding
 
 class ReportDetailActivity : AppCompatActivity() {

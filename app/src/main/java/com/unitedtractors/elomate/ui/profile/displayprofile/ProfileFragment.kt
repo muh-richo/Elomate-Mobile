@@ -1,8 +1,7 @@
-package com.unitedtractors.elomate.ui.profile
+package com.unitedtractors.elomate.ui.profile.displayprofile
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,11 @@ import com.unitedtractors.elomate.data.network.response.UserResponse
 import com.unitedtractors.elomate.databinding.FragmentProfileBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.auth.login.LoginActivity
-import com.unitedtractors.elomate.ui.profile.forum.ForumActivity
+import com.unitedtractors.elomate.ui.assessment.AssessmentActivity
+import com.unitedtractors.elomate.ui.profile.changepassword.ChangePasswordActivity
+import com.unitedtractors.elomate.ui.profile.editprofile.EditProfileActivity
+import com.unitedtractors.elomate.ui.forum.ForumActivity
+import com.unitedtractors.elomate.ui.profile.participant.ParticipantDataActivity
 import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {

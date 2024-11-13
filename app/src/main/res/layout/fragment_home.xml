@@ -43,17 +43,20 @@
                     android:layout_marginEnd="12dp"
                     android:src="@mipmap/ic_launcher"
                     app:civ_border_color="#FF000000"/>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginEnd="4dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_hi_user"
-                        android:textColor="#252525"
+                        android:textColor="@color/shades_100"
                         android:textSize="18sp"
-                        android:layout_marginBottom="9dp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         tools:text="Hi, Naufal Ramiz"/>

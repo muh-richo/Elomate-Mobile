@@ -1,6 +1,5 @@
-package com.unitedtractors.elomate.ui.profile
+package com.unitedtractors.elomate.ui.profile.participant
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,16 +8,16 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.databinding.ActivityEditProfileBinding
+import com.unitedtractors.elomate.databinding.ActivityParticipantDataBinding
 
-class EditProfileActivity : AppCompatActivity() {
+class ParticipantDataActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityEditProfileBinding
+    private lateinit var binding: ActivityParticipantDataBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityEditProfileBinding.inflate(layoutInflater)
+        binding = ActivityParticipantDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Change the status bar color
@@ -30,7 +29,7 @@ class EditProfileActivity : AppCompatActivity() {
             insets
         }
 
-        binding.icBack.setOnClickListener{
+        binding.icBack.setOnClickListener {
             finish()
         }
     }

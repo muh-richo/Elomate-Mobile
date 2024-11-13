@@ -46,24 +46,24 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <TextView
-                        android:id="@+id/rvne467vhtfc"
+                        android:id="@+id/tv_user_name"
                         android:textColor="#252525"
                         android:textSize="16sp"
-                        android:layout_marginBottom="9dp"
-                        android:layout_marginStart="1dp"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="Naufal Ramiz"
-                        />
+                        android:text="Naufal Ramiz" />
+
                     <TextView
-                        android:id="@+id/r3immczr64wk"
+                        android:id="@+id/tv_posisi"
                         android:textColor="#64748B"
                         android:textSize="14sp"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="10023890837829"
-                        />
+                        android:text="IT Management" />
+
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout

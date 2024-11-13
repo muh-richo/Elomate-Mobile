@@ -3,11 +3,9 @@ package com.unitedtractors.elomate.ui.report
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.unitedtractors.elomate.data.repository.ElomateRepository
 
-class ReportViewModel : ViewModel() {
+class ReportViewModel(private val repository: ElomateRepository) : ViewModel() {
 
-//    private val _text = MutableLiveData<String>().apply {
-//        value = "This is report Fragment"
-//    }
-//    val text: LiveData<String> = _text
+    fun getCurrentUserApi(token: String) = repository.getCurrentUserApi(token)
 }

@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.profile
+package com.unitedtractors.elomate.ui.profile.changepassword
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,16 +8,16 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.databinding.ActivityParticipantDataBinding
+import com.unitedtractors.elomate.databinding.ActivityChangePasswordBinding
 
-class ParticipantDataActivity : AppCompatActivity() {
+class ChangePasswordActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityParticipantDataBinding
+    private lateinit var binding: ActivityChangePasswordBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityParticipantDataBinding.inflate(layoutInflater)
+        binding = ActivityChangePasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Change the status bar color
@@ -29,7 +29,7 @@ class ParticipantDataActivity : AppCompatActivity() {
             insets
         }
 
-        binding.icBack.setOnClickListener {
+        binding.icBack.setOnClickListener{
             finish()
         }
     }

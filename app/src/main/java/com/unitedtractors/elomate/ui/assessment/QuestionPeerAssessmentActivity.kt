@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.profile.assessment
+package com.unitedtractors.elomate.ui.assessment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

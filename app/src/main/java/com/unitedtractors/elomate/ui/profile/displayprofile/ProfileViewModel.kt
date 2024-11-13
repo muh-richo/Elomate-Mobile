@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.profile
+package com.unitedtractors.elomate.ui.profile.displayprofile
 
 import androidx.lifecycle.ViewModel
 import com.unitedtractors.elomate.data.repository.ElomateRepository

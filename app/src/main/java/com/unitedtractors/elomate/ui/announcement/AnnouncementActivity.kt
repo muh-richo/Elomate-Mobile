@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.home.announcement
+package com.unitedtractors.elomate.ui.announcement
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

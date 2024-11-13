@@ -29,19 +29,19 @@
             android:name=".ui.schedule.ScheduleActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.forum.DetailForumActivity"
+            android:name=".ui.forum.DetailForumActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.forum.AddForumActivity"
+            android:name=".ui.forum.AddForumActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.forum.ForumActivity"
+            android:name=".ui.forum.ForumActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.ChangePasswordActivity"
+            android:name=".ui.profile.changepassword.ChangePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.EditProfileActivity"
+            android:name=".ui.profile.editprofile.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assigment.DetailAssigment2Activity"
@@ -53,19 +53,19 @@
             android:name=".ui.assigment.MultipleChoiceActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.assessment.QuestionPeerAssessmentActivity"
+            android:name=".ui.assessment.QuestionPeerAssessmentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assigment.DetailPreReadingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.assessment.ListPeerAssessmentActivity"
+            android:name=".ui.assessment.ListPeerAssessmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.assessment.PeerAssessmentActivity"
+            android:name=".ui.assessment.PeerAssessmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.assessment.SelfAssessmentActivity"
+            android:name=".ui.assessment.SelfAssessmentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assigment.DetailAssigmentActivity"
@@ -80,13 +80,13 @@
             android:name=".ui.mentoring.FeedbackFormActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.AssessmentActivity"
+            android:name=".ui.assessment.AssessmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.ParticipantDataActivity"
+            android:name=".ui.profile.participant.ParticipantDataActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.report.ReportDetailActivity"
+            android:name=".ui.report.detail.ReportDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assigment.CourseActivity"
@@ -98,7 +98,7 @@
             android:name=".ui.home.ToDoListActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.announcement.AnnouncementActivity"
+            android:name=".ui.announcement.AnnouncementActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

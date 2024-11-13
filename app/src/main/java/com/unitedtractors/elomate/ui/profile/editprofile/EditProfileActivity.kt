@@ -1,22 +1,24 @@
-package com.unitedtractors.elomate.ui.profile.forum
+package com.unitedtractors.elomate.ui.profile.editprofile
 
-import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.databinding.ActivityDetailForumBinding
+import com.unitedtractors.elomate.databinding.ActivityEditProfileBinding
 
-class DetailForumActivity : AppCompatActivity() {
+class EditProfileActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityDetailForumBinding
+    private lateinit var binding: ActivityEditProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityDetailForumBinding.inflate(layoutInflater)
+        binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Change the status bar color
@@ -26,6 +28,10 @@ class DetailForumActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(0, systemBars.top, 0, 0)
             insets
+        }
+
+        binding.icBack.setOnClickListener{
+            finish()
         }
     }
 }

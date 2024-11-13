@@ -39,16 +39,18 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:id="@+id/rrwrq27mtl2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:background="@drawable/card_profil"
-                    android:paddingVertical="20dp"
-                    android:paddingHorizontal="19dp"
-                    android:layout_marginBottom="15dp"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="20dp"
+                    android:layout_marginBottom="16dp"
                     android:orientation="horizontal">
+
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/profile_image"
@@ -58,28 +60,30 @@
                         app:civ_border_width="4dp"
                         android:layout_marginEnd="18dp"
                         app:civ_border_color="@color/shades_50"/>
+
                     <LinearLayout
                         android:id="@+id/ruvdl08ldcjo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/tv_nama_lengkap"
                             android:textColor="#252525"
-                            android:textSize="18sp"
-                            android:layout_marginBottom="5dp"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             tools:text="Naufal Ramiz"/>
 
                         <TextView
-                            android:id="@+id/tv_nrp"
+                            android:id="@+id/tv_posisi"
                             android:textColor="#252525"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            tools:text="10023890837829" />
+                            tools:text="Administration Department" />
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -103,7 +107,7 @@
                         android:id="@+id/rufdbyvdh2m"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Posisi"
+                        android:text="NRP"
                         android:textColor="#94A3B8"
                         android:textSize="14sp" />
 
@@ -114,7 +118,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/tv_posisi"
+                        android:id="@+id/tv_nrp"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -124,7 +128,7 @@
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
                         android:textSize="12sp"
-                        tools:text="Administration Departement"/>
+                        tools:text="10023890837829"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -283,13 +287,14 @@
                     android:clipChildren="false"
                     android:clipToPadding="false"
                     android:orientation="horizontal">
+
                     <ImageView
                         android:id="@+id/r5hnhcfb9tet"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginEnd="12dp"
                         android:src="@drawable/ic_location"
-                        app:tint="@color/neutral_500"
+                        app:tint="@color/neutral_400"
                         android:scaleType="fitXY"
                         />
                     <TextView

@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.profile.forum
+package com.unitedtractors.elomate.ui.forum
 
 import android.content.Intent
 import android.os.Bundle

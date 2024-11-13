@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.github.mikephil.charting.charts.RadarChart
 import com.github.mikephil.charting.components.Legend
@@ -18,43 +20,83 @@ import com.github.mikephil.charting.data.RadarData
 import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.unitedtractors.elomate.data.local.user.User
+import com.unitedtractors.elomate.data.local.user.UserPreference
+import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.FragmentReportBinding
+import com.unitedtractors.elomate.ui.ViewModelFactory
+import com.unitedtractors.elomate.ui.auth.login.LoginActivity
+import com.unitedtractors.elomate.ui.report.detail.ReportDetailActivity
 
 class
 ReportFragment : Fragment() {
 
-    private var _binding: FragmentReportBinding? = null
+    private lateinit var binding: FragmentReportBinding
+    private val viewModel by viewModels<ReportViewModel>{
+        ViewModelFactory.getInstance(requireContext())
+    }
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var userPreference: UserPreference
+    private lateinit var userModel: User
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(ReportViewModel::class.java)
+        binding = FragmentReportBinding.inflate(layoutInflater)
 
-        _binding = FragmentReportBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-//        val textView: TextView = binding.textReport
-//        dashboardViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
+        userPreference = UserPreference(requireContext())
+        userModel = userPreference.getUser()
 
         binding.viewDetail.setOnClickListener{
             val intent = Intent(activity, ReportDetailActivity::class.java)
             startActivity(intent)
         }
 
+        getCurrentUserApi()
         setupSpinner()
         setupRadarChart()
         setupSecondRadarChart()
 
-        return root
+        return binding.root
+    }
+
+    private fun getCurrentUserApi() {
+        viewModel.getCurrentUserApi("Bearer ${userModel.id}").observe(requireActivity()) { result ->
+            if (result != null) {
+                when (result) {
+                    is Result.Loading -> {
+//                        binding.progressHorizontal.visibility = View.VISIBLE
+                    }
+                    is Result.Success -> {
+//                        binding.progressHorizontal.visibility = View.GONE
+
+                        val response = result.data
+                        binding.tvUserName.text = response.namaLengkap
+                        binding.tvPosisi.text = response.posisi
+                    }
+
+                    is Result.Error -> {
+//                        binding.progressHorizontal.visibility = View.GONE
+
+                        val errorMessage = result.error.message
+
+                        if (errorMessage == "timeout") {
+                            userModel.id = ""
+                            userPreference.setUser(userModel)
+
+                            Toast.makeText(requireContext(), "Sesi telah berakhir. Silakan login kembali.", Toast.LENGTH_SHORT).show()
+
+                            val intent = Intent(requireContext(), LoginActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(requireContext(), result.error.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun setupRadarChart() {
@@ -191,6 +233,5 @@ ReportFragment : Fragment() {
     
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 }
