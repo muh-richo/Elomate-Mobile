@@ -9,7 +9,7 @@
     <!-- AssigmentFragment -->
     <fragment
         android:id="@+id/assigmentFragment"
-        android:name="com.unitedtractors.elomate.ui.assigment.CourseFragment"
+        android:name="com.unitedtractors.elomate.ui.assigment.AssigmentFragment"
         android:label="AssigmentFragment" >
         <action
             android:id="@+id/action_assigmentFragment_to_courseFragment"
@@ -19,7 +19,7 @@
     <!-- CourseFragment -->
     <fragment
         android:id="@+id/courseFragment"
-        android:name="com.unitedtractors.elomate.ui.assigment.CourseFragment"
+        android:name="com.unitedtractors.elomate.ui.assigment.AssigmentFragment"
         android:label="CourseFragment" />
 
     <fragment
