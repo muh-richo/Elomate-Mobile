@@ -8,7 +8,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.databinding.ActivityAnnouncementBinding
+import com.unitedtractors.elomate.adapter.Task
+import com.unitedtractors.elomate.adapter.TaskAdapter
 import com.unitedtractors.elomate.databinding.ActivityScheduleBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar

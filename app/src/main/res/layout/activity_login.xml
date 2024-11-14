@@ -1,4 +1,4 @@
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/neutral_50"
@@ -13,16 +13,15 @@
         android:clipToPadding="false"
         android:id="@+id/ryt33sq3qjsq"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:scrollbars="none"
-        android:paddingTop="20dp">
+        android:paddingTop="20dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipChildren="false"
-            android:clipToPadding="false"
             android:orientation="vertical">
 
             <ImageView
@@ -62,15 +61,6 @@
                 android:layout_gravity="center"
                 android:textAlignment="center"
                 android:text="Silakan masukkan username dan password \nuntuk mengakses UT Elomate" />
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminate="true"
-                android:visibility="gone"
-                android:layout_gravity="center"
-                app:indicatorColor="@color/yellow_700" />
 
             <TextView
                 android:id="@+id/rxkl1qq8y15"
@@ -171,4 +161,15 @@
                 />
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:paddingTop="240dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/yellow_500"
+        android:visibility="gone"
+        android:clickable="false"
+        android:indeterminate="true"/>
+</FrameLayout>

@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.schedule
+package com.unitedtractors.elomate.adapter
 
 import android.view.LayoutInflater
 import android.view.View

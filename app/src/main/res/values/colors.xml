@@ -61,4 +61,6 @@
 
     <color name="blue_1">#3A89FD</color>
     <color name="transparant">#RRGGBBAA</color>
+
+<!--    <color name="black75">bf000000</color>-->
 </resources>

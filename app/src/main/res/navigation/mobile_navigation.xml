@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_assigment"
-        android:name="com.unitedtractors.elomate.ui.assigment.CourseFragment"
+        android:name="com.unitedtractors.elomate.ui.assigment.AssignmentFragment"
         android:label="@string/title_assigment"
-        tools:layout="@layout/fragment_course" />
+        tools:layout="@layout/fragment_assignment" />
 
     <fragment
         android:id="@+id/navigation_mentoring"

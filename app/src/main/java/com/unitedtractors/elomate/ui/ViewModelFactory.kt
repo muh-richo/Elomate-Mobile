@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.unitedtractors.elomate.data.repository.ElomateRepository
 import com.unitedtractors.elomate.di.Injection
-import com.unitedtractors.elomate.ui.assigment.CourseViewModel
+import com.unitedtractors.elomate.ui.assignment.CourseViewModel
 import com.unitedtractors.elomate.ui.auth.login.LoginViewModel
 import com.unitedtractors.elomate.ui.home.HomeViewModel
 import com.unitedtractors.elomate.ui.profile.displayprofile.ProfileViewModel
