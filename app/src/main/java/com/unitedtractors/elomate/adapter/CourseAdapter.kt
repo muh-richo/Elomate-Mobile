@@ -1,27 +1,32 @@
 package com.unitedtractors.elomate.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.unitedtractors.elomate.data.network.response.CourseResponseItem
+import com.unitedtractors.elomate.data.network.response.CourseResponse
 import com.unitedtractors.elomate.databinding.CardCourseBinding
 
-class CourseAdapter(private val courses: List<CourseResponseItem>) :
-    RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
+class CourseAdapter(
+    private val courses: List<CourseResponse>,
+    private val onCourseClick: (Int) -> Unit // Tambahkan parameter lambda untuk handle klik
+) : RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
 
     inner class CourseViewHolder(private val binding: CardCourseBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(course: CourseResponseItem) {
+        @SuppressLint("SetTextI18n")
+        fun bind(course: CourseResponse) {
             binding.tvCourseName.text = course.namaCourse
             binding.tvMentor.text = "Mentor: ${course.fasilitatorName}"
-
-            // Get progress value from the API data
             val progressValue = course.progress ?: 0
-
-            // Set ProgressBar progress and TextView text with the progress value
             binding.circleProgressbar.progress = progressValue
             binding.progressText.text = "$progressValue%"
+
+            // Set click listener
+            binding.root.setOnClickListener {
+                course.courseId?.let { it1 -> onCourseClick(it1) } // Kirim courseId ke lambda onCourseClick
+            }
         }
     }
 

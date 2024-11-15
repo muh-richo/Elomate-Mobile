@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.assigment
+package com.unitedtractors.elomate.ui.assigment.preactivity
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.unitedtractors.elomate.R
+import com.unitedtractors.elomate.ui.assigment.PreReadingFragment
 
 class PreFragment : Fragment() {
 
@@ -17,11 +18,16 @@ class PreFragment : Fragment() {
     private lateinit var txtActivity: TextView
     private lateinit var txtPreReading: TextView
 
+    private var courseId: Int = 0 // Variabel untuk menyimpan courseId
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_pre, container, false)
+
+        // Ambil courseId dari arguments
+        courseId = arguments?.getInt("COURSE_ID", 0) ?: 0
 
         // Inisialisasi tombol dan TextView
         btnActivity = view.findViewById(R.id.btn_activity)
@@ -33,19 +39,31 @@ class PreFragment : Fragment() {
         btnActivity.setOnClickListener {
             setActiveButton(btnActivity, txtActivity, true)
             setActiveButton(btnPreReading, txtPreReading, false)
-            replaceFragment(PreActivityFragment())
+            replaceFragment(PreActivityFragment().apply {
+                arguments = Bundle().apply {
+                    putInt("COURSE_ID", courseId) // Kirimkan courseId ke PreActivityFragment
+                }
+            })
         }
 
         btnPreReading.setOnClickListener {
             setActiveButton(btnPreReading, txtPreReading, true)
             setActiveButton(btnActivity, txtActivity, false)
-            replaceFragment(PreReadingFragment())
+            replaceFragment(PreReadingFragment().apply {
+                arguments = Bundle().apply {
+                    putInt("COURSE_ID", courseId) // Kirimkan courseId ke PreReadingFragment
+                }
+            })
         }
 
         // Set kondisi awal, tombol Activity aktif
         setActiveButton(btnActivity, txtActivity, true)
         setActiveButton(btnPreReading, txtPreReading, false)
-        replaceFragment(PreActivityFragment())
+        replaceFragment(PreActivityFragment().apply {
+            arguments = Bundle().apply {
+                putInt("COURSE_ID", courseId) // Kirimkan courseId ke PreActivityFragment
+            }
+        })
 
         return view
     }

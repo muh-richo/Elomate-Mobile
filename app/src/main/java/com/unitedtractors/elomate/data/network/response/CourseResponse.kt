@@ -7,13 +7,6 @@ import com.google.gson.annotations.SerializedName
 @Parcelize
 data class CourseResponse(
 
-	@field:SerializedName("CourseResponse")
-	val courseResponse: List<CourseResponseItem?>? = null
-) : Parcelable
-
-@Parcelize
-data class CourseResponseItem(
-
 	@field:SerializedName("course_id")
 	val courseId: Int? = null,
 
@@ -26,6 +19,12 @@ data class CourseResponseItem(
 	@field:SerializedName("nama_topik")
 	val namaTopik: String? = null,
 
+	@field:SerializedName("nama_phase")
+	val namaPhase: String? = null,
+
+	@field:SerializedName("topik_id")
+	val topikId: Int? = null,
+
 	@field:SerializedName("fasilitator_name")
 	val fasilitatorName: String? = null,
 
@@ -33,5 +32,8 @@ data class CourseResponseItem(
 	val progress: Int? = null,
 
 	@field:SerializedName("mentee_name")
-	val menteeName: String? = null
+	val menteeName: String? = null,
+
+	@field:SerializedName("phase_id")
+	val phaseId: Int? = null
 ) : Parcelable

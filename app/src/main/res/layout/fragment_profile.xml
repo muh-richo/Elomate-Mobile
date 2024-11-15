@@ -127,7 +127,7 @@
                         android:singleLine="false"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         tools:text="10023890837829"/>
 
                 </LinearLayout>
@@ -175,7 +175,7 @@
                         android:singleLine="false"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         tools:text="Jakarta, 20 Januari 1990"/>
 
                 </LinearLayout>
@@ -230,7 +230,7 @@
                         android:singleLine="false"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         tools:text="Universitas Brawijaya"/>
                 </LinearLayout>
                 <LinearLayout
@@ -274,7 +274,7 @@
                         android:singleLine="false"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         tools:text="Administrasi Publik"/>
                 </LinearLayout>
                 <LinearLayout
@@ -320,7 +320,7 @@
                         android:singleLine="false"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         tools:text="Jakarta"/>
                 </LinearLayout>
                 <LinearLayout
@@ -364,7 +364,7 @@
                         android:singleLine="false"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         tools:text="087965785 XXXX"/>
                 </LinearLayout>
                 <LinearLayout
@@ -407,7 +407,7 @@
                         android:singleLine="false"
                         android:textAlignment="viewEnd"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         tools:text="naufalrom@gmail.com"/>
                 </LinearLayout>
             </LinearLayout>

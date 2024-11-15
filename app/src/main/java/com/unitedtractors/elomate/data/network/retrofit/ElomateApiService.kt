@@ -1,20 +1,18 @@
 package com.unitedtractors.elomate.data.network.retrofit
 
-import com.unitedtractors.elomate.data.network.response.CourseResponseItem
+import com.unitedtractors.elomate.data.network.response.CourseResponse
 import com.unitedtractors.elomate.data.network.response.LoginRequest
 import com.unitedtractors.elomate.data.network.response.PhaseResponse
+import com.unitedtractors.elomate.data.network.response.PreActivityResponse
 import com.unitedtractors.elomate.data.network.response.TokenResponse
+import com.unitedtractors.elomate.data.network.response.TopicResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
 import retrofit2.http.*
 
 interface ElomateApiService {
 
-//    @FormUrlEncoded
     @POST("auth/login")
     suspend fun login(
-//        @Field("email") email: String,
-//        @Field("password") password: String,
-
         @Body loginRequest: LoginRequest
     ): TokenResponse
 
@@ -24,12 +22,40 @@ interface ElomateApiService {
     ): UserResponse
 
     @GET("courses")
-    suspend fun getCourses(
+    suspend fun getAllCoursesUser(
         @Header("Authorization") token: String
-    ): List<CourseResponseItem>
+    ): List<CourseResponse>
 
     @GET("courses/phaseUser")
     suspend fun getPhaseUser(
         @Header("Authorization") token: String
     ): List<PhaseResponse>
+
+    @GET("courses/phaseUser/{phaseId}")
+    suspend fun getTopicByPhaseId(
+        @Header("Authorization") token: String,
+        @Path("phaseId") phaseId: Int,
+    ): List<TopicResponse>
+
+    @GET("courses/{phaseId}/{topicId}")
+    suspend fun getCourseByPhaseIdTopicId(
+        @Header("Authorization") token: String,
+        @Path("phaseId") phaseId: Int,
+        @Path("topicId") topicId: Int,
+    ): List<CourseResponse>
+
+    @GET("courses/{courseId}")
+    suspend fun getCourseById(
+        @Header("Authorization") token: String,
+        @Path("courseId") courseId: Int,
+    ): List<CourseResponse>
+
+    @GET("assignment/preActivity/{courseId}")
+    suspend fun getPreActivityByCourseId(
+        @Header("Authorization") token: String,
+        @Path("courseId") courseId: Int,
+    ): List<PreActivityResponse>
+
+
+
 }

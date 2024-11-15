@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_course"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@drawable/bg_card2"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="10dp"
+    android:layout_marginBottom="20dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_course"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="14dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_teacher_bold"
+            android:orientation="vertical">
+        </ImageView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingHorizontal="1dp"
+        android:layout_marginEnd="4dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title_assignment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#252525"
+            android:textSize="14sp"
+            tools:text="Pre-Test"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="6dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_course"
+                android:textColor="#64748B"
+                android:textSize="12sp"
+                android:layout_marginEnd="4dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Course    : "
+                />
+            <TextView
+                android:id="@+id/tv_course_name"
+                android:textColor="#64748B"
+                android:textSize="12sp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="Onboarding "
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/rprl689al0bq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/ic_calendar"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_calender_time"
+                app:tint="@color/secondary_500"
+                android:layout_marginEnd="7dp"
+                android:orientation="vertical">
+            </ImageView>
+            <TextView
+                android:id="@+id/tv_deadline"
+                android:textColor="#C62828"
+                android:textSize="12sp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                tools:text="17 September 2024"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:textColor="@color/secondary_500"
+        android:textSize="12sp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="start"
+        tools:text="Incomplete" />
+</LinearLayout>

@@ -105,7 +105,7 @@ class HomeFragment : Fragment() {
 
                         val response = result.data
                         binding.tvHiUser.text = getString(R.string.hi_user, response.namaLengkap)
-                        binding.tvRole.text = "${response.roleName}"
+                        binding.tvRole.text = response.roleName
                     }
 
                     is Result.Error -> {

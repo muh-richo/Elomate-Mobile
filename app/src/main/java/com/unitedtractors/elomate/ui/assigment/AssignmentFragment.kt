@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.R
+import android.widget.AdapterView
 import com.unitedtractors.elomate.adapter.CourseAdapter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
@@ -30,8 +30,6 @@ class AssignmentFragment : Fragment() {
     private lateinit var userPreference: UserPreference
     private lateinit var userModel: User
 
-    private lateinit var courseAdapter: CourseAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,7 +41,7 @@ class AssignmentFragment : Fragment() {
         userModel = userPreference.getUser()
 
         getCurrentUserApi()
-        setupRecyclerView()
+
         setupSpinner()
 
         return binding.root
@@ -56,9 +54,7 @@ class AssignmentFragment : Fragment() {
     private fun getCurrentUserApi() {
         viewModel.getCurrentUserApi("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
             when (result) {
-                is Result.Loading -> {
-                    // Tampilkan progress jika diperlukan
-                }
+                is Result.Loading -> { }
                 is Result.Success -> {
                     val response = result.data
                     binding.tvHiUser.text = getString(com.unitedtractors.elomate.R.string.hi_user, response.namaLengkap)
@@ -79,10 +75,10 @@ class AssignmentFragment : Fragment() {
         }
     }
 
-    private fun setupRecyclerView() {
+    private fun setupRecyclerView(token: String, phaseId: Int, topicId: Int) {
         binding.rvCourse.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.getCourses("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getCourseByPhaseIdTopicId(token, phaseId, topicId).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -90,7 +86,13 @@ class AssignmentFragment : Fragment() {
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
                     val courses = result.data
-                    binding.rvCourse.adapter = CourseAdapter(courses)
+
+                    val adapter = CourseAdapter(courses) { courseId ->
+                        val intent = Intent(requireContext(), CourseActivity::class.java)
+                        intent.putExtra("COURSE_ID", courseId) // Mengirimkan courseId melalui Intent
+                        startActivity(intent)
+                    }
+                    binding.rvCourse.adapter = adapter
                 }
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE
@@ -101,40 +103,72 @@ class AssignmentFragment : Fragment() {
     }
 
     private fun setupSpinner() {
-        // Observasi LiveData untuk mendapatkan data dari API
+        // Spinner Phase
         viewModel.getPhaseUser("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
             when (result) {
-                is Result.Loading -> {
-
-                }
+                is Result.Loading -> {}
                 is Result.Success -> {
-                    // Map data dari Response API ke dalam List String atau langsung ambil field tertentu
-                    val phases = result.data.map { it.namaPhase } // ganti `phaseName` dengan field yang sesuai di `PhaseResponse`
+                    // Ambil nama phase untuk Spinner pertama
+                    val phases = result.data.map { it.namaPhase }
+                    val phaseIds = result.data.map { it.phaseId }
 
-                    // Inisialisasi Spinner Adapter dengan data dari API
-                    val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, phases)
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    binding.spinnerDropdown.adapter = adapter
+                    // Inisialisasi Adapter Spinner dengan data phase dari API
+                    val phaseAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, phases)
+                    phaseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.spinnerDropdown.adapter = phaseAdapter
+
+                    // Listener ketika item pada Spinner Phase dipilih
+                    binding.spinnerDropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                            // Ambil phaseId dari item yang dipilih
+                            val selectedPhaseId = phaseIds[position]
+
+                            // Panggil API untuk mendapatkan topik berdasarkan phaseId yang dipilih
+                            if (selectedPhaseId != null) {
+                                viewModel.getTopicUser("Bearer ${userModel.id}", selectedPhaseId).observe(viewLifecycleOwner) { topicResult ->
+                                    when (topicResult) {
+                                        is Result.Loading -> { }
+
+                                        is Result.Success -> {
+                                            // Ambil nama topik untuk Spinner kedua
+                                            val topics = topicResult.data.map { it.namaTopik }
+                                            val topicIds = topicResult.data.map { it.topikId }
+
+                                            // Inisialisasi Adapter Spinner kedua dengan data topik dari API
+                                            val topicAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, topics)
+                                            topicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                                            binding.spinnerDropdown2.adapter = topicAdapter
+
+                                            // Listener untuk Spinner Topic
+                                            binding.spinnerDropdown2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                                                override fun onItemSelected(parent: AdapterView<*>, view: View?, topicPosition: Int, id: Long) {
+                                                    val selectedTopicId = topicIds[topicPosition]
+                                                    if (selectedTopicId != null) {
+                                                        setupRecyclerView("Bearer ${userModel.id}", selectedPhaseId, selectedTopicId)
+                                                    }
+                                                }
+
+                                                override fun onNothingSelected(parent: AdapterView<*>) {}
+                                            }
+                                        }
+
+                                        is Result.Error -> {
+                                            Toast.makeText(requireContext(), topicResult.error.message, Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                        }
+                    }
                 }
                 is Result.Error -> {
-                    // Tangani error (misalnya, tampilkan pesan kesalahan)
-                    Toast.makeText(requireContext(), result.error.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "No Course Found", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
-
-//    private fun setupSpinner() {
-//        // Inisialisasi Spinner pertama
-//        val phases = arrayOf("Phase 1", "Phase 2", "Phase 3", "Phase 4", "Phase 10")
-//        val adapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, phases)
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        binding.spinnerDropdown.adapter = adapter
-//
-//        // Inisialisasi Spinner kedua
-//        val topics = arrayOf("General Development", "Orientasi Divisi", "BGMS", "NEOP")
-//        val adapter2 = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, topics)
-//        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        binding.spinnerDropdown2.adapter = adapter2
-//    }
 }

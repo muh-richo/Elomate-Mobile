@@ -9,9 +9,11 @@ import com.unitedtractors.elomate.data.network.response.MessageErrorResponse
 import com.unitedtractors.elomate.data.network.response.TokenResponse
 import com.unitedtractors.elomate.data.network.retrofit.ElomateApiService
 import com.unitedtractors.elomate.data.network.Result
-import com.unitedtractors.elomate.data.network.response.CourseResponseItem
+import com.unitedtractors.elomate.data.network.response.CourseResponse
 import com.unitedtractors.elomate.data.network.response.LoginRequest
 import com.unitedtractors.elomate.data.network.response.PhaseResponse
+import com.unitedtractors.elomate.data.network.response.PreActivityResponse
+import com.unitedtractors.elomate.data.network.response.TopicResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
@@ -73,11 +75,26 @@ class ElomateRepository(
         }
     }
 
-    fun getCourses(token: String): LiveData<Result<List<CourseResponseItem>, MessageErrorResponse>> = liveData {
+    fun getTopicUser(token: String, phaseId: Int): LiveData<Result<List<TopicResponse>, MessageErrorResponse>> = liveData {
         emit(Result.Loading)
 
         try {
-            val courseItems = elomateApiService.getCourses(token) // Menghapus CourseResponse karena sudah langsung array
+            val topicItems = elomateApiService.getTopicByPhaseId(token, phaseId)
+            emit(Result.Success(topicItems))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+            emit(Result.Error(messageErrorResponse))
+        } catch (e: SocketTimeoutException) {
+            emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+        }
+    }
+
+    fun getCourseByPhaseIdTopicId(token: String, phaseId: Int, topicId: Int): LiveData<Result<List<CourseResponse>, MessageErrorResponse>> = liveData {
+        emit(Result.Loading)
+
+        try {
+            val courseItems = elomateApiService.getCourseByPhaseIdTopicId(token, phaseId, topicId)
             emit(Result.Success(courseItems))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
@@ -88,5 +105,49 @@ class ElomateRepository(
         }
     }
 
+    fun getCourseById(token: String, courseId: Int): LiveData<Result<List<CourseResponse>, MessageErrorResponse>> = liveData {
+        emit(Result.Loading)
+
+        try {
+            val courseItem = elomateApiService.getCourseById(token, courseId)
+            emit(Result.Success(courseItem))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+            emit(Result.Error(messageErrorResponse))
+        } catch (e: SocketTimeoutException) {
+            emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+        }
+    }
+
+    fun getAllCourses(token: String): LiveData<Result<List<CourseResponse>, MessageErrorResponse>> = liveData {
+        emit(Result.Loading)
+
+        try {
+            val courseItems = elomateApiService.getAllCoursesUser(token) // Menghapus CourseResponse karena sudah langsung array
+            emit(Result.Success(courseItems))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+            emit(Result.Error(messageErrorResponse))
+        } catch (e: SocketTimeoutException) {
+            emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+        }
+    }
+
+    fun getPreActivityByCourseId(token: String, courseId: Int): LiveData<Result<List<PreActivityResponse>, MessageErrorResponse>> = liveData {
+        emit(Result.Loading)
+
+        try {
+            val preActivityItems = elomateApiService.getPreActivityByCourseId(token, courseId)
+            emit(Result.Success(preActivityItems))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+            emit(Result.Error(messageErrorResponse))
+        } catch (e: SocketTimeoutException) {
+            emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+        }
+    }
 
 }

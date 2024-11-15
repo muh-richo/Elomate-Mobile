@@ -10,22 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
          <LinearLayout
              android:id="@+id/r4t90bilea2d"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:background="@color/yellow_300"
              android:orientation="vertical"
-             android:paddingTop="12dp">
+             android:paddingTop="10dp">
 
              <LinearLayout
                  android:id="@+id/rtdpyuxqulup"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
-                 android:paddingVertical="10dp"
+                 android:paddingVertical="6dp"
                  android:gravity="center_vertical"
                  android:orientation="horizontal"
                  android:paddingHorizontal="20dp">
+
                  <ImageView
                      android:id="@+id/ic_back"
                      android:layout_width="24dp"
@@ -35,14 +37,14 @@
                      android:src="@drawable/ic_backarrow"/>
 
                  <TextView
-                     android:id="@+id/roy0fd1cvxfp"
+                     android:id="@+id/tv_course"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
                      android:maxWidth="260dp"
                      android:paddingEnd="10dp"
-                     android:text="On Boarding"
                      android:textColor="#0F172A"
-                     android:textSize="20sp" />
+                     android:textSize="20sp"
+                     tools:text="On Boarding"/>
                  <LinearLayout
                      android:id="@+id/line2"
                      android:layout_width="2dp"
@@ -52,13 +54,13 @@
                      android:orientation="vertical">
                  </LinearLayout>
                  <TextView
-                     android:id="@+id/rwmfml7giuc"
+                     android:id="@+id/tv_batch"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
                      android:layout_weight="1"
-                     android:text="Batch 10"
                      android:textColor="@color/neutral_500"
-                     android:textSize="16sp" />
+                     android:textSize="16sp"
+                     tools:text="Batch 10" />
              </LinearLayout>
              <LinearLayout
                  android:layout_width="match_parent"
@@ -76,6 +78,7 @@
                      app:tabMode="fixed"
                      app:tabSelectedTextColor="@color/shades_100"
                      app:tabTextColor="@color/shades_100"/>
+
                  <androidx.viewpager2.widget.ViewPager2
                      android:id="@+id/viewPager"
                      android:layout_width="match_parent"
