@@ -27,6 +27,7 @@
             android:orientation="vertical">
         </ImageView>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="0dp"

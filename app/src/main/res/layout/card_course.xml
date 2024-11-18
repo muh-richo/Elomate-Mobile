@@ -48,7 +48,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="On Boarding"
+                tools:text="On Boarding"
                 />
 
             <TextView
@@ -57,7 +57,7 @@
                 android:textSize="12sp"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Mentor : Muhammad Richo"
+                tools:text="Mentor : Muhammad Richo"
                 />
         </LinearLayout>
         <FrameLayout

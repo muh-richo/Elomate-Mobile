@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.assigment
+package com.unitedtractors.elomate.ui.assigment.question
 
 import android.app.Activity
 import android.content.Intent

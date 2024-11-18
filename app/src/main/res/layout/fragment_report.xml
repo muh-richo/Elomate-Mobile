@@ -54,7 +54,7 @@
                         android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="Naufal Ramiz" />
+                        tools:text="Naufal Ramiz" />
 
                     <TextView
                         android:id="@+id/tv_posisi"
@@ -62,7 +62,7 @@
                         android:textSize="14sp"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="IT Management" />
+                        tools:text="IT Management" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -83,39 +83,36 @@
                     android:layout_marginBottom="6dp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Phase"
-                    />
-                <RelativeLayout
+                    android:text="Phase" />
+
+                <LinearLayout
+                    android:id="@+id/phase"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="18dp"
-                    android:paddingRight="10dp"
-                    android:background="@drawable/card_field_grey">
+                    android:gravity="center_vertical"
+                    android:background="@drawable/bg_dropdown"
+                    android:paddingVertical="8dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal">
 
                     <Spinner
-                        android:id="@+id/spinner_phase_report"
-                        android:layout_width="match_parent"
+                        android:id="@+id/spinner_phase"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingVertical="14dp"
-                        android:paddingLeft="12dp"
-                        android:hint="Pilih phase"
-                        android:textColor="@color/shades_100"
-                        android:textSize="14sp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:layout_alignParentStart="true"
-                        tools:ignore="NotSibling"
-                        android:layout_toEndOf="@id/iconMetode"/>
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:spinnerMode="dropdown"
+                        android:drawableEnd="@drawable/ic_arrow_down"
+                        android:background="@android:color/transparent"/>
 
                     <ImageView
-                        android:id="@+id/iconPhase"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
+                        android:id="@+id/icon_down2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="12dp"
                         android:src="@drawable/ic_arrow_down"
-                        android:padding="4dp"
-                        app:tint="#94A3B8" />
-                </RelativeLayout>
+                        app:tint="#292D32"/>
+                </LinearLayout>
 
                 <TableLayout
                     android:id="@+id/rx34pb8s9dl"
@@ -545,13 +542,12 @@
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal">
                                 <TextView
-                                    android:id="@+id/ruwelzoc9sj"
+                                    android:id="@+id/tv_username"
                                     android:textColor="#000000"
                                     android:textSize="16sp"
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
-                                    android:text="Naufal Romiz"
-                                    />
+                                    tools:text="Naufal Romiz" />
                                 <View
                                     android:layout_width="0dp"
                                     android:layout_height="0dp"
@@ -586,7 +582,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
                                     android:layout_marginStart="-30dp"
-                                    android:text="SOLUTION"
+                                    tools:text="SOLUTION"
                                     android:rotation="270"
                                     android:gravity="center"
                                     android:layout_gravity="center"
@@ -613,7 +609,7 @@
                                     android:textSize="16sp"
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
-                                    android:text="8 BC"
+                                    tools:text="8 BC"
                                     android:rotation="270"
                                     android:gravity="center"
                                     android:layout_gravity="center"

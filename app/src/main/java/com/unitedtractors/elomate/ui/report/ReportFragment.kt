@@ -66,20 +66,15 @@ ReportFragment : Fragment() {
         viewModel.getCurrentUserApi("Bearer ${userModel.id}").observe(requireActivity()) { result ->
             if (result != null) {
                 when (result) {
-                    is Result.Loading -> {
-//                        binding.progressHorizontal.visibility = View.VISIBLE
-                    }
+                    is Result.Loading -> { }
                     is Result.Success -> {
-//                        binding.progressHorizontal.visibility = View.GONE
-
                         val response = result.data
                         binding.tvUserName.text = response.namaLengkap
                         binding.tvPosisi.text = response.posisi
+                        binding.tvUsername.text = response.namaLengkap
                     }
 
                     is Result.Error -> {
-//                        binding.progressHorizontal.visibility = View.GONE
-
                         val errorMessage = result.error.message
 
                         if (errorMessage == "timeout") {
@@ -217,18 +212,24 @@ ReportFragment : Fragment() {
 
 
     private fun setupSpinner() {
-        // Define the array of items with the first item as a hint
-        val phase = arrayOf("Pilih phase", "phase 1", "phase 2")
-        val adapterPhase = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, phase)
+        viewModel.getPhaseUser("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> { }
+                is Result.Success -> {
+                    val phases = result.data.map { it.namaPhase }
 
-        // Set the dropdown view resource
-        adapterPhase.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    val adapterPhase = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, phases)
+                    adapterPhase.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+                    binding.spinnerPhase.adapter = adapterPhase
 
-        // Set adapters for the Spinners
-        binding.spinnerPhaseReport.adapter = adapterPhase
 
-        // Optional: Set a default hint text color or behavior (if necessary)
-        binding.spinnerPhaseReport.setSelection(0)
+                }
+                is Result.Error -> {
+                    val errorMessage = result.error.message
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
     
     override fun onDestroyView() {

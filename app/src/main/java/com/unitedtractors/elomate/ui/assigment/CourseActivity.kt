@@ -24,7 +24,8 @@ import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.databinding.ActivityCourseBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
-import com.unitedtractors.elomate.ui.assigment.preactivity.PreActivityFragment
+import com.unitedtractors.elomate.ui.assigment.postactivity.PostFragment
+import com.unitedtractors.elomate.ui.assigment.preactivity.activity.PreActivityFragment
 import com.unitedtractors.elomate.ui.assigment.preactivity.PreFragment
 import com.unitedtractors.elomate.ui.assignment.CourseViewModel
 

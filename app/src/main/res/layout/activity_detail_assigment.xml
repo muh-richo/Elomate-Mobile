@@ -41,7 +41,7 @@
                     android:scaleType="fitXY" />
 
                 <TextView
-                    android:id="@+id/rnnslageusx"
+                    android:id="@+id/tv_title_assignment"
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/rc81oq5i634t"
+                    android:id="@+id/tv_start_date"
                     android:textColor="#252525"
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/rdaebnerumgf"
+                    android:id="@+id/tv_end_date"
                     android:textColor="#252525"
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/rhczx3zylnvi"
+                    android:id="@+id/tv_score"
                     android:textColor="#252525"
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
@@ -206,7 +206,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/rs3mv8k9sh6h"
+                    android:id="@+id/tv_type"
                     android:textColor="#252525"
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
@@ -247,7 +247,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/r9c57bsoajw"
+                    android:id="@+id/tv_total_question"
                     android:textColor="#252525"
                     android:textSize="14sp"
                     android:layout_height="wrap_content"

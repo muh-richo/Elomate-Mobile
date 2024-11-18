@@ -113,9 +113,9 @@ class AssignmentFragment : Fragment() {
                     val phaseIds = result.data.map { it.phaseId }
 
                     // Inisialisasi Adapter Spinner dengan data phase dari API
-                    val phaseAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, phases)
-                    phaseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    binding.spinnerDropdown.adapter = phaseAdapter
+                    val adapterPhase = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, phases)
+                    adapterPhase.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.spinnerDropdown.adapter = adapterPhase
 
                     // Listener ketika item pada Spinner Phase dipilih
                     binding.spinnerDropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

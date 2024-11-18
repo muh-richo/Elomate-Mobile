@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 @Parcelize
-data class PreActivityResponse(
+data class AssignmentResponse(
 
 	@field:SerializedName("assignment_id")
 	val assignmentId: Int? = null,

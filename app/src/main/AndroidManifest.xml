@@ -47,16 +47,16 @@
             android:name=".ui.assigment.DetailAssigment2Activity"
             android:exported="false" />
         <activity
-            android:name=".ui.assigment.EssayAssignmentActivity"
+            android:name=".ui.assigment.question.EssayAssignmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.assigment.MultipleChoiceActivity"
+            android:name=".ui.assigment.question.MultipleChoiceActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assessment.QuestionPeerAssessmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.assigment.DetailPreReadingActivity"
+            android:name=".ui.assigment.preactivity.prereading.DetailPreReadingActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assessment.ListPeerAssessmentActivity"
@@ -68,7 +68,7 @@
             android:name=".ui.assessment.SelfAssessmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.assigment.DetailAssigmentActivity"
+            android:name=".ui.assigment.detail.DetailAssignmentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.auth.forgotpassword.ForgotPasswordActivity"

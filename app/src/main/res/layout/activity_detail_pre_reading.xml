@@ -41,13 +41,14 @@
                     android:scaleType="fitXY" />
 
                 <TextView
-                    android:id="@+id/rnnslageusx"
+                    android:id="@+id/tv_pre_reading_title"
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
-                    android:text="Materi  Onboarding 1" />
+                    tools:text="Materi  Onboarding 1" />
+
             </LinearLayout>
 
         <LinearLayout
@@ -67,7 +68,7 @@
                 android:layout_marginBottom="10dp"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/r5fkg5crdoxs"
+                    android:id="@+id/tv_content"
                     android:textColor="#252525"
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
@@ -84,6 +85,7 @@
                 android:paddingBottom="26dp"
                 android:paddingHorizontal="20dp"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/recryvoy623q"
                     android:textColor="#252525"
@@ -94,13 +96,13 @@
                     android:text="Activity Description"
                     />
                 <TextView
-                    android:id="@+id/rbe7hyexczjc"
+                    android:id="@+id/tv_description"
                     android:textColor="#252525"
                     android:textSize="12sp"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas placerat ac orci eu efficitur. Curabitur nec arcu id magna tincidunt accumsan. Cras faucibus diam id massa auctor aliquam"
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas placerat ac orci eu efficitur. Curabitur nec arcu id magna tincidunt accumsan. Cras faucibus diam id massa auctor aliquam"
                     />
             </LinearLayout>
         </LinearLayout>

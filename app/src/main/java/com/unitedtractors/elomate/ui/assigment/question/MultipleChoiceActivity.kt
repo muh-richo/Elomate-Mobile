@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.assigment
+package com.unitedtractors.elomate.ui.assigment.question
 
 import android.os.Bundle
 import android.view.View

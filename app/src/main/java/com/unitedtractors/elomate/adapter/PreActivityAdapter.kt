@@ -18,7 +18,7 @@ class PreActivityAdapter(
         @SuppressLint("SetTextI18n")
         fun bind(assignment: PreActivityResponse) {
             binding.tvTitleAssignment.text = assignment.title
-            binding.tvCourseName.text = assignment.title
+            binding.tvCourseName.text = assignment.namaCourse
             binding.tvDeadline.text = assignment.tanggalSelesai
             binding.tvStatus.text = assignment.active
 

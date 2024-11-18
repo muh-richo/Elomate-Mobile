@@ -1,9 +1,11 @@
 package com.unitedtractors.elomate.data.network.retrofit
 
+import com.unitedtractors.elomate.data.network.response.AssignmentResponse
 import com.unitedtractors.elomate.data.network.response.CourseResponse
 import com.unitedtractors.elomate.data.network.response.LoginRequest
 import com.unitedtractors.elomate.data.network.response.PhaseResponse
 import com.unitedtractors.elomate.data.network.response.PreActivityResponse
+import com.unitedtractors.elomate.data.network.response.PreReadingResponse
 import com.unitedtractors.elomate.data.network.response.TokenResponse
 import com.unitedtractors.elomate.data.network.response.TopicResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
@@ -55,6 +57,24 @@ interface ElomateApiService {
         @Header("Authorization") token: String,
         @Path("courseId") courseId: Int,
     ): List<PreActivityResponse>
+
+    @GET("preReading/{courseId}")
+    suspend fun getPreReadingByCourseId(
+        @Header("Authorization") token: String,
+        @Path("courseId") courseId: Int,
+    ): List<PreReadingResponse>
+
+    @GET("preReading/id/{preReadingId}")
+    suspend fun getDetailPreReading(
+        @Header("Authorization") token: String,
+        @Path("preReadingId") preReadingId: Int,
+    ): PreReadingResponse
+
+    @GET("assignment/id/{assignmentId}")
+    suspend fun getDetailAssignment(
+        @Header("Authorization") token: String,
+        @Path("assignmentId") assignmentId: Int,
+    ): AssignmentResponse
 
 
 
