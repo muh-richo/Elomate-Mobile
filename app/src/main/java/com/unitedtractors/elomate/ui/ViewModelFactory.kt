@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.unitedtractors.elomate.data.repository.ElomateRepository
 import com.unitedtractors.elomate.di.Injection
 import com.unitedtractors.elomate.ui.assigment.detail.DetailAssignmentViewModel
+import com.unitedtractors.elomate.ui.assigment.postactivity.PostActivityViewModel
 import com.unitedtractors.elomate.ui.assigment.preactivity.activity.PreActivityViewModel
 import com.unitedtractors.elomate.ui.assigment.preactivity.prereading.PreReadingViewModel
 import com.unitedtractors.elomate.ui.assignment.CourseViewModel
@@ -13,6 +14,7 @@ import com.unitedtractors.elomate.ui.auth.login.LoginViewModel
 import com.unitedtractors.elomate.ui.home.HomeViewModel
 import com.unitedtractors.elomate.ui.profile.displayprofile.ProfileViewModel
 import com.unitedtractors.elomate.ui.report.ReportViewModel
+import com.unitedtractors.elomate.ui.todo.ToDoViewModel
 
 class ViewModelFactory private constructor(private val elomateRepository: ElomateRepository) :
     ViewModelProvider.NewInstanceFactory() {
@@ -25,6 +27,9 @@ class ViewModelFactory private constructor(private val elomateRepository: Elomat
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(elomateRepository) as T
             }
+            modelClass.isAssignableFrom(ToDoViewModel::class.java) -> {
+                ToDoViewModel(elomateRepository) as T
+            }
             modelClass.isAssignableFrom(CourseViewModel::class.java) -> {
                 CourseViewModel(elomateRepository) as T
             }
@@ -33,6 +38,9 @@ class ViewModelFactory private constructor(private val elomateRepository: Elomat
             }
             modelClass.isAssignableFrom(PreReadingViewModel::class.java) -> {
                 PreReadingViewModel(elomateRepository) as T
+            }
+            modelClass.isAssignableFrom(PostActivityViewModel::class.java) -> {
+                PostActivityViewModel(elomateRepository) as T
             }
             modelClass.isAssignableFrom(DetailAssignmentViewModel::class.java) -> {
                 DetailAssignmentViewModel(elomateRepository) as T

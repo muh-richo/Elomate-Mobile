@@ -24,7 +24,7 @@ import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.databinding.ActivityCourseBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
-import com.unitedtractors.elomate.ui.assigment.postactivity.PostFragment
+import com.unitedtractors.elomate.ui.assigment.postactivity.PostActivityFragment
 import com.unitedtractors.elomate.ui.assigment.preactivity.activity.PreActivityFragment
 import com.unitedtractors.elomate.ui.assigment.preactivity.PreFragment
 import com.unitedtractors.elomate.ui.assignment.CourseViewModel
@@ -49,8 +49,7 @@ class   CourseActivity : AppCompatActivity() {
         binding = ActivityCourseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Change the status bar color
-        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300) // Replace with your color resource
+        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -106,7 +105,11 @@ class   CourseActivity : AppCompatActivity() {
                         putInt("COURSE_ID", intent.getIntExtra("COURSE_ID", 0)) // Kirim courseId ke PreFragment
                     }
                 }
-                1 -> PostFragment()
+                1 -> PostActivityFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("COURSE_ID", intent.getIntExtra("COURSE_ID", 0)) // Kirim courseId ke PostFragment
+                    }
+                }
                 else -> throw IllegalStateException("Unexpected position $position")
             }
         }

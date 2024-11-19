@@ -1,7 +1,5 @@
 package com.unitedtractors.elomate.ui.home
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -11,10 +9,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.view.WeekDayBinder
 import com.unitedtractors.elomate.R
+import com.unitedtractors.elomate.adapter.ToDoAdapter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.databinding.FragmentHomeBinding
@@ -24,12 +24,14 @@ import com.unitedtractors.elomate.ui.announcement.AnnouncementActivity
 import com.unitedtractors.elomate.ui.schedule.DayViewContainer
 import com.unitedtractors.elomate.ui.schedule.ScheduleActivity
 import com.unitedtractors.elomate.data.network.Result
+import com.unitedtractors.elomate.ui.assigment.detail.DetailAssignmentActivity
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+
     private val viewModel by viewModels<HomeViewModel> {
         ViewModelFactory.getInstance(requireContext())
     }
@@ -44,12 +46,11 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        // Initialize UserPreference
         userPreference = UserPreference(requireContext())
         userModel = userPreference.getUser()
 
-        // Call to fetch user data
         getCurrentUserApi()
+        setupRecyclerViewToDo()
 
         // Setup the calendar view
         weekCalendarView()
@@ -73,13 +74,13 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.allTodo.setOnClickListener {
-            val intent = Intent(activity, ToDoListActivity::class.java)
+        binding.tvAllTodo.setOnClickListener {
+            val intent = Intent(activity, ToDoActivity::class.java)
             startActivity(intent)
         }
 
-        binding.iconAlltodo.setOnClickListener {
-            val intent = Intent(activity, ToDoListActivity::class.java)
+        binding.ivAllTodo.setOnClickListener {
+            val intent = Intent(activity, ToDoActivity::class.java)
             startActivity(intent)
         }
 
@@ -125,6 +126,39 @@ class HomeFragment : Fragment() {
                             Toast.makeText(requireContext(), result.error.message, Toast.LENGTH_SHORT).show()
                         }
                     }
+                }
+            }
+        }
+    }
+
+    private fun setupRecyclerViewToDo() {
+        binding.rvTodoList.layoutManager = LinearLayoutManager(requireContext())
+
+        viewModel.getToDoList("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.progressHorizontal.visibility = View.VISIBLE
+                }
+
+                is Result.Success -> {
+                    binding.progressHorizontal.visibility = View.GONE
+
+                    val todoList = result.data.take(3)
+
+                    binding.tvAllTodo.visibility = if (result.data.size > 3) View.VISIBLE else View.GONE
+                    binding.ivAllTodo.visibility = if (result.data.size > 3) View.VISIBLE else View.GONE
+
+                    val adapter = ToDoAdapter(todoList) { assignmentId ->
+                        val intent = Intent(requireContext(), DetailAssignmentActivity::class.java)
+                        intent.putExtra("ASSIGNMENT_ID", assignmentId)
+                        startActivity(intent)
+                    }
+                    binding.rvTodoList.adapter = adapter
+                }
+
+                is Result.Error -> {
+                    binding.progressHorizontal.visibility = View.GONE
+                    Toast.makeText(requireContext(), result.error.message, Toast.LENGTH_SHORT).show()
                 }
             }
         }

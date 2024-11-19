@@ -95,7 +95,7 @@
 <!--            android:name=".ui.home.ToDo.ToDoListActivity"-->
 <!--            android:exported="false" />-->
         <activity
-            android:name=".ui.home.ToDoListActivity"
+            android:name=".ui.home.ToDoActivity"
             android:exported="false" />
         <activity
             android:name=".ui.announcement.AnnouncementActivity"

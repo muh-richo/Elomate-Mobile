@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.ui.assigment.detail
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -61,6 +62,7 @@ class DetailAssignmentActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun loadAssignmentDetails(token: String, assignmentId: Int) {
         viewModel.getDetailAssignment(token, assignmentId).observe(this) { result ->
             when (result) {
@@ -73,9 +75,9 @@ class DetailAssignmentActivity : AppCompatActivity() {
                     binding.tvTitleAssignment.text = assignment.title
                     binding.tvStartDate.text = assignment.tanggalMulai
                     binding.tvEndDate.text = assignment.tanggalSelesai
-                    binding.tvScore.text = assignment.active
+                    binding.tvScore.text = assignment.userScore.toString()
                     binding.tvType.text = assignment.questionType
-//                    binding.tvTotalQuestion.text =
+                    binding.tvTotalQuestion.text = "${assignment.totalQuestions.toString()} Soal"
                 }
                 is Result.Error -> {
                     Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()

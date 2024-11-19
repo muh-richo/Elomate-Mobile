@@ -19,8 +19,14 @@ data class AssignmentResponse(
 	@field:SerializedName("tanggal_selesai")
 	val tanggalSelesai: String? = null,
 
+	@field:SerializedName("total_questions")
+	val totalQuestions: Int? = null,
+
 	@field:SerializedName("question_type")
 	val questionType: String? = null,
+
+	@field:SerializedName("user_score")
+	val userScore: Int? = null,
 
 	@field:SerializedName("tanggal_mulai")
 	val tanggalMulai: String? = null,

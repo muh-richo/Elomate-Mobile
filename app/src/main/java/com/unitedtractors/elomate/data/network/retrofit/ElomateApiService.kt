@@ -23,6 +23,11 @@ interface ElomateApiService {
         @Header("Authorization") token: String
     ): UserResponse
 
+    @GET("assignment/user/todo")
+    suspend fun getToDoList(
+        @Header("Authorization") token: String
+    ): List<AssignmentResponse>
+
     @GET("courses")
     suspend fun getAllCoursesUser(
         @Header("Authorization") token: String
@@ -57,6 +62,12 @@ interface ElomateApiService {
         @Header("Authorization") token: String,
         @Path("courseId") courseId: Int,
     ): List<PreActivityResponse>
+
+    @GET("assignment/postActivity/{courseId}")
+    suspend fun getPostActivityByCourseId(
+        @Header("Authorization") token: String,
+        @Path("courseId") courseId: Int,
+    ): List<AssignmentResponse>
 
     @GET("preReading/{courseId}")
     suspend fun getPreReadingByCourseId(

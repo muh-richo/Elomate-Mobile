@@ -62,6 +62,21 @@ class ElomateRepository(
             }
         }
 
+    fun getToDoList(token: String): LiveData<Result<List<AssignmentResponse>, MessageErrorResponse>> = liveData {
+        emit(Result.Loading)
+
+        try {
+            val response = elomateApiService.getToDoList(token)
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+            emit(Result.Error(messageErrorResponse))
+        } catch (e: SocketTimeoutException) {
+            emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+        }
+    }
+
     fun getPhaseUser(token: String): LiveData<Result<List<PhaseResponse>, MessageErrorResponse>> = liveData {
         emit(Result.Loading)
 
@@ -143,6 +158,21 @@ class ElomateRepository(
         try {
             val preActivityItems = elomateApiService.getPreActivityByCourseId(token, courseId)
             emit(Result.Success(preActivityItems))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+            emit(Result.Error(messageErrorResponse))
+        } catch (e: SocketTimeoutException) {
+            emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+        }
+    }
+
+    fun getPostActivityByCourseId(token: String, courseId: Int): LiveData<Result<List<AssignmentResponse>, MessageErrorResponse>> = liveData {
+        emit(Result.Loading)
+
+        try {
+            val postActivityItems = elomateApiService.getPostActivityByCourseId(token, courseId)
+            emit(Result.Success(postActivityItems))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
