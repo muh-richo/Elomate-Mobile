@@ -60,7 +60,7 @@
                     android:id="@+id/flow"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:constraint_referenced_ids="btnAll,btnPreTest,btnPostTest,btnTugas,btn360"
+                    app:constraint_referenced_ids="btn_all,btn_pre_test,btn_post_test,btn_tugas,btn_360"
                     app:flow_wrapMode="chain"
                     app:flow_horizontalGap="4dp"
                     app:flow_verticalGap="12dp"
@@ -70,7 +70,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <LinearLayout
-                    android:id="@+id/btnAll"
+                    android:id="@+id/btn_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -90,7 +90,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btnPreTest"
+                    android:id="@+id/btn_pre_test"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_title_gray"
@@ -109,7 +109,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btnPostTest"
+                    android:id="@+id/btn_post_test"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_title_gray"
@@ -128,7 +128,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btnTugas"
+                    android:id="@+id/btn_tugas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_title_gray"
@@ -147,7 +147,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn360"
+                    android:id="@+id/btn_360"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_title_gray"
@@ -168,7 +168,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/TotalTask"
+                android:id="@+id/tv_total_todo_list"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:textColor="@color/blue_1"
@@ -177,7 +177,6 @@
                 android:layout_marginHorizontal="20dp"
                 android:text="Incomplete Task : 0" />
 
-            <!-- RecyclerView untuk menampilkan tugas -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_todo_list"
                 android:layout_width="match_parent"

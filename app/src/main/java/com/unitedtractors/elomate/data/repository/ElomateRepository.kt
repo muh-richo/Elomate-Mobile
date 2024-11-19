@@ -13,6 +13,7 @@ import com.unitedtractors.elomate.data.network.response.AssignmentResponse
 import com.unitedtractors.elomate.data.network.response.CourseResponse
 import com.unitedtractors.elomate.data.network.response.LoginRequest
 import com.unitedtractors.elomate.data.network.response.PhaseResponse
+import com.unitedtractors.elomate.data.network.response.PostActivityResponse
 import com.unitedtractors.elomate.data.network.response.PreActivityResponse
 import com.unitedtractors.elomate.data.network.response.PreReadingResponse
 import com.unitedtractors.elomate.data.network.response.TopicResponse
@@ -167,7 +168,7 @@ class ElomateRepository(
         }
     }
 
-    fun getPostActivityByCourseId(token: String, courseId: Int): LiveData<Result<List<AssignmentResponse>, MessageErrorResponse>> = liveData {
+    fun getPostActivityByCourseId(token: String, courseId: Int): LiveData<Result<PostActivityResponse, MessageErrorResponse>> = liveData {
         emit(Result.Loading)
 
         try {

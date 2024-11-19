@@ -4,6 +4,7 @@ import com.unitedtractors.elomate.data.network.response.AssignmentResponse
 import com.unitedtractors.elomate.data.network.response.CourseResponse
 import com.unitedtractors.elomate.data.network.response.LoginRequest
 import com.unitedtractors.elomate.data.network.response.PhaseResponse
+import com.unitedtractors.elomate.data.network.response.PostActivityResponse
 import com.unitedtractors.elomate.data.network.response.PreActivityResponse
 import com.unitedtractors.elomate.data.network.response.PreReadingResponse
 import com.unitedtractors.elomate.data.network.response.TokenResponse
@@ -67,7 +68,7 @@ interface ElomateApiService {
     suspend fun getPostActivityByCourseId(
         @Header("Authorization") token: String,
         @Path("courseId") courseId: Int,
-    ): List<AssignmentResponse>
+    ): PostActivityResponse
 
     @GET("preReading/{courseId}")
     suspend fun getPreReadingByCourseId(

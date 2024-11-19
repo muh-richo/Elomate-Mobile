@@ -8,7 +8,7 @@ import com.unitedtractors.elomate.data.network.response.AssignmentResponse
 import com.unitedtractors.elomate.databinding.CardTaskBinding
 
 class ToDoAdapter(
-    private val todoList: List<AssignmentResponse>,
+    private var todoList: List<AssignmentResponse>,
     private val onTodoClick: (Int) -> Unit
 ) : RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>() {
 
@@ -44,5 +44,11 @@ class ToDoAdapter(
 
     override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
         holder.bind(todoList[position])
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newToDoList: List<AssignmentResponse>) {
+        todoList = newToDoList
+        notifyDataSetChanged()
     }
 }

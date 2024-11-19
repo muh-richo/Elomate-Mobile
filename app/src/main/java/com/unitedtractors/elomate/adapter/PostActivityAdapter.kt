@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.unitedtractors.elomate.data.network.response.AssignmentResponse
+import com.unitedtractors.elomate.data.network.response.ListActivityItem
 import com.unitedtractors.elomate.databinding.CardAssignmentBinding
 
 class PostActivityAdapter(
-    private val postActivityList: List<AssignmentResponse>,
+    private val postActivityList: List<ListActivityItem>,
     private val onPostActivityClick: (Int) -> Unit
 ) : RecyclerView.Adapter<PostActivityAdapter.PostActivityViewHolder>() {
 
@@ -16,7 +17,7 @@ class PostActivityAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(assignment: AssignmentResponse) {
+        fun bind(assignment: ListActivityItem) {
             binding.tvTitleAssignment.text = assignment.title
             binding.tvCourseName.text = assignment.namaCourse
             binding.tvDeadline.text = assignment.tanggalSelesai
@@ -24,7 +25,7 @@ class PostActivityAdapter(
 
             // Set click listener
             binding.root.setOnClickListener {
-                assignment.assignmentId?.let { it1 -> onPostActivityClick(it1) }
+                assignment.assignmentId?.let { id -> onPostActivityClick(id) }
             }
         }
     }

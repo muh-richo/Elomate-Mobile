@@ -64,15 +64,18 @@ class PostActivityFragment : Fragment() {
                 is Result.Success -> {
                     binding.progressBarLoading.visibility = View.GONE
 
-//                    binding.tvProgress.text = result.data.
+                    val postActivityResponse = result.data
+                    val listActivities = postActivityResponse.listActivity?.filterNotNull() ?: emptyList()
 
-                    val postActivityList = result.data
-                    val adapter = PostActivityAdapter(postActivityList) { assignmentId ->
+                    val adapter = PostActivityAdapter(listActivities) { assignmentId ->
                         val intent = Intent(requireContext(), DetailAssignmentActivity::class.java)
                         intent.putExtra("ASSIGNMENT_ID", assignmentId)
                         startActivity(intent)
                     }
                     binding.rvPostActivity.adapter = adapter
+
+//                    binding.progressBar.progress = postActivityResponse.progress
+                    binding.tvProgress.text = postActivityResponse.progress
                 }
                 is Result.Error -> {
                     binding.progressBarLoading.visibility = View.GONE
