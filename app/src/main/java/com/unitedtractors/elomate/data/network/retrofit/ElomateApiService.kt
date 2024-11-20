@@ -88,6 +88,11 @@ interface ElomateApiService {
         @Path("assignmentId") assignmentId: Int,
     ): AssignmentResponse
 
+    @GET("participantData")
+    suspend fun getParticipantData(
+        @Header("Authorization") token: String,
+    ): List<UserResponse>
+
 
 
 }

@@ -30,8 +30,8 @@ class ProfileFragment : Fragment() {
         ViewModelFactory.getInstance(requireContext())
     }
 
-    private var userModel: User = User()
     private lateinit var userPreference: UserPreference
+    private lateinit var userModel: User
 
     private lateinit var userApi: UserResponse
 
@@ -117,9 +117,6 @@ class ProfileFragment : Fragment() {
 
                     is Result.Error -> {
                         binding.progressBar.visibility = View.GONE
-
-//                        Log.e(TAG, "${R.string.failed_get_account} ${result.error}")
-//                        showToast(getString(R.string.failed_get_account))
                     }
                 }
             }

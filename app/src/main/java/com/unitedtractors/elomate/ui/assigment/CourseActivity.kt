@@ -40,8 +40,8 @@ class   CourseActivity : AppCompatActivity() {
     private lateinit var userPreference: UserPreference
     private lateinit var userModel: User
 
-    private lateinit var viewPager: ViewPager2
-    private lateinit var tabLayout: TabLayout
+    lateinit var viewPager: ViewPager2
+    lateinit var tabLayout: TabLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,11 +58,10 @@ class   CourseActivity : AppCompatActivity() {
         }
 
         // Inisialisasi ViewPager dan TabLayout
-        viewPager = findViewById(R.id.viewPager)
-        tabLayout = findViewById(R.id.tabLayout)
+        viewPager = binding.viewPager
+        tabLayout = binding.tabLayout
 
-        // Set adapter untuk ViewPager
-        viewPager.adapter = CoursePagerAdapter(this)
+        binding.viewPager.adapter = CoursePagerAdapter(this)
 
         // Hubungkan TabLayout dengan ViewPager dan terapkan custom tab view
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
@@ -99,19 +98,15 @@ class   CourseActivity : AppCompatActivity() {
         override fun getItemCount(): Int = 2 // Jumlah tab
 
         override fun createFragment(position: Int): Fragment {
-            return when (position) {
-                0 -> PreFragment().apply {
-                    arguments = Bundle().apply {
-                        putInt("COURSE_ID", intent.getIntExtra("COURSE_ID", 0)) // Kirim courseId ke PreFragment
-                    }
-                }
-                1 -> PostActivityFragment().apply {
-                    arguments = Bundle().apply {
-                        putInt("COURSE_ID", intent.getIntExtra("COURSE_ID", 0)) // Kirim courseId ke PostFragment
-                    }
-                }
+            val fragment = when (position) {
+                0 -> PreFragment()
+                1 -> PostActivityFragment()
                 else -> throw IllegalStateException("Unexpected position $position")
             }
+            fragment.arguments = Bundle().apply {
+                putInt("COURSE_ID", intent.getIntExtra("COURSE_ID", 0))
+            }
+            return fragment
         }
     }
 
@@ -130,8 +125,10 @@ class   CourseActivity : AppCompatActivity() {
                         binding.tvCourse.text = courseDetails.namaCourse
                         binding.tvBatch.text = courseDetails.batchName
 
-                        val intent = Intent(this, PreActivityFragment::class.java)
-                        intent.putExtra("COURSE_ID", courseId) // Mengirimkan courseId melalui Intent
+                        val intentPre = Intent(this, PreActivityFragment::class.java)
+                        val intentPost = Intent(this, PostActivityFragment::class.java)
+                        intentPre.putExtra("COURSE_ID", courseId) // Mengirimkan courseId melalui Intent
+                        intentPost.putExtra("COURSE_ID", courseId)
 
                     } else {
                         // Tangani jika course tidak ditemukan

@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.ui.assigment.postactivity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.FragmentPostBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
+import com.unitedtractors.elomate.ui.assigment.CourseActivity
 import com.unitedtractors.elomate.ui.assigment.detail.DetailAssignmentActivity
 
 class PostActivityFragment : Fragment() {
@@ -33,26 +35,26 @@ class PostActivityFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPostBinding.inflate(layoutInflater)
+        binding = FragmentPostBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         userPreference = UserPreference(requireContext())
         userModel = userPreference.getUser()
 
         val courseId = arguments?.getInt("COURSE_ID", 0) ?: 0
-
         if (courseId != 0) {
             setupRecyclerView("Bearer ${userModel.id}", courseId)
         } else {
             Toast.makeText(requireContext(), "Course ID not found", Toast.LENGTH_SHORT).show()
         }
 
-        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
+    @SuppressLint("SetTextI18n")
     private fun setupRecyclerView(token: String, courseId: Int) {
         binding.rvPostActivity.layoutManager = LinearLayoutManager(requireContext())
 
@@ -74,8 +76,10 @@ class PostActivityFragment : Fragment() {
                     }
                     binding.rvPostActivity.adapter = adapter
 
-//                    binding.progressBar.progress = postActivityResponse.progress
-                    binding.tvProgress.text = postActivityResponse.progress
+                    val progressValue = postActivityResponse.progress?.toInt() ?: 0
+                    binding.progressBar.progress = progressValue
+                    binding.tvProgress.text = "$progressValue %"
+
                 }
                 is Result.Error -> {
                     binding.progressBarLoading.visibility = View.GONE

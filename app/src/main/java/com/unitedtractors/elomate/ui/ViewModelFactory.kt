@@ -13,6 +13,7 @@ import com.unitedtractors.elomate.ui.assignment.CourseViewModel
 import com.unitedtractors.elomate.ui.auth.login.LoginViewModel
 import com.unitedtractors.elomate.ui.home.HomeViewModel
 import com.unitedtractors.elomate.ui.profile.displayprofile.ProfileViewModel
+import com.unitedtractors.elomate.ui.profile.participant.ParticipantDataViewModel
 import com.unitedtractors.elomate.ui.report.ReportViewModel
 import com.unitedtractors.elomate.ui.todo.ToDoViewModel
 
@@ -50,6 +51,9 @@ class ViewModelFactory private constructor(private val elomateRepository: Elomat
             }
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(elomateRepository) as T
+            }
+            modelClass.isAssignableFrom(ParticipantDataViewModel::class.java) -> {
+                ParticipantDataViewModel(elomateRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

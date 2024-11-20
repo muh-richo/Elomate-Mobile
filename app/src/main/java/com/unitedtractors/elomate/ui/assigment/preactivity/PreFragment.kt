@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.unitedtractors.elomate.R
+import com.unitedtractors.elomate.ui.assigment.CourseActivity
 import com.unitedtractors.elomate.ui.assigment.preactivity.prereading.PreReadingFragment
 import com.unitedtractors.elomate.ui.assigment.preactivity.activity.PreActivityFragment
 
@@ -27,7 +28,6 @@ class PreFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_pre, container, false)
 
-        // Ambil courseId dari arguments
         courseId = arguments?.getInt("COURSE_ID", 0) ?: 0
 
         // Inisialisasi tombol dan TextView

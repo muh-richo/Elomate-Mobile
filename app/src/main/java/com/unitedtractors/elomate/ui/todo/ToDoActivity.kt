@@ -74,11 +74,11 @@ class ToDoActivity : AppCompatActivity() {
             }
             btnPostTest.setOnClickListener {
                 setActiveButton(binding.btnPostTest)
-                filterAssignment("post_activity")
+                filterAssignment("post_test")
             }
             btnTugas.setOnClickListener {
                 setActiveButton(binding.btnTugas)
-                filterAssignment("Tugas")
+                filterAssignment("tugas")
             }
             btn360.setOnClickListener {
                 setActiveButton(binding.btn360)

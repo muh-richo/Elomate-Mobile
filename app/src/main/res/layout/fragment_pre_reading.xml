@@ -1,10 +1,10 @@
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/neutral_50"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_pre_reading"
@@ -22,4 +22,4 @@
         android:indeterminateTint="@color/yellow_500"
         android:visibility="gone"
         android:indeterminate="true"/>
-</LinearLayout>
+</FrameLayout>
