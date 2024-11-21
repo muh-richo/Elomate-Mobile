@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
-                    android:text="Pre-Test" />
+                    tools:text="Pre-Test" />
             </LinearLayout>
 
             <TextView
@@ -88,7 +88,7 @@
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="1 Maret 2024" />
+                    tools:text="1 Maret 2024" />
 
             </LinearLayout>
 
@@ -129,7 +129,7 @@
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="17 Maret 2024" />
+                    tools:text="17 Maret 2024" />
 
             </LinearLayout>
 
@@ -170,7 +170,7 @@
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="No score/100" />
+                    tools:text="No score/100" />
 
             </LinearLayout>
 
@@ -211,7 +211,7 @@
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Pilihan Ganda" />
+                    tools:text="Pilihan Ganda" />
 
             </LinearLayout>
 
@@ -252,7 +252,7 @@
                     android:textSize="14sp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="10 Soal" />
+                    tools:text="10 Soal" />
 
             </LinearLayout>
 

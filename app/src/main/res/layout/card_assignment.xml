@@ -78,7 +78,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/ic_calendar"
+                android:id="@+id/iv_calendar"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/ic_calender_time"

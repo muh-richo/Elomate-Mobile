@@ -3,7 +3,9 @@ package com.unitedtractors.elomate.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.data.network.response.AssignmentResponse
 import com.unitedtractors.elomate.data.network.response.ListActivityItem
 import com.unitedtractors.elomate.databinding.CardAssignmentBinding
@@ -16,12 +18,24 @@ class PostActivityAdapter(
     inner class PostActivityViewHolder(private val binding: CardAssignmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        @SuppressLint("SetTextI18n")
+        @SuppressLint("SetTextI18n", "ResourceAsColor")
         fun bind(assignment: ListActivityItem) {
             binding.tvTitleAssignment.text = assignment.title
             binding.tvCourseName.text = assignment.namaCourse
             binding.tvDeadline.text = assignment.tanggalSelesai
             binding.tvStatus.text = assignment.active
+
+            if (assignment.active == "Complete") {
+                binding.ivCalendar.setColorFilter(
+                    ContextCompat.getColor(binding.root.context, R.color.neutral_500)
+                )
+                binding.tvDeadline.setTextColor(
+                    ContextCompat.getColor(binding.root.context, R.color.neutral_500)
+                )
+                binding.tvStatus.setTextColor(
+                    ContextCompat.getColor(binding.root.context, R.color.success_700)
+                )
+            }
 
             // Set click listener
             binding.root.setOnClickListener {

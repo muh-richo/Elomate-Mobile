@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig {
-    companion object{
+    companion object {
         fun getElomateApiService(): ElomateApiService {
             val loggingInterceptor =
                 if (BuildConfig.DEBUG) {
@@ -19,7 +19,7 @@ class ApiConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://192.168.53.114:4000/")
+                .baseUrl("http://192.168.53.149:4000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

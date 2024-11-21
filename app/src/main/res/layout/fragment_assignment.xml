@@ -99,11 +99,11 @@
                         android:gravity="center_vertical"
                         android:background="@drawable/bg_dropdown"
                         android:paddingVertical="8dp"
-                        android:layout_marginBottom="11dp"
+                        android:layout_marginBottom="10dp"
                         android:orientation="horizontal">
 
                         <Spinner
-                            android:id="@+id/spinner_dropdown"
+                            android:id="@+id/spinner_phase"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -138,11 +138,10 @@
                         android:gravity="center_vertical"
                         android:background="@drawable/bg_dropdown"
                         android:paddingVertical="8dp"
-                        android:layout_marginBottom="0dp"
                         android:orientation="horizontal">
 
                         <Spinner
-                            android:id="@+id/spinner_dropdown2"
+                            android:id="@+id/spinner_topic"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"

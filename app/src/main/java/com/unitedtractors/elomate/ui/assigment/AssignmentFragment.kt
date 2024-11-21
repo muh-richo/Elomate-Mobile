@@ -47,9 +47,6 @@ class AssignmentFragment : Fragment() {
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
 
     private fun getCurrentUserApi() {
         viewModel.getCurrentUserApi("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
@@ -106,7 +103,7 @@ class AssignmentFragment : Fragment() {
         // Spinner Phase
         viewModel.getPhaseUser("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
             when (result) {
-                is Result.Loading -> {}
+                is Result.Loading -> { }
                 is Result.Success -> {
                     // Ambil nama phase untuk Spinner pertama
                     val phases = result.data.map { it.namaPhase }
@@ -115,10 +112,10 @@ class AssignmentFragment : Fragment() {
                     // Inisialisasi Adapter Spinner dengan data phase dari API
                     val adapterPhase = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, phases)
                     adapterPhase.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    binding.spinnerDropdown.adapter = adapterPhase
+                    binding.spinnerPhase.adapter = adapterPhase
 
                     // Listener ketika item pada Spinner Phase dipilih
-                    binding.spinnerDropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    binding.spinnerPhase.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                             // Ambil phaseId dari item yang dipilih
                             val selectedPhaseId = phaseIds[position]
@@ -137,10 +134,10 @@ class AssignmentFragment : Fragment() {
                                             // Inisialisasi Adapter Spinner kedua dengan data topik dari API
                                             val topicAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, topics)
                                             topicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                                            binding.spinnerDropdown2.adapter = topicAdapter
+                                            binding.spinnerTopic.adapter = topicAdapter
 
                                             // Listener untuk Spinner Topic
-                                            binding.spinnerDropdown2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                                            binding.spinnerTopic.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                                                 override fun onItemSelected(parent: AdapterView<*>, view: View?, topicPosition: Int, id: Long) {
                                                     val selectedTopicId = topicIds[topicPosition]
                                                     if (selectedTopicId != null) {

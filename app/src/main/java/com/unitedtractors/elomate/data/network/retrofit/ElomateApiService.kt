@@ -7,6 +7,7 @@ import com.unitedtractors.elomate.data.network.response.PhaseResponse
 import com.unitedtractors.elomate.data.network.response.PostActivityResponse
 import com.unitedtractors.elomate.data.network.response.PreActivityResponse
 import com.unitedtractors.elomate.data.network.response.PreReadingResponse
+import com.unitedtractors.elomate.data.network.response.ReportResponse
 import com.unitedtractors.elomate.data.network.response.TokenResponse
 import com.unitedtractors.elomate.data.network.response.TopicResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
@@ -87,6 +88,15 @@ interface ElomateApiService {
         @Header("Authorization") token: String,
         @Path("assignmentId") assignmentId: Int,
     ): AssignmentResponse
+
+    @GET("report/{phaseId}/{topicId}")
+    suspend fun getReportByPhaseIdTopicId(
+        @Header("Authorization") token: String,
+        @Path("phaseId") phaseId: Int,
+        @Path("topicId") topicId: Int,
+    ): ReportResponse
+
+
 
     @GET("participantData")
     suspend fun getParticipantData(
