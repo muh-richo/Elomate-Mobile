@@ -180,12 +180,12 @@ ReportFragment : Fragment() {
                                 tableRowBinding.tvNilai.text = course?.nilaiTotalCourse?.toString() ?: "-"
                                 tableRowBinding.tvStatus.text = course?.status ?: "Tidak ada status"
 
-                                // Menambahkan warna latar belakang berdasarkan indeks ganjil/genap
-                                if (index % 2 == 0) {
-                                    tableRowBinding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), com.unitedtractors.elomate.R.color.shades_50))
-                                } else {
-                                    tableRowBinding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), com.unitedtractors.elomate.R.color.neutral_200))
-                                }
+//                                // Menambahkan warna latar belakang berdasarkan indeks ganjil/genap
+//                                if (index % 2 == 0) {
+//                                    tableRowBinding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), com.unitedtractors.elomate.R.color.shades_50))
+//                                } else {
+//                                    tableRowBinding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), com.unitedtractors.elomate.R.color.neutral_200))
+//                                }
 
                                 // Tambahkan baris ke dynamicRows container
                                 dynamicRows.addView(tableRowBinding.root)

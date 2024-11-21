@@ -18,6 +18,7 @@ import com.unitedtractors.elomate.data.network.response.PreActivityResponse
 import com.unitedtractors.elomate.data.network.response.PreReadingResponse
 import com.unitedtractors.elomate.data.network.response.ReportResponse
 import com.unitedtractors.elomate.data.network.response.TopicResponse
+import com.unitedtractors.elomate.data.network.response.UpdatePassResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
@@ -44,6 +45,23 @@ class ElomateRepository(
                 emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
             }
     }
+
+    fun updatePassword(token: String, currentPassword: String, newPassword: String): LiveData<Result<UpdatePassResponse, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+
+            try {
+                val response = elomateApiService.updatePassword(token, currentPassword, newPassword)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                Log.e(TAG, "Error Update Password API : $errorBody")
+                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                val errorMessage = messageErrorResponse.message
+                emit(Result.Error(MessageErrorResponse(errorMessage)))
+            }
+        }
+
 
     fun getCurrentUserApi(token: String): LiveData<Result<UserResponse, MessageErrorResponse>> =
         liveData {
