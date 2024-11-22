@@ -37,7 +37,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize UserPreference
         userPreference = UserPreference(this)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->

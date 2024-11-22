@@ -10,7 +10,9 @@ import com.unitedtractors.elomate.data.network.response.PreReadingResponse
 import com.unitedtractors.elomate.data.network.response.ReportResponse
 import com.unitedtractors.elomate.data.network.response.TokenResponse
 import com.unitedtractors.elomate.data.network.response.TopicResponse
-import com.unitedtractors.elomate.data.network.response.UpdatePassResponse
+import com.unitedtractors.elomate.data.network.response.UpdatePasswordRequest
+import com.unitedtractors.elomate.data.network.response.SuccessResponse
+import com.unitedtractors.elomate.data.network.response.UpdateProfileRequest
 import com.unitedtractors.elomate.data.network.response.UserResponse
 import retrofit2.http.*
 
@@ -26,13 +28,17 @@ interface ElomateApiService {
         @Header("Authorization") token: String
     ): UserResponse
 
-    @FormUrlEncoded
+    @PATCH("auth/me")
+    suspend fun updateProfile(
+        @Header("Authorization") token: String,
+        @Body updateProfile: UpdateProfileRequest
+    ): SuccessResponse
+
     @PATCH("auth/me/password")
     suspend fun updatePassword(
         @Header("Authorization") token: String,
-        @Field("current") currPass: String,
-        @Field("password") newPass: String
-    ): UpdatePassResponse
+        @Body updatePasswordRequest: UpdatePasswordRequest
+    ): SuccessResponse
 
     @GET("assignment/user/todo")
     suspend fun getToDoList(

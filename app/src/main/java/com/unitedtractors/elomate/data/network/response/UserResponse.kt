@@ -16,6 +16,12 @@ data class UserResponse(
 	@field:SerializedName("jurusan")
 	val jurusan: String? = null,
 
+	@field:SerializedName("jenjang_studi")
+	val jenjangStudi: String? = null,
+
+	@field:SerializedName("tahun_lulus")
+	val tahunLulus: Int? = null,
+
 	@field:SerializedName("nrp")
 	val nrp: String? = null,
 

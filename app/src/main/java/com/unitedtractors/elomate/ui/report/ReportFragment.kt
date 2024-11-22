@@ -175,10 +175,12 @@ ReportFragment : Fragment() {
                                 val tableRowBinding = TableRowsPlaceholderBinding.inflate(LayoutInflater.from(context), null, false)
 
                                 // Set data ke TextView dalam TableRow
-                                tableRowBinding.tvNo.text = (index + 1).toString() // No urut (1, 2, 3,...)
+                                tableRowBinding.tvNo.text = (index + 1).toString()
                                 tableRowBinding.tvCourse.text = course?.namaCourse ?: "No Course"
                                 tableRowBinding.tvNilai.text = course?.nilaiTotalCourse?.toString() ?: "-"
                                 tableRowBinding.tvStatus.text = course?.status ?: "Tidak ada status"
+
+                                tableRowBinding.root.setBackgroundResource(com.unitedtractors.elomate.R.drawable.bg_table_row)
 
 //                                // Menambahkan warna latar belakang berdasarkan indeks ganjil/genap
 //                                if (index % 2 == 0) {

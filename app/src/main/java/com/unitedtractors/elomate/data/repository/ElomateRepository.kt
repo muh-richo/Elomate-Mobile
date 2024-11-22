@@ -18,7 +18,9 @@ import com.unitedtractors.elomate.data.network.response.PreActivityResponse
 import com.unitedtractors.elomate.data.network.response.PreReadingResponse
 import com.unitedtractors.elomate.data.network.response.ReportResponse
 import com.unitedtractors.elomate.data.network.response.TopicResponse
-import com.unitedtractors.elomate.data.network.response.UpdatePassResponse
+import com.unitedtractors.elomate.data.network.response.UpdatePasswordRequest
+import com.unitedtractors.elomate.data.network.response.SuccessResponse
+import com.unitedtractors.elomate.data.network.response.UpdateProfileRequest
 import com.unitedtractors.elomate.data.network.response.UserResponse
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
@@ -46,12 +48,30 @@ class ElomateRepository(
             }
     }
 
-    fun updatePassword(token: String, currentPassword: String, newPassword: String): LiveData<Result<UpdatePassResponse, MessageErrorResponse>> =
+    fun updateProfile(token: String, asalUniversitas: String, jurusan: String, jenjangStudi: String, tahunLulus: String, domisili: String, tempatLahir: String, tanggalLahir: String, noHp: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
         liveData {
             emit(Result.Loading)
 
             try {
-                val response = elomateApiService.updatePassword(token, currentPassword, newPassword)
+                val updateProfileRequest = UpdateProfileRequest(asalUniversitas, jurusan, jenjangStudi, tahunLulus, domisili, tempatLahir, tanggalLahir, noHp)
+                val response = elomateApiService.updateProfile(token, updateProfileRequest)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                Log.e(TAG, "Error Update Profile : $errorBody")
+                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                val errorMessage = messageErrorResponse.message
+                emit(Result.Error(MessageErrorResponse(errorMessage)))
+            }
+        }
+
+    fun updatePassword(token: String, currentPassword: String, newPassword: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+
+            try {
+                val updatePasswordRequest = UpdatePasswordRequest(currentPassword, newPassword)
+                val response = elomateApiService.updatePassword(token, updatePasswordRequest)
                 emit(Result.Success(response))
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
@@ -61,7 +81,6 @@ class ElomateRepository(
                 emit(Result.Error(MessageErrorResponse(errorMessage)))
             }
         }
-
 
     fun getCurrentUserApi(token: String): LiveData<Result<UserResponse, MessageErrorResponse>> =
         liveData {

@@ -14,6 +14,7 @@ import com.unitedtractors.elomate.ui.auth.login.LoginViewModel
 import com.unitedtractors.elomate.ui.home.HomeViewModel
 import com.unitedtractors.elomate.ui.profile.changepassword.ChangePasswordViewModel
 import com.unitedtractors.elomate.ui.profile.displayprofile.ProfileViewModel
+import com.unitedtractors.elomate.ui.profile.editprofile.EditProfileViewModel
 import com.unitedtractors.elomate.ui.profile.participant.ParticipantDataViewModel
 import com.unitedtractors.elomate.ui.report.ReportViewModel
 import com.unitedtractors.elomate.ui.todo.ToDoViewModel
@@ -25,6 +26,9 @@ class ViewModelFactory private constructor(private val elomateRepository: Elomat
         return when {
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(elomateRepository) as T
+            }
+            modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> {
+                EditProfileViewModel(elomateRepository) as T
             }
             modelClass.isAssignableFrom(ChangePasswordViewModel::class.java) -> {
                 ChangePasswordViewModel(elomateRepository) as T

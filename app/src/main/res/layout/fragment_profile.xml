@@ -22,6 +22,7 @@
         android:layout_weight="1"
         android:scrollbars="none"
         android:paddingTop="24dp"
+        android:paddingBottom="20dp"
         android:paddingHorizontal="20dp"
         android:background="@color/neutral_50">
 
@@ -180,103 +181,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/rwiu1jxw6um9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="17dp"
-                    android:layout_marginHorizontal="21dp"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:id="@+id/ruiu88cvs3p"
-                        android:layout_width="16dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="12dp"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:orientation="vertical">
-                        <ImageView
-                            android:id="@+id/ic_asal"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginEnd="16dp"
-                            android:src="@drawable/ic_compound"
-                            android:scaleType="fitXY"
-                            />
-                    </LinearLayout>
-                    <TextView
-                        android:id="@+id/re4fbioj63nw"
-                        android:textColor="#94A3B8"
-                        android:textSize="14sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="Asal Universitas"
-                        />
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        />
-
-                    <TextView
-                        android:id="@+id/tv_asal_universitas"
-                        android:layout_width="111dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ellipsize="none"
-                        android:singleLine="false"
-                        android:textAlignment="viewEnd"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        tools:text="Universitas Brawijaya"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/r9pv20ikbm"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:id="@+id/r3nsgx9smuam"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="12dp"
-                        android:src="@drawable/ic_teacher"
-                        android:scaleType="fitXY"
-                        />
-                    <TextView
-                        android:id="@+id/r473iodn1veh"
-                        android:textColor="#94A3B8"
-                        android:textSize="14sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="Jurusan"
-                        />
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        />
-
-                    <TextView
-                        android:id="@+id/tv_jurusan"
-                        android:layout_width="63dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ellipsize="none"
-                        android:singleLine="false"
-                        android:textAlignment="viewEnd"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        tools:text="Administrasi Publik"/>
-                </LinearLayout>
-                <LinearLayout
                     android:id="@+id/r00iqtjs4po9cj"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -372,6 +276,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="17dp"
                     android:clipChildren="false"
                     android:clipToPadding="false"
                     android:orientation="horizontal">
@@ -408,6 +313,195 @@
                         android:textColor="#000000"
                         android:textSize="14sp"
                         tools:text="naufalrom@gmail.com"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rwiu1jxw6um9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="17dp"
+                    android:layout_marginHorizontal="21dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/ruiu88cvs3p"
+                        android:layout_width="16dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:id="@+id/ic_asal"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="16dp"
+                            android:src="@drawable/ic_compound"
+                            android:scaleType="fitXY"
+                            />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/re4fbioj63nw"
+                        android:textColor="#94A3B8"
+                        android:textSize="14sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Universitas"
+                        />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_asal_universitas"
+                        android:layout_width="111dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="none"
+                        android:singleLine="false"
+                        android:textAlignment="viewEnd"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        tools:text="Universitas Brawijaya"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sdr9pv20ikbm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/iv_icon_jenjang"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="12dp"
+                        android:src="@drawable/ic_teacher"
+                        android:scaleType="fitXY"
+                        />
+                    <TextView
+                        android:id="@+id/tv_title_jenjang_studi"
+                        android:textColor="#94A3B8"
+                        android:textSize="14sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Jenjang Studi"
+                        />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_jenjang_studi"
+                        android:layout_width="63dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="none"
+                        android:singleLine="false"
+                        android:textAlignment="viewEnd"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        tools:text="S1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/r9pv20ikbm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/r3nsgx9smuam"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="12dp"
+                        android:src="@drawable/ic_teacher"
+                        android:scaleType="fitXY"
+                        />
+                    <TextView
+                        android:id="@+id/r473iodn1veh"
+                        android:textColor="#94A3B8"
+                        android:textSize="14sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Jurusan"
+                        />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_jurusan"
+                        android:layout_width="63dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="none"
+                        android:singleLine="false"
+                        android:textAlignment="viewEnd"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        tools:text="Administrasi Publik"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sr20ikbm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/iv_icon_tahun_lulus"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="12dp"
+                        android:src="@drawable/ic_teacher"
+                        android:scaleType="fitXY"
+                        />
+                    <TextView
+                        android:id="@+id/tv_title_tahun_lulus"
+                        android:textColor="#94A3B8"
+                        android:textSize="14sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Tahun Lulus"
+                        />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_tahun_lulus"
+                        android:layout_width="63dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="none"
+                        android:singleLine="false"
+                        android:textAlignment="viewEnd"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        tools:text="S1"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
