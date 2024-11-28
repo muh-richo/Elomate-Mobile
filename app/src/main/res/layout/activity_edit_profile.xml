@@ -344,7 +344,7 @@
                             android:textSize="12sp"
                             android:paddingBottom="8dp"/>
 
-                        <com.unitedtractors.elomate.ui.custom.BirthDateEditText
+                        <com.unitedtractors.elomate.ui.custom.DateEditText
                             android:id="@+id/et_tanggal_lahir"
                             android:layout_width="160dp"
                             android:layout_height="40dp"

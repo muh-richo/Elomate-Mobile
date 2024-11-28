@@ -77,7 +77,7 @@
             android:name=".ui.auth.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mentoring.FeedbackFormActivity"
+            android:name=".ui.mentoring.detail.DetailMentoringActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assessment.AssessmentActivity"

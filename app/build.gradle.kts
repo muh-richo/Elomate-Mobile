@@ -63,8 +63,7 @@ dependencies {
     // Spider Chart
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
-//    Calender
-
+    // Calender
     implementation("com.github.ArjunGupta08:Horizontal-CalendarDate-With-Click-listener:1.1.0")
 
     // The view calendar library for Android
@@ -73,6 +72,10 @@ dependencies {
     // The view calendar library for Android
     implementation("com.kizitonwose.calendar:view:2.5.1")
     implementation ("com.applandeo:material-calendar-view:1.9.2")
+
+    // Nav
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.4")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.11.0")

@@ -18,13 +18,13 @@ class PreActivityAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(assignment: PreActivityResponse) {
-            binding.tvTitleAssignment.text = assignment.title
-            binding.tvCourseName.text = assignment.namaCourse
-            binding.tvDeadline.text = assignment.tanggalSelesai
-            binding.tvStatus.text = assignment.active
+        fun bind(preActivity: PreActivityResponse) {
+            binding.tvTitleAssignment.text = preActivity.title
+            binding.tvCourseName.text = preActivity.namaCourse
+            binding.tvDeadline.text = preActivity.tanggalSelesai
+            binding.tvStatus.text = preActivity.active
 
-            if (assignment.active == "Complete") {
+            if (preActivity.active == "Complete") {
                 binding.ivCalendar.setColorFilter(
                     ContextCompat.getColor(binding.root.context, R.color.neutral_500)
                 )
@@ -38,7 +38,7 @@ class PreActivityAdapter(
 
             // Set click listener
             binding.root.setOnClickListener {
-                assignment.assignmentId?.let { it1 -> onPreActivityClick(it1) }
+                preActivity.assignmentId?.let { it1 -> onPreActivityClick(it1) }
             }
         }
     }

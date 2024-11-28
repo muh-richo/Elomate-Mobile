@@ -120,7 +120,7 @@ class EditProfileActivity : AppCompatActivity() {
                             finish()
                         }
                         is Result.Error -> {
-                            Toast.makeText(this, "PPPP", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Update profile gagal", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

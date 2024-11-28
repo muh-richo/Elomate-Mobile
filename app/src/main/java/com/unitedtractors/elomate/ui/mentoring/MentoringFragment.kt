@@ -8,9 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unitedtractors.elomate.databinding.FragmentMentoringBinding
+import com.unitedtractors.elomate.ui.mentoring.closed.ClosedFragment
+import com.unitedtractors.elomate.ui.mentoring.create.CreateFragment
+import com.unitedtractors.elomate.ui.mentoring.feedback.FeedbackFragment
+import com.unitedtractors.elomate.ui.mentoring.upcoming.UpcomingFragment
 
 class MentoringFragment : Fragment() {
 
@@ -48,7 +51,7 @@ class MentoringFragment : Fragment() {
         val tabTitles = listOf("Create", "Upcoming", "Feedback", "Closed")
         val textView = TextView(context).apply {
             text = tabTitles[position]
-            textSize = 14f
+            textSize = 16f
             gravity = android.view.Gravity.CENTER
         }
         return textView

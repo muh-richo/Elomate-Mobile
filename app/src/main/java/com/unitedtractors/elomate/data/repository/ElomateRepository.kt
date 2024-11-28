@@ -12,6 +12,8 @@ import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.data.network.response.AssignmentResponse
 import com.unitedtractors.elomate.data.network.response.CourseResponse
 import com.unitedtractors.elomate.data.network.response.LoginRequest
+import com.unitedtractors.elomate.data.network.response.MentoringRequest
+import com.unitedtractors.elomate.data.network.response.MentoringResponse
 import com.unitedtractors.elomate.data.network.response.PhaseResponse
 import com.unitedtractors.elomate.data.network.response.PostActivityResponse
 import com.unitedtractors.elomate.data.network.response.PreActivityResponse
@@ -292,6 +294,103 @@ class ElomateRepository(
                 emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
             }
     }
+
+    fun createMentoring(token: String, namaCourse: String, tanggalMentoring: String, jamMulai: String, jamSelesai: String, metodeMentoring: String, tipeMentoring: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+
+            try {
+                val createMentoringRequest = MentoringRequest(namaCourse, tanggalMentoring, jamMulai, jamSelesai, metodeMentoring, tipeMentoring)
+                val response = elomateApiService.createMentoring(token, createMentoringRequest)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                Log.e(TAG, "Error Create Mentoring API : $errorBody")
+                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                val errorMessage = messageErrorResponse.message
+                emit(Result.Error(MessageErrorResponse(errorMessage)))
+            }
+        }
+
+    fun getMethodMentoring(token: String): LiveData<Result<List<String>, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+
+            try {
+                val response = elomateApiService.getMethodMentoring(token)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                emit(Result.Error(messageErrorResponse))
+            } catch (e: SocketTimeoutException) {
+                emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+            }
+        }
+
+    fun getTypeMentoring(token: String): LiveData<Result<List<String>, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+
+            try {
+                val response = elomateApiService.getTypeMentoring(token)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                emit(Result.Error(messageErrorResponse))
+            } catch (e: SocketTimeoutException) {
+                emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+            }
+        }
+
+    fun getUpcomingMentoring(token: String): LiveData<Result<List<MentoringResponse>, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+
+            try {
+                val response = elomateApiService.getUpcomingMentoring(token)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                emit(Result.Error(messageErrorResponse))
+            } catch (e: SocketTimeoutException) {
+                emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+            }
+        }
+
+    fun getFeedbackMentoring(token: String): LiveData<Result<List<MentoringResponse>, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+
+            try {
+                val response = elomateApiService.getFeedbackMentoring(token)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                emit(Result.Error(messageErrorResponse))
+            } catch (e: SocketTimeoutException) {
+                emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+            }
+        }
+
+    fun getApproveMentoring(token: String): LiveData<Result<List<MentoringResponse>, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+
+            try {
+                val response = elomateApiService.getApproveMentoring(token)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                emit(Result.Error(messageErrorResponse))
+            } catch (e: SocketTimeoutException) {
+                emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+            }
+        }
 
 
     fun getReportByPhaseIdTopicId(token: String, phaseId: Int, topicId: Int): LiveData<Result<ReportResponse, MessageErrorResponse>> =

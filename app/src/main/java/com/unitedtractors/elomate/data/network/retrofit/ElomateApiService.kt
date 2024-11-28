@@ -3,6 +3,8 @@ package com.unitedtractors.elomate.data.network.retrofit
 import com.unitedtractors.elomate.data.network.response.AssignmentResponse
 import com.unitedtractors.elomate.data.network.response.CourseResponse
 import com.unitedtractors.elomate.data.network.response.LoginRequest
+import com.unitedtractors.elomate.data.network.response.MentoringRequest
+import com.unitedtractors.elomate.data.network.response.MentoringResponse
 import com.unitedtractors.elomate.data.network.response.PhaseResponse
 import com.unitedtractors.elomate.data.network.response.PostActivityResponse
 import com.unitedtractors.elomate.data.network.response.PreActivityResponse
@@ -111,6 +113,36 @@ interface ElomateApiService {
         @Path("topicId") topicId: Int,
     ): ReportResponse
 
+    @POST("mentoring/insert")
+    suspend fun createMentoring(
+        @Header("Authorization") token: String,
+        @Body mentoring: MentoringRequest,
+    ): SuccessResponse
+
+    @GET("mentoring/method")
+    suspend fun getMethodMentoring(
+        @Header("Authorization") token: String,
+    ): List<String>
+
+    @GET("mentoring/type")
+    suspend fun getTypeMentoring(
+        @Header("Authorization") token: String,
+    ): List<String>
+
+    @GET("mentoring/upcomingData")
+    suspend fun getUpcomingMentoring(
+        @Header("Authorization") token: String,
+    ): List<MentoringResponse>
+
+    @GET("mentoring/feedbackData")
+    suspend fun getFeedbackMentoring(
+        @Header("Authorization") token: String,
+    ): List<MentoringResponse>
+
+    @GET("mentoring/approveData")
+    suspend fun getApproveMentoring(
+        @Header("Authorization") token: String,
+    ): List<MentoringResponse>
 
 
     @GET("participantData")

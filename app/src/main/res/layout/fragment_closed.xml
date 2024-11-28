@@ -1,235 +1,26 @@
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FFFFFF"
+    android:background="@color/neutral_50"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <ScrollView
-        android:clipToPadding="false"
-        android:id="@+id/rnnytmg1cqz9"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_closed_mentoring"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#F9FAFB"
-        android:paddingHorizontal="20dp">
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="10dp"
+        tools:listitem="@layout/card_mentoring"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/list1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="86dp"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="6dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="12dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/status"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/bg_title"
-                        android:backgroundTint="@color/success_50"
-                        android:paddingVertical="5dp"
-                        android:paddingHorizontal="8dp"
-                        android:layout_marginBottom="25dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="14dp"
-                            android:layout_height="14dp"
-                            android:src="@drawable/ic_status"
-                            app:tint="@color/success_900"
-                            android:layout_marginEnd="6dp"
-                            android:orientation="vertical">
-                        </ImageView>
-
-                        <TextView
-                            android:id="@+id/status_text"
-                            android:textColor="#3D9315"
-                            android:textSize="10sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:text="Approve" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tgl"
-                        android:textColor="#64748B"
-                        android:textSize="14sp"
-                        android:layout_marginBottom="12dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="20 Agustus 2024" />
-
-                    <TextView
-                        android:id="@+id/waktu"
-                        android:textColor="#64748B"
-                        android:textSize="14sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="09:00 - 14:00" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/line"
-                    android:layout_width="2dp"
-                    android:layout_height="192dp"
-                    android:background="@color/neutral_300"
-                    android:layout_marginEnd="12dp"
-                    android:orientation="vertical">
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/content"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="22dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/kompetensi"
-                        android:textColor="#000000"
-                        android:textSize="16sp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginStart="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="Behavior Competencies" />
-
-                    <LinearLayout
-                        android:id="@+id/mentor"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_profile"
-                            android:layout_marginEnd="11dp"
-                            android:orientation="vertical">
-                        </ImageView>
-
-                        <TextView
-                            android:id="@+id/mentor_name"
-                            android:textColor="#000000"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:text="Leandro Zavier" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/topik"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_document_text"
-                            android:layout_marginEnd="10dp"
-                            android:orientation="vertical">
-                        </ImageView>
-
-                        <TextView
-                            android:id="@+id/topic_name"
-                            android:textColor="#000000"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:text="Topik mentoring" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_location"
-                            android:layout_marginEnd="10dp"
-                            android:orientation="vertical">
-                        </ImageView>
-
-                        <TextView
-                            android:id="@+id/method"
-                            android:textColor="#000000"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="Offline" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_element_equal"
-                            android:layout_marginEnd="10dp"
-                            android:orientation="vertical">
-                        </ImageView>
-
-                        <TextView
-                            android:id="@+id/tipe"
-                            android:textColor="#000000"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="Choaching" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/button_detail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:background="@drawable/bg_stroke_button"
-                        android:paddingVertical="11dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/text_button"
-                            android:textColor="#DBA60B"
-                            android:textSize="10sp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="Detail" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:paddingTop="50dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/yellow_500"
+        android:visibility="gone"
+        android:indeterminate="true"/>
+</FrameLayout>

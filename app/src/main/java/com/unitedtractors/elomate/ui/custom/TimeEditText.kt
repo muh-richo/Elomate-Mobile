@@ -1,6 +1,7 @@
 package com.unitedtractors.elomate.ui.custom
 
-import android.app.DatePickerDialog
+import android.annotation.SuppressLint
+import android.app.TimePickerDialog
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
@@ -11,23 +12,24 @@ import androidx.core.content.ContextCompat
 import com.unitedtractors.elomate.R
 import java.util.Calendar
 
-class BirthDateEditText @JvmOverloads constructor(
+class TimeEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : AppCompatEditText(context, attrs), View.OnClickListener {
 
-    private var iconCalendar: Drawable = ContextCompat.getDrawable(context, R.drawable.ic_calender_time) as Drawable
+    private val iconClock: Drawable =
+        ContextCompat.getDrawable(context, R.drawable.ic_clock) ?: throw IllegalArgumentException("Drawable not found")
 
     init {
         maxLines = 1
-        isFocusable = false // Tidak memungkinkan pengguna mengetik langsung
+        isFocusable = false
         setSingleLine(true)
-        setOnClickListener(this) // Menambahkan listener untuk membuka date picker
+        setOnClickListener(this)
         setupEditText()
     }
 
     private fun setupEditText() {
-        setEditTextDrawables(startOfTheText = iconCalendar)
-        hint = "Pilih Tanggal Lahir" // Placeholder teks
+        setEditTextDrawables(startOfTheText = iconClock)
+        hint = "HH:MM" // Placeholder teks untuk format waktu
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -47,19 +49,20 @@ class BirthDateEditText @JvmOverloads constructor(
     }
 
     override fun onClick(v: View?) {
-        showDatePickerDialog()
+        showTimePickerDialog()
     }
 
-    private fun showDatePickerDialog() {
+    @SuppressLint("DefaultLocale")
+    private fun showTimePickerDialog() {
         val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
 
-        DatePickerDialog(context, { _, selectedYear, selectedMonth, selectedDay ->
-            // Menampilkan hasil pemilihan tanggal ke EditText
-            val formattedDate = String.format("%02d-%02d-%04d", selectedDay, selectedMonth + 1, selectedYear)
-            setText(formattedDate)
-        }, year, month, day).show()
+        // Tampilkan TimePickerDialog
+        TimePickerDialog(context, { _, selectedHour, selectedMinute ->
+            // Format waktu menjadi HH:MM
+            val formattedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
+            setText(formattedTime)
+        }, hour, minute, true).show() // 'true' untuk format 24 jam
     }
 }
