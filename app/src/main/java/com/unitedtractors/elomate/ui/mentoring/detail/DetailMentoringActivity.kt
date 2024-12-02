@@ -1,26 +1,41 @@
 package com.unitedtractors.elomate.ui.mentoring.detail
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.databinding.ActivityFeedbackFormBinding
+import com.unitedtractors.elomate.data.local.user.User
+import com.unitedtractors.elomate.data.local.user.UserPreference
+import com.unitedtractors.elomate.data.network.Result
+import com.unitedtractors.elomate.databinding.ActivityDetailMentoringBinding
+import com.unitedtractors.elomate.ui.ViewModelFactory
+import com.unitedtractors.elomate.ui.assigment.preactivity.prereading.PreReadingViewModel
+import com.unitedtractors.elomate.ui.mentoring.MentoringViewModel
 
 class DetailMentoringActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityFeedbackFormBinding
+    private lateinit var binding: ActivityDetailMentoringBinding
+
+    private val viewModel by viewModels<MentoringViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
+
+    private lateinit var userPreference: UserPreference
+    private lateinit var userModel: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityFeedbackFormBinding.inflate(layoutInflater)
+        binding = ActivityDetailMentoringBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Change the status bar color
-        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300) // Replace with your color resource
+        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -28,8 +43,58 @@ class DetailMentoringActivity : AppCompatActivity() {
             insets
         }
 
+        userPreference = UserPreference(this)
+        userModel = userPreference.getUser()
+
+        val mentoringId = intent.getIntExtra("MENTORING_ID", -1)
+        if (mentoringId != -1) {
+            loadDetailMentoring(mentoringId)
+        }
+
         binding.icBack.setOnClickListener {
             finish()
         }
     }
+
+    @SuppressLint("SetTextI18n")
+    private fun loadDetailMentoring(mentoringId: Int) {
+        viewModel.getDetailMentoring("Bearer ${userModel.id}", mentoringId).observe(this) { result ->
+            if (result != null) {
+                when (result) {
+                    is Result.Loading -> {  }
+                    is Result.Success -> {
+                        val response = result.data
+
+                        if (response.status == "Processing") {
+                            binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.blue_50)
+                            binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.blue_500))
+                        } else if (response.status == "Need Revision") {
+                            binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.error_50)
+                            binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.error_500))
+                        } else if (response.status == "Approve") {
+                            binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.success_50)
+                            binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.success_900))
+                        }
+
+                        binding.tvStatus.text = response.status
+                        binding.tvMentor.text = response.namaFasilitator
+                        binding.tvTopik.text = response.namaTopik
+                        binding.tvType.text = response.tipeMentoring
+                        binding.tvDate.text = response.tanggalMentoring
+                        binding.tvTime.text = "${response.waktuMentoring } WIB"
+                        binding.tvMethod.text = response.metodeMentoring
+
+                        binding.tvKompetensi.text = response.kompetensiYangDievaluasi
+                        binding.tvLessonLearned.text = response.lessonLearnedCompetencies
+                        binding.tvCatatan.text = response.catatanMentor
+
+                    }
+                    is Result.Error -> {
+                        Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+    }
+
 }

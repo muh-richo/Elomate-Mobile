@@ -38,4 +38,8 @@ class MentoringViewModel(private val repository: ElomateRepository) : ViewModel(
         return repository.getApproveMentoring(token)
     }
 
+    fun getDetailMentoring(token: String, mentoringId: Int): LiveData<Result<MentoringResponse, MessageErrorResponse>> {
+        return repository.getDetailMentoring(token, mentoringId)
+    }
+
 }

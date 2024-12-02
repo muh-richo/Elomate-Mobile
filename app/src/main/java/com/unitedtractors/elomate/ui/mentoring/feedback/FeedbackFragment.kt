@@ -9,12 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.unitedtractors.elomate.adapter.UpcomingAdapter
+import com.unitedtractors.elomate.adapter.MentoringAdapter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.FragmentFeedbackBinding
-import com.unitedtractors.elomate.databinding.FragmentUpcomingBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.mentoring.MentoringViewModel
 import com.unitedtractors.elomate.ui.mentoring.detail.DetailMentoringActivity
@@ -57,7 +56,7 @@ class FeedbackFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     val upcomingList = result.data
 
-                    val adapter = UpcomingAdapter(upcomingList) { mentoringId ->
+                    val adapter = MentoringAdapter(upcomingList) { mentoringId ->
                         val intent = Intent(requireContext(), DetailMentoringActivity::class.java)
                         intent.putExtra("MENTORING_ID", mentoringId) // Kirim assignmentId
                         startActivity(intent)

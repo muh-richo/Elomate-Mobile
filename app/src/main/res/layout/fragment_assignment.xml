@@ -65,7 +65,6 @@
                     app:civ_border_color="@color/shades_50"/>
             </LinearLayout>
 
-            <!-- Dropdown -->
             <LinearLayout
                 android:id="@+id/rxzcrm1et3ua"
                 android:layout_width="match_parent"
@@ -73,7 +72,6 @@
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
-                <!-- Dropdown Phase -->
                 <LinearLayout
                     android:id="@+id/rkknogw6rvzn"
                     android:layout_width="match_parent"
@@ -122,7 +120,6 @@
                             app:tint="#292D32"/>
                     </LinearLayout>
 
-                    <!-- Dropdown Topic -->
                     <TextView
                         android:id="@+id/rsd0zhhv5wxh"
                         android:textColor="#121926"

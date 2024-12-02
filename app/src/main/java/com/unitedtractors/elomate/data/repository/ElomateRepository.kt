@@ -392,6 +392,21 @@ class ElomateRepository(
             }
         }
 
+    fun getDetailMentoring(token: String, mentoringId: Int): LiveData<Result<MentoringResponse, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+
+            try {
+                val response = elomateApiService.getDetailMentoring(token, mentoringId)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                emit(Result.Error(messageErrorResponse))
+            } catch (e: SocketTimeoutException) {
+                emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+            }
+        }
 
     fun getReportByPhaseIdTopicId(token: String, phaseId: Int, topicId: Int): LiveData<Result<ReportResponse, MessageErrorResponse>> =
         liveData {

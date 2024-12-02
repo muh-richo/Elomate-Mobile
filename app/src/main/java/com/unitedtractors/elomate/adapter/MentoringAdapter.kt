@@ -9,10 +9,10 @@ import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.data.network.response.MentoringResponse
 import com.unitedtractors.elomate.databinding.CardMentoringBinding
 
-class UpcomingAdapter(
-    private val upcomingList: List<MentoringResponse>,
+class MentoringAdapter(
+    private val mentoringList: List<MentoringResponse>,
     private val onUpcomingClick: (Int) -> Unit
-) : RecyclerView.Adapter<UpcomingAdapter.UpcomingViewHolder>() {
+) : RecyclerView.Adapter<MentoringAdapter.UpcomingViewHolder>() {
 
     inner class UpcomingViewHolder(private val binding: CardMentoringBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -29,14 +29,17 @@ class UpcomingAdapter(
                 binding.tvStatus.text = upcoming.status
 
                 if (upcoming.status == "Processing") {
-//                    binding.status.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.teal_200))
-                    binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.blue_1))
+                    binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.blue_50)
+                    binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.blue_500))
+                    binding.ivStatus.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.blue_500))
                 } else if (upcoming.status == "Need Revision") {
-//                    binding.status.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.error_50))
+                    binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.error_50)
                     binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.error_500))
+                    binding.ivStatus.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.error_500))
                 } else if (upcoming.status == "Approve") {
-//                    binding.status.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.success_50))
+                    binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.success_50)
                     binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.success_900))
+                    binding.ivStatus.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.success_900))
                 }
 
                 binding.root.setOnClickListener {
@@ -55,10 +58,10 @@ class UpcomingAdapter(
     }
 
     override fun getItemCount(): Int {
-        return upcomingList.size
+        return mentoringList.size
     }
 
     override fun onBindViewHolder(holder: UpcomingViewHolder, position: Int) {
-        holder.bind(upcomingList[position])
+        holder.bind(mentoringList[position])
     }
 }

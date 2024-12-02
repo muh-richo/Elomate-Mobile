@@ -59,6 +59,10 @@
     <color name="line_2">#E24743</color>
     <color name="line_3">#4883EB</color>
 
+    <color name="blue_50">#CFF0FD</color>
+    <color name="blue_500">#0CA1DC</color>
+
+
     <color name="blue_1">#3A89FD</color>
     <color name="transparant">#RRGGBBAA</color>
 

@@ -25,9 +25,25 @@ data class PreReadingResponse(
 	@field:SerializedName("description_materi")
 	val descriptionMateri: String? = null,
 
-	@field:SerializedName("konten_materi")
-	val kontenMateri: String? = null,
+	@field:SerializedName("files")
+	val files: List<FilesItem?>? = null,
 
 	@field:SerializedName("category")
 	val category: String? = null
+) : Parcelable
+
+@Parcelize
+data class FilesItem(
+
+	@field:SerializedName("signed_url")
+	val signedUrl: String? = null,
+
+	@field:SerializedName("content_type")
+	val contentType: String? = null,
+
+	@field:SerializedName("bucket_name")
+	val bucketName: String? = null,
+
+	@field:SerializedName("file_name_id")
+	val fileNameId: String? = null
 ) : Parcelable

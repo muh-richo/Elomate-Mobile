@@ -2,6 +2,8 @@ package com.unitedtractors.elomate.ui.assigment.preactivity.prereading
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -14,6 +16,13 @@ import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.ActivityDetailPreReadingBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.io.FileOutputStream
+import java.net.URL
 
 class DetailPreReadingActivity : AppCompatActivity() {
 
@@ -32,7 +41,7 @@ class DetailPreReadingActivity : AppCompatActivity() {
         binding = ActivityDetailPreReadingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300) // Replace with your color resource
+        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -55,6 +64,7 @@ class DetailPreReadingActivity : AppCompatActivity() {
         }
 
     }
+
     private fun loadDetailPreReading(token: String, preReadingId: Int) {
         viewModel.getDetailPreReading(token, preReadingId).observe(this) { result ->
             when (result) {
@@ -63,8 +73,44 @@ class DetailPreReadingActivity : AppCompatActivity() {
                     val preReading = result.data
 
                     binding.tvPreReadingTitle.text = preReading.titleMateri
-                    binding.tvContent.text = preReading.kontenMateri
                     binding.tvDescription.text = preReading.descriptionMateri
+
+                    val pdfUrl = preReading.files?.firstOrNull()?.signedUrl
+
+                    if (pdfUrl != null) {
+                        binding.pdfView.visibility = View.VISIBLE
+
+                        CoroutineScope(Dispatchers.IO).launch {
+                            try {
+                                val url = URL(pdfUrl)
+                                val connection = url.openConnection()
+                                connection.connect()
+
+                                // Unduh file PDF
+                                val inputStream = connection.getInputStream()
+                                val file = File(cacheDir, "temp.pdf")
+                                val outputStream = FileOutputStream(file)
+
+                                inputStream.use { input ->
+                                    outputStream.use { output ->
+                                        input.copyTo(output)
+                                    }
+                                }
+
+                                withContext(Dispatchers.Main) {
+                                    // Tampilkan PDF dari file lokal
+                                    binding.pdfView.fromFile(file).load()
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(this@DetailPreReadingActivity, "Gagal memuat file PDF", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                    } else {
+                        Toast.makeText(this, "PDF tidak ditemukan", Toast.LENGTH_SHORT).show()
+                    }
                 }
                 is Result.Error -> {
                     Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()

@@ -15,4 +15,6 @@ class PreReadingViewModel(private val repository: ElomateRepository) : ViewModel
     fun getDetailPreReading(token: String, preReadingId: Int): LiveData<Result<PreReadingResponse, MessageErrorResponse>> {
         return repository.getDetailPreReading(token, preReadingId)
     }
+
+
 }

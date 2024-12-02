@@ -8,7 +8,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
+import com.unitedtractors.elomate.data.local.user.User
+import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.databinding.FragmentMentoringBinding
 import com.unitedtractors.elomate.ui.mentoring.closed.ClosedFragment
 import com.unitedtractors.elomate.ui.mentoring.create.CreateFragment
@@ -17,16 +20,17 @@ import com.unitedtractors.elomate.ui.mentoring.upcoming.UpcomingFragment
 
 class MentoringFragment : Fragment() {
 
-    private var _binding: FragmentMentoringBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentMentoringBinding
+
+    private lateinit var userPreference: UserPreference
+    private lateinit var userModel: User
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMentoringBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        binding = FragmentMentoringBinding.inflate(layoutInflater)
 
         val tabLayout = binding.tabLayout
         val viewPager = binding.viewPager
@@ -43,7 +47,16 @@ class MentoringFragment : Fragment() {
             tab.customView = createTabView(position)
         }.attach()
 
-        return root
+//        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                val currentFragment = childFragmentManager.findFragmentByTag("f$position")
+//                if (currentFragment != null) {
+//                    adjustViewPagerHeight(viewPager, currentFragment)
+//                }
+//            }
+//        })
+
+        return binding.root
     }
 
     // Function to create a custom tab view
@@ -57,12 +70,15 @@ class MentoringFragment : Fragment() {
         return textView
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun adjustViewPagerHeight(viewPager: ViewPager2, fragment: Fragment) {
+        fragment.view?.post {
+            val measuredHeight = fragment.view?.measuredHeight ?: 0
+            val layoutParams = viewPager.layoutParams
+            layoutParams.height = measuredHeight
+            viewPager.layoutParams = layoutParams
+        }
     }
 
-    // Adapter for managing fragments
     private inner class MentoringPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 4
 

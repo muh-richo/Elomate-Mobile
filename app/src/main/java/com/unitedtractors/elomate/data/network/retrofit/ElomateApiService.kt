@@ -16,6 +16,8 @@ import com.unitedtractors.elomate.data.network.response.UpdatePasswordRequest
 import com.unitedtractors.elomate.data.network.response.SuccessResponse
 import com.unitedtractors.elomate.data.network.response.UpdateProfileRequest
 import com.unitedtractors.elomate.data.network.response.UserResponse
+import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.http.*
 
 interface ElomateApiService {
@@ -100,6 +102,14 @@ interface ElomateApiService {
         @Path("preReadingId") preReadingId: Int,
     ): PreReadingResponse
 
+
+    @GET
+    fun downloadPdfFile(
+        @Url pdfUrl: String
+    ): Call<ResponseBody>
+
+
+
     @GET("assignment/id/{assignmentId}")
     suspend fun getDetailAssignment(
         @Header("Authorization") token: String,
@@ -143,6 +153,12 @@ interface ElomateApiService {
     suspend fun getApproveMentoring(
         @Header("Authorization") token: String,
     ): List<MentoringResponse>
+
+    @GET("mentoring/mentoringId/{mentoringId}")
+    suspend fun getDetailMentoring(
+        @Header("Authorization") token: String,
+        @Path("mentoringId") mentoringId: Int,
+    ): MentoringResponse
 
 
     @GET("participantData")

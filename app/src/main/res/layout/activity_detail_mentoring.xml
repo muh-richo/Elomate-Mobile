@@ -41,7 +41,7 @@
                     android:scaleType="fitXY" />
 
                 <TextView
-                    android:id="@+id/rnnslageusx"
+                    android:id="@+id/iv_title_detail_mentoring"
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                         android:layout_weight="1" />
 
                     <LinearLayout
-                        android:id="@+id/rkk559j0nixk"
+                        android:id="@+id/status"
                         android:layout_width="81dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
@@ -93,7 +93,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/rxly18jpgzur"
+                            android:id="@+id/tv_status"
                             android:textColor="#0CA1DC"
                             android:textSize="12sp"
                             android:layout_height="wrap_content"
@@ -136,14 +136,16 @@
                                 android:text="Mentor" />
 
                             <TextView
-                                android:id="@+id/mentor"
+                                android:id="@+id/tv_mentor"
                                 android:textColor="#000000"
                                 android:textSize="14sp"
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
                                 android:maxWidth="260dp"
-                                android:text="Leandro Zavier" />
+                                tools:text="Leandro Zavier" />
+
                         </LinearLayout>
+
                         <View
                             android:id="@+id/line"
                             android:layout_width="match_parent"
@@ -177,13 +179,13 @@
                                 android:text="Topic" />
 
                             <TextView
-                                android:id="@+id/topic"
+                                android:id="@+id/tv_topik"
                                 android:textColor="#000000"
                                 android:textSize="14sp"
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
                                 android:maxWidth="260dp"
-                                android:text="Topik Materi" />
+                                tools:text="Topik Materi" />
                         </LinearLayout>
                         <View
                             android:id="@+id/line2"
@@ -218,13 +220,13 @@
                                 android:text="Type" />
 
                             <TextView
-                                android:id="@+id/type"
+                                android:id="@+id/tv_type"
                                 android:textColor="#000000"
                                 android:textSize="14sp"
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
                                 android:maxWidth="260dp"
-                                android:text="Choaching" />
+                                tools:text="Choaching" />
                         </LinearLayout>
                         <View
                             android:id="@+id/line3"
@@ -259,13 +261,13 @@
                                 android:text="Date" />
 
                             <TextView
-                                android:id="@+id/date"
+                                android:id="@+id/tv_date"
                                 android:textColor="#000000"
                                 android:textSize="14sp"
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
                                 android:maxWidth="260dp"
-                                android:text="14 November 2024" />
+                                tools:text="14 November 2024" />
                         </LinearLayout>
                         <View
                             android:id="@+id/line4"
@@ -300,13 +302,13 @@
                                 android:text="Time" />
 
                             <TextView
-                                android:id="@+id/time"
+                                android:id="@+id/tv_time"
                                 android:textColor="#000000"
                                 android:textSize="14sp"
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
                                 android:maxWidth="260dp"
-                                android:text="09:00 - 10:00 WIB" />
+                                tools:text="09:00 - 10:00 WIB" />
                         </LinearLayout>
                         <View
                             android:id="@+id/line5"
@@ -341,13 +343,14 @@
                                 android:text="Method" />
 
                             <TextView
-                                android:id="@+id/method"
+                                android:id="@+id/tv_method"
                                 android:textColor="#000000"
                                 android:textSize="14sp"
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
                                 android:maxWidth="260dp"
-                                android:text="Offline" />
+                                tools:text="Offline" />
+
                         </LinearLayout>
                         <View
                             android:id="@+id/line6"
@@ -369,7 +372,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/r0robxhti9jzh"
+                    android:id="@+id/tv_title_kompetensi"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:layout_marginBottom="13dp"
@@ -378,16 +381,16 @@
                     android:text="Kompetensi yang dievaluasi" />
 
                 <TextView
-                    android:id="@+id/r3z95mjwvbw8"
+                    android:id="@+id/tv_kompetensi"
                     android:textColor="#252525"
                     android:textSize="14sp"
                     android:layout_marginBottom="26dp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Behaviour Competencies" />
+                    tools:text="Behaviour Competencies" />
 
                 <TextView
-                    android:id="@+id/r2frvibdzlj3"
+                    android:id="@+id/tv_title_lesson_learned"
                     android:textColor="#252525"
                     android:textSize="18sp"
                     android:layout_marginBottom="6dp"
@@ -396,7 +399,7 @@
                     android:text="Lesson Learned Competencies" />
 
                 <TextView
-                    android:id="@+id/rqh5hzls8cki"
+                    android:id="@+id/tv_desc_lesson_learned"
                     android:textColor="#252525"
                     android:textSize="12sp"
                     android:layout_marginBottom="21dp"
@@ -406,13 +409,13 @@
                     android:text="Tuliskan dalam bentuk poin pembelajaran yang didapat selama Choaching / Mentoring" />
 
                 <TextView
-                    android:id="@+id/rro93c01qqmf"
+                    android:id="@+id/tv_lesson_learned"
                     android:textColor="#64748B"
                     android:textSize="12sp"
                     android:layout_marginBottom="4dp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Your answer" />
+                    tools:text="Your answer" />
 
                 <LinearLayout
                     android:id="@+id/rem60qkldeye"
@@ -433,7 +436,7 @@
                     android:text="Catatan Mentor" />
 
                 <TextView
-                    android:id="@+id/rne3uv8pdld8"
+                    android:id="@+id/tv_title_catatan"
                     android:textColor="#252525"
                     android:textSize="12sp"
                     android:layout_marginBottom="21dp"
@@ -443,13 +446,13 @@
                     android:text="Catatan terkait hal yang sudah improve dan area of development" />
 
                 <TextView
-                    android:id="@+id/rtk53wlat85q"
+                    android:id="@+id/tv_catatan"
                     android:textColor="#64748B"
                     android:textSize="12sp"
                     android:layout_marginBottom="4dp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Your answer" />
+                    tools:text="Your answer" />
 
                 <LinearLayout
                     android:id="@+id/ruv0n55hfb5p"

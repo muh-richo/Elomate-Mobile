@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:textAlignment="center"
-                android:text="Silakan masukkan username dan password \nuntuk mengakses UT Elomate" />
+                android:text="Silakan masukkan email dan password \nuntuk mengakses UT Elomate" />
 
             <TextView
                 android:id="@+id/rxkl1qq8y15"

@@ -48,10 +48,6 @@ class PreReadingFragment : Fragment() {
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
     private fun setupRecyclerView(token: String, courseId: Int) {
         binding.rvPreReading.layoutManager = LinearLayoutManager(requireContext())
 
