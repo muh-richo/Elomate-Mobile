@@ -43,7 +43,7 @@ class MentoringAdapter(
                 }
 
                 binding.root.setOnClickListener {
-                    upcoming.courseId?.let { it1 -> onUpcomingClick(it1) }
+                    upcoming.mentoringId?.let { it1 -> onUpcomingClick(it1) }
                 }
             }
     }
