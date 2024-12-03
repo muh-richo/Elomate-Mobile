@@ -33,5 +33,9 @@ class ForumActivity : AppCompatActivity() {
             val intent = Intent(this@ForumActivity, AddForumActivity::class.java)
             startActivity(intent)
         }
+
+        binding.icBack.setOnClickListener {
+            finish()
+        }
     }
 }

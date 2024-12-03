@@ -68,9 +68,9 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
-                android:text="Onboarding "
-                />
+                android:text="Onboarding " />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/rprl689al0bq"
             android:layout_width="match_parent"

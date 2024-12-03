@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:background="@drawable/bg_title"
-            android:backgroundTint="@color/teal_200"
+            android:backgroundTint="@color/error_50"
             android:paddingVertical="5dp"
             android:paddingHorizontal="8dp"
             android:layout_marginBottom="14dp"

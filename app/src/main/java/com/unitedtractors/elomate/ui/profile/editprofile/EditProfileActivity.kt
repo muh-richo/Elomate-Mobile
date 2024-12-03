@@ -69,8 +69,6 @@ class EditProfileActivity : AppCompatActivity() {
                             etNrp.setText(userResponse.nrp)
                             etEmail.setText(userResponse.email)
                             etPosisi.setText(userResponse.posisi)
-                            etAsalUniversitas.setText(userResponse.asalUniversitas)
-                            etJurusan.setText(userResponse.jurusan)
                             etDomisili.setText(userResponse.domisili)
                             etTempatLahir.setText(userResponse.tempatLahir)
                             etTanggalLahir.setText(userResponse.tanggalLahir)

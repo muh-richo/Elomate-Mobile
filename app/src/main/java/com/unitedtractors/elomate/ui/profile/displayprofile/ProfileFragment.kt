@@ -113,10 +113,7 @@ class ProfileFragment : Fragment() {
                                 append(", ")
                                 append(userApi.tanggalLahir)
                             }
-                            tvAsalUniversitas.text = userApi.asalUniversitas
-                            tvJurusan.text = userApi.jurusan
-                            tvJenjangStudi.text = userApi.jenjangStudi
-                            tvTahunLulus.text = userApi.tahunLulus.toString()
+
                             tvDomisili.text = userApi.domisili
                             tvNoHp.text = userApi.noHp
                             tvEmail.text = userApi.email

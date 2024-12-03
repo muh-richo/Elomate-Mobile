@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.unitedtractors.elomate.data.repository.ElomateRepository
 import com.unitedtractors.elomate.di.Injection
+import com.unitedtractors.elomate.ui.assessment.AssessmentViewModel
 import com.unitedtractors.elomate.ui.assigment.detail.DetailAssignmentViewModel
 import com.unitedtractors.elomate.ui.assigment.postactivity.PostActivityViewModel
 import com.unitedtractors.elomate.ui.assigment.preactivity.activity.PreActivityViewModel
@@ -63,6 +64,9 @@ class ViewModelFactory private constructor(private val elomateRepository: Elomat
             }
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(elomateRepository) as T
+            }
+            modelClass.isAssignableFrom(AssessmentViewModel::class.java) -> {
+                AssessmentViewModel(elomateRepository) as T
             }
             modelClass.isAssignableFrom(ParticipantDataViewModel::class.java) -> {
                 ParticipantDataViewModel(elomateRepository) as T

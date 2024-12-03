@@ -1,5 +1,7 @@
 package com.unitedtractors.elomate.data.network.retrofit
 
+import com.unitedtractors.elomate.data.network.response.AssessmentResponse
+import com.unitedtractors.elomate.data.network.response.AssessmentsItem
 import com.unitedtractors.elomate.data.network.response.AssignmentResponse
 import com.unitedtractors.elomate.data.network.response.CourseResponse
 import com.unitedtractors.elomate.data.network.response.LoginRequest
@@ -160,12 +162,24 @@ interface ElomateApiService {
         @Path("mentoringId") mentoringId: Int,
     ): MentoringResponse
 
-
     @GET("participantData")
     suspend fun getParticipantData(
         @Header("Authorization") token: String,
     ): List<UserResponse>
 
+    @GET("assessment")
+    suspend fun getAssessment(
+        @Header("Authorization") token: String
+    ): List<AssessmentResponse>
 
+    @GET("assessment/selfAssessment")
+    suspend fun getSelfAssessment(
+        @Header("Authorization") token: String
+    ): List<AssessmentsItem>
+
+    @GET("assessment/peerAssessment")
+    suspend fun getPeerAssessment(
+        @Header("Authorization") token: String
+    ): List<AssessmentsItem>
 
 }

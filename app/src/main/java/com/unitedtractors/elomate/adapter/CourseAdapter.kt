@@ -9,7 +9,7 @@ import com.unitedtractors.elomate.databinding.CardCourseBinding
 
 class CourseAdapter(
     private val courses: List<CourseResponse>,
-    private val onCourseClick: (Int) -> Unit // Tambahkan parameter lambda untuk handle klik
+    private val onCourseClick: (Int) -> Unit
 ) : RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
 
     inner class CourseViewHolder(private val binding: CardCourseBinding) :

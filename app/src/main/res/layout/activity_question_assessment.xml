@@ -41,7 +41,7 @@
                     android:scaleType="fitXY" />
 
                 <TextView
-                    android:id="@+id/rz4pg8yaw23"
+                    android:id="@+id/tv_title_assessment"
                     android:textColor="#0F172A"
                     android:textSize="20sp"
                     android:layout_height="wrap_content"
