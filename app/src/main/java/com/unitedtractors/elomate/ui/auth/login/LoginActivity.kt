@@ -1,9 +1,7 @@
 package com.unitedtractors.elomate.ui.auth.login
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -102,9 +100,10 @@ class LoginActivity : AppCompatActivity() {
 
                         if (result.error.message == "Invalid Email") {
                             Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show()
-                        }
-                        if (result.error.message == "Invalid Password") {
+                        } else if (result.error.message == "Invalid Password") {
                             Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

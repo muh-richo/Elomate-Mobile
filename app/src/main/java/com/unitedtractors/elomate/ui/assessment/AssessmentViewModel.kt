@@ -2,6 +2,7 @@ package com.unitedtractors.elomate.ui.assessment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.unitedtractors.elomate.data.network.response.QuestionAssessmentResponse
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.data.network.response.AssessmentResponse
 import com.unitedtractors.elomate.data.network.response.AssessmentsItem
@@ -20,5 +21,9 @@ class AssessmentViewModel(private val repository: ElomateRepository) : ViewModel
 
     fun getPeerAssessment(token: String): LiveData<Result<List<AssessmentsItem>, MessageErrorResponse>> {
         return repository.getPeerAssessment(token)
+    }
+
+    fun getQuestionAssessment(token: String, assessmentId: Int): LiveData<Result<QuestionAssessmentResponse, MessageErrorResponse>> {
+        return repository.getQuestionAssessment(token, assessmentId)
     }
 }

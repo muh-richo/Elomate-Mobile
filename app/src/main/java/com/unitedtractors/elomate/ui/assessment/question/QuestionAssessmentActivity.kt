@@ -1,6 +1,5 @@
-package com.unitedtractors.elomate.ui.assessment.self
+package com.unitedtractors.elomate.ui.assessment.question
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,18 +11,18 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.adapter.AssessmentAdapter
+import com.unitedtractors.elomate.adapter.QuestionAssessmentAdapter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
-import com.unitedtractors.elomate.databinding.ActivitySelfAssessmentBinding
+import com.unitedtractors.elomate.databinding.ActivityQuestionAssessmentBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.assessment.AssessmentViewModel
-import com.unitedtractors.elomate.ui.assessment.question.QuestionAssessmentActivity
+import com.unitedtractors.elomate.ui.profile.riwayatpendidikan.EducationViewModel
 
-class SelfAssessmentActivity : AppCompatActivity() {
+class QuestionAssessmentActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySelfAssessmentBinding
+    private lateinit var binding: ActivityQuestionAssessmentBinding
 
     private val viewModel by viewModels<AssessmentViewModel> {
         ViewModelFactory.getInstance(this)
@@ -35,10 +34,10 @@ class SelfAssessmentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivitySelfAssessmentBinding.inflate(layoutInflater)
+        binding = ActivityQuestionAssessmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300) // Replace with your color resource
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -49,30 +48,39 @@ class SelfAssessmentActivity : AppCompatActivity() {
         userPreference = UserPreference(this)
         userModel = userPreference.getUser()
 
-        setupRecyclerView()
-
-        binding.icBack.setOnClickListener {
-            finish()
+        val assessmentId = intent.getIntExtra("ASSESSMENT_ID", -1)
+        if (assessmentId != -1) {
+            loadQuestions(assessmentId)
         }
+
+        binding.apply {
+            btnSubmit.setOnClickListener {
+
+            }
+            icBack.setOnClickListener {
+                finish()
+            }
+        }
+
     }
 
-    private fun setupRecyclerView() {
-        binding.rvSelfAssessment.layoutManager = LinearLayoutManager(this)
+    private fun loadQuestions(assessmentId : Int) {
+        binding.rvQuestionAssessment.layoutManager = LinearLayoutManager(this)
 
-        viewModel.getSelfAssessment("Bearer ${userModel.id}").observe(this) { result ->
+        viewModel.getQuestionAssessment("Bearer ${userModel.id}", assessmentId).observe(this) { result ->
             if (result != null) {
                 when (result) {
-                    is Result.Loading -> {  }
+                    is Result.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
                     is Result.Success -> {
                         binding.progressBar.visibility = View.GONE
-                        val response = result.data
+                        binding.tvTitleAssessment.text = result.data.assessmentTitle
 
-                        val adapter = AssessmentAdapter(response) { assessmentId ->
-                            val intent = Intent(this, QuestionAssessmentActivity::class.java)
-                            intent.putExtra("ASSESSMENT_ID", assessmentId)
-                            startActivity(intent)
-                        }
-                        binding.rvSelfAssessment.adapter = adapter
+                        val questionData = result.data.question
+                        val adapter = QuestionAssessmentAdapter(questionData)
+                        binding.rvQuestionAssessment.adapter = adapter
+
                     }
                     is Result.Error -> {
                         binding.progressBar.visibility = View.GONE
@@ -81,6 +89,6 @@ class SelfAssessmentActivity : AppCompatActivity() {
                 }
             }
         }
-    }
 
+    }
 }

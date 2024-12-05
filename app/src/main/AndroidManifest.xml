@@ -55,13 +55,13 @@
             android:name=".ui.assigment.question.MultipleChoiceActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.assessment.QuestionAssessmentActivity"
+            android:name=".ui.assessment.question.QuestionAssessmentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assigment.preactivity.prereading.DetailPreReadingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.assessment.ListPeerAssessmentActivity"
+            android:name=".ui.assessment.peer.ListPeerAssessmentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.assessment.peer.PeerAssessmentActivity"

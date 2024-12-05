@@ -19,8 +19,7 @@ import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.ActivityPeerAssessmentBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.assessment.AssessmentViewModel
-import com.unitedtractors.elomate.ui.assessment.ListPeerAssessmentActivity
-import com.unitedtractors.elomate.ui.assessment.QuestionAssessmentActivity
+import com.unitedtractors.elomate.ui.assessment.question.QuestionAssessmentActivity
 
 class PeerAssessmentActivity : AppCompatActivity() {
 
@@ -39,7 +38,7 @@ class PeerAssessmentActivity : AppCompatActivity() {
         binding = ActivityPeerAssessmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300) // Replace with your color resource
+        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -69,7 +68,7 @@ class PeerAssessmentActivity : AppCompatActivity() {
                         val response = result.data
 
                         val adapter = AssessmentAdapter(response) { assessmentId ->
-                            val intent = Intent(this, QuestionAssessmentActivity::class.java)
+                            val intent = Intent(this, ListPeerAssessmentActivity::class.java)
                             intent.putExtra("ASSESSMENT_ID", assessmentId)
                             startActivity(intent)
                         }

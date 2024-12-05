@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.google.gson.Gson
+import com.unitedtractors.elomate.data.network.response.QuestionAssessmentResponse
 import com.unitedtractors.elomate.data.network.response.MessageErrorResponse
 import com.unitedtractors.elomate.data.network.response.TokenResponse
 import com.unitedtractors.elomate.data.network.retrofit.ElomateApiService
@@ -542,4 +543,22 @@ class ElomateRepository(
                 emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
             }
         }
+
+    fun getQuestionAssessment(token: String, assessmentId: Int): LiveData<Result<QuestionAssessmentResponse, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+
+            try {
+                val response = elomateApiService.getQuestionAssessment(token, assessmentId)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                emit(Result.Error(messageErrorResponse))
+            } catch (e: SocketTimeoutException) {
+                emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+            }
+        }
+
+
 }
