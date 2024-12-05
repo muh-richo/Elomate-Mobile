@@ -2,6 +2,7 @@ package com.unitedtractors.elomate.ui.profile.participant
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -28,9 +29,6 @@ class ParticipantDataActivity : AppCompatActivity() {
 
     private lateinit var userPreference: UserPreference
     private lateinit var userModel: User
-
-    private lateinit var participantData: List<UserResponse>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,20 +61,22 @@ class ParticipantDataActivity : AppCompatActivity() {
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {
-
+                        binding.progressBar.visibility = View.VISIBLE
                     }
                     is Result.Success -> {
-                        participantData = result.data
+                        binding.progressBar.visibility = View.GONE
+
+                        val participantData = result.data
 
                         val adapter = ParticipantAdapter(participantData)
                         binding.rvParticipantList.adapter = adapter
                     }
                     is Result.Error -> {
+                        binding.progressBar.visibility = View.GONE
                         Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
-
         }
     }
 }

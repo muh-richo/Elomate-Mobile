@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
         // Change the status bar color
-        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300) // Replace with your color resource
+        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

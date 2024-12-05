@@ -1,12 +1,14 @@
 package com.unitedtractors.elomate.data.network.retrofit
 
+import com.unitedtractors.elomate.data.network.request.EducationRequest
 import com.unitedtractors.elomate.data.network.response.AssessmentResponse
 import com.unitedtractors.elomate.data.network.response.AssessmentsItem
 import com.unitedtractors.elomate.data.network.response.AssignmentResponse
 import com.unitedtractors.elomate.data.network.response.CourseResponse
-import com.unitedtractors.elomate.data.network.response.LoginRequest
-import com.unitedtractors.elomate.data.network.response.MentoringRequest
+import com.unitedtractors.elomate.data.network.request.LoginRequest
+import com.unitedtractors.elomate.data.network.request.MentoringRequest
 import com.unitedtractors.elomate.data.network.response.MentoringResponse
+import com.unitedtractors.elomate.data.network.response.EducationResponse
 import com.unitedtractors.elomate.data.network.response.PhaseResponse
 import com.unitedtractors.elomate.data.network.response.PostActivityResponse
 import com.unitedtractors.elomate.data.network.response.PreActivityResponse
@@ -14,7 +16,7 @@ import com.unitedtractors.elomate.data.network.response.PreReadingResponse
 import com.unitedtractors.elomate.data.network.response.ReportResponse
 import com.unitedtractors.elomate.data.network.response.TokenResponse
 import com.unitedtractors.elomate.data.network.response.TopicResponse
-import com.unitedtractors.elomate.data.network.response.UpdatePasswordRequest
+import com.unitedtractors.elomate.data.network.request.UpdatePasswordRequest
 import com.unitedtractors.elomate.data.network.response.SuccessResponse
 import com.unitedtractors.elomate.data.network.response.UpdateProfileRequest
 import com.unitedtractors.elomate.data.network.response.UserResponse
@@ -162,11 +164,6 @@ interface ElomateApiService {
         @Path("mentoringId") mentoringId: Int,
     ): MentoringResponse
 
-    @GET("participantData")
-    suspend fun getParticipantData(
-        @Header("Authorization") token: String,
-    ): List<UserResponse>
-
     @GET("assessment")
     suspend fun getAssessment(
         @Header("Authorization") token: String
@@ -182,4 +179,32 @@ interface ElomateApiService {
         @Header("Authorization") token: String
     ): List<AssessmentsItem>
 
+    @GET("participantData")
+    suspend fun getParticipantData(
+        @Header("Authorization") token: String,
+    ): List<UserResponse>
+
+    @GET("auth/me/education")
+    suspend fun getEducation(
+        @Header("Authorization") token: String
+    ): List<EducationResponse>
+
+    @POST("auth/me/education")
+    suspend fun addEducation(
+        @Header("Authorization") token: String,
+        @Body education: EducationRequest
+    ): SuccessResponse
+
+    @PATCH("auth/me/education/{educationId}")
+    suspend fun updateEducation(
+        @Header("Authorization") token: String,
+        @Path("educationId") educationId: Int,
+        @Body education: EducationRequest
+    ): SuccessResponse
+
+    @DELETE("auth/me/education/{educationId}")
+    suspend fun deleteEducation(
+        @Header("Authorization") token: String,
+        @Path("educationId") educationId: Int
+    ): SuccessResponse
 }

@@ -20,7 +20,6 @@ class ForumActivity : AppCompatActivity() {
         binding = ActivityForumBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Change the status bar color
         window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300) // Replace with your color resource
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->

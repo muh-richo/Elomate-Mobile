@@ -2,12 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_elomate"
@@ -15,10 +13,14 @@
         android:roundIcon="@mipmap/ic_elomate_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Elomate"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.profile.riwayatpendidikan.EducationActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.splash.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -90,10 +92,9 @@
             android:exported="false" />
         <activity
             android:name=".ui.assigment.CourseActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".ui.home.ToDo.ToDoListActivity"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".ui.home.ToDo.ToDoListActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".ui.home.ToDoActivity"
             android:exported="false" />

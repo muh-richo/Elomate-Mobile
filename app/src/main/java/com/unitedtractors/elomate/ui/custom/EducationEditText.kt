@@ -8,7 +8,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.unitedtractors.elomate.R
 
-class JurusanEditText @JvmOverloads constructor(
+class EducationEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : AppCompatEditText(context, attrs) {
     private var iconJurusan: Drawable = ContextCompat.getDrawable(context, R.drawable.ic_teacher) as Drawable
@@ -20,7 +20,7 @@ class JurusanEditText @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        setEditTextDrawables(startOfTheText = iconJurusan)
+        setEditTextDrawables(endOfTheText = iconJurusan)
     }
 
     private fun setEditTextDrawables(startOfTheText: Drawable? = null, topOfTheText:Drawable? = null, endOfTheText:Drawable? = null, bottomOfTheText: Drawable? = null){

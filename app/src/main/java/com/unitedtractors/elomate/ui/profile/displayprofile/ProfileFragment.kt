@@ -23,6 +23,7 @@ import com.unitedtractors.elomate.ui.profile.changepassword.ChangePasswordActivi
 import com.unitedtractors.elomate.ui.profile.editprofile.EditProfileActivity
 import com.unitedtractors.elomate.ui.forum.ForumActivity
 import com.unitedtractors.elomate.ui.profile.participant.ParticipantDataActivity
+import com.unitedtractors.elomate.ui.profile.riwayatpendidikan.EducationActivity
 import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
@@ -117,6 +118,11 @@ class ProfileFragment : Fragment() {
                             tvDomisili.text = userApi.domisili
                             tvNoHp.text = userApi.noHp
                             tvEmail.text = userApi.email
+
+                            btnLihatRiwayatPendidikan.setOnClickListener {
+                                val intent = Intent(requireContext(), EducationActivity::class.java)
+                                startActivity(intent)
+                            }
                         }
                     }
 

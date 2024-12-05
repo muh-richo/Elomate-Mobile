@@ -1,6 +1,5 @@
 package com.unitedtractors.elomate.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +13,6 @@ class ParticipantAdapter(
     inner class ParticipantViewHolder(private val binding: CardParticipantBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        @SuppressLint("SetTextI18n")
         fun bind(user: UserResponse) {
             binding.tvNamaLengkap.text = user.namaLengkap
             binding.tvPosisi.text = user.posisi

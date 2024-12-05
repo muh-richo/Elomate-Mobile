@@ -84,25 +84,17 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun saveChangesEdit() {
-        val etAsalUniv = binding.etAsalUniversitas.text
-        val etJurusan = binding.etJurusan.text
-        val etJenjangStudi = binding.etJenjangStudi.text
-        val etTahunLulus = binding.etTahunLulus.text
         val etDomisili = binding.etDomisili.text
         val etTempatLahir = binding.etTempatLahir.text
         val etTanggalLahir = binding.etTanggalLahir.text
         val etNoHp = binding.etNoHp.text
 
-        if (etAsalUniv!!.isEmpty() || etJurusan!!.isEmpty() || etDomisili!!.isEmpty() || etTempatLahir!!.isEmpty() || etTanggalLahir!!.isEmpty() || etNoHp!!.isEmpty()) {
+        if (etDomisili!!.isEmpty() || etTempatLahir!!.isEmpty() || etTanggalLahir!!.isEmpty() || etNoHp!!.isEmpty()) {
             Toast.makeText(this, "Silahkan isi kolom yang ada", Toast.LENGTH_SHORT).show()
         } else {
 
             viewModel.updateProfile(
                 "Bearer ${userModel.id}",
-                etAsalUniv.toString(),
-                etJurusan.toString(),
-                etJenjangStudi.toString(),
-                etTahunLulus.toString(),
                 etDomisili.toString(),
                 etTempatLahir.toString(),
                 etTanggalLahir.toString(),

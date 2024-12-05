@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.data.network.response
+package com.unitedtractors.elomate.data.network.request
 
 data class UpdatePasswordRequest(
     val currentPassword: String,

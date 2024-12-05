@@ -8,7 +8,7 @@ class EditProfileViewModel(private val repository: ElomateRepository) : ViewMode
     fun getCurrentUserApi(token: String) =
         repository.getCurrentUserApi(token)
 
-    fun updateProfile(token: String, asalUniversitas: String, jurusan: String, jenjangStudi: String, tahunLulus: String, domisili: String, tempatLahir: String, tanggalLahir: String, noHp: String) =
-        repository.updateProfile(token, asalUniversitas, jurusan, jenjangStudi, tahunLulus, domisili, tempatLahir, tanggalLahir, noHp)
+    fun updateProfile(token: String, domisili: String, tempatLahir: String, tanggalLahir: String, noHp: String) =
+        repository.updateProfile(token, domisili, tempatLahir, tanggalLahir, noHp)
 
 }
