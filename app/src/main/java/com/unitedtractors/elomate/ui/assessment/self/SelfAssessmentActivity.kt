@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -49,14 +50,14 @@ class SelfAssessmentActivity : AppCompatActivity() {
         userPreference = UserPreference(this)
         userModel = userPreference.getUser()
 
-        setupRecyclerView()
+        loadSelfAssessment()
 
         binding.icBack.setOnClickListener {
             finish()
         }
     }
 
-    private fun setupRecyclerView() {
+    private fun loadSelfAssessment() {
         binding.rvSelfAssessment.layoutManager = LinearLayoutManager(this)
 
         viewModel.getSelfAssessment("Bearer ${userModel.id}").observe(this) { result ->
@@ -67,8 +68,10 @@ class SelfAssessmentActivity : AppCompatActivity() {
                         binding.progressBar.visibility = View.GONE
                         val response = result.data
 
-                        val adapter = AssessmentAdapter(response) { assessmentId ->
+                        val adapter = AssessmentAdapter(response) { assessmentId, assessmentTitle ->
                             val intent = Intent(this, QuestionAssessmentActivity::class.java)
+                            intent.putExtra("ASSESSMENT_TITLE", assessmentTitle)
+                            intent.putExtra("ASSESSMENT_TYPE", "Self Assessment")
                             intent.putExtra("ASSESSMENT_ID", assessmentId)
                             startActivity(intent)
                         }
@@ -82,5 +85,4 @@ class SelfAssessmentActivity : AppCompatActivity() {
             }
         }
     }
-
 }

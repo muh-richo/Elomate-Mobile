@@ -46,8 +46,6 @@ class AssessmentActivity : AppCompatActivity() {
         userPreference = UserPreference(this)
         userModel = userPreference.getUser()
 
-        getAssessment()
-
         binding.btnSelf.setOnClickListener {
             val intent = Intent(this@AssessmentActivity, SelfAssessmentActivity::class.java)
             startActivity(intent)
@@ -63,6 +61,11 @@ class AssessmentActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getAssessment()
     }
 
     private fun getAssessment() {

@@ -18,7 +18,6 @@ import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.ActivityQuestionAssessmentBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.assessment.AssessmentViewModel
-import com.unitedtractors.elomate.ui.profile.riwayatpendidikan.EducationViewModel
 
 class QuestionAssessmentActivity : AppCompatActivity() {
 
@@ -37,7 +36,7 @@ class QuestionAssessmentActivity : AppCompatActivity() {
         binding = ActivityQuestionAssessmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300) // Replace with your color resource
+        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -48,18 +47,30 @@ class QuestionAssessmentActivity : AppCompatActivity() {
         userPreference = UserPreference(this)
         userModel = userPreference.getUser()
 
+        val assessmentTitle = intent.getStringExtra("ASSESSMENT_TITLE")
+        val assessmentType = intent.getStringExtra("ASSESSMENT_TYPE")
         val assessmentId = intent.getIntExtra("ASSESSMENT_ID", -1)
+        val peerId = intent.getIntExtra("PEER_ID", -1)
         if (assessmentId != -1) {
             loadQuestions(assessmentId)
+
+            if (assessmentType == "Self Assessment") {
+                binding.btnSubmit.setOnClickListener {
+                    submitSelfAssessment("Bearer ${userModel.id}", assessmentId)
+                }
+            } else if (assessmentType == "Peer Assessment") {
+                binding.btnSubmit.setOnClickListener {
+                    submitPeerAssessment("Bearer ${userModel.id}", assessmentId, peerId)
+                }
+            }
         }
 
-        binding.apply {
-            btnSubmit.setOnClickListener {
 
-            }
+        binding.apply {
             icBack.setOnClickListener {
                 finish()
             }
+            tvTitleAssessment.text = assessmentTitle
         }
 
     }
@@ -75,7 +86,6 @@ class QuestionAssessmentActivity : AppCompatActivity() {
                     }
                     is Result.Success -> {
                         binding.progressBar.visibility = View.GONE
-                        binding.tvTitleAssessment.text = result.data.assessmentTitle
 
                         val questionData = result.data.question
                         val adapter = QuestionAssessmentAdapter(questionData)
@@ -84,11 +94,66 @@ class QuestionAssessmentActivity : AppCompatActivity() {
                     }
                     is Result.Error -> {
                         binding.progressBar.visibility = View.GONE
+                        binding.btnSubmit.visibility = View.GONE
                         Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
-
     }
+
+    private fun submitSelfAssessment(token: String, assessmentId: Int) {
+        val adapter = binding.rvQuestionAssessment.adapter as? QuestionAssessmentAdapter
+        val answers = adapter?.getAnswers()
+
+        if (answers.isNullOrEmpty()) {
+            Toast.makeText(this, "Harap isi semua pertanyaan!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        viewModel.postAnswerSelfAssessment(token, assessmentId, answers).observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is Result.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, "Jawaban berhasil dikirim!", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                is Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, "Gagal mengirim jawaban: ${result.error.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun submitPeerAssessment(token: String, assessmentId: Int, peerId: Int) {
+        val adapter = binding.rvQuestionAssessment.adapter as? QuestionAssessmentAdapter
+        val answers = adapter?.getAnswers()
+
+        if (answers.isNullOrEmpty()) {
+            Toast.makeText(this, "Harap isi semua pertanyaan!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        viewModel.postAnswerPeerAssessment(token, assessmentId, peerId, answers).observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is Result.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, "Jawaban berhasil dikirim!", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                is Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, "Gagal mengirim jawaban: ${result.error.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
 }

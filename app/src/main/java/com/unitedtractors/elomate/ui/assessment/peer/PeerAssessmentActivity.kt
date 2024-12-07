@@ -19,7 +19,6 @@ import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.ActivityPeerAssessmentBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.assessment.AssessmentViewModel
-import com.unitedtractors.elomate.ui.assessment.question.QuestionAssessmentActivity
 
 class PeerAssessmentActivity : AppCompatActivity() {
 
@@ -67,8 +66,10 @@ class PeerAssessmentActivity : AppCompatActivity() {
                         binding.progressBar.visibility = View.GONE
                         val response = result.data
 
-                        val adapter = AssessmentAdapter(response) { assessmentId ->
+                        val adapter = AssessmentAdapter(response) { assessmentId, assessmentTitle ->
                             val intent = Intent(this, ListPeerAssessmentActivity::class.java)
+                            intent.putExtra("ASSESSMENT_TITLE", assessmentTitle)
+                            intent.putExtra("ASSESSMENT_TYPE", "Peer Assessment")
                             intent.putExtra("ASSESSMENT_ID", assessmentId)
                             startActivity(intent)
                         }

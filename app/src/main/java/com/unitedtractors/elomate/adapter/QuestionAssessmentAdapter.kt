@@ -4,12 +4,32 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.unitedtractors.elomate.data.network.request.AnswerSelfAssessmentRequest
 import com.unitedtractors.elomate.data.network.response.QuestionItem
 import com.unitedtractors.elomate.databinding.ItemQuestionAssessmentBinding
 
 class QuestionAssessmentAdapter(
     private val questions: List<QuestionItem?>?
 ) : RecyclerView.Adapter<QuestionAssessmentAdapter.QuestionViewHolder>() {
+
+    private val answers: MutableMap<Int, Int> = mutableMapOf()
+
+    fun getAnswers(): List<AnswerSelfAssessmentRequest>? {
+        val allAnswered = questions?.all { question ->
+            question?.questionId?.let { answers.containsKey(it) } ?: false
+        } ?: false
+
+        return if (allAnswered) {
+            answers.map { entry ->
+                AnswerSelfAssessmentRequest(
+                    questionId = entry.key,
+                    answerLikert = entry.value.toString()
+                )
+            }
+        } else {
+            null
+        }
+    }
 
     inner class QuestionViewHolder(private val binding: ItemQuestionAssessmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -27,9 +47,13 @@ class QuestionAssessmentAdapter(
                     binding.radio5.id -> 5
                     else -> 0
                 }
+
                 if (answer != 0) {
-                    // Contoh log untuk jawaban
-                    Log.d("QuestionAnswer", "Question ID: ${question.questionId}, Answer: $answer")
+                    // Simpan jawaban ke map
+                    question.questionId?.let { questionId ->
+                        answers[questionId] = answer
+                        Log.d("QuestionAnswer", "Question ID: $questionId, Answer: $answer")
+                    }
                 }
             }
         }

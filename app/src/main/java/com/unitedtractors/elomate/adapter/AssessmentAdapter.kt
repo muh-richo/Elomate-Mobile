@@ -8,7 +8,7 @@ import com.unitedtractors.elomate.databinding.CardAssessmentBinding
 
 class AssessmentAdapter(
     private val assessments: List<AssessmentsItem>,
-    private val onAssessmentClick: (Int) -> Unit
+    private val onAssessmentClick: (Int, String) -> Unit
 ) : RecyclerView.Adapter<AssessmentAdapter.AssessmentViewHolder>()  {
 
     inner class AssessmentViewHolder(private val binding: CardAssessmentBinding) :
@@ -20,7 +20,11 @@ class AssessmentAdapter(
             binding.tvDeadline.text = assessment.tanggalSelesai
 
             binding.root.setOnClickListener {
-                assessment.assessmentId?.let{ it1 -> onAssessmentClick(it1) }
+                assessment.assessmentId?.let { id ->
+                    assessment.title?.let { title ->
+                        onAssessmentClick(id, title)
+                    }
+                }
             }
         }
     }

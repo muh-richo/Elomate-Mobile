@@ -25,4 +25,6 @@ data class QuestionItem(
 
 	@field:SerializedName("question_id")
 	val questionId: Int? = null
+
+
 ) : Parcelable
