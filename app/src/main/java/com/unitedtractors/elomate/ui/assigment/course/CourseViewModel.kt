@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.assignment
+package com.unitedtractors.elomate.ui.assigment.course
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

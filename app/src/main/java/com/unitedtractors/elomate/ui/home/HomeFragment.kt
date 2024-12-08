@@ -134,6 +134,9 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerViewToDo() {
         binding.rvTodoList.layoutManager = LinearLayoutManager(requireContext())
 
+        // Belum selesai
+        binding.rvScheduleList.layoutManager = LinearLayoutManager(requireContext())
+
         viewModel.getToDoList("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
@@ -154,6 +157,7 @@ class HomeFragment : Fragment() {
                         startActivity(intent)
                     }
                     binding.rvTodoList.adapter = adapter
+                    binding.rvScheduleList.adapter = adapter
                 }
 
                 is Result.Error -> {

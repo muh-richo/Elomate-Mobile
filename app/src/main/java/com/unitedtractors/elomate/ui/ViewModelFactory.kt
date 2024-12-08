@@ -10,7 +10,8 @@ import com.unitedtractors.elomate.ui.assigment.detail.DetailAssignmentViewModel
 import com.unitedtractors.elomate.ui.assigment.postactivity.PostActivityViewModel
 import com.unitedtractors.elomate.ui.assigment.preactivity.activity.PreActivityViewModel
 import com.unitedtractors.elomate.ui.assigment.preactivity.prereading.PreReadingViewModel
-import com.unitedtractors.elomate.ui.assignment.CourseViewModel
+import com.unitedtractors.elomate.ui.assigment.course.CourseViewModel
+import com.unitedtractors.elomate.ui.assigment.question.QuestionViewModel
 import com.unitedtractors.elomate.ui.auth.login.LoginViewModel
 import com.unitedtractors.elomate.ui.home.HomeViewModel
 import com.unitedtractors.elomate.ui.mentoring.MentoringViewModel
@@ -56,6 +57,9 @@ class ViewModelFactory private constructor(private val elomateRepository: Elomat
             }
             modelClass.isAssignableFrom(DetailAssignmentViewModel::class.java) -> {
                 DetailAssignmentViewModel(elomateRepository) as T
+            }
+            modelClass.isAssignableFrom(QuestionViewModel::class.java) -> {
+                QuestionViewModel(elomateRepository) as T
             }
             modelClass.isAssignableFrom(ReportViewModel::class.java) -> {
                 ReportViewModel(elomateRepository) as T

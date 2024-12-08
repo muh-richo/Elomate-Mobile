@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FFFFFF"
+    android:background="@color/shades_50"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -50,7 +50,7 @@
                         android:orientation="vertical"/>
 
                     <TextView
-                        android:id="@+id/rt87pioatftc"
+                        android:id="@+id/tv_total_question"
                         android:textColor="@color/shades_100"
                         android:textSize="12sp"
                         android:layout_height="wrap_content"
@@ -83,186 +83,43 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/rqhe9f097wcf"
+                android:id="@+id/tv_question"
                 android:textColor="#252525"
                 android:textSize="16sp"
-                android:layout_marginBottom="28dp"
+                android:layout_marginBottom="20dp"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
-                android:text="Pertanyaan Lorem ipsum dolor sit amet, consectetur adipiscing el?"/>
+                tools:text="Pertanyaan Lorem ipsum dolor sit amet, consectetur adipiscing el?"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_pilihan_jawaban"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_pilihan_ganda"
+                tools:itemCount="5"/>
 
             <LinearLayout
-                android:id="@+id/layoutCheck1"
+                android:id="@+id/nav_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:background="@drawable/bg_card2"
-                android:paddingVertical="12dp"
-                android:paddingHorizontal="14dp"
-                android:layout_marginBottom="12dp"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/check1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:button="@drawable/checkbox"
-                    android:buttonTint="@color/yellow_500"
-                    android:layout_marginEnd="12dp"
-                    android:padding="8dp"
-                    android:orientation="vertical"/>
-
-                <TextView
-                    android:id="@+id/rm497phql0xl"
-                    android:textColor="#252525"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:text="Pilihan jawaban"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutCheck2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:background="@drawable/bg_card2"
-                android:paddingVertical="12dp"
-                android:paddingHorizontal="14dp"
-                android:layout_marginBottom="12dp"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/check2"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:button="@drawable/checkbox"
-                    android:buttonTint="@color/yellow_500"
-                    android:layout_marginEnd="12dp"
-                    android:orientation="vertical"/>
-
-                <TextView
-                    android:id="@+id/rghgja2w5vop"
-                    android:textColor="#252525"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:text="Pilihan jawaban"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutCheck3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:background="@drawable/bg_card2"
-                android:paddingVertical="12dp"
-                android:paddingHorizontal="14dp"
-                android:layout_marginBottom="12dp"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/check3"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:button="@drawable/checkbox"
-                    android:buttonTint="@color/yellow_500"
-                    android:layout_marginEnd="12dp"
-                    android:orientation="vertical"/>
-
-                <TextView
-                    android:id="@+id/rwsqwrpxwnnk"
-                    android:textColor="#252525"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:text="Pilihan jawaban"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutCheck4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:background="@drawable/bg_card2"
-                android:paddingVertical="12dp"
-                android:paddingHorizontal="14dp"
-                android:layout_marginBottom="12dp"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/check4"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:button="@drawable/checkbox"
-                    android:buttonTint="@color/yellow_500"
-                    android:layout_marginEnd="12dp"
-                    android:orientation="vertical"/>
-
-                <TextView
-                    android:id="@+id/ry2nryh2cibj"
-                    android:textColor="#252525"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:text="Pilihan jawaban"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutCheck5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:background="@drawable/bg_card2"
-                android:paddingVertical="12dp"
-                android:paddingHorizontal="14dp"
-                android:layout_marginBottom="28dp"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/check5"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:button="@drawable/checkbox"
-                    android:buttonTint="@color/yellow_500"
-                    android:layout_marginEnd="12dp"
-                    android:orientation="vertical"/>
-
-                <TextView
-                    android:id="@+id/ra0967f4oc8p"
-                    android:textColor="#252525"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:text="Pilihan jawaban"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/r4f97vippp0i"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/r8cqvaaiwpwv"
+                    android:id="@+id/btn_previous"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:background="@drawable/bg_card2"
                     android:backgroundTint="@color/yellow_500"
-                    android:paddingVertical="12dp"
+                    android:paddingVertical="10dp"
                     android:paddingHorizontal="24dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/rerzs1p67iv"
+                        android:id="@+id/tv_previous"
                         android:textColor="@color/shades_100"
                         android:textSize="14sp"
                         android:layout_height="wrap_content"
@@ -278,18 +135,18 @@
                     android:layout_weight="1" />
 
                 <LinearLayout
-                    android:id="@+id/rf9ch2n4g7xg"
+                    android:id="@+id/btn_next"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:background="@drawable/bg_card2"
                     android:backgroundTint="@color/yellow_500"
-                    android:paddingVertical="12dp"
+                    android:paddingVertical="10dp"
                     android:paddingHorizontal="24dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/rbgb9hxztr3n"
+                        android:id="@+id/tv_next"
                         android:textColor="@color/shades_100"
                         android:textSize="14sp"
                         android:layout_height="wrap_content"

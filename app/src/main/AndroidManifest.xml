@@ -91,7 +91,7 @@
             android:name=".ui.report.detail.ReportDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.assigment.CourseActivity"
+            android:name=".ui.assigment.course.CourseActivity"
             android:exported="false" /> <!-- <activity -->
         <!-- android:name=".ui.home.ToDo.ToDoListActivity" -->
         <!-- android:exported="false" /> -->

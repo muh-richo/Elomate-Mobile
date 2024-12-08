@@ -1,81 +1,131 @@
 package com.unitedtractors.elomate.ui.assigment.question
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import android.widget.CheckBox
-import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.unitedtractors.elomate.R
+import com.unitedtractors.elomate.adapter.AnswerOptionAdapter
+import com.unitedtractors.elomate.data.local.user.User
+import com.unitedtractors.elomate.data.local.user.UserPreference
+import com.unitedtractors.elomate.data.network.Result
+import com.unitedtractors.elomate.data.network.request.AnswerMultipleChoiceRequest
+import com.unitedtractors.elomate.data.network.response.MultipleChoiceQuestionResponse
+import com.unitedtractors.elomate.databinding.ActivityMultipleChoiceBinding
+import com.unitedtractors.elomate.ui.ViewModelFactory
 
 class MultipleChoiceActivity : AppCompatActivity() {
 
-    // Declare CheckBoxes and Layouts
-    private lateinit var checkBox1: CheckBox
-    private lateinit var checkBox2: CheckBox
-    private lateinit var checkBox3: CheckBox
-    private lateinit var checkBox4: CheckBox
-    private lateinit var checkBox5: CheckBox
+    private lateinit var binding: ActivityMultipleChoiceBinding
 
-    private lateinit var layoutCheck1: LinearLayout
-    private lateinit var layoutCheck2: LinearLayout
-    private lateinit var layoutCheck3: LinearLayout
-    private lateinit var layoutCheck4: LinearLayout
-    private lateinit var layoutCheck5: LinearLayout
+    private val viewModel by viewModels<QuestionViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
+
+    private lateinit var userPreference: UserPreference
+    private lateinit var userModel: User
+
+    private var questionList: List<MultipleChoiceQuestionResponse> = emptyList() // Daftar pertanyaan
+    private var currentQuestionIndex: Int = 0 // Indeks pertanyaan saat ini
+    private val selectedAnswers = mutableMapOf<Int, String>() // Jawaban yang dipilih
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_multiple_choice)
+        enableEdgeToEdge()
+        binding = ActivityMultipleChoiceBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Initialize CheckBoxes
-        checkBox1 = findViewById(R.id.check1)
-        checkBox2 = findViewById(R.id.check2)
-        checkBox3 = findViewById(R.id.check3)
-        checkBox4 = findViewById(R.id.check4)
-        checkBox5 = findViewById(R.id.check5)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300)
 
-        // Initialize LinearLayouts
-        layoutCheck1 = findViewById(R.id.layoutCheck1)
-        layoutCheck2 = findViewById(R.id.layoutCheck2)
-        layoutCheck3 = findViewById(R.id.layoutCheck3)
-        layoutCheck4 = findViewById(R.id.layoutCheck4)
-        layoutCheck5 = findViewById(R.id.layoutCheck5)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(0, systemBars.top, 0, 0)
+            insets
+        }
 
-        // Set click listeners for LinearLayouts to toggle CheckBoxes
-        setLinearLayoutClickListener(layoutCheck1, checkBox1)
-        setLinearLayoutClickListener(layoutCheck2, checkBox2)
-        setLinearLayoutClickListener(layoutCheck3, checkBox3)
-        setLinearLayoutClickListener(layoutCheck4, checkBox4)
-        setLinearLayoutClickListener(layoutCheck5, checkBox5)
+        userPreference = UserPreference(this)
+        userModel = userPreference.getUser()
 
-        // Set single selection behavior for checkboxes
-        setSingleSelectionBehavior(checkBox1, checkBox2, checkBox3, checkBox4, checkBox5)
+        val assignmentId = intent.getIntExtra("ASSIGNMENT_ID", -1)
+        if (assignmentId != -1) {
+            loadQuestions(assignmentId)
+        }
 
-        // Set click listener for the back button
-        findViewById<View>(R.id.btn_close).setOnClickListener {
-            finish() // Go back to the previous screen
+        binding.btnNext.setOnClickListener {
+            if (currentQuestionIndex < questionList.size - 1) {
+                currentQuestionIndex++
+                displayQuestion()
+            } else {
+                submitAnswers(assignmentId)
+            }
+        }
+
+        binding.btnPrevious.setOnClickListener {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--
+                displayQuestion()
+            }
         }
     }
 
-    // Function to manage single selection behavior for the checkboxes
-    private fun setSingleSelectionBehavior(vararg checkBoxes: CheckBox) {
-        for (checkBox in checkBoxes) {
-            checkBox.setOnCheckedChangeListener { selectedCheckBox, isChecked ->
-                if (isChecked) {
-                    // Uncheck all other checkboxes when one is checked
-                    checkBoxes.forEach {
-                        if (it != selectedCheckBox) {
-                            it.isChecked = false
-                        }
-                    }
+    private fun loadQuestions(assignmentId: Int) {
+        viewModel.getPilganQuestion("Bearer ${userModel.id}", assignmentId).observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {  }
+                is Result.Success -> {
+                    questionList = result.data
+                    displayQuestion()
+                }
+                is Result.Error -> {
+                    Toast.makeText(this, "Gagal memuat pertanyaan", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
-    // Function to toggle checkbox when the parent layout is clicked
-    private fun setLinearLayoutClickListener(layout: LinearLayout, checkBox: CheckBox) {
-        layout.setOnClickListener {
-            checkBox.isChecked = !checkBox.isChecked // Toggle the checkbox state
+    @SuppressLint("SetTextI18n")
+    private fun displayQuestion() {
+        if (questionList.isNotEmpty() && currentQuestionIndex in questionList.indices) {
+            val currentQuestion = questionList[currentQuestionIndex]
+
+            binding.tvQuestion.text = currentQuestion.questionText
+
+            val adapter = AnswerOptionAdapter(currentQuestion.allOptions.orEmpty()) { selectedOption ->
+                selectedAnswers[currentQuestion.questionId ?: 0] = selectedOption
+            }
+            binding.rvPilihanJawaban.layoutManager = LinearLayoutManager(this)
+            binding.rvPilihanJawaban.adapter = adapter
+
+            binding.tvTotalQuestion.text = "Pertanyaan ${currentQuestionIndex + 1}/${questionList.size}"
+
+            binding.btnPrevious.visibility = if (currentQuestionIndex == 0) View.GONE else View.VISIBLE
+            binding.tvNext.text = if (currentQuestionIndex == questionList.size - 1) "Submit" else "Next"
+        }
+    }
+
+    private fun submitAnswers(assignmentId: Int) {
+        val answers = selectedAnswers.map { (questionId, selectedOption) ->
+            AnswerMultipleChoiceRequest(questionId = questionId, userAnswer = selectedOption)
+        }
+
+        viewModel.submitAnwerMutliple("Bearer ${userModel.id}", assignmentId, answers).observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {  }
+                is Result.Success -> {
+                    Toast.makeText(this, "Jawaban berhasil dikirim", Toast.LENGTH_SHORT).show()
+                    finish() // Tutup activity setelah sukses
+                }
+                is Result.Error -> {
+                    Toast.makeText(this, "Gagal mengirim jawaban: ${result.error.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }

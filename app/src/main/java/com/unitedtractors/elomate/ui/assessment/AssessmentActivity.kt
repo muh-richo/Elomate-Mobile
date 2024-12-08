@@ -88,8 +88,8 @@ class AssessmentActivity : AppCompatActivity() {
                                     } else if (item.category == "Peer Assessment") {
                                         binding.tvPeerStatus.text = item.statusTotal
                                         if (item.statusTotal == "Complete") {
-                                            binding.ivSelfStatus.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.success_900))
-                                            binding.tvSelfStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.success_900))
+                                            binding.ivPeerStatus.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.success_900))
+                                            binding.tvPeerStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.success_900))
                                         }
                                     }
                                 }

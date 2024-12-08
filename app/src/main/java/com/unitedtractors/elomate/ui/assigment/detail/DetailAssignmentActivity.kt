@@ -16,6 +16,7 @@ import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.databinding.ActivityDetailAssigmentBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
+import com.unitedtractors.elomate.ui.assigment.question.EssayAssignmentActivity
 import com.unitedtractors.elomate.ui.assigment.question.MultipleChoiceActivity
 
 class DetailAssignmentActivity : AppCompatActivity() {
@@ -35,7 +36,7 @@ class DetailAssignmentActivity : AppCompatActivity() {
         binding = ActivityDetailAssigmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300) // Replace with your color resource
+        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -49,12 +50,6 @@ class DetailAssignmentActivity : AppCompatActivity() {
         val assignmentId = intent.getIntExtra("ASSIGNMENT_ID", -1)
         if (assignmentId != -1) {
             loadAssignmentDetails("Bearer ${userModel.id}", assignmentId)
-        }
-
-
-        binding.btnStart.setOnClickListener {
-            val intent = Intent(this@DetailAssignmentActivity, MultipleChoiceActivity::class.java)
-            startActivity(intent)
         }
 
         binding.icBack.setOnClickListener {
@@ -78,6 +73,21 @@ class DetailAssignmentActivity : AppCompatActivity() {
                     binding.tvScore.text = assignment.userScore.toString()
                     binding.tvType.text = assignment.questionType
                     binding.tvTotalQuestion.text = "${assignment.totalQuestions.toString()} Soal"
+
+                    if (assignment.questionType == "Pilihan ganda" || assignment.questionType == "Multiple Choice" || assignment.questionType == "Pilihan Ganda") {
+                        binding.btnStart.setOnClickListener {
+                            val intent = Intent(this@DetailAssignmentActivity, MultipleChoiceActivity::class.java)
+                            intent.putExtra("ASSIGNMENT_ID", assignmentId)
+                            startActivity(intent)
+                        }
+                    } else {
+                        binding.btnStart.setOnClickListener {
+                            val intent = Intent(this@DetailAssignmentActivity, EssayAssignmentActivity::class.java)
+                            intent.putExtra("ASSIGNMENT_ID", assignmentId)
+                            startActivity(intent)
+                        }
+                    }
+
                 }
                 is Result.Error -> {
                     Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()

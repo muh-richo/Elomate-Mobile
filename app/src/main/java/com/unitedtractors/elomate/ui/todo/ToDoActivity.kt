@@ -82,7 +82,7 @@ class ToDoActivity : AppCompatActivity() {
             }
             btn360.setOnClickListener {
                 setActiveButton(binding.btn360)
-                filterAssignment("360")
+                filterAssignment("Assessment")
             }
         }
 

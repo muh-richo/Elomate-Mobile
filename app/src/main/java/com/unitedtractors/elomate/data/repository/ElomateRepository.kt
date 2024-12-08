@@ -10,6 +10,7 @@ import com.unitedtractors.elomate.data.network.response.MessageErrorResponse
 import com.unitedtractors.elomate.data.network.response.TokenResponse
 import com.unitedtractors.elomate.data.network.retrofit.ElomateApiService
 import com.unitedtractors.elomate.data.network.Result
+import com.unitedtractors.elomate.data.network.request.AnswerMultipleChoiceRequest
 import com.unitedtractors.elomate.data.network.request.AnswerSelfAssessmentRequest
 import com.unitedtractors.elomate.data.network.request.EducationRequest
 import com.unitedtractors.elomate.data.network.response.AssessmentResponse
@@ -30,6 +31,7 @@ import com.unitedtractors.elomate.data.network.request.UpdatePasswordRequest
 import com.unitedtractors.elomate.data.network.response.SuccessResponse
 import com.unitedtractors.elomate.data.network.request.UpdateProfileRequest
 import com.unitedtractors.elomate.data.network.response.PeerAssessmentResponse
+import com.unitedtractors.elomate.data.network.response.MultipleChoiceQuestionResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
@@ -368,6 +370,37 @@ class ElomateRepository(
                 emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
             }
     }
+
+    fun getPilganQuestionAssignment(token: String, assignmentId: Int): LiveData<Result<List<MultipleChoiceQuestionResponse>, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+            try {
+                val pilganQuestionItems = elomateApiService.getPilganQuestionAssignment(token, assignmentId)
+                emit(Result.Success(pilganQuestionItems))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val messageErrorResponse =
+                    Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                emit(Result.Error(messageErrorResponse))
+            } catch (e: SocketTimeoutException) {
+                emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+            }
+        }
+
+    fun submitAnswerMultiple(token: String, assignmentId: Int, answer: List<AnswerMultipleChoiceRequest>): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+            try {
+                val response = elomateApiService.submitAnswerMultiple(token, assignmentId, answer)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                emit(Result.Error(messageErrorResponse))
+            } catch (e: SocketTimeoutException) {
+                emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+            }
+        }
 
     fun createMentoring(token: String, namaCourse: String, tanggalMentoring: String, jamMulai: String, jamSelesai: String, metodeMentoring: String, tipeMentoring: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
         liveData {

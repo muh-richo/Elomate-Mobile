@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.ui.assigment.CourseActivity
 import com.unitedtractors.elomate.ui.assigment.preactivity.prereading.PreReadingFragment
 import com.unitedtractors.elomate.ui.assigment.preactivity.activity.PreActivityFragment
 

@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.data.network.retrofit
 
+import com.unitedtractors.elomate.data.network.request.AnswerMultipleChoiceRequest
 import com.unitedtractors.elomate.data.network.request.AnswerSelfAssessmentRequest
 import com.unitedtractors.elomate.data.network.response.QuestionAssessmentResponse
 import com.unitedtractors.elomate.data.network.request.EducationRequest
@@ -22,6 +23,7 @@ import com.unitedtractors.elomate.data.network.request.UpdatePasswordRequest
 import com.unitedtractors.elomate.data.network.response.SuccessResponse
 import com.unitedtractors.elomate.data.network.request.UpdateProfileRequest
 import com.unitedtractors.elomate.data.network.response.PeerAssessmentResponse
+import com.unitedtractors.elomate.data.network.response.MultipleChoiceQuestionResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -148,6 +150,19 @@ interface ElomateApiService {
         @Header("Authorization") token: String,
         @Path("assignmentId") assignmentId: Int,
     ): AssignmentResponse
+
+    @GET("assignmentTask/question/{assignmentId}")
+    suspend fun getPilganQuestionAssignment(
+        @Header("Authorization") token: String,
+        @Path("assignmentId") assignmentId: Int,
+    ): List<MultipleChoiceQuestionResponse>
+
+    @POST("assignmentTask/answerMultiple/{assignmentId}")
+    suspend fun submitAnswerMultiple(
+        @Header("Authorization") token: String,
+        @Path("assignmentId") assignmentId: Int,
+        @Body answer: List<AnswerMultipleChoiceRequest>
+    ): SuccessResponse
 
     @GET("report/{phaseId}/{topicId}")
     suspend fun getReportByPhaseIdTopicId(

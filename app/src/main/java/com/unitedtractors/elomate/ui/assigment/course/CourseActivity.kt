@@ -1,4 +1,4 @@
-package com.unitedtractors.elomate.ui.assigment
+package com.unitedtractors.elomate.ui.assigment.course
 
 import android.content.Intent
 import android.os.Bundle
@@ -27,7 +27,6 @@ import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.assigment.postactivity.PostActivityFragment
 import com.unitedtractors.elomate.ui.assigment.preactivity.activity.PreActivityFragment
 import com.unitedtractors.elomate.ui.assigment.preactivity.PreFragment
-import com.unitedtractors.elomate.ui.assignment.CourseViewModel
 
 class   CourseActivity : AppCompatActivity() {
 

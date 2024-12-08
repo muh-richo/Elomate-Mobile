@@ -16,7 +16,6 @@ import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.FragmentPostBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
-import com.unitedtractors.elomate.ui.assigment.CourseActivity
 import com.unitedtractors.elomate.ui.assigment.detail.DetailAssignmentActivity
 
 class PostActivityFragment : Fragment() {

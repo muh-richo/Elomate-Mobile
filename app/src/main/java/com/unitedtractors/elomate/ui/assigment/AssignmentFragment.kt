@@ -17,7 +17,8 @@ import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.FragmentAssignmentBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
-import com.unitedtractors.elomate.ui.assignment.CourseViewModel
+import com.unitedtractors.elomate.ui.assigment.course.CourseActivity
+import com.unitedtractors.elomate.ui.assigment.course.CourseViewModel
 import com.unitedtractors.elomate.ui.auth.login.LoginActivity
 
 class AssignmentFragment : Fragment() {
