@@ -2,42 +2,46 @@ package com.unitedtractors.elomate.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import androidx.recyclerview.widget.RecyclerView
-import com.unitedtractors.elomate.R
+import com.unitedtractors.elomate.databinding.ItemPilihanGandaBinding
 
 class AnswerOptionAdapter(
     private val options: List<String?>,
+    private val questionId: Int,
+    private val selectedAnswers: MutableMap<Int, String>, // Untuk menyimpan status jawaban
     private val onOptionSelected: (String) -> Unit
 ) : RecyclerView.Adapter<AnswerOptionAdapter.OptionViewHolder>() {
 
-    private var selectedPosition = RecyclerView.NO_POSITION
-
-    inner class OptionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val radioButton: RadioButton = itemView.findViewById(R.id.radio_option)
+    inner class OptionViewHolder(private val binding: ItemPilihanGandaBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("NotifyDataSetChanged")
-        fun bind(option: String, position: Int) {
-            radioButton.text = option
-            radioButton.isChecked = position == selectedPosition
+        fun bind(option: String) {
+            binding.radioOption.text = option
 
-            radioButton.setOnClickListener {
-                selectedPosition = bindingAdapterPosition
+            // Cek apakah opsi ini sudah dipilih sebelumnya
+            binding.radioOption.isChecked = selectedAnswers[questionId] == option
+
+            binding.radioOption.setOnClickListener {
+                selectedAnswers[questionId] = option // Simpan pilihan ke dalam selectedAnswers
                 onOptionSelected(option)
-                notifyDataSetChanged()
+                notifyDataSetChanged() // Perbarui tampilan
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OptionViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pilihan_ganda, parent, false)
-        return OptionViewHolder(view)
+        val binding = ItemPilihanGandaBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return OptionViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: OptionViewHolder, position: Int) {
-        options[position]?.let { holder.bind(it, position) }
+        options[position]?.let { holder.bind(it) }
     }
 
     override fun getItemCount(): Int = options.size

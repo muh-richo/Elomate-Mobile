@@ -47,13 +47,16 @@ class DetailAssignmentActivity : AppCompatActivity() {
         userPreference = UserPreference(this)
         userModel = userPreference.getUser()
 
+        binding.icBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
         val assignmentId = intent.getIntExtra("ASSIGNMENT_ID", -1)
         if (assignmentId != -1) {
             loadAssignmentDetails("Bearer ${userModel.id}", assignmentId)
-        }
-
-        binding.icBack.setOnClickListener {
-            finish()
         }
     }
 

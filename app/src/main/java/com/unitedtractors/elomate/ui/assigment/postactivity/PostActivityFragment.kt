@@ -44,13 +44,16 @@ class PostActivityFragment : Fragment() {
         userPreference = UserPreference(requireContext())
         userModel = userPreference.getUser()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
         val courseId = arguments?.getInt("COURSE_ID", 0) ?: 0
         if (courseId != 0) {
             setupRecyclerView("Bearer ${userModel.id}", courseId)
         } else {
             Toast.makeText(requireContext(), "Course ID not found", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     @SuppressLint("SetTextI18n")

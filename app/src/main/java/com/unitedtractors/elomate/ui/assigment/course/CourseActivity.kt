@@ -70,13 +70,16 @@ class   CourseActivity : AppCompatActivity() {
         userPreference = UserPreference(this)
         userModel = userPreference.getUser()
 
+        binding.icBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
         val courseId = intent.getIntExtra("COURSE_ID", -1)
         if (courseId != -1) {
             loadCourseDetails("Bearer ${userModel.id}", courseId)
-        }
-
-        binding.icBack.setOnClickListener {
-            finish()
         }
     }
 

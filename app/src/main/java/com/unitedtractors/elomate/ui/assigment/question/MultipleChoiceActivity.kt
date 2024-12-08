@@ -97,7 +97,12 @@ class MultipleChoiceActivity : AppCompatActivity() {
 
             binding.tvQuestion.text = currentQuestion.questionText
 
-            val adapter = AnswerOptionAdapter(currentQuestion.allOptions.orEmpty()) { selectedOption ->
+            // Setup RecyclerView untuk pilihan jawaban
+            val adapter = AnswerOptionAdapter(
+                options = currentQuestion.allOptions.orEmpty(),
+                questionId = currentQuestion.questionId ?: 0,
+                selectedAnswers = selectedAnswers // Teruskan selectedAnswers ke adapter
+            ) { selectedOption ->
                 selectedAnswers[currentQuestion.questionId ?: 0] = selectedOption
             }
             binding.rvPilihanJawaban.layoutManager = LinearLayoutManager(this)
@@ -109,6 +114,7 @@ class MultipleChoiceActivity : AppCompatActivity() {
             binding.tvNext.text = if (currentQuestionIndex == questionList.size - 1) "Submit" else "Next"
         }
     }
+
 
     private fun submitAnswers(assignmentId: Int) {
         val answers = selectedAnswers.map { (questionId, selectedOption) ->

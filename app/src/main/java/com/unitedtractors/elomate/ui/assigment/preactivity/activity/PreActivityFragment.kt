@@ -38,20 +38,17 @@ class PreActivityFragment : Fragment() {
         userPreference = UserPreference(requireContext())
         userModel = userPreference.getUser()
 
-        val courseId = arguments?.getInt("COURSE_ID", 0) ?: 0 // Ambil nilai courseId dari arguments
+        return binding.root
+    }
 
+    override fun onResume() {
+        super.onResume()
+        val courseId = arguments?.getInt("COURSE_ID", 0) ?: 0
         if (courseId != 0) {
             setupRecyclerView("Bearer ${userModel.id}", courseId)
         } else {
             Toast.makeText(requireContext(), "Course ID not found", Toast.LENGTH_SHORT).show()
         }
-
-
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
     }
 
     private fun setupRecyclerView(token: String, courseId: Int) {
