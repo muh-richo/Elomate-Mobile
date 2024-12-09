@@ -5,18 +5,18 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.data.network.response.DataItem
+import com.unitedtractors.elomate.data.network.response.DataAssessment
 import com.unitedtractors.elomate.databinding.CardPeerAssessmentBinding
 
 class PeerAssessmentAdapter(
-    private var peerAssessmentList: List<DataItem?>?,
+    private var peerAssessmentList: List<DataAssessment?>?,
     private val onItemClicked: (Int) -> Unit
 ) : RecyclerView.Adapter<PeerAssessmentAdapter.PeerAssessmentViewHolder>() {
 
     inner class PeerAssessmentViewHolder(private val binding: CardPeerAssessmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(user: DataItem) {
+        fun bind(user: DataAssessment) {
             binding.tvNamaLengkap.text = user.namaLengkap
             binding.tvStatus.text = user.statusPeerAssessment
 

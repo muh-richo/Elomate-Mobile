@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/tv_question_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="1."
+            android:textSize="14sp"
+            android:textColor="@color/shades_100"/>
+
+        <TextView
+            android:id="@+id/tv_question_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas placerat ac orci eu efficitur. Curabitur nec arcu id magna tincidunt accumsan. Cras faucibus diam id massa auctor aliquam"
+            android:textSize="14sp"
+            android:textColor="@color/shades_100"
+            android:lineSpacingExtra="4dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

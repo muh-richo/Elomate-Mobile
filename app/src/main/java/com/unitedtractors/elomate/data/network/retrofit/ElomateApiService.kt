@@ -22,9 +22,13 @@ import com.unitedtractors.elomate.data.network.response.TopicResponse
 import com.unitedtractors.elomate.data.network.request.UpdatePasswordRequest
 import com.unitedtractors.elomate.data.network.response.SuccessResponse
 import com.unitedtractors.elomate.data.network.request.UpdateProfileRequest
+import com.unitedtractors.elomate.data.network.response.KirkPatrickResponse
+import com.unitedtractors.elomate.data.network.response.PeerAssessment
 import com.unitedtractors.elomate.data.network.response.PeerAssessmentResponse
-import com.unitedtractors.elomate.data.network.response.MultipleChoiceQuestionResponse
+import com.unitedtractors.elomate.data.network.response.QuestionResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -140,11 +144,6 @@ interface ElomateApiService {
         @Path("preReadingId") preReadingId: Int,
     ): PreReadingResponse
 
-
-
-
-
-
     @GET("assignment/id/{assignmentId}")
     suspend fun getDetailAssignment(
         @Header("Authorization") token: String,
@@ -152,16 +151,25 @@ interface ElomateApiService {
     ): AssignmentResponse
 
     @GET("assignmentTask/question/{assignmentId}")
-    suspend fun getPilganQuestionAssignment(
+    suspend fun getQuestionAssignment(
         @Header("Authorization") token: String,
         @Path("assignmentId") assignmentId: Int,
-    ): List<MultipleChoiceQuestionResponse>
+    ): List<QuestionResponse>
 
     @POST("assignmentTask/answerMultiple/{assignmentId}")
-    suspend fun submitAnswerMultiple(
+    suspend fun submitAnswerMultipleChoice(
         @Header("Authorization") token: String,
         @Path("assignmentId") assignmentId: Int,
         @Body answer: List<AnswerMultipleChoiceRequest>
+    ): SuccessResponse
+
+    @Multipart
+    @POST("assignmentTask/answerEssay/{assignmentId}")
+    suspend fun submitAnswerEssay(
+        @Header("Authorization") token: String,
+        @Path("assignmentId") assignmentId: Int,
+        @Part("essay_answer") essayAnswer: RequestBody, // Bagian untuk teks
+        @Part lampiranFile: MultipartBody.Part // Bagian untuk file
     ): SuccessResponse
 
     @GET("report/{phaseId}/{topicId}")
@@ -170,6 +178,13 @@ interface ElomateApiService {
         @Path("phaseId") phaseId: Int,
         @Path("topicId") topicId: Int,
     ): ReportResponse
+
+    @GET("report/kirkpatrick")
+    suspend fun getKirkpatrickReport(
+        @Header("Authorization") token: String,
+    ): KirkPatrickResponse
+
+
 
     @POST("mentoring/insert")
     suspend fun createMentoring(

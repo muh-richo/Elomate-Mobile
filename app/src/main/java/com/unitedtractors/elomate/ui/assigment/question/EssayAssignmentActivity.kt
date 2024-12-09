@@ -4,51 +4,162 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.OpenableColumns
 import android.view.View
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.textfield.TextInputEditText
 import com.unitedtractors.elomate.R
+import com.unitedtractors.elomate.adapter.QuestionEssayAdapter
+import com.unitedtractors.elomate.data.local.user.User
+import com.unitedtractors.elomate.data.local.user.UserPreference
+import com.unitedtractors.elomate.data.network.Result
+import com.unitedtractors.elomate.databinding.ActivityEssayAssignmentBinding
+import com.unitedtractors.elomate.databinding.ActivityMultipleChoiceBinding
+import com.unitedtractors.elomate.ui.ViewModelFactory
+import java.io.File
 
 class EssayAssignmentActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityEssayAssignmentBinding
+
+    private val viewModel by viewModels<QuestionViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
+
+    private lateinit var userPreference: UserPreference
+    private lateinit var userModel: User
+
     private val FILE_REQUEST_CODE = 100
-    private lateinit var editTextFile: TextInputEditText // Declare the view
+
+    private var selectedFilePath: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_essay_assignment)
+        enableEdgeToEdge()
+        binding = ActivityEssayAssignmentBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Initialize the editTextFile using findViewById
-        editTextFile = findViewById(R.id.editTextFile)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300)
 
-        // Set click listener to open file picker
-        editTextFile.setOnClickListener {
-            openFilePicker()
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(0, systemBars.top, 0, 0)
+            insets
         }
 
-        // Set click listener for the back button
-        findViewById<View>(R.id.btn_close).setOnClickListener {
-            finish() // Go back to the previous page
-        }
-    }
+        userPreference = UserPreference(this)
+        userModel = userPreference.getUser()
 
-    private fun openFilePicker() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "*/*"
-        intent.putExtra(Intent.EXTRA_MIME_TYPES, arrayOf("application/pdf", "application/msword", "image/jpeg", "image/png"))
-        startActivityForResult(intent, FILE_REQUEST_CODE)
+        val assignmentId = intent.getIntExtra("ASSIGNMENT_ID", -1)
+        if (assignmentId != -1) {
+            loadQuestions(assignmentId)
+        }
+
+        binding.editTextFile.setOnClickListener {
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "application/pdf"
+            startActivityForResult(intent, FILE_REQUEST_CODE)
+        }
+
+        binding.btnSubmit.setOnClickListener {
+            submitAnswers(assignmentId)
+        }
+
+        binding.btnClose.setOnClickListener {
+            finish()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == FILE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            val uri = data.data // URI file yang dipilih
+            val filePath = getFilePathFromUri(uri) // Konversi URI ke path absolut
+            if (filePath != null) {
+                binding.editTextFile.setText(File(filePath).name) // Tampilkan nama file
+                selectedFilePath = filePath // Simpan path file yang dipilih
+            } else {
+                Toast.makeText(this, "Gagal mengambil file", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
-        if (requestCode == FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val selectedFileUri: Uri? = data?.data
-            selectedFileUri?.let {
-                editTextFile.setText(it.path) // Display file path in TextInputEditText
-                // You can further process the file (upload to server, etc.)
-            } ?: Toast.makeText(this, "File not selected!", Toast.LENGTH_SHORT).show()
+    private fun getFilePathFromUri(uri: Uri?): String? {
+        uri ?: return null
+        var filePath: String? = null
+        contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+            val columnIndex = cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME)
+            cursor.moveToFirst()
+            val fileName = cursor.getString(columnIndex)
+            val file = File(cacheDir, fileName)
+            contentResolver.openInputStream(uri)?.use { inputStream ->
+                file.outputStream().use { outputStream ->
+                    inputStream.copyTo(outputStream)
+                }
+            }
+            filePath = file.absolutePath
+        }
+        return filePath
+    }
+
+    private fun loadQuestions(assignmentId: Int) {
+        binding.rvQuestionEssay.layoutManager = LinearLayoutManager(this)
+
+        viewModel.getQuestion("Bearer ${userModel.id}", assignmentId).observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {  }
+                is Result.Success -> {
+                    val response = result.data
+
+                    val adapter = QuestionEssayAdapter(response)
+                    binding.rvQuestionEssay.adapter = adapter
+                }
+                is Result.Error -> {
+                    Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }
+    }
+
+    private fun submitAnswers(assignmentId: Int) {
+        val essayAnswer = binding.etAnswer.text.toString()
+        if (essayAnswer.isBlank()) {
+            Toast.makeText(this, "Jawaban tidak boleh kosong", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (selectedFilePath.isNullOrEmpty()) {
+            Toast.makeText(this, "Harap pilih file lampiran", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+//        binding.progressBar.visibility = View.VISIBLE
+
+        viewModel.submitAnswerEssay(
+            token = "Bearer ${userModel.id}",
+            assignmentId = assignmentId,
+            essayAnswers = essayAnswer,
+            filePath = selectedFilePath!!
+        ).observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {  }
+                is Result.Success -> {
+                    Toast.makeText(this, "Jawaban berhasil dikirim!", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                is Result.Error -> {
+                    Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ package com.unitedtractors.elomate.data.network.response
 
 import com.google.gson.annotations.SerializedName
 
-data class MultipleChoiceQuestionResponse(
+data class QuestionResponse(
 
 	@field:SerializedName("question_text")
 	val questionText: String? = null,

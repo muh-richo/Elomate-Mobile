@@ -17,7 +17,7 @@ import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.data.network.request.AnswerMultipleChoiceRequest
-import com.unitedtractors.elomate.data.network.response.MultipleChoiceQuestionResponse
+import com.unitedtractors.elomate.data.network.response.QuestionResponse
 import com.unitedtractors.elomate.databinding.ActivityMultipleChoiceBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 
@@ -32,7 +32,7 @@ class MultipleChoiceActivity : AppCompatActivity() {
     private lateinit var userPreference: UserPreference
     private lateinit var userModel: User
 
-    private var questionList: List<MultipleChoiceQuestionResponse> = emptyList() // Daftar pertanyaan
+    private var questionList: List<QuestionResponse> = emptyList() // Daftar pertanyaan
     private var currentQuestionIndex: Int = 0 // Indeks pertanyaan saat ini
     private val selectedAnswers = mutableMapOf<Int, String>() // Jawaban yang dipilih
 
@@ -73,10 +73,14 @@ class MultipleChoiceActivity : AppCompatActivity() {
                 displayQuestion()
             }
         }
+
+        binding.icClose.setOnClickListener {
+            finish()
+        }
     }
 
     private fun loadQuestions(assignmentId: Int) {
-        viewModel.getPilganQuestion("Bearer ${userModel.id}", assignmentId).observe(this) { result ->
+        viewModel.getQuestion("Bearer ${userModel.id}", assignmentId).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {
@@ -121,7 +125,7 @@ class MultipleChoiceActivity : AppCompatActivity() {
             AnswerMultipleChoiceRequest(questionId = questionId, userAnswer = selectedOption)
         }
 
-        viewModel.submitAnwerMutliple("Bearer ${userModel.id}", assignmentId, answers).observe(this) { result ->
+        viewModel.submitAnswerMultipleChoice("Bearer ${userModel.id}", assignmentId, answers).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {

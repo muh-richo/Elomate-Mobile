@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 data class PeerAssessmentResponse(
 
 	@field:SerializedName("data")
-	val data: List<DataItem?>? = null,
+	val data: List<DataAssessment?>? = null,
 
 	@field:SerializedName("assessment_title")
 	val assessmentTitle: String? = null,
@@ -21,7 +21,7 @@ data class PeerAssessmentResponse(
 ) : Parcelable
 
 @Parcelize
-data class DataItem(
+data class DataAssessment(
 
 	@field:SerializedName("role_name")
 	val roleName: String? = null,
