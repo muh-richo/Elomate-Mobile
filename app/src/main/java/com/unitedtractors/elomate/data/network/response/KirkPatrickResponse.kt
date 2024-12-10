@@ -15,13 +15,27 @@ data class KirkPatrickResponse(
 ) : Parcelable
 
 @Parcelize
-data class DataItem(
+data class PeerAssessment(
+
+	@field:SerializedName("allData")
+	val allData: List<AllDataItem?>? = null,
+
+	@field:SerializedName("label")
+	val label: String? = null
+) : Parcelable
+
+@Parcelize
+data class AllDataItem(
 
 	@field:SerializedName("data")
-	val data: List<DataAssessment?>? = null,
+	val data: List<DataItem?>? = null,
 
 	@field:SerializedName("category")
-	val category: String? = null,
+	val category: String? = null
+) : Parcelable
+
+@Parcelize
+data class DataItem(
 
 	@field:SerializedName("point_kirkpatrick")
 	val pointKirkpatrick: String? = null,
@@ -33,18 +47,8 @@ data class DataItem(
 @Parcelize
 data class SelfAssessment(
 
-	@field:SerializedName("data")
-	val data: List<DataAssessment?>? = null,
-
-	@field:SerializedName("label")
-	val label: String? = null
-) : Parcelable
-
-@Parcelize
-data class PeerAssessment(
-
-	@field:SerializedName("data")
-	val data: List<DataAssessment?>? = null,
+	@field:SerializedName("allData")
+	val allData: List<AllDataItem?>? = null,
 
 	@field:SerializedName("label")
 	val label: String? = null

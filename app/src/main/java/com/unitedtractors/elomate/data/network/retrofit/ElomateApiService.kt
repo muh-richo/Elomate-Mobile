@@ -23,7 +23,7 @@ import com.unitedtractors.elomate.data.network.request.UpdatePasswordRequest
 import com.unitedtractors.elomate.data.network.response.SuccessResponse
 import com.unitedtractors.elomate.data.network.request.UpdateProfileRequest
 import com.unitedtractors.elomate.data.network.response.KirkPatrickResponse
-import com.unitedtractors.elomate.data.network.response.PeerAssessment
+import com.unitedtractors.elomate.data.network.response.KirkpatrickDetailResponse
 import com.unitedtractors.elomate.data.network.response.PeerAssessmentResponse
 import com.unitedtractors.elomate.data.network.response.QuestionResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
@@ -168,8 +168,8 @@ interface ElomateApiService {
     suspend fun submitAnswerEssay(
         @Header("Authorization") token: String,
         @Path("assignmentId") assignmentId: Int,
-        @Part("essay_answer") essayAnswer: RequestBody, // Bagian untuk teks
-        @Part lampiranFile: MultipartBody.Part // Bagian untuk file
+        @Part("essay_answer") essayAnswer: RequestBody,
+        @Part lampiranFile: MultipartBody.Part
     ): SuccessResponse
 
     @GET("report/{phaseId}/{topicId}")
@@ -184,7 +184,10 @@ interface ElomateApiService {
         @Header("Authorization") token: String,
     ): KirkPatrickResponse
 
-
+    @GET("report/kirkpatrickDetail")
+    suspend fun getKirkpatrickDetail(
+        @Header("Authorization") token: String,
+    ): KirkpatrickDetailResponse
 
     @POST("mentoring/insert")
     suspend fun createMentoring(

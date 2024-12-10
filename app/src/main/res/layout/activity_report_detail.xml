@@ -1,21 +1,21 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FFFFFF"
+    android:background="#F1F5F9"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ScrollView
-        android:id="@+id/rimhzx70rak"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:scrollbars="none"
         android:background="#F1F5F9">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -52,47 +52,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_card2"
-                android:paddingHorizontal="20dp"
+                android:paddingHorizontal="10dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="20dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:orientation="vertical">
+
                 <RelativeLayout
                     android:id="@+id/r4k5tixnqwf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
                     android:clipChildren="false"
-                    android:clipToPadding="false"
-                    >
+                    android:clipToPadding="false">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingHorizontal="-1dp"
                         android:clipChildren="false"
                         android:clipToPadding="false"
                         android:orientation="vertical">
-                        <LinearLayout
-                            android:id="@+id/r4hlm4iy981m"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:id="@+id/ruwelzoc9sj"
-                                android:textColor="#000000"
-                                android:textSize="16sp"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="Naufal Romiz"
-                                />
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                />
-                        </LinearLayout>
+
                         <LinearLayout
                             android:id="@+id/rnadnv66det02"
                             android:layout_width="match_parent"
@@ -109,26 +90,24 @@
                                 android:padding="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:orientation="horizontal">
+
                                 <TextView
-                                    android:id="@+id/solution_title"
-                                    android:textColor="#000000"
+                                    android:id="@+id/tv_solution_title"
                                     android:textSize="16sp"
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
                                     android:layout_marginStart="-30dp"
-                                    android:text="SOLUTION"
+                                    tools:text="SOLUTION"
                                     android:rotation="270"
                                     android:gravity="center"
-                                    android:layout_gravity="center"
-                                    />
+                                    android:layout_gravity="center" />
 
                                 <com.github.mikephil.charting.charts.RadarChart
                                     android:id="@+id/chart1"
                                     android:layout_width="match_parent"
                                     android:layout_height="300dp"
                                     android:layout_marginStart="-30dp"
-                                    android:scaleType="fitXY"
-                                    />
+                                    android:scaleType="fitXY" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -137,422 +116,57 @@
                                 android:gravity="center_vertical"
                                 android:background="@drawable/bg_card"
                                 android:backgroundTint="@color/shades_50"
-                                android:padding="12dp"
                                 android:orientation="horizontal">
+
                                 <TextView
-                                    android:id="@+id/bc_title"
-                                    android:textColor="#000000"
+                                    android:id="@+id/tv_behaviour_competencies_title"
                                     android:textSize="16sp"
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
-                                    android:text="8 BC"
+                                    tools:text="8 BC"
                                     android:rotation="270"
                                     android:gravity="center"
-                                    android:layout_gravity="center"
-                                    />
+                                    android:layout_gravity="center" />
 
                                 <com.github.mikephil.charting.charts.RadarChart
                                     android:id="@+id/chart2"
                                     android:layout_width="match_parent"
                                     android:layout_height="300dp"
-                                    android:scaleType="fitXY"
-                                    />
+                                    android:scaleType="fitXY" />
+
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-
                 </RelativeLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/re098vg1slk4"
+            <FrameLayout
+                android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_card2"
-                android:paddingTop="36dp"
-                android:paddingBottom="22dp"
-                android:paddingHorizontal="20dp"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="30dp"
+                android:paddingBottom="20dp"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/r40u51435pb5"
-                    android:textColor="#334155"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Solution Poin"
-                    />
-                <LinearLayout
-                    android:id="@+id/rulm36u8yzf"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#CBD5E1"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="vertical">
-                </LinearLayout>
-                <TextView
-                    android:id="@+id/r7878xpad3kk"
-                    android:textColor="#3D9315"
-                    android:textSize="12sp"
-                    android:layout_marginBottom="19dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Highest"
-                    />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="13dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/title1"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Serve"
-                        />
-                    <TextView
-                        android:id="@+id/point1"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="10"
-                        />
-                </LinearLayout>
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_detail_kirkpatrick"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="13dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/title2"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Organize"
-                        />
-                    <TextView
-                        android:id="@+id/point2"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="10"
-                        />
-                </LinearLayout>
+                    tools:listitem="@layout/item_kirkpatrick_detail"
+                    tools:itemCount="2"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="13dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/title3"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Leadership"
-                        />
-                    <TextView
-                        android:id="@+id/point3"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="10"
-                        />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/rizoojut2he"
-                    android:textColor="#B32A2A"
-                    android:textSize="12sp"
-                    android:layout_marginBottom="11dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Lowest"
-                    />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="13dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/low_title1"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Uniqueness"
-                        />
-                    <TextView
-                        android:id="@+id/low_point1"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="7"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="13dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/low_title2"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Totality"
-                        />
-                    <TextView
-                        android:id="@+id/low_point2"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="6"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="13dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/low_title3"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Innovative"
-                        />
-                    <TextView
-                        android:id="@+id/low_point3"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="4"
-                        />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/rcq3dvpamreb"
-                    android:textColor="#334155"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="8 BC Poin"
-                    />
-                <LinearLayout
-                    android:id="@+id/rrmyqbl1b5ko"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#CBD5E1"
-                    android:layout_marginBottom="17dp"
-                    android:orientation="vertical">
-                </LinearLayout>
-                <TextView
-                    android:id="@+id/rofvddfhxb7"
-                    android:textColor="#3D9315"
-                    android:textSize="12sp"
-                    android:layout_marginBottom="12dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Highest"
-                    />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="13dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/high_title1"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Vision &amp; Business Sense"
-                        />
-                    <TextView
-                        android:id="@+id/high_point1"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="10"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="13dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/high_title2"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Analysis &amp; Judgement"
-                        />
-                    <TextView
-                        android:id="@+id/high_point2"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="10"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="13dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/high_title3"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Customer Focus"
-                        />
-                    <TextView
-                        android:id="@+id/high_point3"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="10"
-                        />
-                </LinearLayout>
-                <TextView
-                    android:id="@+id/rbalmkgcpwc"
-                    android:textColor="#B32A2A"
-                    android:textSize="12sp"
-                    android:layout_marginBottom="11dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Lowest"
-                    />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="13dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/low2_title1"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Customer Focus"
-                        />
-                    <TextView
-                        android:id="@+id/low2_point1"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="10"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="13dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/low2_title2"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Teamwork"
-                        />
-                    <TextView
-                        android:id="@+id/low2_point2"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="10"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="13dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/low2_title3"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:text="Planning &amp; Driving Action"
-                        />
-                    <TextView
-                        android:id="@+id/low2_point3"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="10"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:paddingTop="50dp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/yellow_500"
+                    android:visibility="gone"
+                    android:indeterminate="true"/>
+            </FrameLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

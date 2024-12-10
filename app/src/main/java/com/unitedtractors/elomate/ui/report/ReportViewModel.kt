@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.data.network.response.KirkPatrickResponse
+import com.unitedtractors.elomate.data.network.response.KirkpatrickDetailResponse
 import com.unitedtractors.elomate.data.network.response.ListCourseItem
 import com.unitedtractors.elomate.data.network.response.MessageErrorResponse
 import com.unitedtractors.elomate.data.network.response.PhaseResponse
@@ -29,5 +30,9 @@ class ReportViewModel(private val repository: ElomateRepository) : ViewModel() {
 
     fun getKirkpatrickReport(token: String) : LiveData<Result<KirkPatrickResponse, MessageErrorResponse>> {
         return repository.getKirkpatrickReport(token)
+    }
+
+    fun getKirkpatrickDetail(token: String) : LiveData<Result<KirkpatrickDetailResponse, MessageErrorResponse>> {
+        return repository.getKirkpatrickDetail(token)
     }
 }

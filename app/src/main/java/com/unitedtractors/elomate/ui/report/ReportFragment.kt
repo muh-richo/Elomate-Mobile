@@ -3,7 +3,6 @@ package com.unitedtractors.elomate.ui.report
 import android.R
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,28 +10,29 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.github.mikephil.charting.charts.RadarChart
-import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.RadarData
 import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.LargeValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
+import com.unitedtractors.elomate.data.network.response.AllDataItem
+import com.unitedtractors.elomate.data.network.response.KirkPatrickResponse
 import com.unitedtractors.elomate.databinding.FragmentReportBinding
 import com.unitedtractors.elomate.databinding.TableRowsPlaceholderBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
-import com.unitedtractors.elomate.ui.auth.login.LoginActivity
 import com.unitedtractors.elomate.ui.report.detail.ReportDetailActivity
 
-class
-ReportFragment : Fragment() {
+class ReportFragment : Fragment() {
 
     private lateinit var binding: FragmentReportBinding
+
     private val viewModel by viewModels<ReportViewModel>{
         ViewModelFactory.getInstance(requireContext())
     }
@@ -46,6 +46,11 @@ ReportFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentReportBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         userPreference = UserPreference(requireContext())
         userModel = userPreference.getUser()
@@ -55,42 +60,8 @@ ReportFragment : Fragment() {
             startActivity(intent)
         }
 
-        getCurrentUserApi()
         setupSpinner()
-        setupRadarChart(
-            binding.chart1,
-            labels = arrayOf("Networking", "Organize", "Leadership", "Uniqueness", "Totality", "Innovative", "Open-Mind"),
-            selfData = floatArrayOf(4f, 3f, 5f, 4f, 2f, 3f, 4f),
-            rekanData = floatArrayOf(3f, 4f, 4f, 3f, 3f, 4f, 3f)
-        )
-        setupRadarChart(
-            binding.chart2,
-            labels = arrayOf("LM", "AJ", "CF", "DC", "TW", "PDA", "IS", "VBS"),
-            selfData = floatArrayOf(4f, 4f, 3f, 5f, 4f, 3f, 2f, 5f),
-            rekanData = floatArrayOf(3f, 3f, 4f, 4f, 3f, 4f, 5f, 3f)
-        )
-
-        return binding.root
-    }
-
-    private fun getCurrentUserApi() {
-        viewModel.getCurrentUserApi("Bearer ${userModel.id}").observe(requireActivity()) { result ->
-            if (result != null) {
-                when (result) {
-                    is Result.Loading -> { }
-                    is Result.Success -> {
-                        val response = result.data
-//                        binding.tvUserName.text = response.namaLengkap
-//                        binding.tvPosisi.text = response.posisi
-                    }
-
-                    is Result.Error -> {
-                        val errorMessage = result.error.message
-                        handleError(errorMessage)
-                    }
-                }
-            }
-        }
+        getKirkpatrickReport()
     }
 
     private fun setupSpinner() {
@@ -161,16 +132,13 @@ ReportFragment : Fragment() {
                     is Result.Loading -> { }
                     is Result.Success -> {
                         val reportResponse = result.data
-                        val listCourse = reportResponse.listCourse // List<ListCourseItem>
+                        val listCourse = reportResponse.listCourse
 
                         val dynamicRows = binding.dynamicRows
 
-                        // Pastikan listCourse tidak null dan memiliki data
                         listCourse?.let {
-                            // Kosongkan dynamic rows sebelum menambah data baru
                             dynamicRows.removeAllViews()
 
-                            // Menambahkan baris baru untuk setiap item di listCourse
                             it.forEachIndexed { index, course ->
                                 val tableRowBinding = TableRowsPlaceholderBinding.inflate(LayoutInflater.from(context), null, false)
 
@@ -189,7 +157,6 @@ ReportFragment : Fragment() {
 //                                    tableRowBinding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), com.unitedtractors.elomate.R.color.neutral_200))
 //                                }
 
-                                // Tambahkan baris ke dynamicRows container
                                 dynamicRows.addView(tableRowBinding.root)
 
                                 binding.tvAverageNilai.text = reportResponse.rataRataSemuaCourse.toString()
@@ -204,49 +171,126 @@ ReportFragment : Fragment() {
         }
     }
 
-    private fun setupRadarChart(chart: RadarChart, labels: Array<String>, selfData: FloatArray, rekanData: FloatArray) {
-        val selfEntries = selfData.map { RadarEntry(it) }
-        val rekanEntries = rekanData.map { RadarEntry(it) }
-
-        val selfDataSet = RadarDataSet(selfEntries, "Self").apply {
-            color = Color.BLUE
-            lineWidth = 2f
-            fillColor = Color.BLUE
-            setDrawFilled(true)
-        }
-
-        val rekanDataSet = RadarDataSet(rekanEntries, "Rekan Kerja").apply {
-            color = Color.RED
-            lineWidth = 2f
-            fillColor = Color.RED
-            setDrawFilled(true)
-        }
-
-        val radarData = RadarData(selfDataSet, rekanDataSet)
-        chart.data = radarData
-
-        chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
-        chart.yAxis.apply {
-            axisMinimum = 0f
-            axisMaximum = 5f
-            setDrawLabels(false)
-        }
-        chart.legend.apply {
-            isEnabled = true
-            horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
-        }
-        chart.description.isEnabled = false
-        chart.invalidate()
-    }
-
-    private fun handleError(message: String?) {
-        if (message == "timeout") {
-            userModel.id = ""
-            userPreference.setUser(userModel)
-            Toast.makeText(requireContext(), "Sesi telah berakhir. Silakan login kembali.", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
-        } else {
-            Toast.makeText(requireContext(), "Error: $message", Toast.LENGTH_SHORT).show()
+    private fun getKirkpatrickReport(){
+        viewModel.getKirkpatrickReport("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {  }
+                is Result.Success -> {
+                    val response = result.data
+                    setupRadarCharts(response)
+                }
+                is Result.Error -> {
+                    Toast.makeText(requireContext(), result.error.message, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
+
+    private fun setupRadarCharts(response: KirkPatrickResponse) {
+        // Untuk kategori "Solution" - Peer Assessment
+        response.peerAssessment?.allData?.find { it?.category == "SOLUTION" }?.let { peerSolutionData ->
+            binding.tvSolutionTitle.text = "${peerSolutionData.category}"
+            setupRadarChart(
+                chart = binding.chart1,
+                categoryData = peerSolutionData,
+                label = "Peer"
+            )
+        }
+
+        // Untuk kategori "Solution" - Self Assessment
+        response.selfAssessment?.allData?.find { it?.category == "SOLUTION" }?.let { selfSolutionData ->
+            setupRadarChart(
+                chart = binding.chart1,
+                categoryData = selfSolutionData,
+                label = "Self"
+            )
+        }
+
+        // Untuk kategori "8 BC" - Peer Assessment
+        response.peerAssessment?.allData?.find { it?.category == "8 BC" }?.let { peerBCData ->
+            binding.tvBehaviourCompetenciesTitle.text = "${peerBCData.category}"
+            setupRadarChart(
+                chart = binding.chart2,
+                categoryData = peerBCData,
+                label = "Peer"
+            )
+        }
+
+        // Untuk kategori "8 BC" - Self Assessment
+        response.selfAssessment?.allData?.find { it?.category == "8 BC" }?.let { selfBCData ->
+            setupRadarChart(
+                chart = binding.chart2,
+                categoryData = selfBCData,
+                label = "Self"
+            )
+        }
+    }
+
+    private fun setupRadarChart(
+        chart: RadarChart,
+        categoryData: AllDataItem,
+        label: String
+    ) {
+        val categories = mutableListOf<String>()
+        val scores = mutableListOf<RadarEntry>()
+
+        categoryData.data?.forEach { assessment ->
+            categories.add(assessment?.pointKirkpatrick ?: "Unknown")
+            scores.add(RadarEntry(assessment?.averageScore?.toFloat() ?: 0f))
+        }
+
+        // Buat DataSet
+        val dataSet = RadarDataSet(scores, label).apply {
+            color = if (label.contains("Self")) {
+                resources.getColor(com.unitedtractors.elomate.R.color.blue_1, null)
+            } else {
+                resources.getColor(com.unitedtractors.elomate.R.color.secondary_500, null)
+            }
+            fillColor = color
+            setDrawFilled(true)
+            lineWidth = 2f
+        }
+
+        // Gabungkan ke RadarData (jika sudah ada dataset lain)
+        val radarData = chart.data ?: RadarData()
+        radarData.addDataSet(dataSet)
+        radarData.setValueTextSize(10f)
+
+        // Tambahkan formatter untuk nilai integer
+        radarData.setValueFormatter(object : ValueFormatter() {
+            override fun getFormattedValue(value: Float): String {
+                return value.toInt().toString()
+            }
+        })
+
+        chart.apply {
+            data = radarData
+            description.isEnabled = false
+            setWebLineWidth(1f)
+            setWebColor(resources.getColor(R.color.black, null))
+            setWebLineWidthInner(0.5f)
+            setWebColorInner(resources.getColor(R.color.black, null))
+            setWebAlpha(100)
+
+            xAxis.apply {
+                valueFormatter = IndexAxisValueFormatter(categories)
+                textSize = 10f
+            }
+
+            yAxis.apply {
+                axisMinimum = 0f
+                axisMaximum = 5f
+                setDrawLabels(true)
+                textSize = 10f
+                valueFormatter = object : ValueFormatter() {
+                    override fun getFormattedValue(value: Float): String {
+                        return value.toInt().toString()
+                    }
+                }
+            }
+
+            invalidate()
+        }
+    }
+
 }
