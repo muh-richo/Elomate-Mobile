@@ -32,6 +32,7 @@ import com.unitedtractors.elomate.data.network.response.SuccessResponse
 import com.unitedtractors.elomate.data.network.request.UpdateProfileRequest
 import com.unitedtractors.elomate.data.network.response.KirkPatrickResponse
 import com.unitedtractors.elomate.data.network.response.KirkpatrickDetailResponse
+import com.unitedtractors.elomate.data.network.response.ListActivityItem
 import com.unitedtractors.elomate.data.network.response.PeerAssessmentResponse
 import com.unitedtractors.elomate.data.network.response.QuestionResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
@@ -45,7 +46,10 @@ import java.net.SocketTimeoutException
 class ElomateRepository(
     private val elomateApiService: ElomateApiService
 ) {
-    fun loginApi(email: String, password: String): LiveData<Result<TokenResponse, MessageErrorResponse>> =
+    fun loginApi(
+        email: String,
+        password: String
+    ): LiveData<Result<TokenResponse, MessageErrorResponse>> =
         liveData {
             emit(Result.Loading)
 
@@ -56,33 +60,46 @@ class ElomateRepository(
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
                 Log.e(TAG, "Error Login API : $errorBody")
-                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                val messageErrorResponse =
+                    Gson().fromJson(errorBody, MessageErrorResponse::class.java)
                 val errorMessage = messageErrorResponse.message
                 emit(Result.Error(MessageErrorResponse(errorMessage)))
             } catch (e: SocketTimeoutException) {
-                Log.e(TAG, "Timeout Login with API : ${e.message}", )
+                Log.e(TAG, "Timeout Login with API : ${e.message}",)
                 emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
             }
-    }
+        }
 
-    fun updateProfile(token: String, domisili: String, tempatLahir: String, tanggalLahir: String, noHp: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
+    fun updateProfile(
+        token: String,
+        domisili: String,
+        tempatLahir: String,
+        tanggalLahir: String,
+        noHp: String
+    ): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
         liveData {
             emit(Result.Loading)
 
             try {
-                val updateProfileRequest = UpdateProfileRequest(domisili, tempatLahir, tanggalLahir, noHp)
+                val updateProfileRequest =
+                    UpdateProfileRequest(domisili, tempatLahir, tanggalLahir, noHp)
                 val response = elomateApiService.updateProfile(token, updateProfileRequest)
                 emit(Result.Success(response))
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
                 Log.e(TAG, "Error Update Profile : $errorBody")
-                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                val messageErrorResponse =
+                    Gson().fromJson(errorBody, MessageErrorResponse::class.java)
                 val errorMessage = messageErrorResponse.message
                 emit(Result.Error(MessageErrorResponse(errorMessage)))
             }
         }
 
-    fun updatePassword(token: String, currentPassword: String, newPassword: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
+    fun updatePassword(
+        token: String,
+        currentPassword: String,
+        newPassword: String
+    ): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
         liveData {
             emit(Result.Loading)
 
@@ -93,7 +110,8 @@ class ElomateRepository(
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
                 Log.e(TAG, "Error Update Password API : $errorBody")
-                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                val messageErrorResponse =
+                    Gson().fromJson(errorBody, MessageErrorResponse::class.java)
                 val errorMessage = messageErrorResponse.message
                 emit(Result.Error(MessageErrorResponse(errorMessage)))
             }
@@ -109,14 +127,15 @@ class ElomateRepository(
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
                 Log.e(TAG, "Error Get Current API : $errorBody")
-                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                val messageErrorResponse =
+                    Gson().fromJson(errorBody, MessageErrorResponse::class.java)
                 val errorMessage = messageErrorResponse.message
                 emit(Result.Error(MessageErrorResponse(errorMessage)))
             } catch (e: SocketTimeoutException) {
-                Log.e(TAG, "Timeout Get Current User with API : ${e.message}", )
+                Log.e(TAG, "Timeout Get Current User with API : ${e.message}",)
                 emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
             }
-    }
+        }
 
     fun getParticipantData(token: String): LiveData<Result<List<UserResponse>, MessageErrorResponse>> =
         liveData {
@@ -127,12 +146,13 @@ class ElomateRepository(
                 emit(Result.Success(response))
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
-                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                val messageErrorResponse =
+                    Gson().fromJson(errorBody, MessageErrorResponse::class.java)
                 emit(Result.Error(messageErrorResponse))
             } catch (e: SocketTimeoutException) {
                 emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
             }
-    }
+        }
 
     fun getEducation(token: String): LiveData<Result<List<EducationResponse>, MessageErrorResponse>> =
         liveData {
@@ -143,48 +163,70 @@ class ElomateRepository(
                 emit(Result.Success(response))
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
-                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                val messageErrorResponse =
+                    Gson().fromJson(errorBody, MessageErrorResponse::class.java)
                 emit(Result.Error(messageErrorResponse))
             } catch (e: SocketTimeoutException) {
                 emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
             }
         }
 
-    fun addEducation(token: String, universitas: String, jurusan: String, jenjangStudi: String, tahunLulus: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
+    fun addEducation(
+        token: String,
+        universitas: String,
+        jurusan: String,
+        jenjangStudi: String,
+        tahunLulus: String
+    ): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
         liveData {
             emit(Result.Loading)
 
             try {
-                val educationRequest = EducationRequest(universitas, jurusan, jenjangStudi, tahunLulus)
+                val educationRequest =
+                    EducationRequest(universitas, jurusan, jenjangStudi, tahunLulus)
                 val response = elomateApiService.addEducation(token, educationRequest)
                 emit(Result.Success(response))
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
-                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                val messageErrorResponse =
+                    Gson().fromJson(errorBody, MessageErrorResponse::class.java)
                 emit(Result.Error(messageErrorResponse))
             } catch (e: SocketTimeoutException) {
                 emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
             }
         }
 
-    fun updateEducation(token: String, educationId: Int, universitas: String, jurusan: String, jenjangStudi: String, tahunLulus: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
+    fun updateEducation(
+        token: String,
+        educationId: Int,
+        universitas: String,
+        jurusan: String,
+        jenjangStudi: String,
+        tahunLulus: String
+    ): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
         liveData {
             emit(Result.Loading)
 
             try {
-                val educationRequest = EducationRequest(universitas, jurusan, jenjangStudi, tahunLulus)
-                val response = elomateApiService.updateEducation(token, educationId, educationRequest)
+                val educationRequest =
+                    EducationRequest(universitas, jurusan, jenjangStudi, tahunLulus)
+                val response =
+                    elomateApiService.updateEducation(token, educationId, educationRequest)
                 emit(Result.Success(response))
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
-                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                val messageErrorResponse =
+                    Gson().fromJson(errorBody, MessageErrorResponse::class.java)
                 emit(Result.Error(messageErrorResponse))
             } catch (e: SocketTimeoutException) {
                 emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
             }
         }
 
-    fun deleteEducation(token: String, educationId: Int): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
+    fun deleteEducation(
+        token: String,
+        educationId: Int
+    ): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
         liveData {
             emit(Result.Loading)
 
@@ -207,6 +249,23 @@ class ElomateRepository(
 
             try {
                 val response = elomateApiService.getToDoList(token)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val messageErrorResponse =
+                    Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                emit(Result.Error(messageErrorResponse))
+            } catch (e: SocketTimeoutException) {
+                emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+            }
+    }
+
+    fun getToDoListSchedule(token: String, deadline: String): LiveData<Result<List<ListActivityItem>, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+
+            try {
+                val response = elomateApiService.getToDoListSchedule(token, deadline)
                 emit(Result.Success(response))
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()

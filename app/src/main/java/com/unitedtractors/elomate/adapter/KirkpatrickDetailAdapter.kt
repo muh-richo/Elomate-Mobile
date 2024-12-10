@@ -16,7 +16,6 @@ class KirkpatrickDetailAdapter(
             binding.apply {
                 tvTitleAssessment.text = detail.category
 
-                // Tampilkan Highest Data
                 val highestItems = detail.highestData
                 tvHigh1.text = highestItems.getOrNull(0)?.first ?: ""
                 tvValueSelfHigh1.text = highestItems.getOrNull(0)?.second ?: ""
@@ -28,7 +27,6 @@ class KirkpatrickDetailAdapter(
                 tvValueSelfHigh3.text = highestItems.getOrNull(2)?.second ?: ""
                 tvValuePeerHigh3.text = highestItems.getOrNull(2)?.third ?: ""
 
-                // Tampilkan Lowest Data
                 val lowestItems = detail.lowestData
                 tvLow1.text = lowestItems.getOrNull(0)?.first ?: ""
                 tvValueSelfLow1.text = lowestItems.getOrNull(0)?.second ?: ""

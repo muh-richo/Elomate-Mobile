@@ -24,6 +24,7 @@ import com.unitedtractors.elomate.data.network.response.SuccessResponse
 import com.unitedtractors.elomate.data.network.request.UpdateProfileRequest
 import com.unitedtractors.elomate.data.network.response.KirkPatrickResponse
 import com.unitedtractors.elomate.data.network.response.KirkpatrickDetailResponse
+import com.unitedtractors.elomate.data.network.response.ListActivityItem
 import com.unitedtractors.elomate.data.network.response.PeerAssessmentResponse
 import com.unitedtractors.elomate.data.network.response.QuestionResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
@@ -90,6 +91,12 @@ interface ElomateApiService {
     suspend fun getToDoList(
         @Header("Authorization") token: String
     ): List<AssignmentResponse>
+
+    @GET("assignment/user/todoSchedule/{deadline}")
+    suspend fun getToDoListSchedule(
+        @Header("Authorization") token: String,
+        @Path("deadline") deadline: String
+    ): List<ListActivityItem>
 
     @GET("courses")
     suspend fun getAllCoursesUser(
