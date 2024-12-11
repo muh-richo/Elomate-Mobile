@@ -1,7 +1,9 @@
 package com.unitedtractors.elomate.ui.schedule
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -51,17 +53,14 @@ class ScheduleActivity : AppCompatActivity() {
         userPreference = UserPreference(this)
         userModel = userPreference.getUser()
 
-        // Format untuk tanggal
         val dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
 
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val date = Calendar.getInstance()
             date.set(year, month, dayOfMonth)
 
-            // Format tanggal ke "dd-MM-yyyy"
             val formattedDate = dateFormatter.format(date.time)
 
-            // Panggil API dengan token dan tanggal
             getToDoListSchedule(formattedDate)
         }
 
@@ -70,11 +69,14 @@ class ScheduleActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getToDoListSchedule(deadline: String) {
         viewModel.getToDoListSchedule("Bearer ${userModel.id}", deadline).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {
+                    binding.tvNoTasks.visibility = View.GONE
+                    binding.rvTasks.visibility = View.VISIBLE
                     val response = result.data
 
                     val adapter = ScheduleAdapter(response) { assignmentId ->
@@ -86,7 +88,10 @@ class ScheduleActivity : AppCompatActivity() {
                     binding.rvTasks.adapter = adapter
                 }
                 is Result.Error -> {
-                    Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()
+                    binding.rvTasks.visibility = View.GONE
+                    binding.tvNoTasks.visibility = View.VISIBLE
+                    binding.tvNoTasks.text = "Tidak ada tugas untuk tanggal ini."
+//                    Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()
                 }
             }
 

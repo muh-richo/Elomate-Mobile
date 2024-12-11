@@ -48,6 +48,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp" />
 
+        <TextView
+            android:id="@+id/tvNoTasks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tidak ada tugas."
+            android:textSize="16sp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:padding="40dp"
+            android:textColor="@color/shades_100"/>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_tasks"
             android:layout_width="match_parent"

@@ -1,21 +1,27 @@
 package com.unitedtractors.elomate.ui.home
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
+import com.kizitonwose.calendar.view.ViewContainer
 import com.kizitonwose.calendar.view.WeekDayBinder
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.adapter.CourseAdapter
 import com.unitedtractors.elomate.adapter.CourseProgressAdapter
+import com.unitedtractors.elomate.adapter.ScheduleAdapter
 import com.unitedtractors.elomate.adapter.ToDoAdapter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
@@ -31,6 +37,7 @@ import com.unitedtractors.elomate.ui.assigment.detail.DetailAssignmentActivity
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
+import java.time.format.DateTimeFormatter
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -41,6 +48,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var userPreference: UserPreference
     private lateinit var userModel: User
+
+    private var selectedDate: LocalDate? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,8 +71,7 @@ class HomeFragment : Fragment() {
         setupRecyclerViewToDo()
         getCourseProgress()
 
-        // Setup the calendar view
-        weekCalendarView()
+        setupWeekCalendarView()
         setupClickListeners()
     }
 
@@ -138,9 +146,6 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerViewToDo() {
         binding.rvTodoList.layoutManager = LinearLayoutManager(requireContext())
 
-        // Belum selesai
-        binding.rvScheduleList.layoutManager = LinearLayoutManager(requireContext())
-
         viewModel.getToDoList("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
@@ -161,58 +166,11 @@ class HomeFragment : Fragment() {
                         startActivity(intent)
                     }
                     binding.rvTodoList.adapter = adapter
-                    binding.rvScheduleList.adapter = adapter
                 }
 
                 is Result.Error -> {
                     binding.progressHorizontal.visibility = View.GONE
                     Toast.makeText(requireContext(), result.error.message, Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
-    private fun weekCalendarView(){
-        val weekCalendarView = binding.weekCalendarView
-
-
-        val currentDate = LocalDate.now()
-        val currentMonth = YearMonth.now()
-        val startDate = currentMonth.minusMonths(100).atStartOfMonth() // Adjust as needed
-        val endDate = currentMonth.plusMonths(100).atEndOfMonth() // Adjust as needed
-        val firstDayOfWeek = firstDayOfWeekFromLocale() // Available from the library
-
-        weekCalendarView.setup(startDate, endDate, firstDayOfWeek)
-        weekCalendarView.scrollToWeek(currentDate)
-
-        // Atur binder untuk setiap sel hari
-        weekCalendarView.dayBinder = object : WeekDayBinder<DayViewContainer> {
-            // Dipanggil hanya saat container baru dibutuhkan
-            override fun create(view: View) = DayViewContainer(view)
-
-            // Dipanggil setiap kali kita perlu menggunakan kembali container
-            override fun bind(container: DayViewContainer, data: WeekDay) {
-                // Set tanggal pada TextView
-                container.textView.text = data.date.dayOfMonth.toString()
-
-                // Set nama hari pada TextView
-                val dayOfWeek = data.date.dayOfWeek
-
-                // Mengatur warna latar belakang untuk hari ini
-                if (data.date == LocalDate.now()) {
-                    container.itemView.setBackgroundResource(R.drawable.bg_date)
-                } else {
-                    container.itemView.setBackgroundColor(Color.TRANSPARENT) // Reset latar belakang untuk hari lain
-                    // Atur warna teks default
-                    if (dayOfWeek == DayOfWeek.SUNDAY) {
-                        container.textView.setTextColor(Color.RED)
-                    } else {
-                        container.textView.setTextColor(Color.BLACK)
-                    }
-                }
-
-                container.itemView.setOnClickListener {
-                    Toast.makeText(container.itemView.context, "Diklik pada: ", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -244,9 +202,110 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setupWeekCalendarView() {
+        val weekCalendarView = binding.weekCalendarView
+
+        val currentDate = LocalDate.now()
+        val currentMonth = YearMonth.now()
+        val startDate = currentMonth.minusMonths(100).atStartOfMonth()
+        val endDate = currentMonth.plusMonths(100).atEndOfMonth()
+        val firstDayOfWeek = firstDayOfWeekFromLocale()
+
+        var selectedDate: LocalDate? = null
+
+        weekCalendarView.setup(startDate, endDate, firstDayOfWeek)
+        weekCalendarView.scrollToWeek(currentDate)
+
+        weekCalendarView.dayBinder = object : WeekDayBinder<DayViewContainer> {
+            override fun create(view: View) = DayViewContainer(view)
+
+            @SuppressLint("ResourceAsColor")
+            override fun bind(container: DayViewContainer, data: WeekDay) {
+                container.textView.text = data.date.dayOfMonth.toString()
+
+                // Atur warna background
+                when {
+                    data.date == selectedDate -> {
+                        container.view.setBackgroundResource(R.drawable.bg_date2)
+                    }
+                    else -> {
+                        container.view.setBackgroundColor(Color.TRANSPARENT)
+                    }
+                }
+
+                // Atur warna teks
+                container.textView.setTextColor(
+                    when {
+                        data.date == LocalDate.now() -> Color.BLUE
+                        data.date.dayOfWeek == DayOfWeek.SUNDAY -> Color.RED
+                        else -> Color.BLACK
+                    }
+                )
+
+                // Tambahkan klik listener
+                container.view.setOnClickListener {
+                    // Update tanggal yang dipilih
+                    val previousSelectedDate = selectedDate
+                    selectedDate = data.date
+
+                    // Refresh tampilan kalender agar tanggal sebelumnya diperbarui
+                    if (previousSelectedDate != null) {
+                        weekCalendarView.notifyDateChanged(previousSelectedDate)
+                    }
+                    weekCalendarView.notifyDateChanged(selectedDate!!)
+
+                    // Panggil fungsi untuk memuat jadwal
+                    getToDoListScheduleForDate(data.date)
+                }
+            }
+        }
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    private fun getToDoListScheduleForDate(date: LocalDate) {
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val deadline = date.format(formatter)
+        viewModel.getToDoListSchedule("Bearer ${userModel.id}", deadline).observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.progressHorizontal.visibility = View.VISIBLE
+                    binding.tvNoTasks.visibility = View.GONE
+                }
+                is Result.Success -> {
+                    binding.progressHorizontal.visibility = View.GONE
+                    binding.rvScheduleList.visibility = View.VISIBLE
+                    binding.tvNoTasks.visibility = View.GONE
+
+                    val tasks = result.data
+
+                    binding.tvScheduleCount.text = tasks.size.toString()
+
+                    val adapter = ScheduleAdapter(tasks) { assignmentId ->
+                        val intent = Intent(requireContext(), DetailAssignmentActivity::class.java)
+                        intent.putExtra("ASSIGNMENT_ID", assignmentId)
+                        startActivity(intent)
+                    }
+                    binding.rvScheduleList.layoutManager = LinearLayoutManager(requireContext())
+                    binding.rvScheduleList.adapter = adapter
+                }
+                is Result.Error -> {
+                    binding.progressHorizontal.visibility = View.GONE
+                    binding.rvScheduleList.visibility = View.GONE
+                    binding.tvNoTasks.visibility = View.VISIBLE
+
+                    binding.tvScheduleCount.text = "0"
+                    binding.tvNoTasks.text = "Tidak ada tugas untuk tanggal ini."
+                }
+            }
+        }
+    }
+
     private fun firstDayOfWeekFromLocale(): DayOfWeek {
-        // Menentukan hari pertama minggu dari locale saat ini
         return DayOfWeek.of(java.util.Calendar.getInstance().firstDayOfWeek)
     }
 
+    inner class DayViewContainer(view: View) : ViewContainer(view) {
+        val textView: TextView = view.findViewById(R.id.calendarDayText)
+    }
 }
