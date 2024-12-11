@@ -26,7 +26,7 @@ class MentoringViewModel(private val repository: ElomateRepository) : ViewModel(
         return repository.getTypeMentoring(token)
     }
 
-    fun getUpcomingMentoring(token: String): LiveData<Result<List<MentoringResponse>, MessageErrorResponse>> {
+    fun getUpcomingMentoring(token: String): LiveData<Result<MutableList<MentoringResponse>, MessageErrorResponse>> {
         return repository.getUpcomingMentoring(token)
     }
 
@@ -42,4 +42,11 @@ class MentoringViewModel(private val repository: ElomateRepository) : ViewModel(
         return repository.getDetailMentoring(token, mentoringId)
     }
 
+    fun submitFormFeedback(token: String, mentoringId: Int, lessonLearned: String, catatanMentor: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> {
+        return repository.submitFormMentoring(token, mentoringId, lessonLearned, catatanMentor)
+    }
+
+    fun deleteMentoring(token: String, mentoringId: Int): LiveData<Result<SuccessResponse, MessageErrorResponse>> {
+        return repository.deleteMentoring(token, mentoringId)
+    }
 }

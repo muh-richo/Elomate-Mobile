@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
@@ -43,6 +44,11 @@ class DetailMentoringActivity : AppCompatActivity() {
             insets
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         userPreference = UserPreference(this)
         userModel = userPreference.getUser()
 
@@ -51,8 +57,13 @@ class DetailMentoringActivity : AppCompatActivity() {
             loadDetailMentoring(mentoringId)
         }
 
-        binding.icBack.setOnClickListener {
-            finish()
+        binding.apply {
+            icBack.setOnClickListener {
+                finish()
+            }
+            btnSave.setOnClickListener {
+                submitForm(mentoringId)
+            }
         }
     }
 
@@ -85,8 +96,8 @@ class DetailMentoringActivity : AppCompatActivity() {
                         binding.tvMethod.text = response.metodeMentoring
 
                         binding.tvKompetensi.text = response.kompetensiYangDievaluasi
-                        binding.tvLessonLearned.text = response.lessonLearnedCompetencies
-                        binding.tvCatatan.text = response.catatanMentor
+                        binding.etLessonLearned.setText(response.lessonLearnedCompetencies)
+                        binding.etCatatanMentor.setText(response.catatanMentor)
 
                     }
                     is Result.Error -> {
@@ -97,4 +108,31 @@ class DetailMentoringActivity : AppCompatActivity() {
         }
     }
 
+    private fun submitForm(mentoringId: Int) {
+        val etLessonLearned = binding.etLessonLearned.text
+        val etCatatanMentor = binding.etCatatanMentor.text
+
+        if (etLessonLearned!!.isEmpty() && etCatatanMentor!!.isEmpty()) {
+            Toast.makeText(this, "Silahkan isi kolom yang ada", Toast.LENGTH_SHORT).show()
+        } else {
+            viewModel.submitFormFeedback(
+                "Bearer ${userModel.id}",
+                mentoringId,
+                binding.etLessonLearned.text.toString(),
+                binding.etCatatanMentor.text.toString(),
+            ).observe(this) { result ->
+                if (result != null) {
+                    when (result) {
+                        is Result.Loading -> {  }
+                        is Result.Success -> {
+                            Toast.makeText(this, "Berhasil menyimpan data", Toast.LENGTH_SHORT).show()
+                        }
+                        is Result.Error -> {
+                            Toast.makeText(this, "Mentoring gagal ditambahkan", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

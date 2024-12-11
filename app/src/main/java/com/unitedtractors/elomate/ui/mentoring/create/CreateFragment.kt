@@ -85,7 +85,6 @@ class CreateFragment : Fragment() {
                     }
             }
         }
-
     }
 
     private fun setupSpinner() {

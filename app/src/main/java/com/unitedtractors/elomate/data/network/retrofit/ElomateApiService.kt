@@ -4,6 +4,7 @@ import com.unitedtractors.elomate.data.network.request.AnswerMultipleChoiceReque
 import com.unitedtractors.elomate.data.network.request.AnswerSelfAssessmentRequest
 import com.unitedtractors.elomate.data.network.response.QuestionAssessmentResponse
 import com.unitedtractors.elomate.data.network.request.EducationRequest
+import com.unitedtractors.elomate.data.network.request.FormFeedbackMentoringRequest
 import com.unitedtractors.elomate.data.network.response.AssessmentResponse
 import com.unitedtractors.elomate.data.network.response.AssessmentsItem
 import com.unitedtractors.elomate.data.network.response.AssignmentResponse
@@ -220,7 +221,7 @@ interface ElomateApiService {
     @GET("mentoring/upcomingData")
     suspend fun getUpcomingMentoring(
         @Header("Authorization") token: String,
-    ): List<MentoringResponse>
+    ): MutableList<MentoringResponse>
 
     @GET("mentoring/feedbackData")
     suspend fun getFeedbackMentoring(
@@ -237,6 +238,19 @@ interface ElomateApiService {
         @Header("Authorization") token: String,
         @Path("mentoringId") mentoringId: Int,
     ): MentoringResponse
+
+    @PATCH("mentoring/insertFeedback/{mentoringId}")
+    suspend fun submitFormFeedbackMentoring(
+        @Header("Authorization") token: String,
+        @Path("mentoringId") mentoringId: Int,
+        @Body feedbackMentoring: FormFeedbackMentoringRequest,
+    ): SuccessResponse
+
+    @DELETE("mentoring/delete/{mentoringId}")
+    suspend fun deleteMentoring(
+        @Header("Authorization") token: String,
+        @Path("mentoringId") mentoringId: Int,
+    ): SuccessResponse
 
     @GET("assessment")
     suspend fun getAssessment(

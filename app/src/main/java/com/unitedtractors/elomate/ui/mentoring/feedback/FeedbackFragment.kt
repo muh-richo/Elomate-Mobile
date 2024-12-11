@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.ui.mentoring.feedback
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.unitedtractors.elomate.adapter.MentoringAdapter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
+import com.unitedtractors.elomate.data.network.response.MentoringResponse
 import com.unitedtractors.elomate.databinding.FragmentFeedbackBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.mentoring.MentoringViewModel
@@ -29,6 +31,9 @@ class FeedbackFragment : Fragment() {
     private lateinit var userPreference: UserPreference
     private lateinit var userModel: User
 
+    private lateinit var adapter: MentoringAdapter
+    private val mentoringList = mutableListOf<MentoringResponse>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,29 +44,42 @@ class FeedbackFragment : Fragment() {
         userPreference = UserPreference(requireContext())
         userModel = userPreference.getUser()
 
-        setupRecyclerView("Bearer ${userModel.id}")
+        setupRecyclerView()
+        fetchFeedbackMentoring()
 
         return binding.root
     }
 
-    private fun setupRecyclerView(token: String) {
+    private fun setupRecyclerView() {
         binding.rvFeedbackMentoring.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.getFeedbackMentoring(token).observe(viewLifecycleOwner) { result ->
+        adapter = MentoringAdapter(
+            mentoringList = mentoringList,
+            onUpcomingClick = { mentoringId ->
+                val intent = Intent(requireContext(), DetailMentoringActivity::class.java)
+                intent.putExtra("MENTORING_ID", mentoringId)
+                startActivity(intent)
+            },
+            onDeleteClick = { mentoringId ->
+                //
+            }
+        )
+
+        binding.rvFeedbackMentoring.adapter = adapter
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchFeedbackMentoring() {
+        viewModel.getFeedbackMentoring("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
-
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    val upcomingList = result.data
-
-                    val adapter = MentoringAdapter(upcomingList) { mentoringId ->
-                        val intent = Intent(requireContext(), DetailMentoringActivity::class.java)
-                        intent.putExtra("MENTORING_ID", mentoringId) // Kirim assignmentId
-                        startActivity(intent)
-                    }
-                    binding.rvFeedbackMentoring.adapter = adapter
+                    mentoringList.clear()
+                    mentoringList.addAll(result.data)
+                    adapter.notifyDataSetChanged()
                 }
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE
@@ -70,5 +88,4 @@ class FeedbackFragment : Fragment() {
             }
         }
     }
-
 }
