@@ -98,6 +98,11 @@ interface ElomateApiService {
         @Path("deadline") deadline: String
     ): List<ListActivityItem>
 
+    @GET("courses/courseProgress")
+    suspend fun getCourseProgress(
+        @Header("Authorization") token: String
+    ): List<CourseResponse>
+
     @GET("courses")
     suspend fun getAllCoursesUser(
         @Header("Authorization") token: String

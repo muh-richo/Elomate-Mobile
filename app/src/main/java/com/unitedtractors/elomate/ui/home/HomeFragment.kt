@@ -14,6 +14,8 @@ import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.view.WeekDayBinder
 import com.unitedtractors.elomate.R
+import com.unitedtractors.elomate.adapter.CourseAdapter
+import com.unitedtractors.elomate.adapter.CourseProgressAdapter
 import com.unitedtractors.elomate.adapter.ToDoAdapter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
@@ -24,6 +26,7 @@ import com.unitedtractors.elomate.ui.announcement.AnnouncementActivity
 import com.unitedtractors.elomate.ui.schedule.DayViewContainer
 import com.unitedtractors.elomate.ui.schedule.ScheduleActivity
 import com.unitedtractors.elomate.data.network.Result
+import com.unitedtractors.elomate.ui.assigment.course.CourseActivity
 import com.unitedtractors.elomate.ui.assigment.detail.DetailAssignmentActivity
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -46,21 +49,22 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         userPreference = UserPreference(requireContext())
         userModel = userPreference.getUser()
 
         getCurrentUserApi()
         setupRecyclerViewToDo()
+        getCourseProgress()
 
         // Setup the calendar view
         weekCalendarView()
         setupClickListeners()
-
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
     }
 
     private fun setupClickListeners() {
@@ -209,6 +213,32 @@ class HomeFragment : Fragment() {
 
                 container.itemView.setOnClickListener {
                     Toast.makeText(container.itemView.context, "Diklik pada: ", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun getCourseProgress() {
+        viewModel.getCourseProgress("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.progressHorizontal.visibility = View.VISIBLE
+                }
+                is Result.Success -> {
+                    binding.progressHorizontal.visibility = View.GONE
+
+                    val courseProgress = result.data
+                    val adapter = CourseProgressAdapter(courseProgress) { courseId ->
+                        val intent = Intent(requireContext(), CourseActivity::class.java)
+                        intent.putExtra("COURSE_ID", courseId)
+                        startActivity(intent)
+                    }
+                    binding.rvCourseProgress.layoutManager = LinearLayoutManager(requireContext())
+                    binding.rvCourseProgress.adapter = adapter
+                }
+                is Result.Error -> {
+                    binding.progressHorizontal.visibility = View.GONE
+                    Toast.makeText(requireContext(), result.error.message, Toast.LENGTH_SHORT).show()
                 }
             }
         }

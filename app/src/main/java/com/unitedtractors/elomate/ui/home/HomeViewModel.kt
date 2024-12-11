@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.data.network.response.AssignmentResponse
+import com.unitedtractors.elomate.data.network.response.CourseResponse
 import com.unitedtractors.elomate.data.network.response.ListActivityItem
 import com.unitedtractors.elomate.data.network.response.MessageErrorResponse
 import com.unitedtractors.elomate.data.network.response.PreActivityResponse
@@ -22,4 +23,7 @@ class HomeViewModel(private val repository: ElomateRepository) : ViewModel() {
         return repository.getToDoListSchedule(token, deadline)
     }
 
+    fun getCourseProgress(token: String): LiveData<Result<List<CourseResponse>, MessageErrorResponse>> {
+        return repository.getCourseProgress(token)
+    }
 }
