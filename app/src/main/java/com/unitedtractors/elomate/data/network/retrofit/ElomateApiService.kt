@@ -26,6 +26,7 @@ import com.unitedtractors.elomate.data.network.request.UpdateProfileRequest
 import com.unitedtractors.elomate.data.network.response.KirkPatrickResponse
 import com.unitedtractors.elomate.data.network.response.KirkpatrickDetailResponse
 import com.unitedtractors.elomate.data.network.response.ListActivityItem
+import com.unitedtractors.elomate.data.network.response.NotificationResponse
 import com.unitedtractors.elomate.data.network.response.PeerAssessmentResponse
 import com.unitedtractors.elomate.data.network.response.QuestionResponse
 import com.unitedtractors.elomate.data.network.response.UserResponse
@@ -64,6 +65,17 @@ interface ElomateApiService {
         @Header("Authorization") token: String
     ): List<EducationResponse>
 
+    @GET("auth/me/education/{educationId}")
+    suspend fun getEducationById(
+        @Header("Authorization") token: String,
+        @Path("educationId") educationId: Int
+    ): EducationResponse
+
+    @GET("auth/me/education/level")
+    suspend fun getEducationLevel(
+        @Header("Authorization") token: String
+    ): List<String>
+
     @POST("auth/me/education")
     suspend fun addEducation(
         @Header("Authorization") token: String,
@@ -87,6 +99,11 @@ interface ElomateApiService {
     suspend fun getParticipantData(
         @Header("Authorization") token: String,
     ): List<UserResponse>
+
+    @GET("notification/all")
+    suspend fun getNotification(
+        @Header("Authorization") token: String,
+    ): NotificationResponse
 
     @GET("assignment/user/todo")
     suspend fun getToDoList(

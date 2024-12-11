@@ -158,7 +158,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_todo_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     tools:listitem="@layout/card_task"
                     tools:itemCount="2"/>
 
@@ -322,12 +322,12 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_schedule_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="20dp"
                     tools:listitem="@layout/card_task"
                     tools:itemCount="2"/>
-
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/todo_list"
                 android:layout_width="match_parent"
@@ -348,6 +348,7 @@
                     android:paddingVertical="4dp"
                     android:layout_marginBottom="14dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:textColor="#252525"
                         android:textSize="14sp"

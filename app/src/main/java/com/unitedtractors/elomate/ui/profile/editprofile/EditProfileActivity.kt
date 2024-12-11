@@ -53,7 +53,6 @@ class EditProfileActivity : AppCompatActivity() {
                 saveChangesEdit()
             }
         }
-
     }
 
     private fun getCurrentUserApi() {
@@ -116,6 +115,5 @@ class EditProfileActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 }

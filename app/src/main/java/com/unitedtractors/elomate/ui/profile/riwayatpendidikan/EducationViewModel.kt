@@ -14,6 +14,14 @@ class EducationViewModel(private val repository: ElomateRepository) : ViewModel(
         return repository.getEducation(token)
     }
 
+    fun getEducationById(token: String, educationId: Int) : LiveData<Result<EducationResponse, MessageErrorResponse>> {
+        return repository.getEducationById(token, educationId)
+    }
+
+    fun getEducationLevel(token: String) : LiveData<Result<List<String>, MessageErrorResponse>> {
+        return repository.getEducationLevel(token)
+    }
+
     fun addEducation(token: String, universitas: String, jurusan: String, jenjangStudi: String, tahun_lulus: String) : LiveData<Result<SuccessResponse, MessageErrorResponse>> {
         return repository.addEducation(token, universitas, jurusan, jenjangStudi, tahun_lulus)
     }

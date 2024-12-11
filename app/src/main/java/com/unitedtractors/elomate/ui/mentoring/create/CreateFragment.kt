@@ -106,7 +106,6 @@ class CreateFragment : Fragment() {
                     binding.spinnerCourse.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                             selectedCourse = response[position]
-                            // Lakukan sesuatu dengan `selectedCourse` jika diperlukan
                         }
 
                         override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -134,7 +133,6 @@ class CreateFragment : Fragment() {
                     binding.spinnerMethod.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                             selectedMethod = methods[position]
-                            // Lakukan sesuatu dengan `selectedMethod` jika diperlukan
                         }
 
                         override fun onNothingSelected(parent: AdapterView<*>?) {

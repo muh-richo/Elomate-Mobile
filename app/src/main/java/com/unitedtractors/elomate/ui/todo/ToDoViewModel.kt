@@ -9,8 +9,8 @@ import com.unitedtractors.elomate.data.repository.ElomateRepository
 
 class ToDoViewModel(private val repository: ElomateRepository) : ViewModel() {
 
-    fun getToDoList(token: String) : LiveData<Result<List<AssignmentResponse>, MessageErrorResponse>> {
-        return repository.getToDoList(token)
+        fun getToDoList(token: String) : LiveData<Result<List<AssignmentResponse>, MessageErrorResponse>> {
+            return repository.getToDoList(token)
     }
 
 }
