@@ -97,7 +97,7 @@ class   CourseActivity : AppCompatActivity() {
     private inner class CoursePagerAdapter(fragmentActivity: FragmentActivity) :
         FragmentStateAdapter(fragmentActivity) {
 
-        override fun getItemCount(): Int = 2 // Jumlah tab
+        override fun getItemCount(): Int = 2
 
         override fun createFragment(position: Int): Fragment {
             val fragment = when (position) {

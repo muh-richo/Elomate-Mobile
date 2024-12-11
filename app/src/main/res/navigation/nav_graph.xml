@@ -3,24 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/createFragment">
+    app:startDestination="@id/mentoringFragment">
 
-    <!-- Current Fragment -->
+    <!-- Fragment untuk Mentoring -->
+    <fragment
+        android:id="@+id/mentoringFragment"
+        android:name="com.unitedtractors.elomate.ui.mentoring.MentoringFragment"
+        android:label="Mentoring"
+        tools:layout="@layout/fragment_mentoring">
+        <action
+            android:id="@+id/action_mentoringFragment_to_createFragment"
+            app:destination="@id/createFragment" />
+    </fragment>
+
+    <!-- Fragment untuk Create -->
     <fragment
         android:id="@+id/createFragment"
         android:name="com.unitedtractors.elomate.ui.mentoring.create.CreateFragment"
-        android:label="Create Fragment"
+        android:label="Create Mentoring"
         tools:layout="@layout/fragment_create">
-        <!-- Action to navigate to FeedbackFragment -->
         <action
-            android:id="@+id/action_fragment_create_to_upcomingFragment"
+            android:id="@+id/action_createFragment_to_upcomingFragment"
             app:destination="@id/upcomingFragment" />
     </fragment>
 
-    <!-- Feedback Fragment -->
+    <!-- Fragment untuk Upcoming -->
     <fragment
         android:id="@+id/upcomingFragment"
         android:name="com.unitedtractors.elomate.ui.mentoring.upcoming.UpcomingFragment"
-        android:label="Upcoming Fragment"
+        android:label="Upcoming Mentoring"
         tools:layout="@layout/fragment_upcoming" />
 </navigation>

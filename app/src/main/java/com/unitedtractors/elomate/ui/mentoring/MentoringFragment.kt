@@ -20,7 +20,7 @@ import com.unitedtractors.elomate.ui.mentoring.upcoming.UpcomingFragment
 
 class MentoringFragment : Fragment() {
 
-    private lateinit var binding: FragmentMentoringBinding
+    lateinit var binding: FragmentMentoringBinding
 
     private lateinit var userPreference: UserPreference
     private lateinit var userModel: User
@@ -59,12 +59,18 @@ class MentoringFragment : Fragment() {
         return binding.root
     }
 
-    // Function to create a custom tab view
+    override fun onResume() {
+        super.onResume()
+        userPreference = UserPreference(requireContext())
+        userModel = userPreference.getUser()
+
+    }
+
     private fun createTabView(position: Int): View {
         val tabTitles = listOf("Create", "Upcoming", "Feedback", "Closed")
         val textView = TextView(context).apply {
             text = tabTitles[position]
-            textSize = 16f
+            textSize = 14f
             gravity = android.view.Gravity.CENTER
         }
         return textView
@@ -84,10 +90,10 @@ class MentoringFragment : Fragment() {
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                0 -> CreateFragment() // Use a dedicated CreateFragment for "Create"
-                1 -> UpcomingFragment() // Fragment for "Upcoming" tab
-                2 -> FeedbackFragment() // Fragment for "Feedback" tab
-                3 -> ClosedFragment() // Fragment for "Closed" tab
+                0 -> CreateFragment()
+                1 -> UpcomingFragment()
+                2 -> FeedbackFragment()
+                3 -> ClosedFragment()
                 else -> throw IllegalStateException("Unexpected position $position")
             }
         }

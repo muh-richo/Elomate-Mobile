@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.ui.mentoring.create
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +12,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.FragmentCreateBinding
+import com.unitedtractors.elomate.databinding.FragmentUpcomingBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
+import com.unitedtractors.elomate.ui.mentoring.MentoringFragment
 import com.unitedtractors.elomate.ui.mentoring.MentoringViewModel
+import com.unitedtractors.elomate.ui.mentoring.upcoming.UpcomingFragment
 
 class CreateFragment : Fragment() {
 
@@ -40,6 +45,7 @@ class CreateFragment : Fragment() {
         userModel = userPreference.getUser()
 
         setupSpinner()
+
         binding.btnAdd.setOnClickListener {
             addMentoring()
         }
@@ -65,14 +71,12 @@ class CreateFragment : Fragment() {
                 ).observe(viewLifecycleOwner) { result ->
                     if (result != null) {
                         when (result) {
-                            is Result.Loading -> {
-                                // Tampilkan loading jika diperlukan
-                            }
+                            is Result.Loading -> {  }
                             is Result.Success -> {
                                 Toast.makeText(requireContext(), "Mentoring berhasil ditambahkan", Toast.LENGTH_SHORT).show()
-
-//                                val navController = (requireActivity().supportFragmentManager.findFragmentById(R.id.nav_graph) as NavHostFragment).navController
-//                                navController.navigate(R.id.action_fragment_create_to_upcomingFragment)
+                                val activity = requireActivity()
+                                val viewPager = activity.findViewById<ViewPager2>(R.id.viewPager)
+                                viewPager?.currentItem = 1
                             }
                             is Result.Error -> {
                                 Toast.makeText(requireContext(), "Mentoring gagal ditambahkan", Toast.LENGTH_SHORT).show()

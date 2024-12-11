@@ -1,8 +1,6 @@
 package com.unitedtractors.elomate
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +13,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.databinding.ActivityMainBinding
-import com.unitedtractors.elomate.ui.auth.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,7 +32,6 @@ class MainActivity : AppCompatActivity() {
 //            finish()
 //        }
 
-        // Change the status bar color
         window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
@@ -47,8 +43,6 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_assigment, R.id.navigation_mentoring, R.id.navigation_report, R.id.navigation_profil

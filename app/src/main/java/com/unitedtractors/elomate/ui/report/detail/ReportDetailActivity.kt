@@ -22,7 +22,6 @@ import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.data.network.response.AllDataItem
 import com.unitedtractors.elomate.data.network.response.KirkPatrickResponse
-import com.unitedtractors.elomate.data.network.response.KirkpatrickDetail
 import com.unitedtractors.elomate.databinding.ActivityReportDetailBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.report.ReportViewModel
@@ -81,47 +80,20 @@ class ReportDetailActivity : AppCompatActivity() {
     private fun getKirkpatrickDetail() {
         viewModel.getKirkpatrickDetail("Bearer ${userModel.id}").observe(this) { result ->
             when (result) {
-                is Result.Loading -> { /* Tampilkan loading jika diperlukan */ }
+                is Result.Loading -> {  }
                 is Result.Success -> {
-                    val response = result.data
+                    val data = result.data.kirkpatrickDetail
 
-                    val kirkpatrickDetails = response.selfAssessmentDetail?.detailKirkpatrick?.map { selfDetail ->
-                        val peerDetail = response.peerAssessmentDetail?.detailKirkpatrick
-                            ?.find { it?.category == selfDetail?.category }
-
-                        KirkpatrickDetail(
-                            category = selfDetail?.category ?: "",
-                            highestData = selfDetail?.highestData?.map { selfItem ->
-                                val peerItem = peerDetail?.highestData?.find { it?.pointKirkpatrick == selfItem?.pointKirkpatrick }
-                                Triple(
-                                    selfItem?.pointKirkpatrick ?: "",
-                                    "Self: ${selfItem?.averageScore ?: ""} / Peer: ${peerItem?.averageScore ?: ""}",
-                                    selfItem?.description ?: peerItem?.averageScore ?: ""
-                                )
-                            } ?: emptyList(),
-                            lowestData = selfDetail?.lowestData?.map { selfItem ->
-                                val peerItem = peerDetail?.lowestData?.find { it?.pointKirkpatrick == selfItem?.pointKirkpatrick }
-                                Triple(
-                                    selfItem?.pointKirkpatrick ?: "",
-                                    "Self: ${selfItem?.averageScore ?: ""} / Peer: ${peerItem?.averageScore ?: ""}",
-                                    selfItem?.description ?: peerItem?.description ?: ""
-                                )
-                            } ?: emptyList()
-                        )
-                    } ?: emptyList()
-
-
-                    val adapter = KirkpatrickDetailAdapter(kirkpatrickDetails)
-                    binding.rvDetailKirkpatrick.adapter = adapter
+                    val adapter =KirkpatrickDetailAdapter(data)
                     binding.rvDetailKirkpatrick.layoutManager = LinearLayoutManager(this)
+                    binding.rvDetailKirkpatrick.adapter = adapter
                 }
                 is Result.Error -> {
-                    Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error: ${result.error.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
-
 
     private fun setupRadarCharts(response: KirkPatrickResponse) {
         response.peerAssessment?.allData?.find { it?.category == "SOLUTION" }?.let { peerSolutionData ->

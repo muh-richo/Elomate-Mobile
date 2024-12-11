@@ -1,4 +1,4 @@
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F9FAFB"
@@ -28,8 +28,8 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:minHeight="500dp"/>
 
     </LinearLayout>
-
-</FrameLayout>
+</LinearLayout>

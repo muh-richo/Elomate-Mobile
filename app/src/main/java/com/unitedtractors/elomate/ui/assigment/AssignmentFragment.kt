@@ -87,7 +87,7 @@ class AssignmentFragment : Fragment() {
 
                     val adapter = CourseAdapter(courses) { courseId ->
                         val intent = Intent(requireContext(), CourseActivity::class.java)
-                        intent.putExtra("COURSE_ID", courseId) // Mengirimkan courseId melalui Intent
+                        intent.putExtra("COURSE_ID", courseId)
                         startActivity(intent)
                     }
                     binding.rvCourse.adapter = adapter

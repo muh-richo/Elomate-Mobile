@@ -4,7 +4,7 @@
     android:background="#F1F5F9"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -153,9 +153,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_detail_kirkpatrick"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_kirkpatrick_detail"
-                    tools:itemCount="2"/>
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/item_kirkpatrick_detail"/>
 
                 <ProgressBar
                     android:id="@+id/progressBar"
