@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.profile.participant.detail.DetailParticipantActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.profile.riwayatpendidikan.EducationActivity"
             android:exported="false" />
         <activity

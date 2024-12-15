@@ -7,7 +7,8 @@ import com.unitedtractors.elomate.data.network.response.UserResponse
 import com.unitedtractors.elomate.databinding.CardParticipantBinding
 
 class ParticipantAdapter(
-    private var participant: List<UserResponse>
+    private var participant: List<UserResponse>,
+    private val onItemClicked: (Int) -> Unit
 ) : RecyclerView.Adapter<ParticipantAdapter.ParticipantViewHolder>() {
 
     inner class ParticipantViewHolder(private val binding: CardParticipantBinding) :
@@ -17,6 +18,10 @@ class ParticipantAdapter(
             binding.tvNamaLengkap.text = user.namaLengkap
             binding.tvPosisi.text = user.posisi
             binding.tvRole.text = user.roleName
+
+            binding.root.setOnClickListener {
+                user.userId?.let { it1 -> onItemClicked(it1) }
+            }
         }
     }
 

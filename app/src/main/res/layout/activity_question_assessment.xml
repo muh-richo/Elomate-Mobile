@@ -5,42 +5,9 @@
     android:background="@color/neutral_100"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/rs2nwhjk9vf"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:background="#FFD133"
-        android:paddingVertical="20dp"
-        android:paddingHorizontal="20dp"
-        android:layout_marginBottom="30dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/ic_back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_backarrow"
-            android:scaleType="fitXY" />
-
-        <TextView
-            android:id="@+id/tv_title_assessment"
-            android:textColor="#0F172A"
-            android:textSize="20sp"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            tools:text="Solution" />
-    </LinearLayout>
-
     <ScrollView
-        android:id="@+id/rbcfon4jt9gc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_card2"
-        android:paddingVertical="26dp"
-        android:layout_marginHorizontal="20dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
@@ -48,248 +15,286 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/rq61qd597p3a"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Skala Penilaian" />
-
             <LinearLayout
-                android:id="@+id/listSkala"
+                android:id="@+id/rs2nwhjk9vf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="10dp"
-                android:layout_marginHorizontal="40dp"
+                android:background="#FFD133"
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="20dp"
+                android:layout_marginBottom="30dp"
                 android:orientation="horizontal">
 
-                <FrameLayout
-                    android:id="@+id/skala1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_linkert"
-                    android:backgroundTint="@color/error_500"
-                    android:layout_gravity="center"
-                    android:padding="11dp">
-
-                    <TextView
-                        android:id="@+id/text_skala1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1"
-                        android:textColor="#000000"
-                        android:layout_gravity="center"
-                        android:textSize="12sp"
-                        android:gravity="center"/>
-                </FrameLayout>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
-                <FrameLayout
-                    android:id="@+id/skala2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_linkert"
-                    android:backgroundTint="@color/yellow_600"
-                    android:layout_gravity="center"
-                    android:padding="11dp">
-
-                    <TextView
-                        android:id="@+id/text_skala2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2"
-                        android:textColor="#000000"
-                        android:layout_gravity="center"
-                        android:textSize="12sp"
-                        android:gravity="center"/>
-                </FrameLayout>
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
-                <FrameLayout
-                    android:id="@+id/skala3"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_linkert"
-                    android:backgroundTint="@color/yellow_500"
-                    android:layout_gravity="center"
-                    android:padding="11dp">
-
-                    <TextView
-                        android:id="@+id/text_skala3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3"
-                        android:textColor="#000000"
-                        android:layout_gravity="center"
-                        android:textSize="12sp"
-                        android:gravity="center"/>
-                </FrameLayout>
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
-                <FrameLayout
-                    android:id="@+id/skala4"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_linkert"
-                    android:backgroundTint="@color/success_50"
-                    android:layout_gravity="center"
-                    android:padding="11dp">
-
-                    <TextView
-                        android:id="@+id/text_skala4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="4"
-                        android:textColor="#000000"
-                        android:layout_gravity="center"
-                        android:textSize="12sp"
-                        android:gravity="center"/>
-                </FrameLayout>
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
-                <FrameLayout
-                    android:id="@+id/skala5"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_linkert"
-                    android:backgroundTint="@color/success_500"
-                    android:layout_gravity="center"
-                    android:padding="11dp">
-
-                    <TextView
-                        android:id="@+id/text_skala5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="5"
-                        android:textColor="#000000"
-                        android:layout_gravity="center"
-                        android:textSize="12sp"
-                        android:gravity="center"/>
-                </FrameLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/rn0a4cfncqf"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="20dp"
-                android:layout_marginHorizontal="34dp"
-                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/ic_back"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_backarrow"
+                    android:scaleType="fitXY" />
 
                 <TextView
-                    android:id="@+id/r72q2cykypsw"
-                    android:textColor="#252525"
-                    android:textSize="12sp"
-                    android:layout_marginEnd="14dp"
+                    android:id="@+id/tv_title_assessment"
+                    android:textColor="#0F172A"
+                    android:textSize="20sp"
                     android:layout_height="wrap_content"
-                    android:layout_width="66dp"
-                    android:text="Sangat \nKurang Baik"
-                    />
-                <TextView
-                    android:id="@+id/rcjsqvpu6mv5"
-                    android:textColor="#252525"
-                    android:textSize="12sp"
-                    android:layout_marginEnd="26dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="39dp"
-                    android:text="Kurang \nBaik"
-                    />
-                <TextView
-                    android:id="@+id/r32nr2ttfyov"
-                    android:textColor="#252525"
-                    android:textSize="12sp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="36dp"
-                    android:text="Cukup \nBaik"
-                    />
-                <LinearLayout
-                    android:id="@+id/rfvzmdx1ejp"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                </LinearLayout>
-                <TextView
-                    android:id="@+id/r1di5faxhui"
-                    android:textColor="#252525"
-                    android:textSize="12sp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Baik"
-                    />
-                <TextView
-                    android:id="@+id/rd8vrwdykhoc"
-                    android:textColor="#252525"
-                    android:textSize="12sp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="39dp"
-                    android:text="Sangat \nBaik"
-                    />
-            </LinearLayout>
-
-            <FrameLayout
-                android:id="@+id/content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_question_assessment"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:listitem="@layout/item_question_assessment"
-                    tools:itemCount="4"/>
-
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:paddingTop="50dp"
-                    android:layout_gravity="center"
-                    android:indeterminateTint="@color/yellow_500"
-                    android:visibility="gone"
-                    android:indeterminate="true"/>
-            </FrameLayout>
+                    android:layout_weight="1"
+                    tools:text="Solution" />
+            </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginHorizontal="20dp"
+                android:paddingVertical="20dp"
                 android:background="@drawable/bg_card2"
-                android:backgroundTint="@color/yellow_500"
-                android:layout_marginTop="20dp"
-                android:paddingVertical="10dp"
-                android:layout_marginHorizontal="120dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_submit"
-                    android:textColor="#252525"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
+                    android:id="@+id/rq61qd597p3a"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Submit" />
+                    android:text="Skala Penilaian" />
+
+                <LinearLayout
+                    android:id="@+id/listSkala"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginHorizontal="40dp"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/skala1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_linkert"
+                        android:backgroundTint="@color/error_500"
+                        android:layout_gravity="center"
+                        android:padding="11dp">
+
+                        <TextView
+                            android:id="@+id/text_skala1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textColor="#000000"
+                            android:layout_gravity="center"
+                            android:textSize="12sp"
+                            android:gravity="center"/>
+                    </FrameLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+                    <FrameLayout
+                        android:id="@+id/skala2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_linkert"
+                        android:backgroundTint="@color/yellow_600"
+                        android:layout_gravity="center"
+                        android:padding="11dp">
+
+                        <TextView
+                            android:id="@+id/text_skala2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+                            android:textColor="#000000"
+                            android:layout_gravity="center"
+                            android:textSize="12sp"
+                            android:gravity="center"/>
+                    </FrameLayout>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+                    <FrameLayout
+                        android:id="@+id/skala3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_linkert"
+                        android:backgroundTint="@color/yellow_500"
+                        android:layout_gravity="center"
+                        android:padding="11dp">
+
+                        <TextView
+                            android:id="@+id/text_skala3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+                            android:textColor="#000000"
+                            android:layout_gravity="center"
+                            android:textSize="12sp"
+                            android:gravity="center"/>
+                    </FrameLayout>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+                    <FrameLayout
+                        android:id="@+id/skala4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_linkert"
+                        android:backgroundTint="@color/success_50"
+                        android:layout_gravity="center"
+                        android:padding="11dp">
+
+                        <TextView
+                            android:id="@+id/text_skala4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4"
+                            android:textColor="#000000"
+                            android:layout_gravity="center"
+                            android:textSize="12sp"
+                            android:gravity="center"/>
+                    </FrameLayout>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+                    <FrameLayout
+                        android:id="@+id/skala5"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_linkert"
+                        android:backgroundTint="@color/success_500"
+                        android:layout_gravity="center"
+                        android:padding="11dp">
+
+                        <TextView
+                            android:id="@+id/text_skala5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5"
+                            android:textColor="#000000"
+                            android:layout_gravity="center"
+                            android:textSize="12sp"
+                            android:gravity="center"/>
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rn0a4cfncqf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginHorizontal="34dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/r72q2cykypsw"
+                        android:textColor="#252525"
+                        android:textSize="12sp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="66dp"
+                        android:text="Sangat \nKurang Baik"
+                        />
+                    <TextView
+                        android:id="@+id/rcjsqvpu6mv5"
+                        android:textColor="#252525"
+                        android:textSize="12sp"
+                        android:layout_marginEnd="26dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="39dp"
+                        android:text="Kurang \nBaik"
+                        />
+                    <TextView
+                        android:id="@+id/r32nr2ttfyov"
+                        android:textColor="#252525"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="36dp"
+                        android:text="Cukup \nBaik"
+                        />
+                    <LinearLayout
+                        android:id="@+id/rfvzmdx1ejp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/r1di5faxhui"
+                        android:textColor="#252525"
+                        android:textSize="12sp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Baik"
+                        />
+                    <TextView
+                        android:id="@+id/rd8vrwdykhoc"
+                        android:textColor="#252525"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="39dp"
+                        android:text="Sangat \nBaik"
+                        />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_question_assessment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/item_question_assessment"
+                        tools:itemCount="4"/>
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:paddingTop="50dp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/yellow_500"
+                        android:visibility="gone"
+                        android:indeterminate="true"/>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_card2"
+                    android:backgroundTint="@color/yellow_500"
+                    android:layout_marginTop="20dp"
+                    android:paddingVertical="10dp"
+                    android:layout_marginHorizontal="120dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_submit"
+                        android:textColor="#252525"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Submit" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.ui.profile.participant
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -17,6 +18,8 @@ import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.ActivityParticipantDataBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
+import com.unitedtractors.elomate.ui.assigment.course.CourseActivity
+import com.unitedtractors.elomate.ui.profile.participant.detail.DetailParticipantActivity
 
 class ParticipantDataActivity : AppCompatActivity() {
 
@@ -67,7 +70,11 @@ class ParticipantDataActivity : AppCompatActivity() {
 
                         val participantData = result.data
 
-                        val adapter = ParticipantAdapter(participantData)
+                        val adapter = ParticipantAdapter(participantData) { userId ->
+                            val intent = Intent(this, DetailParticipantActivity::class.java)
+                            intent.putExtra("USER_ID", userId)
+                            startActivity(intent)
+                        }
                         binding.rvParticipantList.adapter = adapter
                     }
                     is Result.Error -> {

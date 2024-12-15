@@ -159,6 +159,22 @@ class ElomateRepository(
             }
         }
 
+    fun getParticipantEducation(token: String, userId: Int): LiveData<Result<List<EducationResponse>, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+
+            try {
+                val response = elomateApiService.getParticipantEducation(token, userId)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val messageErrorResponse = Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                emit(Result.Error(messageErrorResponse))
+            } catch (e: SocketTimeoutException) {
+                emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+            }
+        }
+
     fun getEducation(token: String): LiveData<Result<List<EducationResponse>, MessageErrorResponse>> =
         liveData {
             emit(Result.Loading)

@@ -100,6 +100,12 @@ interface ElomateApiService {
         @Header("Authorization") token: String,
     ): List<UserResponse>
 
+    @GET("participantData/education/{userId}")
+    suspend fun getParticipantEducation(
+        @Header("Authorization") token: String,
+        @Path("userId") userId: Int,
+    ): List<EducationResponse>
+
     @GET("notification/all")
     suspend fun getNotification(
         @Header("Authorization") token: String,
