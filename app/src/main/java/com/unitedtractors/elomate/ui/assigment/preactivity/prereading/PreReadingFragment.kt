@@ -40,7 +40,7 @@ class PreReadingFragment : Fragment() {
         val courseId = arguments?.getInt("COURSE_ID", 0) ?: 0 // Ambil nilai courseId dari arguments
 
         if (courseId != 0) {
-            setupRecyclerView("Bearer ${userModel.id}", courseId)
+            setupRecyclerView("Bearer ${userModel.token}", courseId)
         } else {
             Toast.makeText(requireContext(), "Course ID not found", Toast.LENGTH_SHORT).show()
         }

@@ -79,7 +79,7 @@ class   CourseActivity : AppCompatActivity() {
         super.onResume()
         val courseId = intent.getIntExtra("COURSE_ID", -1)
         if (courseId != -1) {
-            loadCourseDetails("Bearer ${userModel.id}", courseId)
+            loadCourseDetails("Bearer ${userModel.token}", courseId)
         }
     }
 

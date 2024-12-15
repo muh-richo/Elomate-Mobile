@@ -42,7 +42,7 @@
                 android:scaleType="fitXY"
                 />
             <TextView
-                android:id="@+id/ruzczpusyxg"
+                android:id="@+id/tv_title_login"
                 android:textColor="#252525"
                 android:textSize="30sp"
                 android:layout_marginBottom="10dp"
@@ -52,7 +52,7 @@
                 android:text="Selamat Datang!" />
 
             <TextView
-                android:id="@+id/rzko9f2hbkdq"
+                android:id="@+id/tv_desc_login"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:layout_marginBottom="20dp"
@@ -60,21 +60,21 @@
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:textAlignment="center"
-                android:text="Silakan masukkan email dan password \nuntuk mengakses UT Elomate" />
+                android:text="Silakan masukkan NRP dan Password \nuntuk mengakses UT Elomate" />
 
             <TextView
-                android:id="@+id/rxkl1qq8y15"
+                android:id="@+id/tv_title_nrp"
                 android:textColor="#252525"
                 android:textSize="14sp"
                 android:layout_marginBottom="7dp"
                 android:layout_marginStart="21dp"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Email"
+                android:text="NRP"
                 />
 
-            <com.unitedtractors.elomate.ui.custom.EmailEditText
-                android:id="@+id/et_login_email"
+            <com.unitedtractors.elomate.ui.custom.NrpEditText
+                android:id="@+id/et_login_nrp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textSize="14sp"
@@ -82,7 +82,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/card_field_grey"
-                android:hint="Masukkan email"
+                android:hint="Masukkan NRP"
                 android:textColorHint="@color/neutral_400"
                 android:paddingHorizontal="15dp"
                 app:layout_constraintEnd_toEndOf="parent"

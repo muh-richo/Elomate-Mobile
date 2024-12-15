@@ -68,7 +68,7 @@ class ListPeerAssessmentActivity : AppCompatActivity() {
     private fun loadListPeer(assessmentTitle: String, assessmentType: String, assessmentId: Int) {
         binding.rvListPeer.layoutManager = LinearLayoutManager(this)
 
-        viewModel.getListPeerAssessment("Bearer ${userModel.id}", assessmentId).observe(this) { result ->
+        viewModel.getListPeerAssessment("Bearer ${userModel.token}", assessmentId).observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {

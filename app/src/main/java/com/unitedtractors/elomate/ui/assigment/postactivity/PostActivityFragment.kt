@@ -50,7 +50,7 @@ class PostActivityFragment : Fragment() {
         super.onResume()
         val courseId = arguments?.getInt("COURSE_ID", 0) ?: 0
         if (courseId != 0) {
-            setupRecyclerView("Bearer ${userModel.id}", courseId)
+            setupRecyclerView("Bearer ${userModel.token}", courseId)
         } else {
             Toast.makeText(requireContext(), "Course ID not found", Toast.LENGTH_SHORT).show()
         }

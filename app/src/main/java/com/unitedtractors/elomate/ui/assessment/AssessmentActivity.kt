@@ -69,7 +69,7 @@ class AssessmentActivity : AppCompatActivity() {
     }
 
     private fun getAssessment() {
-        viewModel.getAssessment("Bearer ${userModel.id}").observe(this) { result ->
+        viewModel.getAssessment("Bearer ${userModel.token}").observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {  }

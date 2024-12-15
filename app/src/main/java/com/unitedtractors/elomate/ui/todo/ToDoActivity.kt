@@ -92,7 +92,7 @@ class ToDoActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         binding.rvTodoList.layoutManager = LinearLayoutManager(this)
 
-        viewModel.getToDoList("Bearer ${userModel.id}").observe(this) { result ->
+        viewModel.getToDoList("Bearer ${userModel.token}").observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
 

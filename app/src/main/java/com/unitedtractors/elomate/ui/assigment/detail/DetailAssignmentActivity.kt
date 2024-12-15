@@ -56,7 +56,7 @@ class DetailAssignmentActivity : AppCompatActivity() {
         super.onResume()
         val assignmentId = intent.getIntExtra("ASSIGNMENT_ID", -1)
         if (assignmentId != -1) {
-            loadAssignmentDetails("Bearer ${userModel.id}", assignmentId)
+            loadAssignmentDetails("Bearer ${userModel.token}", assignmentId)
         }
     }
 

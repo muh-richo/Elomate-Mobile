@@ -93,7 +93,7 @@ class ProfileFragment : Fragment() {
         }
 
     private fun getCurrentUserApi() {
-        viewModel.getCurrentUserApi("Bearer ${userModel.id}").observe(requireActivity()) { result ->
+        viewModel.getCurrentUserApi("Bearer ${userModel.token}").observe(requireActivity()) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {
@@ -108,6 +108,7 @@ class ProfileFragment : Fragment() {
                         binding.apply {
                             tvNamaLengkap.text = userApi.namaLengkap
                             tvNrp.text = userApi.nrp
+                            tvDivisi.text = userApi.divisi
                             tvPosisi.text = userApi.posisi
                             tvTempatTanggalLahir.text = buildString {
                                 append(userApi.tempatLahir)
@@ -136,8 +137,9 @@ class ProfileFragment : Fragment() {
 
     private fun logout() {
         lifecycleScope.launch {
-            userModel.id = ""
-            userPreference.setUser(userModel)
+            userModel.token = ""
+            userPreference.saveAuthToken(userModel.token!!)
+            userPreference.clearAuthToken()
 
             val intent = Intent(requireContext(), LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Clear back stack

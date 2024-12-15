@@ -63,7 +63,7 @@ class ReportDetailActivity : AppCompatActivity() {
     }
 
     private fun getKirkpatrickReport(){
-        viewModel.getKirkpatrickReport("Bearer ${userModel.id}").observe(this) { result ->
+        viewModel.getKirkpatrickReport("Bearer ${userModel.token}").observe(this) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {
@@ -78,7 +78,7 @@ class ReportDetailActivity : AppCompatActivity() {
     }
 
     private fun getKirkpatrickDetail() {
-        viewModel.getKirkpatrickDetail("Bearer ${userModel.id}").observe(this) { result ->
+        viewModel.getKirkpatrickDetail("Bearer ${userModel.token}").observe(this) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {

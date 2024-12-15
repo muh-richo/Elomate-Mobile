@@ -56,7 +56,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun getCurrentUserApi() {
-        viewModel.getCurrentUserApi("Bearer ${userModel.id}").observe(this) { result ->
+        viewModel.getCurrentUserApi("Bearer ${userModel.token}").observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> { }
@@ -67,6 +67,7 @@ class EditProfileActivity : AppCompatActivity() {
                             etNamaLengkap.setText(userResponse.namaLengkap)
                             etNrp.setText(userResponse.nrp)
                             etEmail.setText(userResponse.email)
+                            etDivisi.setText(userResponse.divisi)
                             etPosisi.setText(userResponse.posisi)
                             etDomisili.setText(userResponse.domisili)
                             etTempatLahir.setText(userResponse.tempatLahir)
@@ -83,17 +84,23 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun saveChangesEdit() {
+        val etEmail = binding.etEmail.text
+        val etDivisi = binding.etDivisi.text
+        val etPosisi = binding.etPosisi.text
         val etDomisili = binding.etDomisili.text
         val etTempatLahir = binding.etTempatLahir.text
         val etTanggalLahir = binding.etTanggalLahir.text
         val etNoHp = binding.etNoHp.text
 
-        if (etDomisili!!.isEmpty() || etTempatLahir!!.isEmpty() || etTanggalLahir!!.isEmpty() || etNoHp!!.isEmpty()) {
+        if (etEmail!!.isEmpty() || etPosisi!!.isEmpty() || etDivisi!!.isEmpty() || etDomisili!!.isEmpty() || etTempatLahir!!.isEmpty() || etTanggalLahir!!.isEmpty() || etNoHp!!.isEmpty()) {
             Toast.makeText(this, "Silahkan isi kolom yang ada", Toast.LENGTH_SHORT).show()
         } else {
 
             viewModel.updateProfile(
-                "Bearer ${userModel.id}",
+                "Bearer ${userModel.token}",
+                etEmail.toString(),
+                etDivisi.toString(),
+                etPosisi.toString(),
                 etDomisili.toString(),
                 etTempatLahir.toString(),
                 etTanggalLahir.toString(),

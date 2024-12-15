@@ -41,13 +41,17 @@ class UpcomingFragment : Fragment() {
     ): View {
         binding = FragmentUpcomingBinding.inflate(inflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         userPreference = UserPreference(requireContext())
         userModel = userPreference.getUser()
 
         setupRecyclerView()
         fetchUpcomingMentoring()
-
-        return binding.root
     }
 
     private fun setupRecyclerView() {
@@ -70,7 +74,7 @@ class UpcomingFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchUpcomingMentoring() {
-        viewModel.getUpcomingMentoring("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getUpcomingMentoring("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -90,7 +94,7 @@ class UpcomingFragment : Fragment() {
     }
 
     private fun deleteMentoring(mentoringId: Int) {
-        viewModel.deleteMentoring("Bearer ${userModel.id}", mentoringId).observe(viewLifecycleOwner) { result ->
+        viewModel.deleteMentoring("Bearer ${userModel.token}", mentoringId).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {

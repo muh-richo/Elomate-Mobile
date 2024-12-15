@@ -1,6 +1,6 @@
 package com.unitedtractors.elomate.data.network.request
 
 data class LoginRequest(
-    val email: String,
+    val nrp: String,
     val password: String
 )

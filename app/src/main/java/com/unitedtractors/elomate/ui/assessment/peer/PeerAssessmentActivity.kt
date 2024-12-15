@@ -58,7 +58,7 @@ class PeerAssessmentActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         binding.rvPeerAssessment.layoutManager = LinearLayoutManager(this)
 
-        viewModel.getPeerAssessment("Bearer ${userModel.id}").observe(this) { result ->
+        viewModel.getPeerAssessment("Bearer ${userModel.token}").observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {  }

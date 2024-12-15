@@ -422,6 +422,7 @@
                     android:id="@+id/et_lesson_learned"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="60dp"
                     android:hint="Ketik jawaban Anda di sini..."
                     android:gravity="start|top"
                     android:layout_marginBottom="20dp"
@@ -442,7 +443,7 @@
                     android:layout_marginBottom="6dp"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Catatan Mentor" />
+                    android:text="Catatan dari Mentor" />
 
                 <TextView
                     android:id="@+id/tv_title_catatan"
@@ -458,6 +459,7 @@
                     android:id="@+id/et_catatan_mentor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="60dp"
                     android:hint="Ketik jawaban Anda di sini..."
                     android:gravity="start|top"
                     android:layout_marginBottom="30dp"

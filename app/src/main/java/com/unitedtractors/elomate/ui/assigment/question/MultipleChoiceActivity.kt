@@ -80,7 +80,7 @@ class MultipleChoiceActivity : AppCompatActivity() {
     }
 
     private fun loadQuestions(assignmentId: Int) {
-        viewModel.getQuestion("Bearer ${userModel.id}", assignmentId).observe(this) { result ->
+        viewModel.getQuestion("Bearer ${userModel.token}", assignmentId).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {
@@ -125,7 +125,7 @@ class MultipleChoiceActivity : AppCompatActivity() {
             AnswerMultipleChoiceRequest(questionId = questionId, userAnswer = selectedOption)
         }
 
-        viewModel.submitAnswerMultipleChoice("Bearer ${userModel.id}", assignmentId, answers).observe(this) { result ->
+        viewModel.submitAnswerMultipleChoice("Bearer ${userModel.token}", assignmentId, answers).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {

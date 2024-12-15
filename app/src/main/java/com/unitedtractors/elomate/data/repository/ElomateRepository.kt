@@ -49,14 +49,14 @@ class ElomateRepository(
     private val elomateApiService: ElomateApiService
 ) {
     fun loginApi(
-        email: String,
+        nrp: String,
         password: String
     ): LiveData<Result<TokenResponse, MessageErrorResponse>> =
         liveData {
             emit(Result.Loading)
 
             try {
-                val loginRequest = LoginRequest(email, password)
+                val loginRequest = LoginRequest(nrp, password)
                 val response = elomateApiService.login(loginRequest)
                 emit(Result.Success(response))
             } catch (e: HttpException) {
@@ -74,6 +74,9 @@ class ElomateRepository(
 
     fun updateProfile(
         token: String,
+        email: String,
+        divisi: String,
+        posisi: String,
         domisili: String,
         tempatLahir: String,
         tanggalLahir: String,
@@ -84,7 +87,7 @@ class ElomateRepository(
 
             try {
                 val updateProfileRequest =
-                    UpdateProfileRequest(domisili, tempatLahir, tanggalLahir, noHp)
+                    UpdateProfileRequest(email, divisi, posisi, domisili, tempatLahir, tanggalLahir, noHp)
                 val response = elomateApiService.updateProfile(token, updateProfileRequest)
                 emit(Result.Success(response))
             } catch (e: HttpException) {

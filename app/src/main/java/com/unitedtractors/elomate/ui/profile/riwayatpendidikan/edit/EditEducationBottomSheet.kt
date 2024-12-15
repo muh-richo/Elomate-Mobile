@@ -71,7 +71,7 @@ class EditEducationBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun getEducationById(educationId: Int) {
-        viewModel.getEducationById("Bearer ${userModel.id}", educationId).observe(viewLifecycleOwner) { result ->
+        viewModel.getEducationById("Bearer ${userModel.token}", educationId).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {}
                 is Result.Success -> {
@@ -94,7 +94,7 @@ class EditEducationBottomSheet : BottomSheetDialogFragment() {
         var selectedJenjangStudi: String? = null
 
         // Spinner untuk Courses
-        viewModel.getEducationLevel("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getEducationLevel("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {}
                 is Result.Success -> {
@@ -128,7 +128,7 @@ class EditEducationBottomSheet : BottomSheetDialogFragment() {
         val etTahunLulus = binding.etTahunLulus.text
 
         viewModel.updateEducation(
-            "Bearer ${userModel.id}",
+            "Bearer ${userModel.token}",
             educationId,
             etUniversitas.toString(),
             etJurusan.toString(),
@@ -155,7 +155,7 @@ class EditEducationBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun deleteEducation(educationId: Int) {
-        viewModel.deleteEducation("Bearer ${userModel.id}", educationId).observe(requireActivity()) { result ->
+        viewModel.deleteEducation("Bearer ${userModel.token}", educationId).observe(requireActivity()) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {  }

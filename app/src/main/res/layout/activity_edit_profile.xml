@@ -40,10 +40,12 @@
         android:layout_weight="1"
         android:scrollbars="none"
         android:background="@color/neutral_100">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="20dp"
+            android:paddingBottom="50dp"
             android:orientation="vertical">
             <LinearLayout
                 android:id="@+id/rm56v6rzw1s"
@@ -149,13 +151,34 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/card_field_yellow"
-                    android:backgroundTint="@color/yellow_100"
-                    tools:text="naufalramiz@gmail.com"
-                    android:enabled="false"
+                    android:hint="Masukkan Email"
+                    android:enabled="true"
                     android:paddingHorizontal="15dp" />
 
                 <TextView
-                    android:id="@+id/r0zn0xse73hzr"
+                    android:id="@+id/tv_title_divisi"
+                    android:textColor="#121926"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Divisi" />
+
+                <com.unitedtractors.elomate.ui.custom.PosisiEditText
+                    android:id="@+id/et_divisi"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/card_field_yellow"
+                    android:enabled="true"
+                    android:hint="Masukkan Divisi"
+                    android:paddingHorizontal="15dp"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/tv_title_posisi"
                     android:textColor="#121926"
                     android:textSize="12sp"
                     android:layout_marginBottom="7dp"
@@ -171,99 +194,10 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/card_field_yellow"
-                    android:backgroundTint="@color/yellow_100"
-                    android:enabled="false"
+                    android:enabled="true"
+                    android:hint="Masukkan Posisi"
                     android:paddingHorizontal="15dp"
-                    android:textSize="12sp"
-                    tools:text="Administration Department" />
-
-<!--                <TextView-->
-<!--                    android:id="@+id/rjabit49f8o"-->
-<!--                    android:textColor="#121926"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_marginBottom="8dp"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:text="Universitas" />-->
-
-<!--                <com.unitedtractors.elomate.ui.custom.UniversityEditText-->
-<!--                    android:id="@+id/et_asal_universitas"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_marginHorizontal="16dp"-->
-<!--                    android:layout_marginBottom="10dp"-->
-<!--                    android:background="@drawable/card_field_yellow"-->
-<!--                    android:hint="Masukkan Universitas"-->
-<!--                    android:enabled="true"-->
-<!--                    android:paddingHorizontal="15dp" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/tv_title_jenjang_studi"-->
-<!--                    android:textColor="#121926"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_marginBottom="8dp"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:text="Jenjang Studi"/>-->
-
-<!--                <com.unitedtractors.elomate.ui.custom.JurusanEditText-->
-<!--                    android:id="@+id/et_jenjang_studi"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_marginHorizontal="16dp"-->
-<!--                    android:layout_marginBottom="10dp"-->
-<!--                    android:background="@drawable/card_field_yellow"-->
-<!--                    android:hint="Masukkan Jenjang Studi"-->
-<!--                    android:enabled="true"-->
-<!--                    android:paddingHorizontal="15dp" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/tv_title_Jurusan"-->
-<!--                    android:textColor="#121926"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_marginBottom="8dp"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:text="Jurusan"/>-->
-
-<!--                <com.unitedtractors.elomate.ui.custom.JurusanEditText-->
-<!--                    android:id="@+id/et_jurusan"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_marginHorizontal="16dp"-->
-<!--                    android:layout_marginBottom="10dp"-->
-<!--                    android:background="@drawable/card_field_yellow"-->
-<!--                    android:hint="Masukkan Jurusan"-->
-<!--                    android:enabled="true"-->
-<!--                    android:paddingHorizontal="15dp" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/tv_title_tahun_lulus"-->
-<!--                    android:textColor="#121926"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_marginBottom="8dp"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:text="Tahun Lulus"/>-->
-
-<!--                <com.unitedtractors.elomate.ui.custom.JurusanEditText-->
-<!--                    android:id="@+id/et_tahun_lulus"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_marginHorizontal="16dp"-->
-<!--                    android:layout_marginBottom="10dp"-->
-<!--                    android:background="@drawable/card_field_yellow"-->
-<!--                    android:hint="Masukkan Tahun Lulus"-->
-<!--                    android:enabled="true"-->
-<!--                    android:paddingHorizontal="15dp" />-->
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:id="@+id/tv_title_domisili"

@@ -17,7 +17,6 @@ import com.github.mikephil.charting.data.RadarData
 import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.formatter.LargeValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
@@ -65,7 +64,7 @@ class ReportFragment : Fragment() {
     }
 
     private fun setupSpinner() {
-        viewModel.getPhaseUser("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getPhaseUser("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> { }
                 is Result.Success -> {
@@ -81,7 +80,7 @@ class ReportFragment : Fragment() {
                             val selectedPhaseId = phaseIds[position]
 
                             if (selectedPhaseId != null) {
-                                viewModel.getTopicUser("Bearer ${userModel.id}", selectedPhaseId).observe(viewLifecycleOwner) { topicResult ->
+                                viewModel.getTopicUser("Bearer ${userModel.token}", selectedPhaseId).observe(viewLifecycleOwner) { topicResult ->
                                     when (topicResult) {
                                         is Result.Loading -> { }
                                         is Result.Success -> {
@@ -126,7 +125,7 @@ class ReportFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setupTableReport(phaseId: Int, topicId: Int) {
-        viewModel.getReportUser("Bearer ${userModel.id}", phaseId, topicId).observe(viewLifecycleOwner) { result ->
+        viewModel.getReportUser("Bearer ${userModel.token}", phaseId, topicId).observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> { }
@@ -172,7 +171,7 @@ class ReportFragment : Fragment() {
     }
 
     private fun getKirkpatrickReport(){
-        viewModel.getKirkpatrickReport("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getKirkpatrickReport("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {

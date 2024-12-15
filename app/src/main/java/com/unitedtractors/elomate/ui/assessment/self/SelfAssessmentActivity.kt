@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -60,7 +59,7 @@ class SelfAssessmentActivity : AppCompatActivity() {
     private fun loadSelfAssessment() {
         binding.rvSelfAssessment.layoutManager = LinearLayoutManager(this)
 
-        viewModel.getSelfAssessment("Bearer ${userModel.id}").observe(this) { result ->
+        viewModel.getSelfAssessment("Bearer ${userModel.token}").observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {  }

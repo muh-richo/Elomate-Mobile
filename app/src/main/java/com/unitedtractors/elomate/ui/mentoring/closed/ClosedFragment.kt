@@ -41,13 +41,17 @@ class ClosedFragment : Fragment() {
     ): View {
         binding = FragmentClosedBinding.inflate(layoutInflater)
 
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         userPreference = UserPreference(requireContext())
         userModel = userPreference.getUser()
 
         setupRecyclerView()
         fetchClosedMentoring()
-
-        return binding.root
     }
 
     private fun setupRecyclerView() {
@@ -70,7 +74,7 @@ class ClosedFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchClosedMentoring() {
-        viewModel.getApproveMentoring("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getApproveMentoring("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE

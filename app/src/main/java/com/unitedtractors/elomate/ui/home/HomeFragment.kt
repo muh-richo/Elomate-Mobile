@@ -1,7 +1,6 @@
 package com.unitedtractors.elomate.ui.home
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -10,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +17,6 @@ import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.view.ViewContainer
 import com.kizitonwose.calendar.view.WeekDayBinder
 import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.adapter.CourseAdapter
 import com.unitedtractors.elomate.adapter.CourseProgressAdapter
 import com.unitedtractors.elomate.adapter.ScheduleAdapter
 import com.unitedtractors.elomate.adapter.ToDoAdapter
@@ -29,7 +26,6 @@ import com.unitedtractors.elomate.databinding.FragmentHomeBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.auth.login.LoginActivity
 import com.unitedtractors.elomate.ui.announcement.AnnouncementActivity
-import com.unitedtractors.elomate.ui.schedule.DayViewContainer
 import com.unitedtractors.elomate.ui.schedule.ScheduleActivity
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.ui.assigment.course.CourseActivity
@@ -107,7 +103,7 @@ class HomeFragment : Fragment() {
         }
     }
     private fun getCurrentUserApi() {
-        viewModel.getCurrentUserApi("Bearer ${userModel.id}").observe(requireActivity()) { result ->
+        viewModel.getCurrentUserApi("Bearer ${userModel.token}").observe(requireActivity()) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {
@@ -126,9 +122,9 @@ class HomeFragment : Fragment() {
 
                         val errorMessage = result.error.message
 
-                        if (errorMessage == "timeout") {
-                            userModel.id = ""
-                            userPreference.setUser(userModel)
+                        if (errorMessage == "Forbidden: Invalid token") {
+                            userModel.token = ""
+                            userPreference.saveAuthToken(userModel.token!!)
 
                             Toast.makeText(requireContext(), "Sesi telah berakhir. Silakan login kembali.", Toast.LENGTH_SHORT).show()
 
@@ -146,7 +142,7 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerViewToDo() {
         binding.rvTodoList.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.getToDoList("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getToDoList("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressHorizontal.visibility = View.VISIBLE
@@ -177,7 +173,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getCourseProgress() {
-        viewModel.getCourseProgress("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getCourseProgress("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressHorizontal.visibility = View.VISIBLE
@@ -223,7 +219,6 @@ class HomeFragment : Fragment() {
             override fun bind(container: DayViewContainer, data: WeekDay) {
                 container.textView.text = data.date.dayOfMonth.toString()
 
-                // Atur warna background
                 when {
                     data.date == selectedDate -> {
                         container.view.setBackgroundResource(R.drawable.bg_date2)
@@ -232,8 +227,7 @@ class HomeFragment : Fragment() {
                         container.view.setBackgroundColor(Color.TRANSPARENT)
                     }
                 }
-
-                // Atur warna teks
+                
                 container.textView.setTextColor(
                     when {
                         data.date == LocalDate.now() -> Color.BLUE
@@ -242,7 +236,6 @@ class HomeFragment : Fragment() {
                     }
                 )
 
-                // Tambahkan klik listener
                 container.view.setOnClickListener {
                     // Update tanggal yang dipilih
                     val previousSelectedDate = selectedDate
@@ -254,7 +247,6 @@ class HomeFragment : Fragment() {
                     }
                     weekCalendarView.notifyDateChanged(selectedDate!!)
 
-                    // Panggil fungsi untuk memuat jadwal
                     getToDoListScheduleForDate(data.date)
                 }
             }
@@ -266,7 +258,7 @@ class HomeFragment : Fragment() {
     private fun getToDoListScheduleForDate(date: LocalDate) {
         val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
         val deadline = date.format(formatter)
-        viewModel.getToDoListSchedule("Bearer ${userModel.id}", deadline).observe(viewLifecycleOwner) { result ->
+        viewModel.getToDoListSchedule("Bearer ${userModel.token}", deadline).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressHorizontal.visibility = View.VISIBLE

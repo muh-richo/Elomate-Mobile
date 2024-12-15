@@ -20,7 +20,6 @@ import com.unitedtractors.elomate.ui.home.HomeViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import android.widget.Toast
 import com.unitedtractors.elomate.adapter.ScheduleAdapter
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.ui.assigment.detail.DetailAssignmentActivity
@@ -71,7 +70,7 @@ class ScheduleActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun getToDoListSchedule(deadline: String) {
-        viewModel.getToDoListSchedule("Bearer ${userModel.id}", deadline).observe(this) { result ->
+        viewModel.getToDoListSchedule("Bearer ${userModel.token}", deadline).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {

@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -13,10 +14,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.databinding.ActivityMainBinding
+import com.unitedtractors.elomate.ui.auth.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var userPreference: UserPreference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,13 +29,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val userPreference = UserPreference(this)
+        userPreference = UserPreference(this)
 
         // Redirect to login if no auth token is found
-//        if (userPreference.getAuthToken() == null) {
-//            startActivity(Intent(this, LoginActivity::class.java))
-//            finish()
-//        }
+        if (userPreference.getAuthToken() == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.yellow_300)
 

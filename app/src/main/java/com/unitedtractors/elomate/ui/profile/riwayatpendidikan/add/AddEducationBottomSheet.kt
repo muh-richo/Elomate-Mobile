@@ -1,9 +1,12 @@
 package com.unitedtractors.elomate.ui.profile.riwayatpendidikan.add
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
@@ -40,6 +43,8 @@ class AddEducationBottomSheet : BottomSheetDialogFragment() {
         userPreference = UserPreference(requireContext())
         userModel = userPreference.getUser()
 
+        setupSpinner()
+
         binding.btnAdd.setOnClickListener {
             addEducation()
         }
@@ -47,20 +52,52 @@ class AddEducationBottomSheet : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    private fun setupSpinner() {
+        var selectedJenjangStudi: String? = null
+
+        // Spinner untuk Courses
+        viewModel.getEducationLevel("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {}
+                is Result.Success -> {
+                    val response = result.data.map { it }
+
+                    val adapterCourse =
+                        ArrayAdapter(requireContext(), R.layout.simple_spinner_item, response)
+                    adapterCourse.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+                    binding.spinnerJenjangStudi.adapter = adapterCourse
+
+                    binding.spinnerJenjangStudi.onItemSelectedListener =
+                        object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                                selectedJenjangStudi = response[position]
+                            }
+                            override fun onNothingSelected(parent: AdapterView<*>?) {
+                                selectedJenjangStudi = null
+                            }
+                        }
+                }
+                is Result.Error -> {
+                    Toast.makeText(requireContext(), "No Data Found", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     private fun addEducation() {
         val university = binding.etNamaUniv.text
         val major = binding.etJurusan.text
-        val degree = binding.etJenjangStudi.text
+        val degree = binding.spinnerJenjangStudi.selectedItem.toString()
         val graduationYear = binding.etTahunLulus.text
 
-        if (university!!.isEmpty() || major!!.isEmpty() || degree!!.isEmpty() || graduationYear!!.isEmpty()) {
+        if (university!!.isEmpty() || major!!.isEmpty() || degree.isEmpty() || graduationYear!!.isEmpty()) {
             Toast.makeText(requireContext(), "Isi semua data!", Toast.LENGTH_SHORT).show()
         } else {
             viewModel.addEducation(
-                "Bearer ${userModel.id}",
+                "Bearer ${userModel.token}",
                 university.toString(),
                 major.toString(),
-                degree.toString(),
+                degree,
                 graduationYear.toString()
             ).observe(requireActivity()) { result ->
                 if (result != null) {

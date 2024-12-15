@@ -50,7 +50,7 @@ class AssignmentFragment : Fragment() {
 
 
     private fun getCurrentUserApi() {
-        viewModel.getCurrentUserApi("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getCurrentUserApi("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> { }
                 is Result.Success -> {
@@ -58,16 +58,7 @@ class AssignmentFragment : Fragment() {
                     binding.tvHiUser.text = getString(com.unitedtractors.elomate.R.string.hi_user, response.namaLengkap)
                 }
                 is Result.Error -> {
-                    val errorMessage = result.error.message
-                    if (errorMessage == "timeout") {
-                        userModel.id = ""
-                        userPreference.setUser(userModel)
-                        Toast.makeText(requireContext(), "Sesi telah berakhir. Silakan login kembali.", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(requireContext(), LoginActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        Toast.makeText(requireContext(), result.error.message, Toast.LENGTH_SHORT).show()
-                    }
+                    Toast.makeText(requireContext(), result.error.message, Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -102,7 +93,7 @@ class AssignmentFragment : Fragment() {
 
     private fun setupSpinner() {
         // Spinner Phase
-        viewModel.getPhaseUser("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getPhaseUser("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> { }
                 is Result.Success -> {
@@ -123,7 +114,7 @@ class AssignmentFragment : Fragment() {
 
                             // Panggil API untuk mendapatkan topik berdasarkan phaseId yang dipilih
                             if (selectedPhaseId != null) {
-                                viewModel.getTopicUser("Bearer ${userModel.id}", selectedPhaseId).observe(viewLifecycleOwner) { topicResult ->
+                                viewModel.getTopicUser("Bearer ${userModel.token}", selectedPhaseId).observe(viewLifecycleOwner) { topicResult ->
                                     when (topicResult) {
                                         is Result.Loading -> { }
 
@@ -142,7 +133,7 @@ class AssignmentFragment : Fragment() {
                                                 override fun onItemSelected(parent: AdapterView<*>, view: View?, topicPosition: Int, id: Long) {
                                                     val selectedTopicId = topicIds[topicPosition]
                                                     if (selectedTopicId != null) {
-                                                        setupRecyclerView("Bearer ${userModel.id}", selectedPhaseId, selectedTopicId)
+                                                        setupRecyclerView("Bearer ${userModel.token}", selectedPhaseId, selectedTopicId)
                                                     }
                                                 }
 

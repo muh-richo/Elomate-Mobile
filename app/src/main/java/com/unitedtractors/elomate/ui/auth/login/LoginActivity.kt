@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.ui.auth.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -43,13 +44,13 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
-        // Check if user is already logged in
-//        if (userPreference.getAuthToken() != null) {
-//            // Auth token exists, navigate to MainActivity
-//            startActivity(Intent(this, MainActivity::class.java))
-//            finish()
-//            return
-//        }
+         // Check if user is already logged in
+        if (userPreference.getAuthToken() != null) {
+            // Auth token exists, navigate to MainActivity
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
 
         binding.apply {
             btnForgotPassword.setOnClickListener {
@@ -63,16 +64,16 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login() {
-        val etLoginEmail = binding.etLoginEmail.text
+        val etLoginNrp = binding.etLoginNrp.text
         val etLoginPassword = binding.etLoginPassword.text
 
-        if (etLoginEmail!!.isEmpty() || etLoginPassword!!.isEmpty()) {
+        if (etLoginNrp!!.isEmpty() || etLoginPassword!!.isEmpty()) {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
-        } else if (!Utils.isValidEmail(etLoginEmail.toString()) || etLoginPassword.length < 8) {
-            Toast.makeText(this, "Please check your email and password", Toast.LENGTH_SHORT).show()
+        } else if (etLoginPassword.length < 8) {
+            Toast.makeText(this, "Please check your Password", Toast.LENGTH_SHORT).show()
         } else {
             viewModel.login(
-                etLoginEmail.toString(),
+                etLoginNrp.toString(),
                 etLoginPassword.toString()
             ).observe(this) { result ->
                 when (result) {
@@ -85,14 +86,16 @@ class LoginActivity : AppCompatActivity() {
 
                         val response = result.data
 
-                        userModel.id = response.token
-                        userPreference.setUser(userModel)
+                        userModel.token = response.token
+                        userPreference.saveAuthToken(userModel.token!!)
 
                         Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
 
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
+
+                        saveAuthToken(userModel.token!!)
                     }
 
                     is Result.Error -> {
@@ -112,10 +115,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // Fungsi untuk menyimpan token ke SharedPreferences
-//    private fun saveAuthToken(token: String) {
-//        val sharedPreferences = getSharedPreferences("YourPreferenceName", Context.MODE_PRIVATE)
-//        val editor = sharedPreferences.edit()
-//        editor.putString("authToken", token)
-//        editor.apply()
-//    }
+    private fun saveAuthToken(token: String) {
+        val sharedPreferences = getSharedPreferences("USER_PREF", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("authToken", token)
+        editor.apply()
+    }
 }

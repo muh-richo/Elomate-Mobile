@@ -89,7 +89,7 @@ class EducationActivity : AppCompatActivity() {
     private fun loadEducationData() {
         binding.rvRiwatatPendidikan.layoutManager = LinearLayoutManager(this)
 
-        viewModel.getEducation("Bearer ${userModel.id}").observe(this) { result ->
+        viewModel.getEducation("Bearer ${userModel.token}").observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {

@@ -30,11 +30,12 @@ class MentoringAdapter(
             binding.tvType.text = upcoming.tipeMentoring
             binding.tvStatus.text = upcoming.status
 
-            if (upcoming.status == "Processing") {
+            if (upcoming.status == "Upcoming") {
+                binding.icDelete.visibility = View.VISIBLE
                 binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.blue_50)
                 binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.blue_500))
                 binding.ivStatus.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.blue_500))
-            } else if (upcoming.status == "Need Revision") {
+            } else if (upcoming.status == "Need Revision" || upcoming.status == "Missed") {
                 binding.icDelete.visibility = View.GONE
                 binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.error_50)
                 binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.error_500))
@@ -46,7 +47,7 @@ class MentoringAdapter(
                 binding.ivStatus.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.success_900))
             }
 
-            binding.btnDetail.setOnClickListener {
+            binding.btnFeedback.setOnClickListener {
                 upcoming.mentoringId?.let { it1 -> onUpcomingClick(it1) }
             }
 

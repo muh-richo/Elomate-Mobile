@@ -3,20 +3,19 @@ package com.unitedtractors.elomate.ui.mentoring.detail
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.viewpager2.widget.ViewPager2
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.ActivityDetailMentoringBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
-import com.unitedtractors.elomate.ui.assigment.preactivity.prereading.PreReadingViewModel
 import com.unitedtractors.elomate.ui.mentoring.MentoringViewModel
 
 class DetailMentoringActivity : AppCompatActivity() {
@@ -69,20 +68,23 @@ class DetailMentoringActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun loadDetailMentoring(mentoringId: Int) {
-        viewModel.getDetailMentoring("Bearer ${userModel.id}", mentoringId).observe(this) { result ->
+        viewModel.getDetailMentoring("Bearer ${userModel.token}", mentoringId).observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {  }
                     is Result.Success -> {
                         val response = result.data
 
-                        if (response.status == "Processing") {
+                        if (response.status == "Upcoming") {
                             binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.blue_50)
                             binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.blue_500))
-                        } else if (response.status == "Need Revision") {
+                        } else if (response.status == "Need Revision" || response.status == "Missed") {
                             binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.error_50)
                             binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.error_500))
                         } else if (response.status == "Approve") {
+                            binding.etLessonLearned.isEnabled = false
+                            binding.etCatatanMentor.isEnabled = false
+                            binding.btnSave.visibility = View.GONE
                             binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.success_50)
                             binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.success_900))
                         }
@@ -116,7 +118,7 @@ class DetailMentoringActivity : AppCompatActivity() {
             Toast.makeText(this, "Silahkan isi kolom yang ada", Toast.LENGTH_SHORT).show()
         } else {
             viewModel.submitFormFeedback(
-                "Bearer ${userModel.id}",
+                "Bearer ${userModel.token}",
                 mentoringId,
                 binding.etLessonLearned.text.toString(),
                 binding.etCatatanMentor.text.toString(),

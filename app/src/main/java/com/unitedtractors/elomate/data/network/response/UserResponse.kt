@@ -28,6 +28,9 @@ data class UserResponse(
 	@field:SerializedName("posisi")
 	val posisi: String? = null,
 
+	@field:SerializedName("divisi")
+	val divisi: String? = null,
+
 	@field:SerializedName("domisili")
 	val domisili: String? = null,
 

@@ -16,9 +16,7 @@ import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.ActivityAnnouncementBinding
-import com.unitedtractors.elomate.databinding.ActivityMainBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
-import com.unitedtractors.elomate.ui.profile.participant.ParticipantDataViewModel
 
 class AnnouncementActivity : AppCompatActivity() {
 
@@ -56,7 +54,7 @@ class AnnouncementActivity : AppCompatActivity() {
     }
 
     private fun loadAnnouncement() {
-        viewModel.getAnnouncement("Bearer ${userModel.id}").observe(this) { result ->
+        viewModel.getAnnouncement("Bearer ${userModel.token}").observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE

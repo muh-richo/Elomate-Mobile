@@ -2,7 +2,6 @@ package com.unitedtractors.elomate.ui.assigment.preactivity.prereading
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -54,7 +53,7 @@ class DetailPreReadingActivity : AppCompatActivity() {
 
         val preReadingId = intent.getIntExtra("PRE_READING_ID", -1)
         if (preReadingId != -1) {
-            loadDetailPreReading("Bearer ${userModel.id}", preReadingId)
+            loadDetailPreReading("Bearer ${userModel.token}", preReadingId)
         }
 
 

@@ -15,7 +15,6 @@ import com.unitedtractors.elomate.adapter.ParticipantAdapter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
-import com.unitedtractors.elomate.data.network.response.UserResponse
 import com.unitedtractors.elomate.databinding.ActivityParticipantDataBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 
@@ -57,7 +56,7 @@ class ParticipantDataActivity : AppCompatActivity() {
     private fun loadParticipantData() {
         binding.rvParticipantList.layoutManager = LinearLayoutManager(this)
 
-        viewModel.getParticipantData("Bearer ${userModel.id}").observe(this) { result ->
+        viewModel.getParticipantData("Bearer ${userModel.token}").observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {

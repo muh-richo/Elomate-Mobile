@@ -32,6 +32,9 @@ class MentoringFragment : Fragment() {
     ): View {
         binding = FragmentMentoringBinding.inflate(layoutInflater)
 
+        userPreference = UserPreference(requireContext())
+        userModel = userPreference.getUser()
+
         val tabLayout = binding.tabLayout
         val viewPager = binding.viewPager
 
@@ -47,23 +50,7 @@ class MentoringFragment : Fragment() {
             tab.customView = createTabView(position)
         }.attach()
 
-//        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//            override fun onPageSelected(position: Int) {
-//                val currentFragment = childFragmentManager.findFragmentByTag("f$position")
-//                if (currentFragment != null) {
-//                    adjustViewPagerHeight(viewPager, currentFragment)
-//                }
-//            }
-//        })
-
         return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        userPreference = UserPreference(requireContext())
-        userModel = userPreference.getUser()
-
     }
 
     private fun createTabView(position: Int): View {

@@ -1,16 +1,13 @@
 package com.unitedtractors.elomate.ui.profile.changepassword
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.unitedtractors.elomate.MainActivity
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
@@ -69,7 +66,7 @@ class ChangePasswordActivity : AppCompatActivity() {
             Toast.makeText(this, "Password tidak sama", Toast.LENGTH_SHORT).show()
         } else {
             viewModel.updateChangePassword(
-                "Bearer ${userModel.id}",
+                "Bearer ${userModel.token}",
                 etCurrentPass.toString(),
                 etConfirmNewPass.toString()
             ).observe(this) { result ->

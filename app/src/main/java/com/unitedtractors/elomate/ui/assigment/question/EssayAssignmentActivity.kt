@@ -1,11 +1,9 @@
 package com.unitedtractors.elomate.ui.assigment.question
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
-import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -14,14 +12,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.textfield.TextInputEditText
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.adapter.QuestionEssayAdapter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.ActivityEssayAssignmentBinding
-import com.unitedtractors.elomate.databinding.ActivityMultipleChoiceBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import java.io.File
 
@@ -113,7 +109,7 @@ class EssayAssignmentActivity : AppCompatActivity() {
     private fun loadQuestions(assignmentId: Int) {
         binding.rvQuestionEssay.layoutManager = LinearLayoutManager(this)
 
-        viewModel.getQuestion("Bearer ${userModel.id}", assignmentId).observe(this) { result ->
+        viewModel.getQuestion("Bearer ${userModel.token}", assignmentId).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {
@@ -145,7 +141,7 @@ class EssayAssignmentActivity : AppCompatActivity() {
 //        binding.progressBar.visibility = View.VISIBLE
 
         viewModel.submitAnswerEssay(
-            token = "Bearer ${userModel.id}",
+            token = "Bearer ${userModel.token}",
             assignmentId = assignmentId,
             essayAnswers = essayAnswer,
             filePath = selectedFilePath!!

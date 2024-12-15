@@ -1,6 +1,5 @@
 package com.unitedtractors.elomate.ui.mentoring.create
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,19 +9,14 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.databinding.FragmentCreateBinding
-import com.unitedtractors.elomate.databinding.FragmentUpcomingBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
-import com.unitedtractors.elomate.ui.mentoring.MentoringFragment
 import com.unitedtractors.elomate.ui.mentoring.MentoringViewModel
-import com.unitedtractors.elomate.ui.mentoring.upcoming.UpcomingFragment
 
 class CreateFragment : Fragment() {
 
@@ -41,15 +35,19 @@ class CreateFragment : Fragment() {
     ): View {
         binding = FragmentCreateBinding.inflate(layoutInflater)
 
-        userPreference = UserPreference(requireContext())
-        userModel = userPreference.getUser()
-
-        setupSpinner()
-
         binding.btnAdd.setOnClickListener {
             addMentoring()
         }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        userPreference = UserPreference(requireContext())
+        userModel = userPreference.getUser()
+
+        setupSpinner()
     }
 
     private fun addMentoring() {
@@ -61,7 +59,7 @@ class CreateFragment : Fragment() {
             Toast.makeText(requireContext(), "Silahkan isi kolom yang ada", Toast.LENGTH_SHORT).show()
         } else {
             viewModel.createMentoring(
-                "Bearer ${userModel.id}",
+                "Bearer ${userModel.token}",
                 binding.spinnerCourse.selectedItem.toString(),
                 binding.etDate.text.toString(),
                 binding.etTimeStart.text.toString(),
@@ -93,7 +91,7 @@ class CreateFragment : Fragment() {
         var selectedCourse: String? = null
 
         // Spinner untuk Courses
-        viewModel.getAllCourses("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getAllCourses("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {
@@ -120,7 +118,7 @@ class CreateFragment : Fragment() {
         }
 
         // Spinner untuk Method Mentoring
-        viewModel.getMethodMentoring("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getMethodMentoring("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> { /* Tampilkan loading jika perlu */ }
                 is Result.Success -> {
@@ -147,7 +145,7 @@ class CreateFragment : Fragment() {
         }
 
         // Spinner untuk Type Mentoring
-        viewModel.getTypeMentoring("Bearer ${userModel.id}").observe(viewLifecycleOwner) { result ->
+        viewModel.getTypeMentoring("Bearer ${userModel.token}").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {  }
                 is Result.Success -> {

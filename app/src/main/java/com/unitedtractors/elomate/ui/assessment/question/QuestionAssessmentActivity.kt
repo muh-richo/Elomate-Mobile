@@ -56,11 +56,11 @@ class QuestionAssessmentActivity : AppCompatActivity() {
 
             if (assessmentType == "Self Assessment") {
                 binding.btnSubmit.setOnClickListener {
-                    submitSelfAssessment("Bearer ${userModel.id}", assessmentId)
+                    submitSelfAssessment("Bearer ${userModel.token}", assessmentId)
                 }
             } else if (assessmentType == "Peer Assessment") {
                 binding.btnSubmit.setOnClickListener {
-                    submitPeerAssessment("Bearer ${userModel.id}", assessmentId, peerId)
+                    submitPeerAssessment("Bearer ${userModel.token}", assessmentId, peerId)
                 }
             }
         }
@@ -78,7 +78,7 @@ class QuestionAssessmentActivity : AppCompatActivity() {
     private fun loadQuestions(assessmentId : Int) {
         binding.rvQuestionAssessment.layoutManager = LinearLayoutManager(this)
 
-        viewModel.getQuestionAssessment("Bearer ${userModel.id}", assessmentId).observe(this) { result ->
+        viewModel.getQuestionAssessment("Bearer ${userModel.token}", assessmentId).observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {
