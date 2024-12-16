@@ -1,7 +1,7 @@
 package com.unitedtractors.elomate.data.network.retrofit
 
 import com.unitedtractors.elomate.data.network.request.AnswerMultipleChoiceRequest
-import com.unitedtractors.elomate.data.network.request.AnswerSelfAssessmentRequest
+import com.unitedtractors.elomate.data.network.request.AnswerAssessmentRequest
 import com.unitedtractors.elomate.data.network.response.QuestionAssessmentResponse
 import com.unitedtractors.elomate.data.network.request.EducationRequest
 import com.unitedtractors.elomate.data.network.request.FormFeedbackMentoringRequest
@@ -306,7 +306,7 @@ interface ElomateApiService {
     suspend fun postSelfAssessmentAnswer(
         @Header("Authorization") token: String,
         @Path("assessmentId") assessmentId: Int,
-        @Body question: List<AnswerSelfAssessmentRequest>
+        @Body question: List<AnswerAssessmentRequest>
     ): SuccessResponse
 
     @POST("assessment/peerAssessment/{assessmentId}/{peerId}")
@@ -314,7 +314,7 @@ interface ElomateApiService {
         @Header("Authorization") token: String,
         @Path("assessmentId") assessmentId: Int,
         @Path("peerId") peerId: Int,
-        @Body question: List<AnswerSelfAssessmentRequest>
+        @Body question: List<AnswerAssessmentRequest>
     ): SuccessResponse
 
 

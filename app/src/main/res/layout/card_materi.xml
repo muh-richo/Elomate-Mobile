@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_materi"
     android:layout_width="match_parent"
@@ -41,24 +40,21 @@
 
         <TextView
             android:id="@+id/tv_title_materi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:textColor="@color/shades_100"
             android:textSize="16sp"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            tools:text="Materi  Onboarding 1" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:maxLines="3"
+            android:ellipsize="end"
+            tools:text="Materi Onboarding 1" />
 
         <ImageView
             android:id="@+id/iv_arrow_detail"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_arrow_circle_right"
-            android:orientation="vertical">
-        </ImageView>
+            android:orientation="vertical" />
     </LinearLayout>
 
 </LinearLayout>

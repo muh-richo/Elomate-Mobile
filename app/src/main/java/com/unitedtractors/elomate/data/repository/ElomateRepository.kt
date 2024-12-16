@@ -11,7 +11,7 @@ import com.unitedtractors.elomate.data.network.response.TokenResponse
 import com.unitedtractors.elomate.data.network.retrofit.ElomateApiService
 import com.unitedtractors.elomate.data.network.Result
 import com.unitedtractors.elomate.data.network.request.AnswerMultipleChoiceRequest
-import com.unitedtractors.elomate.data.network.request.AnswerSelfAssessmentRequest
+import com.unitedtractors.elomate.data.network.request.AnswerAssessmentRequest
 import com.unitedtractors.elomate.data.network.request.EducationRequest
 import com.unitedtractors.elomate.data.network.request.FormFeedbackMentoringRequest
 import com.unitedtractors.elomate.data.network.response.AssessmentResponse
@@ -851,7 +851,7 @@ class ElomateRepository(
             }
         }
 
-    fun postAnswerSelfAssessment(token: String, assessmentId: Int, answer: List<AnswerSelfAssessmentRequest>): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
+    fun postAnswerSelfAssessment(token: String, assessmentId: Int, answer: List<AnswerAssessmentRequest>): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
         liveData {
             emit(Result.Loading)
 
@@ -868,7 +868,7 @@ class ElomateRepository(
             }
         }
 
-    fun postAnswerPeerAssessment(token: String, assessmentId: Int, peerId: Int, answer: List<AnswerSelfAssessmentRequest>): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
+    fun postAnswerPeerAssessment(token: String, assessmentId: Int, peerId: Int, answer: List<AnswerAssessmentRequest>): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
         liveData {
             emit(Result.Loading)
 

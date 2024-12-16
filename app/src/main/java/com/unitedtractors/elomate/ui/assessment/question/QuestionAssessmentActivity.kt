@@ -2,6 +2,7 @@ package com.unitedtractors.elomate.ui.assessment.question
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -9,13 +10,14 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.unitedtractors.elomate.R
-import com.unitedtractors.elomate.adapter.QuestionAssessmentAdapter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
+import com.unitedtractors.elomate.data.network.request.AnswerAssessmentRequest
+import com.unitedtractors.elomate.data.network.response.QuestionItem
 import com.unitedtractors.elomate.databinding.ActivityQuestionAssessmentBinding
+import com.unitedtractors.elomate.databinding.ItemQuestionAssessmentBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.assessment.AssessmentViewModel
 
@@ -29,6 +31,8 @@ class QuestionAssessmentActivity : AppCompatActivity() {
 
     private lateinit var userPreference: UserPreference
     private lateinit var userModel: User
+
+    private val answers: MutableMap<Int, Int> = mutableMapOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,8 +79,8 @@ class QuestionAssessmentActivity : AppCompatActivity() {
 
     }
 
-    private fun loadQuestions(assessmentId : Int) {
-        binding.rvQuestionAssessment.layoutManager = LinearLayoutManager(this)
+    private fun loadQuestions(assessmentId: Int) {
+        binding.containerQuestions.removeAllViews()
 
         viewModel.getQuestionAssessment("Bearer ${userModel.token}", assessmentId).observe(this) { result ->
             if (result != null) {
@@ -87,9 +91,9 @@ class QuestionAssessmentActivity : AppCompatActivity() {
                     is Result.Success -> {
                         binding.progressBar.visibility = View.GONE
 
-                        val questionData = result.data.question
-                        val adapter = QuestionAssessmentAdapter(questionData)
-                        binding.rvQuestionAssessment.adapter = adapter
+                        result.data.question?.forEach { question ->
+                            question?.let { addQuestionToContainer(it) }
+                        }
 
                     }
                     is Result.Error -> {
@@ -102,16 +106,48 @@ class QuestionAssessmentActivity : AppCompatActivity() {
         }
     }
 
-    private fun submitSelfAssessment(token: String, assessmentId: Int) {
-        val adapter = binding.rvQuestionAssessment.adapter as? QuestionAssessmentAdapter
-        val answers = adapter?.getAnswers()
+    private fun addQuestionToContainer(question: QuestionItem) {
+        val itemBinding = ItemQuestionAssessmentBinding.inflate(layoutInflater, binding.containerQuestions, false)
 
-        if (answers.isNullOrEmpty()) {
+        itemBinding.tvQuestion.text = question.questionText
+
+        itemBinding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            val selectedAnswer = when (checkedId) {
+                itemBinding.radio1.id -> 1
+                itemBinding.radio2.id -> 2
+                itemBinding.radio3.id -> 3
+                itemBinding.radio4.id -> 4
+                itemBinding.radio5.id -> 5
+                else -> 0
+            }
+
+            if (selectedAnswer != 0) {
+                question.questionId?.let { questionId ->
+                    answers[questionId] = selectedAnswer
+                    Log.d("QuestionAnswer", "Question ID: $questionId, Answer: $selectedAnswer")
+                }
+            }
+        }
+
+        binding.containerQuestions.addView(itemBinding.root)
+    }
+
+    private fun submitSelfAssessment(token: String, assessmentId: Int) {
+        val allAnswered = answers.size == binding.containerQuestions.childCount
+
+        if (!allAnswered) {
             Toast.makeText(this, "Harap isi semua pertanyaan!", Toast.LENGTH_SHORT).show()
             return
         }
 
-        viewModel.postAnswerSelfAssessment(token, assessmentId, answers).observe(this) { result ->
+        val answerList = answers.map { entry ->
+            AnswerAssessmentRequest(
+                questionId = entry.key,
+                answerLikert = entry.value.toString()
+            )
+        }
+
+        viewModel.postAnswerSelfAssessment(token, assessmentId, answerList).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -130,15 +166,21 @@ class QuestionAssessmentActivity : AppCompatActivity() {
     }
 
     private fun submitPeerAssessment(token: String, assessmentId: Int, peerId: Int) {
-        val adapter = binding.rvQuestionAssessment.adapter as? QuestionAssessmentAdapter
-        val answers = adapter?.getAnswers()
+        val allAnswered = answers.size == binding.containerQuestions.childCount
 
-        if (answers.isNullOrEmpty()) {
+        if (!allAnswered) {
             Toast.makeText(this, "Harap isi semua pertanyaan!", Toast.LENGTH_SHORT).show()
             return
         }
 
-        viewModel.postAnswerPeerAssessment(token, assessmentId, peerId, answers).observe(this) { result ->
+        val answerList = answers.map { entry ->
+            AnswerAssessmentRequest(
+                questionId = entry.key,
+                answerLikert = entry.value.toString()
+            )
+        }
+
+        viewModel.postAnswerPeerAssessment(token, assessmentId, peerId, answerList).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -155,5 +197,4 @@ class QuestionAssessmentActivity : AppCompatActivity() {
             }
         }
     }
-
 }

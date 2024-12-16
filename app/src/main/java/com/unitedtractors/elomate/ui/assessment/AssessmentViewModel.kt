@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.unitedtractors.elomate.data.network.response.QuestionAssessmentResponse
 import com.unitedtractors.elomate.data.network.Result
-import com.unitedtractors.elomate.data.network.request.AnswerSelfAssessmentRequest
+import com.unitedtractors.elomate.data.network.request.AnswerAssessmentRequest
 import com.unitedtractors.elomate.data.network.response.AssessmentResponse
 import com.unitedtractors.elomate.data.network.response.AssessmentsItem
 import com.unitedtractors.elomate.data.network.response.MessageErrorResponse
@@ -34,11 +34,11 @@ class AssessmentViewModel(private val repository: ElomateRepository) : ViewModel
         return repository.getListPeerAssessment(token, assessmentId)
     }
 
-    fun postAnswerSelfAssessment(token: String, assessmentId: Int, answer: List<AnswerSelfAssessmentRequest>): LiveData<Result<SuccessResponse, MessageErrorResponse>> {
+    fun postAnswerSelfAssessment(token: String, assessmentId: Int, answer: List<AnswerAssessmentRequest>): LiveData<Result<SuccessResponse, MessageErrorResponse>> {
         return repository.postAnswerSelfAssessment(token, assessmentId, answer)
     }
 
-    fun postAnswerPeerAssessment(token: String, assessmentId: Int, peerId: Int, answer: List<AnswerSelfAssessmentRequest>): LiveData<Result<SuccessResponse, MessageErrorResponse>> {
+    fun postAnswerPeerAssessment(token: String, assessmentId: Int, peerId: Int, answer: List<AnswerAssessmentRequest>): LiveData<Result<SuccessResponse, MessageErrorResponse>> {
         return repository.postAnswerPeerAssessment(token, assessmentId, peerId, answer)
     }
 

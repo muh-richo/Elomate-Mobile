@@ -77,11 +77,11 @@ class EssayAssignmentActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == FILE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            val uri = data.data // URI file yang dipilih
+            val uri = data.data
             val filePath = getFilePathFromUri(uri) // Konversi URI ke path absolut
             if (filePath != null) {
-                binding.editTextFile.setText(File(filePath).name) // Tampilkan nama file
-                selectedFilePath = filePath // Simpan path file yang dipilih
+                binding.editTextFile.setText(File(filePath).name)
+                selectedFilePath = filePath
             } else {
                 Toast.makeText(this, "Gagal mengambil file", Toast.LENGTH_SHORT).show()
             }

@@ -4,7 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.unitedtractors.elomate.data.network.request.AnswerSelfAssessmentRequest
+import com.unitedtractors.elomate.data.network.request.AnswerAssessmentRequest
 import com.unitedtractors.elomate.data.network.response.QuestionItem
 import com.unitedtractors.elomate.databinding.ItemQuestionAssessmentBinding
 
@@ -14,14 +14,14 @@ class QuestionAssessmentAdapter(
 
     private val answers: MutableMap<Int, Int> = mutableMapOf()
 
-    fun getAnswers(): List<AnswerSelfAssessmentRequest>? {
+    fun getAnswers(): List<AnswerAssessmentRequest>? {
         val allAnswered = questions?.all { question ->
             question?.questionId?.let { answers.containsKey(it) } ?: false
         } ?: false
 
         return if (allAnswered) {
             answers.map { entry ->
-                AnswerSelfAssessmentRequest(
+                AnswerAssessmentRequest(
                     questionId = entry.key,
                     answerLikert = entry.value.toString()
                 )
