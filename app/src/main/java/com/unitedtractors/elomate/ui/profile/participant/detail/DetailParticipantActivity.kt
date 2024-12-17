@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.unitedtractors.elomate.R
 import com.unitedtractors.elomate.adapter.EducationAdapter
+import com.unitedtractors.elomate.adapter.ParticipantEducationAdapter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
@@ -68,9 +69,7 @@ class DetailParticipantActivity : AppCompatActivity() {
                     val userName = response.first().namaLengkap
                     binding.tvNameUser.text = userName
 
-                    val adapter = EducationAdapter(response) { _ ->
-
-                    }
+                    val adapter = ParticipantEducationAdapter(response)
                     binding.rvEducation.adapter = adapter
                     binding.rvEducation.layoutManager = LinearLayoutManager(this)
                 }

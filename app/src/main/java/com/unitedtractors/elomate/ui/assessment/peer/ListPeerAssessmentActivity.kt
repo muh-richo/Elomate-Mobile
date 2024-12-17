@@ -78,11 +78,12 @@ class ListPeerAssessmentActivity : AppCompatActivity() {
                         binding.progressBar.visibility = View.GONE
 
                         val listPeer = result.data.data
-                        val adapter = PeerAssessmentAdapter(listPeer) { peerId ->
+                        val adapter = PeerAssessmentAdapter(listPeer) { peerId, status ->
                             val intent = Intent(this, QuestionAssessmentActivity::class.java)
                             intent.putExtra("ASSESSMENT_TITLE", assessmentTitle)
                             intent.putExtra("ASSESSMENT_TYPE", assessmentType)
                             intent.putExtra("ASSESSMENT_ID", assessmentId)
+                            intent.putExtra("ASSESSMENT_STATUS", status)
                             intent.putExtra("PEER_ID", peerId)
                             startActivity(intent)
                         }

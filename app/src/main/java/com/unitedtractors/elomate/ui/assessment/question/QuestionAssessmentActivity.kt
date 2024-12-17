@@ -54,21 +54,26 @@ class QuestionAssessmentActivity : AppCompatActivity() {
         val assessmentTitle = intent.getStringExtra("ASSESSMENT_TITLE")
         val assessmentType = intent.getStringExtra("ASSESSMENT_TYPE")
         val assessmentId = intent.getIntExtra("ASSESSMENT_ID", -1)
+        val assessmentStatus = intent.getStringExtra("ASSESSMENT_STATUS")
         val peerId = intent.getIntExtra("PEER_ID", -1)
         if (assessmentId != -1) {
-            loadQuestions(assessmentId)
+            if (assessmentStatus == "Complete") {
+                Toast.makeText(this, "Anda sudah menyelesaikan assessment ini!", Toast.LENGTH_SHORT).show()
+                finish()
+            } else {
+                loadQuestions(assessmentId)
 
-            if (assessmentType == "Self Assessment") {
-                binding.btnSubmit.setOnClickListener {
-                    submitSelfAssessment("Bearer ${userModel.token}", assessmentId)
-                }
-            } else if (assessmentType == "Peer Assessment") {
-                binding.btnSubmit.setOnClickListener {
-                    submitPeerAssessment("Bearer ${userModel.token}", assessmentId, peerId)
+                if (assessmentType == "Self Assessment") {
+                    binding.btnSubmit.setOnClickListener {
+                        submitSelfAssessment("Bearer ${userModel.token}", assessmentId)
+                    }
+                } else if (assessmentType == "Peer Assessment") {
+                    binding.btnSubmit.setOnClickListener {
+                        submitPeerAssessment("Bearer ${userModel.token}", assessmentId, peerId)
+                    }
                 }
             }
         }
-
 
         binding.apply {
             icBack.setOnClickListener {

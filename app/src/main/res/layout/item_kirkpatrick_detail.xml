@@ -55,6 +55,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -75,11 +76,20 @@
                 tools:text="10" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_questions_high_self_1"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            tools:text="- Saya memahami pentingnya peduli terhadap kebutuhan dan keluhan pelanggan.
+                        - Saya secara proaktif merumuskan kebutuhan pelanggan berdasarkan pengamatan dan komunikasi." />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -100,6 +110,15 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_questions_high_peer_1"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            tools:text="- Saya memahami pentingnya peduli terhadap kebutuhan dan keluhan pelanggan.
+                        - Saya secara proaktif merumuskan kebutuhan pelanggan berdasarkan pengamatan dan komunikasi." />
+
+        <TextView
             android:id="@+id/tv_high_2"
             android:textColor="#000000"
             android:textSize="14sp"
@@ -112,6 +131,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -132,11 +152,20 @@
                 tools:text="10" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_questions_high_self_2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            tools:text="- Saya memahami pentingnya peduli terhadap kebutuhan dan keluhan pelanggan.
+                        - Saya secara proaktif merumuskan kebutuhan pelanggan berdasarkan pengamatan dan komunikasi." />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -157,6 +186,15 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_questions_high_peer_2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            tools:text="- Saya memahami pentingnya peduli terhadap kebutuhan dan keluhan pelanggan.
+                        - Saya secara proaktif merumuskan kebutuhan pelanggan berdasarkan pengamatan dan komunikasi." />
+
+        <TextView
             android:id="@+id/tv_high_3"
             android:textColor="#000000"
             android:textSize="14sp"
@@ -170,6 +208,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginBottom="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -189,11 +228,20 @@
                 tools:text="10" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_questions_high_self_3"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            tools:text="- Saya memahami pentingnya peduli terhadap kebutuhan dan keluhan pelanggan.
+                        - Saya secara proaktif merumuskan kebutuhan pelanggan berdasarkan pengamatan dan komunikasi." />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -214,14 +262,22 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_questions_high_peer_3"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            tools:text="- Saya memahami pentingnya peduli terhadap kebutuhan dan keluhan pelanggan. \n- Saya secara proaktif merumuskan kebutuhan pelanggan berdasarkan pengamatan dan komunikasi." />
+
+        <TextView
             android:id="@+id/tv_title_lowest"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:textColor="#B32A2A"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginTop="14dp"
             android:layout_marginBottom="10dp"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
             android:text="Nilai yang Perlu Ditingkatkan" />
 
         <TextView
@@ -238,6 +294,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginBottom="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -257,11 +314,20 @@
                 tools:text="10" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_questions_low_self_1"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            tools:text="- Saya memahami pentingnya peduli terhadap kebutuhan dan keluhan pelanggan.
+                        - Saya secara proaktif merumuskan kebutuhan pelanggan berdasarkan pengamatan dan komunikasi." />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -282,6 +348,15 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_questions_low_peer_1"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            tools:text="- Saya memahami pentingnya peduli terhadap kebutuhan dan keluhan pelanggan.
+                        - Saya secara proaktif merumuskan kebutuhan pelanggan berdasarkan pengamatan dan komunikasi." />
+
+        <TextView
             android:id="@+id/tv_low_2"
             android:textColor="#000000"
             android:textSize="14sp"
@@ -295,6 +370,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginBottom="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -313,6 +389,15 @@
                 android:layout_width="wrap_content"
                 tools:text="10" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_questions_low_self_2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            tools:text="- Saya memahami pentingnya peduli terhadap kebutuhan dan keluhan pelanggan.
+                        - Saya secara proaktif merumuskan kebutuhan pelanggan berdasarkan pengamatan dan komunikasi." />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -337,6 +422,15 @@
                 android:layout_width="wrap_content"
                 tools:text="10" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_questions_low_peer_2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            tools:text="- Saya memahami pentingnya peduli terhadap kebutuhan dan keluhan pelanggan.
+                        - Saya secara proaktif merumuskan kebutuhan pelanggan berdasarkan pengamatan dan komunikasi." />
 
         <TextView
             android:id="@+id/tv_low_3"
@@ -371,6 +465,15 @@
                 tools:text="10" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_questions_low_self_3"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            tools:text="- Saya memahami pentingnya peduli terhadap kebutuhan dan keluhan pelanggan.
+                        - Saya secara proaktif merumuskan kebutuhan pelanggan berdasarkan pengamatan dan komunikasi." />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -394,6 +497,15 @@
                 android:layout_width="wrap_content"
                 tools:text="10" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_questions_low_peer_3"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            tools:text="- Saya memahami pentingnya peduli terhadap kebutuhan dan keluhan pelanggan.
+                        - Saya secara proaktif merumuskan kebutuhan pelanggan berdasarkan pengamatan dan komunikasi." />
 
     </LinearLayout>
 </LinearLayout>

@@ -10,7 +10,7 @@ import com.unitedtractors.elomate.databinding.CardPeerAssessmentBinding
 
 class PeerAssessmentAdapter(
     private var peerAssessmentList: List<DataAssessment?>?,
-    private val onItemClicked: (Int) -> Unit
+    private val onItemClicked: (Int, String) -> Unit
 ) : RecyclerView.Adapter<PeerAssessmentAdapter.PeerAssessmentViewHolder>() {
 
     inner class PeerAssessmentViewHolder(private val binding: CardPeerAssessmentBinding) :
@@ -30,7 +30,11 @@ class PeerAssessmentAdapter(
             }
 
             binding.root.setOnClickListener {
-                user.userId?.let { it1 -> onItemClicked(it1) }
+                user.userId?.let { id ->
+                    user.statusPeerAssessment?.let { status ->
+                        onItemClicked(id, status)
+                    }
+                }
             }
         }
     }

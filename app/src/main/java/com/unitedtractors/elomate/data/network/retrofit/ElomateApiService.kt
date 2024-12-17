@@ -220,7 +220,7 @@ interface ElomateApiService {
         @Header("Authorization") token: String,
     ): KirkPatrickResponse
 
-    @GET("report/kirkpatrickDetail")
+    @GET("report/kirkpatrickDetailQuestion")
     suspend fun getKirkpatrickDetail(
         @Header("Authorization") token: String,
     ): KirkpatrickDetailResponse

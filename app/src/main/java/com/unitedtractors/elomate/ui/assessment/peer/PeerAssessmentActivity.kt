@@ -55,6 +55,11 @@ class PeerAssessmentActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        setupRecyclerView()
+    }
+
     private fun setupRecyclerView() {
         binding.rvPeerAssessment.layoutManager = LinearLayoutManager(this)
 
@@ -66,7 +71,7 @@ class PeerAssessmentActivity : AppCompatActivity() {
                         binding.progressBar.visibility = View.GONE
                         val response = result.data
 
-                        val adapter = AssessmentAdapter(response) { assessmentId, assessmentTitle ->
+                        val adapter = AssessmentAdapter(response) { assessmentId, assessmentTitle, _ ->
                             val intent = Intent(this, ListPeerAssessmentActivity::class.java)
                             intent.putExtra("ASSESSMENT_TITLE", assessmentTitle)
                             intent.putExtra("ASSESSMENT_TYPE", "Peer Assessment")

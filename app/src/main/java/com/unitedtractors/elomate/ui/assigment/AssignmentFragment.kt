@@ -1,5 +1,6 @@
 package com.unitedtractors.elomate.ui.assigment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,21 +10,20 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.AdapterView
-import com.unitedtractors.elomate.adapter.CourseAdapter
 import com.unitedtractors.elomate.data.local.user.User
 import com.unitedtractors.elomate.data.local.user.UserPreference
 import com.unitedtractors.elomate.data.network.Result
+import com.unitedtractors.elomate.databinding.CardCourseBinding
 import com.unitedtractors.elomate.databinding.FragmentAssignmentBinding
 import com.unitedtractors.elomate.ui.ViewModelFactory
 import com.unitedtractors.elomate.ui.assigment.course.CourseActivity
 import com.unitedtractors.elomate.ui.assigment.course.CourseViewModel
-import com.unitedtractors.elomate.ui.auth.login.LoginActivity
 
 class AssignmentFragment : Fragment() {
 
     private lateinit var binding: FragmentAssignmentBinding
+
     private val viewModel by viewModels<CourseViewModel> {
         ViewModelFactory.getInstance(requireContext())
     }
@@ -42,7 +42,6 @@ class AssignmentFragment : Fragment() {
         userModel = userPreference.getUser()
 
         getCurrentUserApi()
-
         setupSpinner()
 
         return binding.root
@@ -64,10 +63,13 @@ class AssignmentFragment : Fragment() {
         }
     }
 
-    private fun setupRecyclerView(token: String, phaseId: Int, topicId: Int) {
-        binding.rvCourse.layoutManager = LinearLayoutManager(requireContext())
+    @SuppressLint("SetTextI18n")
+    private fun loadCourse(phaseId: Int, topicId: Int) {
+        binding.progressBar.visibility = View.VISIBLE
+        val container = binding.containerCourse
+        container.removeAllViews()
 
-        viewModel.getCourseByPhaseIdTopicId(token, phaseId, topicId).observe(viewLifecycleOwner) { result ->
+        viewModel.getCourseByPhaseIdTopicId("Bearer ${userModel.token}", phaseId, topicId).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -76,12 +78,23 @@ class AssignmentFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     val courses = result.data
 
-                    val adapter = CourseAdapter(courses) { courseId ->
-                        val intent = Intent(requireContext(), CourseActivity::class.java)
-                        intent.putExtra("COURSE_ID", courseId)
-                        startActivity(intent)
+                    courses.forEach { course ->
+                        val cardBinding = CardCourseBinding.inflate(LayoutInflater.from(requireContext()), container, false)
+
+                        cardBinding.tvCourseName.text = course.namaCourse
+                        cardBinding.tvMentor.text = "Mentor: ${course.fasilitatorName}"
+                        val progressValue = course.progress ?: 0
+                        cardBinding.circleProgressbar.progress = progressValue
+                        cardBinding.progressText.text = "$progressValue%"
+
+                        cardBinding.root.setOnClickListener {
+                            val intent = Intent(requireContext(), CourseActivity::class.java)
+                            intent.putExtra("COURSE_ID", course.courseId)
+                            startActivity(intent)
+                        }
+
+                        container.addView(cardBinding.root)
                     }
-                    binding.rvCourse.adapter = adapter
                 }
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE
@@ -90,6 +103,7 @@ class AssignmentFragment : Fragment() {
             }
         }
     }
+
 
     private fun setupSpinner() {
         // Spinner Phase
@@ -133,7 +147,7 @@ class AssignmentFragment : Fragment() {
                                                 override fun onItemSelected(parent: AdapterView<*>, view: View?, topicPosition: Int, id: Long) {
                                                     val selectedTopicId = topicIds[topicPosition]
                                                     if (selectedTopicId != null) {
-                                                        setupRecyclerView("Bearer ${userModel.token}", selectedPhaseId, selectedTopicId)
+                                                        loadCourse(selectedPhaseId, selectedTopicId)
                                                     }
                                                 }
 

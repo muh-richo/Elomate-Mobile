@@ -19,10 +19,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/r6nxprnec81k"
+                android:id="@+id/greeting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -30,7 +31,6 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/rbhce5oe31f"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -65,7 +65,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/rxzcrm1et3ua"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -82,7 +81,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/r390m17o0n0g"
+                        android:id="@+id/tv_title_phase"
                         android:textColor="#121926"
                         android:textSize="14sp"
                         android:layout_marginBottom="4dp"
@@ -120,7 +119,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/rsd0zhhv5wxh"
+                        android:id="@+id/tv_title_topic"
                         android:textColor="#121926"
                         android:textSize="14sp"
                         android:layout_marginBottom="4dp"
@@ -158,21 +157,22 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_course"
+            <LinearLayout
+                android:id="@+id/container_course"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/card_course"/>
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:paddingTop="50dp"
-                android:layout_gravity="center"
-                android:indeterminateTint="@color/yellow_500"
-                android:visibility="gone"
-                android:indeterminate="true"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
         </LinearLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:paddingTop="50dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/yellow_500"
+        android:visibility="gone"
+        android:indeterminate="true"/>
+
 </LinearLayout>

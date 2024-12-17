@@ -7,30 +7,31 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout android:id="@+id/r64gu2yi24ic"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:background="@drawable/bg_card2"
-        android:padding="14dp"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="12dp"
         android:layout_marginBottom="0dp"
         android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/rmg72f3g9nn"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_card2"
             android:backgroundTint="@color/yellow_100"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
             android:layout_marginEnd="11dp"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv_pendidikan"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:src="@drawable/ic_teacher"
                 android:scaleType="fitXY"
                 app:tint="@color/yellow_700" />

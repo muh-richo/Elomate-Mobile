@@ -56,6 +56,11 @@ class SelfAssessmentActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadSelfAssessment()
+    }
+
     private fun loadSelfAssessment() {
         binding.rvSelfAssessment.layoutManager = LinearLayoutManager(this)
 
@@ -67,11 +72,12 @@ class SelfAssessmentActivity : AppCompatActivity() {
                         binding.progressBar.visibility = View.GONE
                         val response = result.data
 
-                        val adapter = AssessmentAdapter(response) { assessmentId, assessmentTitle ->
+                        val adapter = AssessmentAdapter(response) { assessmentId, assessmentTitle, assessmentStatus ->
                             val intent = Intent(this, QuestionAssessmentActivity::class.java)
                             intent.putExtra("ASSESSMENT_TITLE", assessmentTitle)
                             intent.putExtra("ASSESSMENT_TYPE", "Self Assessment")
                             intent.putExtra("ASSESSMENT_ID", assessmentId)
+                            intent.putExtra("ASSESSMENT_STATUS", assessmentStatus)
                             startActivity(intent)
                         }
                         binding.rvSelfAssessment.adapter = adapter
