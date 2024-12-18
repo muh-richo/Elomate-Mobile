@@ -574,6 +574,24 @@ class ElomateRepository(
             }
         }
 
+    fun submitAnswerEssayWithoutFile(token: String, assignmentId: Int, essayAnswer: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
+        liveData {
+            emit(Result.Loading)
+            try {
+                val essayAnswerBody = RequestBody.create("text/plain".toMediaType(), essayAnswer)
+
+                val response = elomateApiService.submitAnswerEssayWithoutFile(token, assignmentId, essayAnswerBody)
+                emit(Result.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val messageErrorResponse =
+                    Gson().fromJson(errorBody, MessageErrorResponse::class.java)
+                emit(Result.Error(messageErrorResponse))
+            } catch (e: SocketTimeoutException) {
+                emit(Result.Error(MessageErrorResponse(e.message ?: "Unknown error")))
+            }
+        }
+
 
     fun createMentoring(token: String, namaCourse: String, tanggalMentoring: String, jamMulai: String, jamSelesai: String, metodeMentoring: String, tipeMentoring: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> =
         liveData {

@@ -17,7 +17,6 @@ class ParticipantAdapter(
         fun bind(user: UserResponse) {
             binding.tvNamaLengkap.text = user.namaLengkap
             binding.tvPosisi.text = user.posisi
-            binding.tvRole.text = user.roleName
 
             binding.root.setOnClickListener {
                 user.userId?.let { it1 -> onItemClicked(it1) }

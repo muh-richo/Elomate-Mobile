@@ -45,8 +45,6 @@ class HomeFragment : Fragment() {
     private lateinit var userPreference: UserPreference
     private lateinit var userModel: User
 
-    private var selectedDate: LocalDate? = null
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -132,6 +130,8 @@ class HomeFragment : Fragment() {
                             startActivity(intent)
                         } else {
                             Toast.makeText(requireContext(), result.error.message, Toast.LENGTH_SHORT).show()
+                            val intent = Intent(requireContext(), LoginActivity::class.java)
+                            startActivity(intent)
                         }
                     }
                 }
@@ -207,7 +207,8 @@ class HomeFragment : Fragment() {
         val endDate = currentMonth.plusMonths(100).atEndOfMonth()
         val firstDayOfWeek = firstDayOfWeekFromLocale()
 
-        var selectedDate: LocalDate? = null
+        var selectedDate: LocalDate? = currentDate
+        getToDoListScheduleForDate(selectedDate!!)
 
         weekCalendarView.setup(startDate, endDate, firstDayOfWeek)
         weekCalendarView.scrollToWeek(currentDate)
@@ -237,17 +238,15 @@ class HomeFragment : Fragment() {
                 )
 
                 container.view.setOnClickListener {
-                    // Update tanggal yang dipilih
                     val previousSelectedDate = selectedDate
                     selectedDate = data.date
 
-                    // Refresh tampilan kalender agar tanggal sebelumnya diperbarui
                     if (previousSelectedDate != null) {
                         weekCalendarView.notifyDateChanged(previousSelectedDate)
                     }
                     weekCalendarView.notifyDateChanged(selectedDate!!)
 
-                    getToDoListScheduleForDate(data.date)
+                    getToDoListScheduleForDate(selectedDate!!)
                 }
             }
         }

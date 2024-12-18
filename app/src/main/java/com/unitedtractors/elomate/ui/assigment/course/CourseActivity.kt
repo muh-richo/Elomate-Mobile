@@ -115,17 +115,14 @@ class   CourseActivity : AppCompatActivity() {
     private fun loadCourseDetails(token: String, courseId: Int) {
         viewModel.getCourseById(token, courseId).observe(this) { result ->
             when (result) {
-                is Result.Loading -> {
-                    // Tampilkan indikator loading jika diperlukan
-                }
+                is Result.Loading -> {  }
                 is Result.Success -> {
-                    val courses = result.data // Ini adalah List<CourseResponse>
+                    val courses = result.data
                     val courseDetails = courses.find { it.courseId == courseId }
 
                     if (courseDetails != null) {
-                        // Tampilkan data detail di UI
                         binding.tvCourse.text = courseDetails.namaCourse
-                        binding.tvBatch.text = courseDetails.batchName
+//                        binding.tvBatch.text = courseDetails.batchName
 
                         val intentPre = Intent(this, PreActivityFragment::class.java)
                         val intentPost = Intent(this, PostActivityFragment::class.java)
@@ -133,7 +130,6 @@ class   CourseActivity : AppCompatActivity() {
                         intentPost.putExtra("COURSE_ID", courseId)
 
                     } else {
-                        // Tangani jika course tidak ditemukan
                         Toast.makeText(this, "Course not found", Toast.LENGTH_SHORT).show()
                     }
                 }

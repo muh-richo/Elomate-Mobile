@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -122,7 +123,6 @@ class EssayAssignmentActivity : AppCompatActivity() {
                     Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()
                 }
             }
-
         }
     }
 
@@ -133,27 +133,38 @@ class EssayAssignmentActivity : AppCompatActivity() {
             return
         }
 
-        if (selectedFilePath.isNullOrEmpty()) {
-            Toast.makeText(this, "Harap pilih file lampiran", Toast.LENGTH_SHORT).show()
-            return
-        }
+        val filePathToSend = selectedFilePath
 
-//        binding.progressBar.visibility = View.VISIBLE
+        Log.d("EssayAssignment", "File path: $filePathToSend")
 
-        viewModel.submitAnswerEssay(
-            token = "Bearer ${userModel.token}",
-            assignmentId = assignmentId,
-            essayAnswers = essayAnswer,
-            filePath = selectedFilePath!!
-        ).observe(this) { result ->
-            when (result) {
-                is Result.Loading -> {  }
-                is Result.Success -> {
-                    Toast.makeText(this, "Jawaban berhasil dikirim!", Toast.LENGTH_SHORT).show()
-                    finish()
+        if (filePathToSend != null) {
+            viewModel.submitAnswerEssay(token = "Bearer ${userModel.token}", assignmentId = assignmentId, essayAnswers = essayAnswer, filePath = filePathToSend).observe(this) { result ->
+                when (result) {
+                    is Result.Loading -> {
+
+                    }
+                    is Result.Success -> {
+                        Toast.makeText(this, "Jawaban berhasil dikirim!", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                    is Result.Error -> {
+                        Toast.makeText(this, "Error: ${result.error.message}", Toast.LENGTH_SHORT).show()
+                    }
                 }
-                is Result.Error -> {
-                    Toast.makeText(this, result.error.message, Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            viewModel.submitAnswerEssayWithoutFile(token = "Bearer ${userModel.token}", assignmentId = assignmentId, essayAnswers = essayAnswer).observe(this) { result ->
+                when (result) {
+                    is Result.Loading -> {
+
+                    }
+                    is Result.Success -> {
+                        Toast.makeText(this, "Jawaban berhasil dikirim!", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                    is Result.Error -> {
+                        Toast.makeText(this, "Error: ${result.error.message}", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }

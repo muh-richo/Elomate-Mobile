@@ -127,7 +127,7 @@ interface ElomateApiService {
         @Header("Authorization") token: String
     ): List<CourseResponse>
 
-    @GET("courses")
+    @GET("mentoring/courses")
     suspend fun getAllCoursesUser(
         @Header("Authorization") token: String
     ): List<CourseResponse>
@@ -206,6 +206,14 @@ interface ElomateApiService {
         @Path("assignmentId") assignmentId: Int,
         @Part("essay_answer") essayAnswer: RequestBody,
         @Part lampiranFile: MultipartBody.Part
+    ): SuccessResponse
+
+    @Multipart
+    @POST("assignmentTask/answerEssay/{assignmentId}")
+    suspend fun submitAnswerEssayWithoutFile(
+        @Header("Authorization") token: String,
+        @Path("assignmentId") assignmentId: Int,
+        @Part("essay_answer") essayAnswer: RequestBody
     ): SuccessResponse
 
     @GET("report/{phaseId}/{topicId}")

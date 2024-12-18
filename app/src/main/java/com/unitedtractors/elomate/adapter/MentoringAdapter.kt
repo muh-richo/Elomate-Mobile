@@ -20,27 +20,32 @@ class MentoringAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n", "ResourceAsColor")
-        fun bind(upcoming: MentoringResponse) {
-            binding.tvDate.text = upcoming.tanggalMentoring
-            binding.tvTime.text = "${upcoming.jamMulai} - ${upcoming.jamSelesai}"
-            binding.tvCourse.text = upcoming.namaCourse
-            binding.tvMentor.text = upcoming.namaFasilitator
-            binding.tvTopic.text = upcoming.namaTopik
-            binding.tvMethod.text = upcoming.metodeMentoring
-            binding.tvType.text = upcoming.tipeMentoring
-            binding.tvStatus.text = upcoming.status
+        fun bind(mentoring: MentoringResponse) {
+            binding.tvDate.text = mentoring.tanggalMentoring
+            binding.tvTime.text = "${mentoring.jamMulai} - ${mentoring.jamSelesai}"
+            binding.tvCourse.text = mentoring.namaCourse
+            binding.tvMentor.text = mentoring.namaFasilitator
+            binding.tvTopic.text = mentoring.namaTopik
+            binding.tvMethod.text = mentoring.metodeMentoring
+            binding.tvType.text = mentoring.tipeMentoring
+            binding.tvStatus.text = mentoring.status
 
-            if (upcoming.status == "Upcoming") {
+            if (mentoring.status == "Upcoming") {
                 binding.icDelete.visibility = View.VISIBLE
                 binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.blue_50)
                 binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.blue_500))
                 binding.ivStatus.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.blue_500))
-            } else if (upcoming.status == "Need Revision" || upcoming.status == "Missed") {
+            } else if (mentoring.status == "Need Revision" || mentoring.status == "Overdue") {
                 binding.icDelete.visibility = View.GONE
                 binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.error_50)
                 binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.error_500))
                 binding.ivStatus.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.error_500))
-            } else if (upcoming.status == "Approve") {
+            } else if (mentoring.status == "Need Approval") {
+                binding.icDelete.visibility = View.GONE
+                binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.blue_50)
+                binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.blue_500))
+                binding.ivStatus.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.blue_500))
+            } else if (mentoring.status == "Approve") {
                 binding.icDelete.visibility = View.GONE
                 binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.success_50)
                 binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.success_900))
@@ -48,11 +53,11 @@ class MentoringAdapter(
             }
 
             binding.btnFeedback.setOnClickListener {
-                upcoming.mentoringId?.let { it1 -> onUpcomingClick(it1) }
+                mentoring.mentoringId?.let { it1 -> onUpcomingClick(it1) }
             }
 
             binding.icDelete.setOnClickListener {
-                upcoming.mentoringId?.let { it1 -> onDeleteClick(it1) }
+                mentoring.mentoringId?.let { it1 -> onDeleteClick(it1) }
             }
         }
     }

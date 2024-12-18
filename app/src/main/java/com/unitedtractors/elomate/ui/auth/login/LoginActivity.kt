@@ -2,11 +2,14 @@ package com.unitedtractors.elomate.ui.auth.login
 
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -22,13 +25,14 @@ import com.unitedtractors.elomate.data.network.Result
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-
     private val viewModel by viewModels<LoginViewModel> {
         ViewModelFactory.getInstance(this)
     }
 
     private var userModel: User = User()
     private lateinit var userPreference: UserPreference
+
+    private lateinit var connectivityManager: ConnectivityManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +48,8 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
-         // Check if user is already logged in
+        connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
         if (userPreference.getAuthToken() != null) {
             // Auth token exists, navigate to MainActivity
             startActivity(Intent(this, MainActivity::class.java))
@@ -52,13 +57,20 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
+        monitorNetwork()
+
         binding.apply {
             btnForgotPassword.setOnClickListener {
                 val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
                 startActivity(intent)
             }
             btnLogin.setOnClickListener {
-                login()
+                // Check network before login
+                if (!isNetworkAvailable()) {
+                    showNoInternetDialog()
+                } else {
+                    login()
+                }
             }
         }
     }
@@ -114,7 +126,48 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // Fungsi untuk menyimpan token ke SharedPreferences
+    // Function to check network availability
+    private fun isNetworkAvailable(): Boolean {
+        val activeNetwork = connectivityManager.activeNetwork ?: return false
+        val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+        return networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    }
+
+    // Function to show a dialog when no internet
+    private fun showNoInternetDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("No Internet")
+            .setMessage("Your internet connection is lost. Please check your connection.")
+            .setPositiveButton("Retry") { _, _ ->
+                if (isNetworkAvailable()) {
+                    Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show()
+                } else {
+                    showNoInternetDialog()
+                }
+            }
+            .setNegativeButton("Cancel") { _, _ -> }
+            .setCancelable(false)
+            .show()
+    }
+
+    // Function to monitor network changes
+    private fun monitorNetwork() {
+        connectivityManager.registerDefaultNetworkCallback(object : ConnectivityManager.NetworkCallback() {
+            override fun onAvailable(network: android.net.Network) {
+                runOnUiThread {
+                    Toast.makeText(this@LoginActivity, "Internet Connected", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onLost(network: android.net.Network) {
+                runOnUiThread {
+                    showNoInternetDialog()
+                }
+            }
+        })
+    }
+
+    // Save Auth Token
     private fun saveAuthToken(token: String) {
         val sharedPreferences = getSharedPreferences("USER_PREF", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()

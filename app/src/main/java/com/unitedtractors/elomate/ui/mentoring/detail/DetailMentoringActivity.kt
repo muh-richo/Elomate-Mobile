@@ -78,9 +78,12 @@ class DetailMentoringActivity : AppCompatActivity() {
                         if (response.status == "Upcoming") {
                             binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.blue_50)
                             binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.blue_500))
-                        } else if (response.status == "Need Revision" || response.status == "Missed") {
+                        } else if (response.status == "Need Revision" || response.status == "Overdue") {
                             binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.error_50)
                             binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.error_500))
+                        }else if (response.status == "Need Approval") {
+                            binding.status.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.blue_50)
+                            binding.tvStatus.setTextColor(ContextCompat.getColor(binding.root.context, R.color.blue_500))
                         } else if (response.status == "Approve") {
                             binding.etLessonLearned.isEnabled = false
                             binding.etCatatanMentor.isEnabled = false

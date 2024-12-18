@@ -22,4 +22,8 @@ class QuestionViewModel(private val repository: ElomateRepository) : ViewModel()
     fun submitAnswerEssay(token: String, assignmentId: Int, essayAnswers: String, filePath: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> {
         return repository.submitAnswerEssay(token, assignmentId, essayAnswers, filePath)
     }
+
+    fun submitAnswerEssayWithoutFile(token: String, assignmentId: Int, essayAnswers: String): LiveData<Result<SuccessResponse, MessageErrorResponse>> {
+        return repository.submitAnswerEssayWithoutFile(token, assignmentId, essayAnswers)
+    }
 }

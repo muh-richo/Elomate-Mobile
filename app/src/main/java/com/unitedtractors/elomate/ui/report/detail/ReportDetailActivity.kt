@@ -101,7 +101,7 @@ class ReportDetailActivity : AppCompatActivity() {
 
                         val highestData = category?.highestData
                         highestData?.getOrNull(0)?.let { firstHighest ->
-                            cardBinding.tvHigh1.text = "- ${firstHighest.question}"
+                            cardBinding.tvHigh1.text = "- ${firstHighest.question} (${firstHighest.pointKirkpatrick})"
                             cardBinding.tvValueHigh1.text = firstHighest.score
                         }
                         highestData?.getOrNull(1)?.let { secondHighest ->
